@@ -41,21 +41,34 @@
 
     <header>
         <h1> Trip Snapshot </h1>
-        <img src="images/Trip-Snapshot-Logo.png"  class="logo" alt="Trip Snapshot Logo">
-        <nav class="navbar">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="planner.html">Plan Trip</a></li>
-                <li><a href="explore.html">Explore</a></li>
-                <li><a href="snapshot.html">Trip Snapshot</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-        </nav>
+        <!-- Logo -->
+        <a href="index.html"><img src="images/Trip-Snapshot-Logo.png" class="logo" alt="Trip Snapshot Logo"></a>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="hamburger-menu">
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon"><img src="images/hamburger-menu.svg" alt="Hamburger Menu Icon"></label>
+        
+            <!-- Navigation Menu -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="planner.html">Plan Trip</a></li>
+                    <li><a href="explore.html">Explore</a></li>
+                    <li><a href="snapshot.html">Trip Snapshot</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <img src="images/contact-us-logo.svg" class="contact-us" alt="Contact Us Icon"> 
+        <img src="images/profile-logo.svg" class="profile" alt="User Profile Icon">
     </header>
 
     <main>
         <!-- Hero Section -->
         <section id="hero">
+            <img src="images/Hero-Background.png" alt="Welcome to Trip Snapshot" class="hero-image">
             <h2>Plan Your Perfect Trip in Minutes</h2>
             <p>Create personalized travel itineraries based on your interests and travel style.</p>
             <a href="planner.html" class="btn">Start Planning</a>

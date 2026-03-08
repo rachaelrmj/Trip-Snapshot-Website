@@ -49,7 +49,7 @@ table {
 	border-spacing: 0;
 }
 
-/* Trip Snapshot Website Custom Styles */
+/* Trip Snapshot Website Mobile Styles */
 * {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
@@ -60,16 +60,51 @@ body {
     color: #000000;
 }
 
+
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+h1 {
+    display: none;
+}
+
+.logo {
+    display: block;
+    width: 150px;
+    height: auto;
+}
+
+input[type="checkbox"] {
+    display: none; /* Hide the checkbox */
+}
+
+input[type="checkbox"]:checked ~ nav ul {
+    transform: translateX(0); /* Show the menu when checkbox is checked */
+}
+
+nav ul {
+    transform: translateX(-100%); /* Hide the menu off-screen */
+    transition: transform 0.3s ease; /* Smooth transition for sliding */
+}
+
 h1, h2, h3 {
     font-family: 'Archivo Black', sans-serif;
     color: #000000;
 }
 
-header {
-    background-color: #ffffff;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+
+.contact-us, .profile {
+    width: 30px;
+    height: 30px;
 }
 
+.hero-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
