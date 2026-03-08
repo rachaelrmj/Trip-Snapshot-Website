@@ -201,6 +201,7 @@ h1, h2, h3 {
     margin: 0 auto;
 }
 
+/* How It Works Section */
 #how-it-works {
     width: 70%;
     margin: 40px auto;
@@ -235,6 +236,44 @@ h1, h2, h3 {
     font-size: 15px;
     padding-left: 20px;
 }
+
+/* Features Section */
+#features {
+    width: 70%;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #facc15;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#features-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#features-image {
+    width: 100px;
+    height: auto;
+}
+
+#features h3 {
+    font-family: 'Archivo Black', sans-serif;
+    color: #000000;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#features ul {
+    list-style: disc inside;
+    font-family: 'SN Pro', sans-serif;
+    color: #000000;
+    font-size: 15px;
+    padding-left: 20px;
+}
+
+#
 
 @media (min-width: 768px){
 
