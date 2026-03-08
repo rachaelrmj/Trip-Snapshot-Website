@@ -41,16 +41,14 @@
 
     <header>
         <h1> Trip Snapshot </h1>
-        <!-- Logo -->
-        <a href="index.html"><img src="images/Trip-Snapshot-Logo.png" class="logo" alt="Trip Snapshot Logo"></a>
 
         <!-- Mobile Menu Toggle -->
         <div class="hamburger-menu">
             <input type="checkbox" id="menu-toggle">
-            <label for="menu-toggle" class="menu-icon"><img src="images/hamburger-menu.svg" alt="Hamburger Menu Icon"></label>
-        
-            <!-- Navigation Menu -->
-            <nav>
+            <label for="menu-toggle" class="menu-icon">
+                <img src="images/hamburger-menu.svg" alt="Hamburger Menu Icon">
+            </label>
+            <nav class="mobile-nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="planner.html">Plan Trip</a></li>
@@ -61,7 +59,9 @@
             </nav>
         </div>
 
-        <img src="images/contact-us-logo.svg" class="contact-us" alt="Contact Us Icon"> 
+        <!-- Logo -->
+        <a href="index.html" class="logo-link"><img src="images/Trip-Snapshot-Logo.png" class="logo" alt="Trip Snapshot Logo"></a>
+
         <img src="images/profile-logo.svg" class="profile" alt="User Profile Icon">
     </header>
 
@@ -83,12 +83,15 @@
                 <li>Select interests</li>
                 <li>Generate itinerary</li>
                 <li>Save your trip snapshot</li>
+            </ol>
         </section>
     </main> 
+
+    <footer>
+        <p>&copy; 2024 Trip Snapshot. All rights reserved.</p>
+    </footer>
 </body>
 
-<footer>
-    <p>&copy; 2024 Trip Snapshot. All rights reserved.</p>
-</footer>
+
 
 </html>

@@ -60,36 +60,80 @@ body {
     color: #000000;
 }
 
-
-
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
+h1 {
+    /* Hide the main heading */
+    display: none;  
 }
 
-h1 {
-    display: none;
+header {
+    /* Flexbox for header layout */
+    display: flex;      
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;     /* Ensure the header is above the mobile nav */
+}
+
+.hamburger-menu {
+    display: flex;      /* Flexbox to align items */
+    align-items: center;
+}
+
+.logo-link {
+    margin: 0 auto;     /* Center the logo */
 }
 
 .logo {
-    display: block;
-    width: 150px;
+    width: 120px;
     height: auto;
 }
 
-input[type="checkbox"] {
-    display: none; /* Hide the checkbox */
+#menu-toggle {
+  display: none;        /* Hide checkbox */
 }
 
-input[type="checkbox"]:checked ~ nav ul {
-    transform: translateX(0); /* Show the menu when checkbox is checked */
+.menu-icon {
+  cursor: pointer;
+  display: block; /* Show on mobile */
 }
 
-nav ul {
-    transform: translateX(-100%); /* Hide the menu off-screen */
-    transition: transform 0.3s ease; /* Smooth transition for sliding */
+.menu-icon img {
+  width: 28px;
+}
+
+/* Mobile nav default state */
+.mobile-nav {
+  position: absolute;
+  top: 100%;        /* Position below the header */
+  left: 0;          /* Align to the left */
+  width: 100%;   
+  background: #facc15;    
+  display: none;        /* Hidden by default */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);      /* Subtle shadow */
+  z-index: 999;         /* Ensure it appears above other content */
+}
+
+/* Nav links */
+.mobile-nav ul {
+  list-style: none;         /* Remove default list styling */
+  text-align: center;
+  padding: 0 20px;
+  margin: 0;
+}
+
+.mobile-nav li {
+  padding: 12px 0;
+}
+
+.mobile-nav a {
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Show menu when clicked */
+#menu-toggle:checked + .menu-icon + .mobile-nav {
+  display: block;
 }
 
 h1, h2, h3 {
@@ -107,4 +151,31 @@ h1, h2, h3 {
     width: 100%;
     height: auto;
     margin-bottom: 20px;
+}
+
+@media (min-width: 768px){
+
+  header {
+    justify-content:space-between;
+  }
+
+  .logo {
+    margin:0;
+  }
+
+  .menu-icon {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
+    position: static;
+    box-shadow: none;
+  }
+  
+  .mobile-nav ul{
+    display:flex;
+    gap:35px;
+    align-items:center;
+  }
 }
