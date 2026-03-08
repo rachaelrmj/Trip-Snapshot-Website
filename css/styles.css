@@ -159,7 +159,7 @@ p {
 #hero {
     display:flex;
     align-items:center;
-    background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0)), url('../images/Hero-Background.jpeg');
+    background-image: url('../images/Hero-Background.jpeg');
     background-size:cover;
     background-position:center;
     height:300px;
@@ -169,11 +169,24 @@ p {
     padding: 0 10px;
 }
 
+/* Overlay layer */
+#hero::before {
+    content: "";
+    position: absolute;
+    inset: 0; /* top:0; right:0; bottom:0; left:0; */
+    background: rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Hero content above overlay */
 #hero-content {
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:auto auto auto;
-    max-width:600px; 
+    position: relative;
+    z-index: 2; /* above overlay */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    max-width: 600px;
+    width: 100%;
 }
 
 #hero h2 {
@@ -201,6 +214,12 @@ p {
     border-radius: 5px;
     width: 60%;
     margin: 0 auto;
+}
+
+#start-planning-btn:hover, #explore-destinations-btn:hover {
+    background-color: #000000;
+    color: #ffffff;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Who We Are Section */
@@ -507,6 +526,7 @@ p {
     grid-column: 2/3;
     text-align: center;
     align-self: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 #search h3 {
@@ -541,7 +561,42 @@ p {
     border-radius: 5px;
     width: 50%;
     font-size: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
+
+#search-form button:hover {
+    background-color: #000000;
+    color: #ffffff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#destination-dropdown {
+    width: 100%;
+    padding: 0 10px;
+    font-size: 15px;
+    font-family: 'Sn Pro', sans-serif;
+    border-radius: 5px;
+}
+
+#destination-dropdown option {
+    padding: 10px;
+}
+
+#destination-search-btn {
+    background-color: #facc15;
+    color: #000000;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    padding: 2px;
+    border: none;
+    border-radius: 5px;
+    width: 15%;
+    font-size: 15px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
 
 @media (min-width: 768px){
 

@@ -35,6 +35,7 @@
     <script src="js/storage.js" defer></script> 
     <script src="js/itinerary.js" defer></script>
     <script src="js/snapshot.js" defer></script>
+    <script src="js/destination.js" defer></script>
 
 </head>
 <body>
@@ -148,10 +149,21 @@
             <div id="search-content">
                 <h3>Search for Destinations</h3>
                 <p>Find travel inspiration and plan your next trip by searching for destinations.</p>
-                <form id="search-form">
-                    <input type="text" id="search-input" placeholder="Search for a destination">
+                <form id="search-form" action="explore.html" method="GET">
+                    <input type="text" id="search-input" name="destination" placeholder="Search for a destination">
                     <button type="submit" id="search-button">Search</button>
                 </form>
+                <p>or</p>
+                <form id="destination-dropdown" action="explore.html" method="GET">
+                    <select id="destination-list" name="destination">
+                        <option value="">Select a destination</option>
+                        <option value="paris">Paris, France</option>
+                        <option value="tokyo">Tokyo, Japan</option>
+                        <option value="new-york">New York City, USA</option>
+                        <option value="rome">Rome, Italy</option>
+                        <option value="sydney">Sydney, Australia</option>
+                    </select>
+                    <button type="submit" id="destination-search-btn">Go</button>
             </div>
         </section>
     </main> 
