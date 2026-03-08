@@ -203,11 +203,22 @@ p {
     margin: 0 auto;
 }
 
+/* Who We Are Section */
+#who-we-are {
+    text-align: center;
+    padding: 20px;
+}
+
+#who-we-are h3 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
 /* Common Traveler Frustrations Section */
 #frustrations {
     width: 100%;
     text-align: center;
-    padding: 60px 20px;
+    padding: 20px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
@@ -222,14 +233,13 @@ p {
 #frustrations h3 {
     background-color: #facc15;
     color: #000000;
-    margin-bottom: 20px;
     padding: 15px;
 }
 
 .slides {
     display: flex;
     width: 300%;
-    animation: slide 48s infinite;
+    animation: slide 40s infinite;
 }
 
 .slide {
@@ -241,7 +251,12 @@ p {
     height: auto;
     display: block;
     border-radius: 10px;
-    padding: 10px;
+    padding: 10px 20px;
+}
+
+.slide img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
 
 @keyframes slide {
@@ -467,6 +482,65 @@ p {
 #save-feature img:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease;
+}
+
+/* Search Section */
+#search {
+    width: 100%;
+    height: 300px;
+    padding: 20px;
+    background-image: url('../images/search-image.jpeg');
+    background-size: cover;
+    background-position: center;
+    text-align: right;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#search-content {
+    background-color: #ffffff;
+    padding: 20px;
+    width: 325px;
+    height: fit-content;
+    border-radius: 5px;
+    grid-column: 2/3;
+    text-align: center;
+    align-self: center;
+}
+
+#search h3 {
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+#search p {
+    color: #000000;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+#search-form input[type="text"] {
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    font-family: 'Sn Pro', sans-serif;
+    margin-bottom: 15px;
+    border: 2px solid #1ca7ec;
+    border-radius: 5px;
+}
+
+#search-form button {
+    background-color: #facc15;
+    color: #000000;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 50%;
+    font-size: 15px;
 }
 
 @media (min-width: 768px){
