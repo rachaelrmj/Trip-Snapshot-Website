@@ -74,17 +74,17 @@ header {
     /* Flexbox for header layout */
     display: flex;      
     align-items: center;
+    justify-content: space-between;
     padding: 10px 20px;
-    width: 100%;
 }
 
 .hamburger-menu {
-    display: flex;      /* Flexbox to align items */
-    align-items: center;
+    order: 0
 }
 
 .logo-link {
-    margin: 0 auto;     /* Center the logo */
+    order: 1;
+    margin: 0;  
 }
 
 .logo {
@@ -113,7 +113,6 @@ header {
   width: 100%;   
   background: #facc15;    
   display: none;        /* Hidden by default */
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);      /* Subtle shadow */
   z-index: 999;         /* Ensure it appears above other content */
 }
 
@@ -147,6 +146,10 @@ header {
   display: block;
 }
 
+.profile-link {
+    order: 2;
+}
+
 h1, h2, h3, h4 {
     font-family: 'Archivo Black', sans-serif;
 }
@@ -155,7 +158,7 @@ p {
     font-family: 'SN Pro', sans-serif;
 }
 
-.contact-us, .profile {
+.profile {
     width: 30px;
     height: 30px;
 }
@@ -510,9 +513,7 @@ p {
 #search {
     min-height: 300px; 
     height: auto;        
-    background-image: url('../images/search-image.jpeg');
-    background-size: cover;
-    background-position: center;
+    background-color: #facc15;
     text-align: right;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     display: grid;
@@ -691,23 +692,10 @@ footer {
     margin-top: 20px;
 }
 
-@media only screen and (max-width: 600px){
-
-}
-
-@media (min-width: 600px){
-
-}
-
-
 @media (min-width: 768px){
 
-  header {
-    justify-content:space-between;
-  }
-
-  .logo {
-    margin:0;
+  .logo-link {
+   order: 2;
   }
 
   .menu-icon {
@@ -718,12 +706,18 @@ footer {
     display: block;
     position: static;
     box-shadow: none;
+    order: 6;
   }
   
   .mobile-nav ul{
     display:flex;
     gap:35px;
-    align-items:center;
+    justify-content:center;
+  }
+
+  .profile-link {
+    grid-column: 3/4;
+    justify-self: end;
   }
 }
 
