@@ -516,18 +516,15 @@ p {
 #search {
     min-height: 300px; 
     height: auto;        
-    background-color: #facc15;
     text-align: right;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     margin-bottom: 10px;
 }
 
 #search-content {
-    background-color: #ffffff;
+    background-color: #facc15;
     padding: 20px;
-    width: 325px;
+    width: 100%;
     height: fit-content;
     grid-column: 2/3;
     text-align: center;
@@ -557,8 +554,8 @@ p {
 }
 
 #search-form button {
-    background-color: #facc15;
-    color: #000000;
+    background-color: #ffffff;
+    color: #1ca7ec;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     padding: 10px;
@@ -592,8 +589,8 @@ p {
 }
 
 #destination-search-btn {
-    background-color: #facc15;
-    color: #000000;
+    background-color: #ffffff;
+    color: #1ca7ec;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     padding: 7px;
@@ -729,6 +726,24 @@ footer {
 
   .profile-link {
     order: 2;
+  }
+
+  #how-it-works {
+    width: 50%;
+  }
+
+  #features {
+    margin-bottom: 40px;
+  }
+
+  #search {
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 5px;
+  }
+
+  footer {
+    margin-top: 30px;
   }
 }
 
