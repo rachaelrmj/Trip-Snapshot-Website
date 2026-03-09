@@ -63,7 +63,7 @@
         <!-- Logo -->
         <a href="index.html" class="logo-link"><img src="images/Trip-Snapshot-Logo.png" class="logo" alt="Trip Snapshot Logo"></a>
 
-        <img src="images/profile-logo.svg" class="profile" alt="User Profile Icon">
+        <a href="profile.html" class="profile-link"><img src="images/profile-logo.svg" class="profile" alt="User Profile Icon"></a>
     </header>
 
     <main>
@@ -164,12 +164,38 @@
                         <option value="sydney">Sydney, Australia</option>
                     </select>
                     <button type="submit" id="destination-search-btn">Go</button>
+                </form>
             </div>
         </section>
     </main> 
 
     <footer>
-        <p>&copy; 2024 Trip Snapshot. All rights reserved.</p>
+        <section id="stay-connected">
+            <h3>Stay Connected</h3>
+            <p>Join our community to stay updated on the latest travel information and destinations!</p>
+            <form id="subscribe-form" action="#" method="POST">
+                <input type="email" id="subscriber-email" name="email" placeholder="Email address">
+                <button type="submit" id="subscribe-btn">Subscribe</button>
+
+        </section>
+
+        <section id="navigate">
+            <h3>Navigate</h3>
+            <ul>
+                <li><a href="terms-conditions.html">Terms and Conditions</a></li>
+                <li><a href="faqs.html">FAQs</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <div id="social-media-links">
+                <a href="https://www.facebook.com/TripSnapshot" target="_blank"><img src="images/facebook-icon.svg" alt="Facebook Icon"></a>
+                <a href="https://www.twitter.com/TripSnapshot" target="_blank"><img src="images/twitter-icon.svg" alt="Twitter Icon"></a>
+                <a href="https://www.instagram.com/TripSnapshot" target="_blank"><img src="images/instagram-icon.svg" alt="Instagram Icon"></a>
+            </div>
+        </section>
+
+        <section id="contact">
+            <p>&copy; 2026 Trip Snapshot. All rights reserved.</p>
+        </section>
     </footer>
 </body>
 
