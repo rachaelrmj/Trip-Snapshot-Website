@@ -50,7 +50,7 @@
             <label for="menu-toggle" class="menu-icon">
                 <img src="images/hamburger-menu.svg" alt="Hamburger Menu Icon">
             </label>
-            <nav class="mobile-nav">
+            <nav class="mobile-nav" aria-label="Main navigation">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="planner.html">Plan</a></li>
@@ -67,15 +67,27 @@
         <section id="hero">
             <div id="hero-content">
                 <h2>Plan Your Perfect Trip in Minutes</h2>
-                <p>Create personalized travel itineraries based on your interests and travel style.</p>
-                <a href="planner.html" id="start-planning-btn">Start Planning</a>
+                <p>Build personalized itineraries, discover destinations, and organize your travel plans all in one place.</p>
+
+                <form id="hero-planner-form" action="planner.html" method="GET">
+                <label for="hero-destination" class="sr-only">Destination</label>
+                <input type="text" id="hero-destination" name="destination" placeholder="Where do you want to go?">
+
+                <label for="start-date" class="sr-only">Start date</label>
+                <input type="date" id="start-date" name="start-date">
+
+                <label for="end-date" class="sr-only">End date</label>
+                <input type="date" id="end-date" name="end-date">
+
+                <button type="submit" id="start-planning-btn">Start Planning</button>
+                </form>
             </div>
         </section>
         
-        <!-- Who We Are Section -->
-        <section id="who-we-are">
-            <h3>Who We Are</h3>
-            <p>Trip Snapshot is a website designed for travel planning and is meant to make the process easier for you to plan a trip by offering a one-stop solution to create your own travel plan based on your preferences and interests. This website is designed to help you save time and effort from browsing through various websites for travel plans.</p>
+        <!-- Why Trip Snapshot Section -->
+        <section id="why-trip-snapshot">
+            <h3>Why Trip Snapshot?</h3>
+            <p>Trip Snapshot helps travelers build personalized itineraries faster by combining destination discovery, trip organization, and visual planning tools in one easy-to-use platform.</p>
         </section>
 
         <!-- Traveler Frustrations Section -->
@@ -116,79 +128,58 @@
         <section id="features">
             <h3>Features</h3>
             <div id="features-content">
-                <div id="itinerary-feature">
+                <div class="feature-card">
                     <h4>Personalized Itineraries</h4>
                     <p>Get custom travel plans based on your preferences and interests.</p>
                     <a href="planner.html"><img src="images/itinerary-icon.svg" class="features-image" alt="Itinerary Icon"></a>
                 </div>
-                <div id="snapshot-feature">
+                <div class="feature-card">
                     <h4>Visual Trip Snapshots</h4>
-                    <p>Save and share your travel plans with beautiful visual snapshots.</p>
+                    <p>Turn your travel plans into organized, visual snapshots you can save and share..</p>
                     <a href="snapshot.html"><img src="images/snapshot-icon.svg" class="features-image" alt="Snapshot Icon"></a>
                 </div>
-                <div id="explore-feature">
+                <div class="feature-card">
                     <h4>Explore Destinations</h4>
                     <p>Discover new places and get inspired for your next adventure.</p>
                     <a href="explore.html"><img src="images/explore-icon.svg" class="features-image" alt="Explore Icon"></a>
                 </div>
-                <div id="save-feature">
+                <div class="feature-card">
                     <h4>Save & Share Plans</h4>
                     <p>Save your travel plans and share them with friends and family.</p>
-                    <img src="images/share-icon.svg" class=features-image alt="Save Icon">
+                    <img src="images/share-icon.svg" class="features-image" alt="Save Icon">
                 </div>
             </div>
         </section>
 
-        <!-- Search Section -->
-         <section id="search">
-            <div id="search-content">
-                <h3>Search for Destinations</h3>
-                <p>Find travel inspiration and plan your next trip by searching for destinations.</p>
-                <form id="search-form" action="explore.html" method="GET">
-                    <input type="text" id="search-input" name="destination" placeholder="Search for a destination">
-                    <button type="submit" id="search-button">Search</button>
-                </form>
-                <p>or</p>
-                <form id="destination-dropdown" action="explore.html" method="GET">
-                    <select id="destination-list" name="destination">
-                        <option value="">Select a destination</option>
-                        <option value="paris">Paris, France</option>
-                        <option value="tokyo">Tokyo, Japan</option>
-                        <option value="new-york">New York City, USA</option>
-                        <option value="rome">Rome, Italy</option>
-                        <option value="sydney">Sydney, Australia</option>
-                    </select>
-                    <button type="submit" id="destination-search-btn">Go</button>
-                </form>
-            </div>
+        <!-- Popular Destinations -->
+        <section id="ready-to-plan">
+            <h3>Ready to Plan Your Next Trip?</h3>
+            <p>Create a personalized itinerary and start exploring destinations today.</p>
+            <a href="planner.html" class="plan-button">Plan My Trip</a>
         </section>
     </main> 
 
     <footer>
         <section id="stay-connected">
             <h3>Stay Connected</h3>
-            <p>Join our community to stay updated on the latest travel information and destinations!</p>
+            <p>Get destination ideas, planning tips, and travel inspiration sent to your inbox.</p>
             <form id="subscribe-form" action="#" method="POST">
-                <input type="email" id="subscriber-email" name="email" placeholder="Email address">
-                <button type="submit" id="subscribe-btn">Subscribe</button>
+            <label for="subscriber-email" class="sr-only">Email address</label>
+            <input type="email" id="subscriber-email" name="email" placeholder="Email address" required>
+            <button type="submit" id="subscribe-btn">Subscribe</button>
+            </form>
         </section>
 
         <section id="useful-links">
             <h3>Useful Links</h3>
             <ul>
-                <li><a href="terms-conditions.html">Terms and Conditions</a></li>
-                <li><a href="faqs.html">FAQs</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="explore.html">Destinations</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="terms-conditions.html">Terms and Conditions</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
             </ul>
-            <div id="social-media-links">
-                <a href="https://www.facebook.com/TripSnapshot" target="_blank"><img src="images/facebook-icon.svg" alt="Facebook Icon"></a>
-                <a href="https://www.twitter.com/TripSnapshot" target="_blank"><img src="images/twitter-icon.svg" alt="Twitter Icon"></a>
-                <a href="https://www.instagram.com/TripSnapshot" target="_blank"><img src="images/instagram-icon.svg" alt="Instagram Icon"></a>
-            </div>
-        </section>
-
-        <section id="copyright">
-            <p>&copy; 2026 Trip Snapshot. All rights reserved.</p>
         </section>
     </footer>
 </body>
