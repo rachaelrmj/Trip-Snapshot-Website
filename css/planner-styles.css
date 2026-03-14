@@ -1,0 +1,389 @@
+/* TRIP SNAPSHOT - PLANNER STYLES */
+
+/* =========================================================
+   CSS RESET
+   Based on Meyer Reset
+   ========================================================= */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote::before, blockquote::after, q::before, q::after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* GLOBAL STYLES */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Archivo Black', sans-serif;
+}
+
+p, label, input, select, button, a, li {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+  display: none;
+}
+/*--------------------------------------------------------*/
+
+/* HEADER */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.logo-link {
+  order: 1;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+}
+
+.profile-link {
+  order: 2;
+}
+
+.profile {
+  width: 30px;
+  height: 30px;
+}
+
+#search-bar {
+    display: none;
+}
+/*--------------------------------------------------------*/
+
+/* MOBILE NAVIGATION */
+
+.hamburger-menu {
+  display: flex;
+  align-items: center;
+  order: 0;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+.menu-icon {
+  cursor: pointer;
+  display: block;
+  z-index: 1000;
+}
+
+.menu-icon img {
+  width: 28px;
+}
+
+.mobile-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #facc15;
+  display: none;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  z-index: 999;
+}
+
+.mobile-nav ul {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-nav li {
+  padding: 12px 0;
+}
+
+.mobile-nav a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #000000;
+  display: block;
+}
+
+.mobile-nav li:hover, .mobile-nav a:hover {
+  background-color: #1ca7ec;
+  color: #ffffff;
+}
+
+#menu-toggle:checked ~ .mobile-nav {
+  display: block;
+}
+/*--------------------------------------------------------*/
+/***** PLANNING SECTION *****/
+
+#plan-trip {
+  padding: 0 20px 40px;
+  background-color: #ffffff;
+}
+
+/* HERO SECTION */
+#hero-plan_container {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#img-plan_trip {
+    width: 100%;
+    height: auto;
+}
+
+#hero-text {
+    position: absolute;
+    top: 50%;
+    right: 8%;
+    transform: translateY(-50%);
+    width: 42%;
+    text-align: center;
+}
+
+#hero-text h2 {
+    width: 100%;
+    font-size: 22px;
+    line-height: 1.2;
+    color: #1ca7ec;
+}
+
+#hero-text p {
+    margin-top: 12px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #000000;
+}
+/*--------------------------------------------------------*/
+
+/* TRIP SEARCH FORM */
+
+.trip-search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background-color: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-radius: 18px;
+    padding: 22px 18px;
+    margin: 0 auto 40px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.trip-search-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.trip-search-form input,
+.trip-search-form select {
+    width: 100%;
+    padding: 14px 12px;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.trip-search-form input:focus,
+.trip-search-form select:focus {
+    outline: none;
+    border-color: #1ca7ec;
+    box-shadow: 0 0 0 3px rgba(28, 167, 236, 0.15);
+}
+
+.plan-dates, .plan-budget, .plan-people, .plan-style {
+    width: 100%;
+}
+
+#plan-start, #plan-end {
+    width: 100%;
+}
+
+.plan-dates {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.trip-search-form button {
+    margin-top: 8px;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 10px;
+    background-color: #facc15;
+    color: #000000;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.trip-search-form button:hover {
+    background-color: #1ca7ec;
+    color: #ffffff;
+}
+
+.trip-search-form button:active {
+    transform: scale(0.98);
+}
+/*--------------------------------------------------------*/
+
+/* FOOTER */
+
+footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+footer p {
+    font-size: 14px;
+    color: #000000;
+    line-height: 1.4;
+}
+/*--------------------------------------------------------*/
+
+/* TABLET STYLES */
+
+@media screen and (min-width: 768px) {
+    #plan-trip {
+        padding: 20px 40px 60px;
+    }
+
+    .trip-search-form {
+        max-width: 700px;
+        padding: 28px;
+    }
+
+    .plan-dates {
+        flex-direction: row;
+    }
+
+    #plan-start,
+    #plan-end {
+        flex: 1;
+    }
+
+    #hero-text {
+        right: 10%;
+        width: 34%;
+    }
+
+    #hero-text h2 {
+        font-size: 28px;
+    }
+
+    #hero-text p {
+        font-size: 16px;
+    }
+}
+/*--------------------------------------------------------*/
+
+/* DESKTOP STYLES */
+
+@media screen and (min-width: 1024px) {
+    header {
+        padding: 16px 40px;
+    }
+
+    .logo {
+        width: 140px;
+    }
+
+    #plan-trip {
+        padding: 30px 60px 80px;
+    }
+
+    .trip-search-form {
+        max-width: 760px;
+    }
+
+    #hero-text {
+        width: 30%;
+        right: 12%;
+    }
+
+    #hero-text h2 {
+        font-size: 32px;
+    }
+
+    #hero-text p {
+        font-size: 17px;
+    }
+}

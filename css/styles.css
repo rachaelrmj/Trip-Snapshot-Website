@@ -78,6 +78,10 @@ header {
     position: relative;
 }
 
+#search-bar {
+    display: none;
+}
+
 .hamburger-menu {
     display: flex;
     align-items: center;
@@ -690,6 +694,21 @@ footer {
     background-color: #facc15;
     padding: 10px;
     margin-top: 20px;
+}
+
+
+/* Planner.html mobile styles */
+#destination-date-input form {
+    height: 20px;
+}
+
+#plan-destination {
+    padding: 15px;
+    width: 80%;
+}
+
+.search-icon {
+    width: 20px;
 }
 
 @media (min-width: 768px){
