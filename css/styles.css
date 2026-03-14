@@ -221,6 +221,50 @@ header {
     padding: 10px 15px;
 }
 
+#hero-planner-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+#hero-planner-form #hero-destination {
+    width: 90%; 
+    text-align: center;
+    align-self: center;
+}
+
+#hero-planner-form label {
+    color: #facc15;
+}
+
+#hero-planner-form .date-group {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+}
+
+#hero-planner-form .date-group label {
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 2px;
+}
+
+#hero-planner-form .date-group input[type="date"] {
+    flex: 1; 
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 2px solid #1ca7ec;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+#hero-planner-form input[type="date"] {
+    flex: 1; 
+}
+
 #hero input[type="text"], #hero input[type="date"] {
     padding: 10px 12px;
     border-radius: 8px;
@@ -230,7 +274,7 @@ header {
     margin-bottom: 10px;
 }
 
-#start-planning-btn {
+#start-planning-button {
     padding: 12px;
     background-color: #facc15;
     font-weight: bold;
@@ -242,22 +286,18 @@ header {
     transition: all 0.3s ease;
 }
 
-#start-planning-btn:hover {
+#start-planning-button:hover {
     background-color: #000000;
     color: #ffffff;
 }
 /*--------------------------------------------------------*/
 
-/* Section Styles */
-
-section {
+/* Why Trip Snapshot Section Styles */
+#why-trip-snapshot {
     padding: 25px 15px;
     width: 90%;
-    margin: 0 auto 25px auto;
+    margin: 0 auto 0 auto;
 }
-/*--------------------------------------------------------*/
-
-/* Why Trip Snapshot Section Styles */
 
 #why-trip-snapshot p {
     font-size: 16px;
@@ -268,8 +308,9 @@ section {
 
 /* Common Traveler Frustrations Section Styles */
 #frustrations {
+    padding: 5px 15px 10px 15px;
     width: 90%;
-    margin: 20px auto;
+    margin: 0 auto 25px auto;
     text-align: center;
 }
 
@@ -329,13 +370,13 @@ section {
     }
 }
 /*--------------------------------------------------------*/
-
 /* How It Works Section Styles */
 
 #how-it-works {
+    width: 90%;
     text-align: center;
-    padding: 20px;
-    margin: 20px auto;
+    padding: 25px 15px;
+    margin: 0 auto 25px auto;
     background-color: #facc15;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -345,20 +386,26 @@ section {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    gap: 15px;
+    gap: 5px;
 }
 
 #how-it-works-image {
     width: 100px;
-    height: auto;
 }
 
 #how-it-works ol {
     list-style: decimal inside;
-    margin-bottom: 15px;
+    text-align: left;
 }
+/*--------------------------------------------------------*/
 
 /* Features Section */
+#features {
+    padding: 25px 15px;
+    width: 90%;
+    margin: 0 auto 25px auto;
+}
+
 #features-content {
     display: grid;
     grid-template-columns: 1fr;
@@ -381,12 +428,19 @@ section {
 .feature-card img {
     width: 60px;
     margin: 10px 0;
+    transition: transform .5s ease;
+}
+
+.feature-card img:hover {
+    transform: scale(1.2);
 }
 /*--------------------------------------------------------*/
 
 /* Ready to Plan Section Styles*/
-
 #ready-to-plan {
+    padding: 25px 15px;
+    width: 90%;
+    margin: 0 auto 25px auto;
     background-color: #facc15;
     border-radius: 8px;
     padding: 20px;
@@ -395,7 +449,7 @@ section {
 
 .plan-button {
     background-color: #000000;
-    color: #fff;
+    color: #ffffff;
     padding: 12px 20px;
     border-radius: 8px;
     text-decoration: none;
@@ -407,15 +461,32 @@ section {
 
 .plan-button:hover {
     background-color: #1ca7ec;
+    color: #000000;
 }
 /*--------------------------------------------------------*/
-
 /* Footer Styles*/
 
 footer {
-    background-color: #facc15;
-    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    background-color: #ffffff;
+    padding: 20px 10px;
     text-align: center;
+}
+
+#stay-connected, #useful-links {
+    flex: 1 1 48%;
+}
+
+#useful-links a {
+    text-decoration: none;
+    color: #000000;
+}
+
+#useful-links a:hover {
+    color:#1ca7ec;
 }
 
 #stay-connected input[type="email"] {
@@ -426,7 +497,7 @@ footer {
     margin-bottom: 10px;
 }
 
-#subscribe-btn {
+#subscribe-button {
     background-color: #000000;
     color: #ffffff;
     padding: 10px 15px;
@@ -436,63 +507,99 @@ footer {
     cursor: pointer; 
 }
 
-#subscribe-btn:hover {
+#subscribe-button:hover {
     background-color: #1ca7ec;
+}
+/*--------------------------------------------------------*/
+/* Responsive Styles */
+
+@media (max-width: 480px){
+    #hero input, #start-planning-button {
+        margin-bottom: 12px;
+    }
+
+    .feature-card {
+        padding: 20px;
+    }
+
+    .feature-card img {
+        width: 80px;
+    }
+
+    .plan-button {
+        width: 100%;
+    }
+
+    #stay-connected input[type="email"] {
+        width: 90%;
+    }
+
+    #frustrations-slider .slides {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    }
+
+    .slide {
+        flex: 0 0 80%;
+        scroll-snap-align: start;
+        margin-right: 10px;
+    }
 }
 
 @media (min-width: 768px){
+    header {
+        justify-content: space-between;
+    }
 
-  header {
-    justify-content:space-between;
-  }
+    .logo-link {
+        order: 0;
+    }
 
-  .logo-link {
-    order: 0;
-  }
+    .logo {
+        margin: 0;
+    }
 
-  .logo {
-    margin:0;
-  }
+    .menu-icon {
+        display: none;
+    }
 
-  .menu-icon {
-    display: none;
-  }
+    .mobile-nav {
+        display: block;
+        position: static;
+        box-shadow: none;
+        order: 1;
+        background-color: #ffffff;
+        max-height: none;
+    }
+    
+    .mobile-nav ul{
+        display: flex;
+        gap: 35px;
+        align-items: center;
+    }
 
-  .mobile-nav {
-    display: block;
-    position: static;
-    box-shadow: none;
-    order: 1;
-    background-color: #ffffff;
-  }
-  
-  .mobile-nav ul{
-    display:flex;
-    gap:35px;
-    align-items:center;
-  }
+    .profile-link {
+        order: 2;
+    }
 
-  .profile-link {
-    order: 2;
-  }
+    #how-it-works {
+        width: 50%;
+    }
 
-  #how-it-works {
-    width: 50%;
-  }
-
-  #features-content { 
-    grid-template-columns: 1fr 1fr; 
-  }
-	
-  .destination-cards {
-    grid-template-columns: 1fr 1fr; 
-  }
-	
-  #how-it-works-content { 
-    flex-direction: row; 
-    justify-content: space-around; 
-    text-align: left; 
-  }
+    #features-content { 
+        grid-template-columns: 1fr 1fr; 
+    }
+        
+    .destination-cards {
+        grid-template-columns: 1fr 1fr; 
+    }
+        
+    #how-it-works-content { 
+        flex-direction: row; 
+        justify-content: space-around; 
+        text-align: left; 
+    }
 }
 
 @media (min-width: 1024px){

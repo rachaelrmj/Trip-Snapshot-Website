@@ -68,18 +68,25 @@
             <div id="hero-content">
                 <h2>Plan Your Perfect Trip in Minutes</h2>
                 <p>Build personalized itineraries, discover destinations, and organize your travel plans all in one place.</p>
-
                 <form id="hero-planner-form" action="planner.html" method="GET">
-                <label for="hero-destination" class="sr-only">Destination</label>
-                <input type="text" id="hero-destination" name="destination" placeholder="Where do you want to go?">
+                    <label for="hero-destination" class="sr-only">
+                        <h3>Destination</h3>
+                    </label>
+                    <input type="text" id="hero-destination" name="destination" placeholder="Where do you want to go?">
 
-                <label for="start-date" class="sr-only">Start date</label>
-                <input type="date" id="start-date" name="start-date">
+                    <div class="date-group">
+                        <label for="start-date" class="sr-only">
+                            <h3>Start date</h3>
+                            <input type="date" id="start-date" name="start-date">
+                        </label>
 
-                <label for="end-date" class="sr-only">End date</label>
-                <input type="date" id="end-date" name="end-date">
+                        <label for="end-date" class="sr-only">
+                            <h3>End Date</h3>
+                            <input type="date" id="end-date" name="end-date">
+                        </label>
+                    </div>
 
-                <button type="submit" id="start-planning-btn">Start Planning</button>
+                    <button type="submit" id="start-planning-button">Start Planning</button>
                 </form>
             </div>
         </section>
@@ -113,6 +120,7 @@
         <!-- How It Works Section -->
         <section id="how-it-works">
             <h3>How It Works</h3>
+            <img src="images/process.svg" id="how-it-works-image" alt="How It Works Illustration">
             <div id="how-it-works-content">
                 <ol>
                     <li>Choose destination</li>
@@ -120,7 +128,6 @@
                     <li>Generate itinerary</li>
                     <li>Save your trip snapshot</li>
                 </ol>
-                <img src="images/process.svg" id="how-it-works-image" alt="How It Works Illustration">
             </div>
         </section>
 
@@ -166,7 +173,7 @@
             <form id="subscribe-form" action="#" method="POST">
             <label for="subscriber-email" class="sr-only">Email address</label>
             <input type="email" id="subscriber-email" name="email" placeholder="Email address" required>
-            <button type="submit" id="subscribe-btn">Subscribe</button>
+            <button type="submit" id="subscribe-button">Subscribe</button>
             </form>
         </section>
 
