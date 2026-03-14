@@ -120,7 +120,7 @@ header {
 }
 
 .menu-icon img {
-    width: 28px;
+    width: 44px;
 }
 
 #menu-toggle {
@@ -134,7 +134,10 @@ header {
     left: 0;          
     width: 100%;   
     background: #facc15;         
-    box-shadow: 0 6px 15px rgba(0,0,0,0.08);             
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
+    transition: max-height 0.3s ease;
+    max-height: 0;
+    overflow: hidden;             
 }
 
 .mobile-nav ul {      
@@ -145,7 +148,7 @@ header {
 }
 
 .mobile-nav li {
-    padding: 12px 0;
+    padding: 15px 0;
 }
 
 .mobile-nav a {
@@ -157,12 +160,13 @@ header {
 }
 
 .mobile-nav li:hover, .mobile-nav a:hover {
-  background-color: #1ca7ec;     
-  color: #ffffff;     
+    background-color: #1ca7ec;     
+    color: #ffffff;     
 }
 
 #menu-toggle:checked ~ .mobile-nav {
-  display: block;
+    display: block;
+    max-height: 500px;
 }
 
 #search-bar {
@@ -173,16 +177,16 @@ header {
 /* Hero Section Styles */
 #hero {
     position: relative;
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-image: url('../images/Hero-Background.jpeg');
-    background-size:cover;
-    background-position:center;
-    height:350px;
-    text-align:center;
-    color:#ffffff;
+    background-size: cover;
+    background-position: center;
+    min-height: 60vh;
+    text-align: center;
+    color: #ffffff;
 }
 
 #hero::after {
@@ -197,12 +201,10 @@ header {
     position: relative;
     width: 90%;
     max-width: 500px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 15px;
     align-items:center;
-    justify-content: center;
     z-index: 2; 
 }
 
@@ -213,7 +215,7 @@ header {
 
 #hero p {
     font-size: 16px;
-    background-color: #ffffffcc;
+    background-color: rgba(255,255,255,0.85);
     border-radius: 8px;
     color: #000000;
     padding: 10px 15px;
@@ -237,7 +239,7 @@ header {
     border: none;
     width: 100%;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 #start-planning-btn:hover {
@@ -271,15 +273,16 @@ section {
     text-align: center;
 }
 
+#frustrations h3 {
+    background-color: #facc15;
+    color: #000000;
+    padding: 12px;
+}
+
 #frustrations-slider {
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     border-radius: 8px;
-}
-
-#frustrations h3 {
-    background-color: #facc15;
-    padding: 12px;
 }
 
 .slides {
@@ -332,14 +335,17 @@ section {
 #how-it-works {
     text-align: center;
     padding: 20px;
+    margin: 20px auto;
     background-color: #facc15;
     border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 #how-it-works-content {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    gap: 15px;
 }
 
 #how-it-works-image {
@@ -408,7 +414,7 @@ section {
 
 footer {
     background-color: #facc15;
-    padding: 20px 15px;
+    padding: 5px;
     text-align: center;
 }
 
@@ -474,25 +480,27 @@ footer {
     width: 50%;
   }
 
-  #features {
-    margin-bottom: 40px;
+  #features-content { 
+    grid-template-columns: 1fr 1fr; 
   }
-
-  #search {
-    width: 70%;
-    margin: 0 auto;
-    border-radius: 5px;
+	
+  .destination-cards {
+    grid-template-columns: 1fr 1fr; 
   }
-
-  footer {
-    margin-top: 30px;
+	
+  #how-it-works-content { 
+    flex-direction: row; 
+    justify-content: space-around; 
+    text-align: left; 
   }
 }
 
-@media (min-width: 992px){
+@media (min-width: 1024px){
+  #features-content { 
+    grid-template-columns: repeat(4, 1fr); 
+  }
 
-}
-
-@media (min-width: 1200px){
-    
+  .destination-cards { 
+    grid-template-columns: repeat(3, 1fr); 
+  }
 }
