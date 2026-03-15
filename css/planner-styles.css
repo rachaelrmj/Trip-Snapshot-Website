@@ -90,96 +90,121 @@ h1 {
 /*--------------------------------------------------------*/
 
 /* HEADER */
-
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  position: relative;
-  background-color: #ffffff;
+    display: flex;      
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+    height: 110px;
+}
+.logo {
+    width: 120px;
 }
 
 .logo-link {
-  order: 1;
-}
-
-.logo {
-  width: 120px;
-  height: auto;
-}
-
-.profile-link {
-  order: 2;
+    order: 1;
 }
 
 .profile {
-  width: 30px;
-  height: 30px;
+    width: 32px;
+    height: 32px;
+} 
+
+.profile-link {
+    order: 2;
+}
+
+.hamburger-menu {
+    display: flex;
+    align-items: center;
+    order: 0;
+}
+
+.menu-icon {
+    cursor: pointer;
+    display: block;
+    z-index: 1000;
+}
+
+.menu-icon img {
+    width: 44px;
+}
+
+#menu-toggle {
+    display: none;        
+}
+
+.mobile-nav {
+    display: none; 
+    position: absolute;
+    top: 100%;        
+    left: 0;          
+    width: 100%;   
+    background: #facc15;         
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
+    transition: max-height 0.3s ease;
+    max-height: 0;
+    overflow: hidden;             
+}
+
+.mobile-nav ul {      
+    list-style: none;         
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav li {
+    padding: 15px 0;
+}
+
+.mobile-nav a {
+    display: block;
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mobile-nav li:hover, .mobile-nav a:hover {
+    background-color: #1ca7ec;     
+    color: #ffffff;     
+}
+
+#menu-toggle:checked ~ .mobile-nav {
+    display: block;
+    max-height: 500px;
+}
+
+#menu-toggle:checked ~ .mobile-nav ~ #trip-summary-bar {
+    display: block;
+    max-height: 500px;
 }
 
 #search-bar {
     display: none;
 }
 /*--------------------------------------------------------*/
-
-/* MOBILE NAVIGATION */
-
-.hamburger-menu {
-  display: flex;
-  align-items: center;
-  order: 0;
+/***** TRIP SUMMARY BAR *****/
+#trip-summary-bar {
+    position: sticky;
+    top: 110px;
+    background-color: #1ca7ec;
+    color: #ffffff;
+    padding: 12px 20px;
+    font-weight: 600;
+    text-align: center;
+    z-index: 900;
+    transition: top 0.2s ease;
 }
 
-#menu-toggle {
-  display: none;
-}
-
-.menu-icon {
-  cursor: pointer;
-  display: block;
-  z-index: 1000;
-}
-
-.menu-icon img {
-  width: 28px;
-}
-
-.mobile-nav {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: #facc15;
-  display: none;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-  z-index: 999;
-}
-
-.mobile-nav ul {
-  text-align: center;
-  padding: 0;
-  margin: 0;
-}
-
-.mobile-nav li {
-  padding: 12px 0;
-}
-
-.mobile-nav a {
-  text-decoration: none;
-  font-size: 18px;
-  color: #000000;
-  display: block;
-}
-
-.mobile-nav li:hover, .mobile-nav a:hover {
-  background-color: #1ca7ec;
-  color: #ffffff;
-}
-
-#menu-toggle:checked ~ .mobile-nav {
-  display: block;
+#trip-summary-text {
+    margin: 0;
+    font-size: 16px;
 }
 /*--------------------------------------------------------*/
 /***** PLANNING SECTION *****/

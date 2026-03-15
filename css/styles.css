@@ -324,6 +324,10 @@ header {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+.frustration-card h4 {
+    color: #1ca7ec
+}
+
 .frustration-card p {
     font-style: italic;
     line-height: 1.25;
@@ -483,6 +487,7 @@ footer {
 
 #stay-connected, #useful-links {
     flex: 1 1 48%;
+    padding: 10px;
 }
 
 footer .sr-only {
@@ -491,10 +496,6 @@ footer .sr-only {
 
 #subscriber-email {
     text-align: center;
-}
-
-#useful-links {
-    padding: 10px;
 }
 
 #useful-links li {
