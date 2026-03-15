@@ -69,21 +69,19 @@
                 <h2>Plan Your Perfect Trip in Minutes</h2>
                 <p>Build personalized itineraries, discover destinations, and organize your travel plans all in one place.</p>
                 <form id="hero-planner-form" action="planner.html" method="GET">
-                    <label for="hero-destination" class="sr-only">
-                        <h3>Destination</h3>
-                    </label>
+                    <label for="hero-destination" class="sr-only">Destination</label>
                     <input type="text" id="hero-destination" name="destination" placeholder="Where do you want to go?">
 
                     <div class="date-group">
-                        <label for="start-date" class="sr-only">
-                            <h3>Start date</h3>
+                        <div id="start-date-container">
+                            <label for="start-date" class="sr-only">Start date</label>
                             <input type="date" id="start-date" name="start-date">
-                        </label>
+                        </div>
 
-                        <label for="end-date" class="sr-only">
-                            <h3>End Date</h3>
+                        <div id="end-date-container">
+                            <label for="end-date" class="sr-only">End Date</label>
                             <input type="date" id="end-date" name="end-date">
-                        </label>
+                        </div>
                     </div>
 
                     <button type="submit" id="start-planning-button">Start Planning</button>
@@ -99,19 +97,73 @@
 
         <!-- Traveler Frustrations Section -->
         <section id="frustrations">
-            <div id="frustrations-slider">
-                <h3>Common Traveler Frustrations</h3>
-                <div class="slides">
-                    <div class="slide">
-                        <a href="https://www.reddit.com/r/travel/comments/1asssnq/how_to_travel_if_you_arent_good_at_planning_trips/"><img src="images/reddit-review1.png" alt="Frustration 1"></a>
+            <h3>Real Traveler Frustrations</h3>
+            <div class="frustration-container">
+                <div class="frustration-scroll">
+                    <div class="frustration-card">
+                        <h4>Travel planning: tedious or enjoyable?</h4>
+                        <p>
+                            "I absolutely love traveling, but I’ve realized that the planning stage can sometimes feel overwhelming. Between comparing hotel and flight prices, figuring out what’s around where I’m staying, picking places to visit, and deciding on transportation (renting a car vs. public transit), it can become quite a chore."
+                        </p>
+
+                        <a href="https://www.reddit.com/r/travel/comments/1h2qpye/travel_planning_tedious_or_enjoyable/" target="_blank" rel="noopener">
+                        View full Reddit discussion
+                        </a>
                     </div>
 
-                    <div class="slide">
-                        <a href="https://www.reddit.com/r/solotravel/comments/1hh7eq9/what_do_you_use_to_plan_your_trips/"><img src="images/reddit-review2.png" alt="Frustration 2"></a>
+                    <div class="frustration-card">
+                        <h4>Am I the only one who hates planning trips more than actually traveling?</h4>
+                        <p>
+                            "I just spent 3 HOURS today flipping between Google Flights, Booking.com, Google Maps, Reddit, and like 5 travel blogs trying to plan a week in Vietnam."
+                        </p>
+
+                        <a href="https://www.reddit.com/r/travel/comments/1op94i9/am_i_the_only_one_who_hates_planning_trips_more" target="_blank" rel="noopener">
+                        View full Reddit discussion
+                        </a>
                     </div>
 
-                    <div class="slide">
-                        <a href="https://www.reddit.com/r/solotravel/comments/1h2qqkq/travel_planning_tedious_or_enjoyable/"><img src="images/reddit-review3.png" alt="Frustration 3"></a>
+                    <div class="frustration-card">
+                        <h4>What do you use to plan your trips?</h4>
+                        <p>
+                            "I've always used notes or a google doc to plan my trips but I'm looking for something easier where I can have everything in one place. Are there any travel apps you like to use when planning?"
+                        </p>
+
+                        <a href="https://www.reddit.com/r/solotravel/comments/1hh7eq9/what_do_you_use_to_plan_your_trips/" target="_blank" rel="noopener">
+                        View full Reddit discussion
+                        </a>
+                    </div>
+
+                    <div class="frustration-card">
+                        <h4>Travel planning: tedious or enjoyable?</h4>
+                        <p>
+                            "I absolutely love traveling, but I’ve realized that the planning stage can sometimes feel overwhelming. Between comparing hotel and flight prices, figuring out what’s around where I’m staying, picking places to visit, and deciding on transportation (renting a car vs. public transit), it can become quite a chore."
+                        </p>
+
+                        <a href="https://www.reddit.com/r/travel/comments/1h2qpye/travel_planning_tedious_or_enjoyable/" target="_blank" rel="noopener">
+                        View full Reddit discussion
+                        </a>
+                    </div>
+
+                    <div class="frustration-card">
+                        <h4>Am I the only one who hates planning trips more than actually traveling?</h4>
+                        <p>
+                            "I just spent 3 HOURS today flipping between Google Flights, Booking.com, Google Maps, Reddit, and like 5 travel blogs trying to plan a week in Vietnam."
+                        </p>
+
+                        <a href="https://www.reddit.com/r/travel/comments/1op94i9/am_i_the_only_one_who_hates_planning_trips_more" target="_blank" rel="noopener">
+                        View full Reddit discussion
+                        </a>
+                    </div>
+
+                    <div class="frustration-card">
+                        <h4>What do you use to plan your trips?</h4>
+                        <p>
+                            "I've always used notes or a google doc to plan my trips but I'm looking for something easier where I can have everything in one place. Are there any travel apps you like to use when planning?"
+                        </p>
+
+                        <a href="https://www.reddit.com/r/solotravel/comments/1hh7eq9/what_do_you_use_to_plan_your_trips/" target="_blank" rel="noopener">
+                        View full Reddit discussion
+                        </a>
                     </div>
                 </div>
             </div>

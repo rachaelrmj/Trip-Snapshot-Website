@@ -204,19 +204,18 @@ header {
     color: #000000;
 }
 
-#hero h3 {
-    font-size: 13px;
-    color: #000000;
-}
-
 #hero p {
-    display: none;
+    background-color: #ffffffcc;
+    color: #000000;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 15px;
+    
 }
 
 #hero-planner-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 #hero-planner-form #hero-destination {
@@ -224,19 +223,20 @@ header {
 }
 
 #hero-planner-form label {
-    color: #facc15;
-    font-size: 12px;
+    color: #000000;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#start-date-container, #end-date-container {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
 }
 
 #hero-planner-form .date-group {
     display: flex;
     gap: 10px;
-}
-
-#hero-planner-form .date-group label {
-    display: flex;
-    flex-direction: column; 
-    flex: 1;
 }
 
 #hero input[type="text"], #hero input[type="date"] {
@@ -280,7 +280,7 @@ header {
 }
 /*--------------------------------------------------------*/
 
-/* Common Traveler Frustrations Section Styles */
+/* Traveler Frustrations Section Styles */
 #frustrations {
     padding: 5px 15px 10px 15px;
     width: 90%;
@@ -294,53 +294,78 @@ header {
     padding: 12px;
 }
 
-#frustrations-slider {
+.frustration-container {
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    border-radius: 8px;
-}
-
-.slides {
-    display: flex;
-    width: 300%;
-    animation: slide 40s infinite;
-}
-
-.slide {
-    width: calc(100% / 3);
-}
-
-.slide img {
     width: 100%;
-    display: block;
+}
+
+.frustration-scroll {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: scroll-cards 36s infinite;
+}
+
+.frustration-container:hover .frustration-scroll, .frustration-container:active .frustration-scroll {
+    animation-play-state: paused;
+}
+
+.frustration-card {
+    flex: 0 0 85%;
+    background-color: #ffffff;
     border-radius: 8px;
-    padding: 10px 20px;
-    transition: transform 0.3s ease;
+    padding: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.slide img:hover {
-    transform: scale(1.05);
+.frustration-card span {
+    font-weight: bold;
 }
 
-@keyframes slide {
-    /* Slide 1 */
-    0%, 25% {
-        transform: translateX(0); 
+.frustration-card p {
+    font-style: italic;
+    line-height: 1.25;
+    margin-bottom: 10px;
+}
+
+.frustration-card a {
+    font-size: 13px;
+    color: #1ca7ec;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+@keyframes scroll-cards {
+    0%, 20% {
+        transform: translateX(0);
     }
 
-    /* Slide 2 */
-    33%, 58% { 
-        transform: translateX(-33.333%); 
+    25% {
+        transform: translateX(-90%);
     }
 
-    /* Slide 3 */
-    66%, 91% {
-        transform: translateX(-66.666%); 
+    25%, 45% {
+        transform: translateX(-90%);
     }
 
-    /* Reset */
-    100% { 
-        transform: translateX(0); 
+    50% {
+        transform: translateX(-180%);
+    }
+
+    50%, 70% {
+        transform: translateX(-180%);
+    }
+
+    75% {
+        transform: translateX(-270%);
+    }
+
+    75%, 95% {
+        transform: translateX(-270%);
+    }
+
+    100% {
+        transform: translateX(0);
     }
 }
 /*--------------------------------------------------------*/
