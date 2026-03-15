@@ -32,7 +32,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,100..900;1,100..900&family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
         <link rel="canonical" href="https://tripsnapshot.com">
         <link rel="stylesheet" href="css/styles.css"> 
-        <script src="js/storage.js" defer></script> 
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk&libraries=places&callback=setupAutocomplete" async defer></script>
+        <script src="js/storage.js" defer></script>
+        <script src="js/places.js" defer></script> 
         <script src="js/itinerary.js" defer></script>
         <script src="js/snapshot.js" defer></script>
         <script src="js/destination.js" defer></script>
@@ -86,7 +89,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" id="start-planning-button">Start Planning</button>
+                        <button type="submit" id="start-planning-button" aria-label="Start planning your trip">Start Planning</button>
                     </form>
                 </div>
             </section>
