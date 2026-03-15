@@ -228,7 +228,7 @@ header {
     font-weight: bold;
 }
 
-#start-date-container, #end-date-container {
+#start-date-container, #end-date-container, #destination-container {
     display: flex;
     flex-direction: column;
     line-height: 1.5;
@@ -236,7 +236,13 @@ header {
 
 #hero-planner-form .date-group {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
+    justify-content: center;
+}
+
+#hero-planner-form .date-group div {
+    flex: 1 1 120px;
 }
 
 #hero input[type="text"], #hero input[type="date"] {
@@ -268,9 +274,9 @@ header {
 
 /* Why Trip Snapshot Section Styles */
 #why-trip-snapshot {
-    padding: 25px 15px;
-    width: 90%;
-    margin: 0 auto 0 auto;
+    width: 80%;
+    margin: 30px;
+    justify-self: center;
 }
 
 #why-trip-snapshot p {
@@ -282,44 +288,40 @@ header {
 
 /* Traveler Frustrations Section Styles */
 #frustrations {
-    padding: 5px 15px 10px 15px;
-    width: 90%;
-    margin: 0 auto 25px auto;
+    padding: 5px 15px 0 15px;
+    width: 100%;
+    margin-bottom: 30px;
     text-align: center;
 }
 
 #frustrations h3 {
-    background-color: #facc15;
+    background-color: #ffffff;
     color: #000000;
     padding: 12px;
 }
 
 .frustration-container {
-    overflow: hidden;
+    position: relative;
     width: 100%;
+    overflow: hidden;
 }
 
 .frustration-scroll {
     display: flex;
-    gap: 20px;
-    width: max-content;
-    animation: scroll-cards 36s infinite;
+    width: 600%;
+    animation: slide 75s infinite;
 }
 
-.frustration-container:hover .frustration-scroll, .frustration-container:active .frustration-scroll {
+.frustration-container:hover .frustration-scroll {
     animation-play-state: paused;
 }
 
 .frustration-card {
-    flex: 0 0 85%;
+    flex: 0 0 16.6667%;
     background-color: #ffffff;
     border-radius: 8px;
     padding: 18px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.frustration-card span {
-    font-weight: bold;
 }
 
 .frustration-card p {
@@ -335,49 +337,45 @@ header {
     font-weight: bold;
 }
 
-@keyframes scroll-cards {
-    0%, 20% {
-        transform: translateX(0);
+@keyframes slide {
+    0%   { 
+    transform: translateX(0); 
     }
-
-    25% {
-        transform: translateX(-90%);
+    16.667% { 
+        transform: translateX(-16.6667%); 
     }
-
-    25%, 45% {
-        transform: translateX(-90%);
+    33.333% { 
+        transform: translateX(-33.33%); 
+    } 
+    50%   { 
+        transform: translateX(-50%); 
+    }    
+    66.667% { 
+        transform: translateX(-66.6667%); 
+    } 
+    83.333% { 
+        transform: translateX(-83.3333%); 
     }
-
-    50% {
-        transform: translateX(-180%);
-    }
-
-    50%, 70% {
-        transform: translateX(-180%);
-    }
-
-    75% {
-        transform: translateX(-270%);
-    }
-
-    75%, 95% {
-        transform: translateX(-270%);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
+    100%  { 
+        transform: translateX(-100%); 
+    }     
 }
+
 /*--------------------------------------------------------*/
 /* How It Works Section Styles */
 
 #how-it-works {
-    width: 100%;
+    width: 90%;
     text-align: center;
     padding: 25px 15px;
-    margin: 0 auto 25px auto;
+    margin: 0 auto 30px auto;
     background-color: #facc15;
+    border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#how-it-works h3 {
+    margin-bottom: 20px;
 }
 
 #how-it-works-content {
@@ -385,10 +383,12 @@ header {
     align-items: center;
     justify-content: space-evenly;
     gap: 5px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
 }
 
-#how-it-works-image {
-    display: none;
+#how-it-works-content img {
     width: 100px;
 }
 
@@ -400,9 +400,14 @@ header {
 
 /* Features Section */
 #features {
-    padding: 25px 15px;
+    background-color: #facc15;
+    padding: 20px 15px;
     width: 90%;
-    margin: 0 auto 25px auto;
+    margin: 0 auto 30px auto;
+}
+
+#features h3 {
+    margin-bottom: 20px;
 }
 
 #features-content {
@@ -437,17 +442,18 @@ header {
 
 /* Ready to Plan Section Styles*/
 #ready-to-plan {
-    padding: 25px 15px;
     width: 90%;
-    margin: 0 auto 25px auto;
-    background-color: #facc15;
+    margin: 0 auto 30px auto;
+    background-color: #ffffff;
+    color: #000000;
     border-radius: 8px;
     padding: 20px;
     text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .plan-button {
-    background-color: #000000;
+    background-color: #1ca7ec;
     color: #ffffff;
     padding: 12px 20px;
     border-radius: 8px;
@@ -459,8 +465,8 @@ header {
 }
 
 .plan-button:hover {
-    background-color: #1ca7ec;
-    color: #000000;
+    background-color: #000000;
+    color: #ffffff;
 }
 /*--------------------------------------------------------*/
 /* Footer Styles*/
@@ -470,8 +476,8 @@ footer {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    background-color: #ffffff;
-    padding: 0 10px;
+    background-color: #facc15;
+    padding: 20px 10px;
     text-align: center;
 }
 
@@ -488,7 +494,6 @@ footer .sr-only {
 }
 
 #useful-links {
-    background-color: #facc15;
     padding: 10px;
 }
 
