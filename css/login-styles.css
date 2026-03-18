@@ -1,0 +1,318 @@
+/* Trip Snapshot Website CSS Reset */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*--------------------------------------------------------*/
+
+/* Trip Snapshot Website- Login Page Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    min-height: 100vh; /* full viewport height */
+    font-family: 'SN Pro', sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+h1 {
+    display: none;  
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Archivo Black', sans-serif;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+p, button {
+    font-family: 'SN Pro', sans-serif;
+}
+
+/* Header Styles */
+
+header {
+    display: flex;      
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+}
+.logo {
+    width: 120px;
+}
+
+.logo-link {
+    order: 1;
+}
+
+.profile {
+    width: 32px;
+    height: 32px;
+} 
+
+.profile-link {
+    order: 2;
+}
+
+.hamburger-menu {
+    display: flex;
+    align-items: center;
+    order: 0;
+}
+
+.menu-icon {
+    cursor: pointer;
+    display: block;
+    z-index: 1000;
+}
+
+.menu-icon img {
+    width: 44px;
+}
+
+#menu-toggle {
+    display: none;        
+}
+
+.mobile-nav {
+    display: none; 
+    position: absolute;
+    top: 100%;        
+    left: 0;          
+    width: 100%;   
+    background: #facc15;         
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
+    transition: max-height 0.3s ease;
+    max-height: 0;
+    overflow: hidden;             
+}
+
+.mobile-nav ul {      
+    list-style: none;         
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav li {
+    padding: 15px 0;
+}
+
+.mobile-nav a {
+    display: block;
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mobile-nav li:hover, .mobile-nav a:hover {
+    background-color: #1ca7ec;     
+    color: #ffffff;     
+}
+
+#menu-toggle:checked ~ .mobile-nav {
+    display: block;
+    max-height: 500px;
+}
+
+#search-bar {
+    display: none;
+}
+/*--------------------------------------------------------*/
+
+#login-image {
+    width: 100%;
+    height: 50%;
+}
+
+#login {
+    margin: 20px 40px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+#password-options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 15px;
+    padding: 0 15px;
+}
+
+#password-options a {
+    text-decoration: none;
+    color: #000;
+}
+
+#login-button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #000000;
+    color: #ffffff;
+
+}
+
+#login-button:hover {
+    background-color: #1ca7ec;
+}
+
+#create-account-button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #1ca7ec;
+    color: #ffffff;
+}
+
+#no-account {
+    text-align: center;
+    margin: 20px 0 10px;
+    font-weight: bold;
+}
+/*--------------------------------------------------------*/
+/* Footer Styles*/
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    background-color: #facc15;
+    padding: 20px 0 0 0;
+    text-align: center;
+}
+
+footer input {
+    justify-self: center;
+}
+
+#stay-connected, #useful-links {
+    flex: 1 1 48%;
+    padding: 10px;
+}
+
+footer .sr-only {
+    visibility: hidden;
+}
+
+#subscriber-email {
+    text-align: center;
+}
+
+#useful-links li {
+    line-height: 1.5;
+}
+
+#useful-links a {
+    text-decoration: none;
+    color: #000000;
+}
+
+#useful-links a:hover {
+    color:#1ca7ec;
+}
+
+#stay-connected input[type="email"] {
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #1ca7ec;
+    width: 70%;
+    margin-bottom: 10px;
+}
+
+#subscribe-button {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer; 
+}
+
+#subscribe-button:hover {
+    background-color: #1ca7ec;
+}
+
+#copyright-container {
+    width: 100%;
+    padding: 20px;
+    background-color: #000000;
+    color:#ffffff;
+}
+/*--------------------------------------------------------*/
+/* Responsive Styles */
