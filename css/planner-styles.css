@@ -52,9 +52,8 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
+/*---------------------------------------------------*/
 /* Trip Snapshot Website- Planner Page Global Styles */
-
 * {
   box-sizing: border-box;
 }
@@ -360,92 +359,6 @@ header {
 }
 /*--------------------------------------------------------*/
 
-/* FOOTER */
-
-footer {
-    padding: 20px;
-    text-align: center;
-    background-color: #ffffff;
-}
-
-footer p {
-    font-size: 14px;
-    color: #000000;
-    line-height: 1.4;
-}
-/*--------------------------------------------------------*/
-
-/* TABLET STYLES */
-
-@media screen and (min-width: 768px) {
-    #plan-trip {
-        padding: 20px 40px 60px;
-    }
-
-    .trip-search-form {
-        max-width: 700px;
-        padding: 28px;
-    }
-
-    .plan-dates {
-        flex-direction: row;
-    }
-
-    #plan-start,
-    #plan-end {
-        flex: 1;
-    }
-
-    #hero-text {
-        right: 10%;
-        width: 34%;
-    }
-
-    #hero-text h2 {
-        font-size: 28px;
-    }
-
-    #hero-text p {
-        font-size: 16px;
-    }
-}
-/*--------------------------------------------------------*/
-
-/* DESKTOP STYLES */
-
-@media screen and (min-width: 1024px) {
-    header {
-        padding: 16px 40px;
-    }
-
-    .logo {
-        width: 140px;
-    }
-
-    #plan-trip {
-        padding: 30px 60px 80px;
-    }
-
-    .trip-search-form {
-        max-width: 760px;
-    }
-
-    #hero-text {
-        width: 30%;
-        right: 12%;
-    }
-
-    #hero-text h2 {
-        font-size: 32px;
-    }
-
-    #hero-text p {
-        font-size: 17px;
-    }
-}
-/*--------------------------------------------------------*/
-/* Footer Styles */
-
 footer {
     display: flex;
     flex-wrap: wrap;
@@ -513,4 +426,73 @@ footer .sr-only {
     padding: 20px;
     background-color: #000000;
     color:#ffffff;
+}
+/*--------------------------------------------------------*/
+/* Responsive Styles */
+
+@media screen and (min-width: 768px) {
+    #plan-trip {
+        padding: 20px 40px 60px;
+    }
+
+    .trip-search-form {
+        max-width: 700px;
+        padding: 28px;
+    }
+
+    .plan-dates {
+        flex-direction: row;
+    }
+
+    #plan-start,
+    #plan-end {
+        flex: 1;
+    }
+
+    #hero-text {
+        right: 10%;
+        width: 34%;
+    }
+
+    #hero-text h2 {
+        font-size: 28px;
+    }
+
+    #hero-text p {
+        font-size: 16px;
+    }
+}
+/*--------------------------------------------------------*/
+
+/* DESKTOP STYLES */
+
+@media screen and (min-width: 1024px) {
+    header {
+        padding: 16px 40px;
+    }
+
+    .logo {
+        width: 140px;
+    }
+
+    #plan-trip {
+        padding: 30px 60px 80px;
+    }
+
+    .trip-search-form {
+        max-width: 760px;
+    }
+
+    #hero-text {
+        width: 30%;
+        right: 12%;
+    }
+
+    #hero-text h2 {
+        font-size: 32px;
+    }
+
+    #hero-text p {
+        font-size: 17px;
+    }
 }
