@@ -89,66 +89,79 @@
             </div>
 
             <div class="planner-form-wrapper">
-                <form class="trip-search-form">
-                    <div class="form-group">
-                        <label for="destination">Destination</label>
-                        <input type="text" id="destination" name="destination" placeholder="Enter a city or country">
+
+            <form class="trip-search-form" id="trip-form">
+
+                <h2 class="form-title">Plan Your Trip</h2>
+
+                <!-- Destination -->
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" name="destination" placeholder="Enter a city or country">
+                </div>
+
+                <!-- Dates -->
+                <div class="plan-dates">
+                <div class="form-group">
+                    <label for="start-date">Start Date</label>
+                    <input type="date" id="start-date" name="start-date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="end-date">End Date</label>
+                    <input type="date" id="end-date" name="end-date" required>
+                </div>
+                </div>
+
+                <div class="preferences-section">
+                    <h3>Activities</h3>
+                    <div class="checkbox-grid">
+                        <label><input type="checkbox" value="adventure"> Adventure</label>
+                        <label><input type="checkbox" value="relaxation"> Relaxation</label>
+                        <label><input type="checkbox" value="food"> Food</label>
+                        <label><input type="checkbox" value="nightlife"> Nightlife</label>
+                        <label><input type="checkbox" value="family"> Family</label>
                     </div>
 
-                    <div class="plan-dates">
-                        <div class="form-group" id="plan-start">
-                            <label for="start-date">Start Date</label>
-                            <input type="date" id="start-date" name="start-date" required>
-                        </div>
-
-                        <div class="form-group" id="plan-end">
-                            <label for="end-date">End Date</label>
-                            <input type="date" id="end-date" name="end-date" required>
-                        </div>
+                    <h3>Travel Needs</h3>
+                    <div class="checkbox-grid">
+                        <label><input type="checkbox" value="flights"> Flights</label>
+                        <label><input type="checkbox" value="hotels"> Hotels</label>
+                        <label><input type="checkbox" value="cars"> Rental Cars</label>
                     </div>
+                </div>
 
-                    <div class="form-group plan-budget">
-                        <label for="budget">Budget</label>
-                        <select id="budget" name="budget" required>
-                            <option value="">Select budget range</option>
-                            <option value="budget-friendly">Budget-Friendly</option>
-                            <option value="moderate">Moderate</option>
-                            <option value="luxury">Luxury</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group plan-people">
-                        <label for="travelers">Travelers</label>
-                        <select id="travelers" name="travelers" required>
-                            <option value="">Select number</option>
-                            <option value="1">1 Traveler</option>
-                            <option value="2">2 Travelers</option>
-                            <option value="3">3 Travelers</option>
-                            <option value="4+">4+ Travelers</option>
-                        </select>
-                    </div>
-        
-                    <div class="form-group plan-style">
-                        <label for="trip-style">Trip Style</label>
-                        <select id="trip-style" name="trip-style" required>
-                            <option value="">Select trip style</option>
-                            <option value="relaxing">Relaxing</option>
-                            <option value="adventure">Adventure</option>
-                            <option value="foodie">Foodie</option>
-                            <option value="family">Family</option>
-                            <option value="romantic">Romantic</option>
-                            <option value="cultural">Cultural</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="generate-btn">Generate Trip Plan</button>
-                </form>
-            </div>
+                <button type="submit" class="btn-primary">Generate Trip</button>
+            </form>
         </section>
     </main> 
 
     <footer>
-        <p>&copy; 2024 Trip Snapshot. All rights reserved.</p>
+        <section id="stay-connected">
+            <h3>Stay Connected</h3>
+            <p>Get destination ideas, planning tips, and travel inspiration sent to your inbox.</p>
+            <form id="subscribe-form" action="#" method="POST">
+                <label for="subscriber-email" class="sr-only">Email address</label>
+                <input type="email" id="subscriber-email" name="email" placeholder="Email Address" required>
+                <button type="submit" id="subscribe-button">Subscribe</button>
+            </form>
+        </section>
+
+        <section id="useful-links">
+            <h3>Useful Links</h3>
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="explore.html">Destinations</a></li>
+                <li><a href="faqs.html">FAQs</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="terms-conditions.html">Terms and Conditions</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            </ul>
+        </section>
+
+        <div id="copyright-container">
+                <p>Copyright 2026 Trip Snapshot. All Rights Reserved.</p>
+        </div>
     </footer>
 </body>
 </html>

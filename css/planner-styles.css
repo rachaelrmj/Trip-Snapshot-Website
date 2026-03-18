@@ -257,13 +257,17 @@ header {
 .trip-search-form {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 20px;
     background-color: #ffffff;
     border: 1px solid #e6e6e6;
     border-radius: 18px;
-    padding: 22px 18px;
+    padding: 26px 22px;
     margin: 0 auto 40px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.trip-search-form h2, .trip-search-form h3 {
+    text-align: center;
 }
 
 .trip-search-form label {
@@ -278,18 +282,15 @@ header {
 .trip-search-form select {
     width: 100%;
     padding: 14px 12px;
-    border: 1px solid #d9d9d9;
+    border: 1px solid #d1d5db;
     border-radius: 10px;
     font-size: 14px;
     background-color: #ffffff;
-    color: #000000;
+    transition: all 0.2s ease;
 }
 
-.trip-search-form input:focus,
-.trip-search-form select:focus {
-    outline: none;
+.trip-search-form input:focus {
     border-color: #1ca7ec;
-    box-shadow: 0 0 0 3px rgba(28, 167, 236, 0.15);
 }
 
 .plan-dates, .plan-budget, .plan-people, .plan-style {
@@ -306,21 +307,51 @@ header {
     gap: 18px;
 }
 
-.trip-search-form button {
-    margin-top: 8px;
-    padding: 14px 18px;
-    border: none;
+.preferences-section {
+    margin-top: 10px;
+}
+
+.preferences-section h3 {
+    margin: 15px 0 10px;
+    font-size: 16px;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+}
+
+.checkbox-grid label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
     border-radius: 10px;
-    background-color: #facc15;
+    cursor: pointer;
+    transition: 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.checkbox-grid label:hover {
+    background: #facc15;
+}
+
+.trip-search-form button {
+    margin-top: 10px;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #facc15, #fbbf24);
     color: #000000;
     font-family: 'Archivo Black', sans-serif;
     font-size: 15px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    transition: all 0.25s ease;
 }
 
 .trip-search-form button:hover {
-    background-color: #1ca7ec;
+    background: #1ca7ec;
     color: #ffffff;
 }
 
@@ -411,4 +442,75 @@ footer p {
     #hero-text p {
         font-size: 17px;
     }
+}
+/*--------------------------------------------------------*/
+/* Footer Styles */
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    background-color: #facc15;
+    padding: 20px 0 0 0;
+    text-align: center;
+}
+
+footer input {
+    justify-self: center;
+}
+
+#stay-connected, #useful-links {
+    flex: 1 1 48%;
+    padding: 10px;
+}
+
+footer .sr-only {
+    visibility: hidden;
+}
+
+#subscriber-email {
+    text-align: center;
+}
+
+#useful-links li {
+    line-height: 1.5;
+}
+
+#useful-links a {
+    text-decoration: none;
+    color: #000000;
+}
+
+#useful-links a:hover {
+    color:#1ca7ec;
+}
+
+#stay-connected input[type="email"] {
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #1ca7ec;
+    width: 70%;
+    margin-bottom: 10px;
+}
+
+#subscribe-button {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer; 
+}
+
+#subscribe-button:hover {
+    background-color: #1ca7ec;
+}
+
+#copyright-container {
+    width: 100%;
+    padding: 20px;
+    background-color: #000000;
+    color:#ffffff;
 }
