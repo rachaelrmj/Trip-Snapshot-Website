@@ -181,41 +181,35 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-image: url('../images/search-image.jpeg');
+    background-image: url('../images/Homepage/hero-image.png');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: left center;
-    min-height: 55vh;
+    height: auto;
     padding: 20px;
     text-align: center;
     color: #ffffff;
 }
 
 #hero-content {
-    position: relative;
-    width: 90%;
-    max-width: 360px;
-    margin-right: 10px;
+    margin: 40px;
+    background-color: #ffffffcc;
+    padding: 20px;
+    border-radius: 8px;   
 }
-
 
 #hero h2 {
     font-size: 20px;
     color: #000000;
+    margin-bottom: 20px;
+    width: 70%;
+    justify-self: center;
 }
 
 #hero p {
-    background-color: #ffffffcc;
     color: #000000;
     border-radius: 8px;
     padding: 10px;
     margin: 10px 15px;
-    
-}
-
-#hero-planner-form {
-    display: flex;
-    flex-direction: column;
 }
 
 #hero-planner-form #hero-destination {
@@ -239,10 +233,11 @@ header {
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
+    margin-bottom: 5px;
 }
 
 #hero-planner-form .date-group div {
-    flex: 1 1 120px;
+    flex: 1 1 auto;
 }
 
 #hero input[type="text"], #hero input[type="date"] {
@@ -252,6 +247,7 @@ header {
     border: 2px solid #1ca7ec;
     font-size: 14px;
     text-align: center;
+    margin: 5px;
 }
 
 #start-planning-button {
@@ -261,7 +257,6 @@ header {
     color: #ffffff;
     border-radius: 8px;
     border: none;
-    width: 100%;
     cursor: pointer;
     transition: 0.3s ease;
 }
@@ -396,6 +391,10 @@ header {
     width: 100px;
 }
 
+#how-it-works-content img:hover {
+    transform: scale(1.2);
+}
+
 #how-it-works ol {
     list-style: decimal inside;
     text-align: left;
@@ -483,6 +482,10 @@ footer {
     background-color: #facc15;
     padding: 20px 10px;
     text-align: center;
+}
+
+footer input {
+    justify-self: center;
 }
 
 #stay-connected, #useful-links {
