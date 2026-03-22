@@ -77,6 +77,19 @@ h1, h2, h3, h4 {
 p {
     font-family: 'SN Pro', sans-serif;
 }
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+button, input {
+    font-family: inherit;
+}
 /*--------------------------------------------------------*/
 
 /* Header Styles */
@@ -179,7 +192,7 @@ header {
 #hero {
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     background-image: url('../images/Homepage/hero-image.png');
     background-size: cover;
@@ -200,9 +213,8 @@ header {
 #hero h2 {
     font-size: 20px;
     color: #000000;
-    margin-bottom: 20px;
-    width: 70%;
-    justify-self: center;
+    margin: 0 auto 20px auto;
+    max-width: 500px;
 }
 
 #hero p {
@@ -270,7 +282,7 @@ header {
 /* Why Trip Snapshot Section Styles */
 #why-trip-snapshot {
     width: 80%;
-    margin: 30px;
+    margin: 0 auto 30px auto;
     justify-self: center;
 }
 
@@ -278,126 +290,6 @@ header {
     font-size: 16px;
     line-height: 1.6;
     text-align: center;
-}
-/*--------------------------------------------------------*/
-
-/* Traveler Frustrations Section Styles */
-#frustrations {
-    padding: 5px 15px 0 15px;
-    width: 100%;
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-#frustrations h3 {
-    background-color: #ffffff;
-    color: #000000;
-    padding: 12px;
-}
-
-.frustration-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
-.frustration-scroll {
-    display: flex;
-    width: 600%;
-    animation: slide 75s infinite;
-}
-
-.frustration-container:hover .frustration-scroll {
-    animation-play-state: paused;
-}
-
-.frustration-card {
-    flex: 0 0 16.6667%;
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 18px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.frustration-card h4 {
-    color: #1ca7ec
-}
-
-.frustration-card p {
-    font-style: italic;
-    line-height: 1.25;
-    margin-bottom: 10px;
-}
-
-.frustration-card a {
-    font-size: 13px;
-    color: #1ca7ec;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-@keyframes slide {
-    0%   { 
-    transform: translateX(0); 
-    }
-    16.667% { 
-        transform: translateX(-16.6667%); 
-    }
-    33.333% { 
-        transform: translateX(-33.33%); 
-    } 
-    50%   { 
-        transform: translateX(-50%); 
-    }    
-    66.667% { 
-        transform: translateX(-66.6667%); 
-    } 
-    83.333% { 
-        transform: translateX(-83.3333%); 
-    }
-    100%  { 
-        transform: translateX(-100%); 
-    }     
-}
-
-/*--------------------------------------------------------*/
-/* How It Works Section Styles */
-
-#how-it-works {
-    width: 90%;
-    text-align: center;
-    padding: 25px 15px;
-    margin: 0 auto 30px auto;
-    background-color: #facc15;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-#how-it-works h3 {
-    margin-bottom: 20px;
-}
-
-#how-it-works-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 5px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-}
-
-#how-it-works-content img {
-    width: 100px;
-}
-
-#how-it-works-content img:hover {
-    transform: scale(1.2);
-}
-
-#how-it-works ol {
-    list-style: decimal inside;
-    text-align: left;
 }
 /*--------------------------------------------------------*/
 
@@ -443,16 +335,109 @@ header {
 }
 /*--------------------------------------------------------*/
 
+/* Traveler Frustrations Section Styles */
+#frustrations {
+    width: 90%;
+    margin: 0 auto 30px auto;
+    text-align: center;
+}
+
+#frustrations h3 {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+
+.frustration-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 18px;
+    margin: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    line-height: 1.5;
+}
+
+.frustration-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.frustration-card h4 {
+    color: #1ca7ec;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.frustration-card p {
+    font-style: italic;
+    line-height: 1.25;
+    margin-bottom: 12px;
+}
+
+.frustration-card a {
+    font-size: 13px;
+    color: #1ca7ec;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.frustration-card a:hover {
+    text-decoration: underline;
+}  
+/*--------------------------------------------------------*/
+
+/* How It Works Section Styles */
+
+#how-it-works {
+    width: 70%;
+    line-height: 1.5;
+    text-align: center;
+    padding: 25px 15px;
+    margin: 0 auto 30px auto;
+    background-color: #facc15;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#how-it-works h3 {
+    margin-bottom: 20px;
+}
+
+#how-it-works-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 5px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+#how-it-works-content img {
+    width: 100px;
+    transition: transform .5s ease;
+}
+
+#how-it-works-content img:hover {
+    transform: scale(1.2);
+}
+
+#how-it-works ol {
+    list-style: decimal inside;
+    text-align: left;
+}
+/*--------------------------------------------------------*/
+
 /* Ready to Plan Section Styles*/
 #ready-to-plan {
-    width: 90%;
+    width: 70%;
     margin: 0 auto 30px auto;
     background-color: #ffffff;
     color: #000000;
-    border-radius: 8px;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .plan-button {
@@ -475,12 +460,13 @@ header {
 /* Footer Styles*/
 
 footer {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;  
     gap: 20px;
     background-color: #facc15;
-    padding: 20px 10px;
+    padding: 40px 20px;
     text-align: center;
 }
 
@@ -489,8 +475,17 @@ footer input {
 }
 
 #stay-connected, #useful-links {
-    flex: 1 1 48%;
+    flex: 1;
+    min-width: 250px;
+}
+
+#stay-connected input[type="email"] {
+    width: 100%;
+    max-width: 400px;
     padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #1ca7ec;
+    margin-bottom: 10px;
 }
 
 footer .sr-only {
@@ -514,14 +509,6 @@ footer .sr-only {
     color:#1ca7ec;
 }
 
-#stay-connected input[type="email"] {
-    padding: 10px;
-    border-radius: 8px;
-    border: 2px solid #1ca7ec;
-    width: 70%;
-    margin-bottom: 10px;
-}
-
 #subscribe-button {
     background-color: #000000;
     color: #ffffff;
@@ -537,40 +524,6 @@ footer .sr-only {
 }
 /*--------------------------------------------------------*/
 /* Responsive Styles */
-
-@media (max-width: 480px){
-    #hero input, #start-planning-button {
-        margin-bottom: 12px;
-    }
-
-    .feature-card {
-        padding: 20px;
-    }
-
-    .feature-card img {
-        width: 80px;
-    }
-
-    .plan-button {
-        width: 100%;
-    }
-
-    #stay-connected input[type="email"] {
-        width: 90%;
-    }
-
-    #frustrations-slider .slides {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-    }
-
-    .slide {
-        flex: 0 0 80%;
-        scroll-snap-align: start;
-        margin-right: 10px;
-    }
-}
 
 @media (min-width: 768px){
     header {
@@ -589,35 +542,94 @@ footer .sr-only {
         display: none;
     }
 
+    #menu-toggle {
+        display: none;
+    }
+
     .mobile-nav {
-        display: block;
-        position: static;
-        box-shadow: none;
-        order: 1;
-        background-color: #ffffff;
-        max-height: none;
+        display: flex;          /* switch from block to flex */
+        position: static;       /* not absolute */
+        max-height: none;       /* remove height restriction */
+        background: none;       /* no background */
+        box-shadow: none;       /* no shadow */
+        width: auto;            /* shrink to content */
+        justify-content: flex-end; /* align menu to right if needed */
+        gap: 35px;
     }
     
     .mobile-nav ul{
         display: flex;
+        flex-direction: row;
         gap: 35px;
-        align-items: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .mobile-nav li {
+        padding: 0;             /* remove mobile padding */
+    }
+
+    .mobile-nav a {
+        color: #000000;
+        font-size: 16px;
+        text-decoration: none;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .mobile-nav a:hover {
+        color: #1ca7ec;
+        background: none;
     }
 
     .profile-link {
         order: 2;
     }
 
+    #hero {
+        justify-content: center;
+        padding: 80px;
+        min-height: 70vh;
+    }
+
+    #hero-content {
+        max-width: 600px;
+        margin-right: 60px;
+    }
+
+    #hero h2 {
+        font-size: 32px;
+    }
+
     #how-it-works {
-        width: 50%;
+        width: 80%;
+    }
+
+    #how-it-works-content {
+        gap: 30px;
+    }
+
+    #how-it-works-content img {
+        width: 150px;
+    }
+
+    #features {
+        padding: 40px 30px;
     }
 
     #features-content { 
         grid-template-columns: 1fr 1fr; 
     }
-        
-    .destination-cards {
-        grid-template-columns: 1fr 1fr; 
+
+    .frustration-scroll {
+        width: 100%;
+        animation: none; /* stop sliding */
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .frustration-card {
+        flex: 0 0 45%;
+        margin: 10px;
     }
         
     #how-it-works-content { 
@@ -625,14 +637,61 @@ footer .sr-only {
         justify-content: space-around; 
         text-align: left; 
     }
+
+    footer {
+        padding: 40px;
+        text-align: left;
+    }
+
+    #stay-connected, 
+    #useful-links {
+        flex: 1;
+    }
 }
 
 @media (min-width: 1024px){
-  #features-content { 
-    grid-template-columns: repeat(4, 1fr); 
-  }
+    #hero {
+        justify-content: flex-end;
+    }
 
-  .destination-cards { 
-    grid-template-columns: repeat(3, 1fr); 
-  }
+    #features {
+        width: 85%;
+    }
+
+    .feature-card {
+        padding: 25px;
+    }
+
+    #features-content { 
+        grid-template-columns: repeat(4, 1fr); 
+    }
+
+    .destination-cards { 
+        grid-template-columns: repeat(3, 1fr); 
+    }
+
+    .frustration-card {
+        width: 50%;
+        justify-self: center;
+    }
+
+    #how-it-works {
+        width: 28%;
+        margin: 0 auto;
+    }
+
+    #how-it-works-content {
+        justify-content: space-between;
+    }
+
+    #how-it-works-content img {
+        width: 200px;
+    }
+
+    footer {
+        text-align: center;
+        
+        gap: 40px;
+        padding: 50px 80px;
+    }
 }

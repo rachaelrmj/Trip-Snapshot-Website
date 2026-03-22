@@ -173,29 +173,29 @@ header {
 }
 /*--------------------------------------------------------*/
 
-#login-hero {
+#signup-hero {
     display: grid;
     grid-template-columns: 50% 50%;
     align-items: center;
     justify-items: center;
     text-align: center;
-    background-color: #facc15;
-    
+    background-color: #1ca7ec;  
+    padding-right: 60px;
 }
 
-#login-hero h2 {
-    background-color: #facc15;
+#signup-hero h2 {
+    background-color: #ffffff;
     padding: 15px;
     border-radius: 10px;
 }
 
-#login-image {
+#signup-image {
     width: 60%;
     height: auto;
     padding-bottom: 30px;
 }
 
-#login {
+#signup {
     margin: 20px 40px;
 }
 
@@ -210,7 +210,7 @@ header {
     border-radius: 4px;
 }
 
-#password-options {
+#save-password {
     display: flex;
     justify-content: space-between;
     font-size: 14px;
@@ -218,12 +218,12 @@ header {
     padding: 0 15px;
 }
 
-#password-options a {
+#save-password a {
     text-decoration: none;
     color: #000;
 }
 
-#login-button {
+#create-button {
     width: 100%;
     padding: 12px;
     margin-top: 10px;
@@ -237,11 +237,11 @@ header {
 
 }
 
-#login-button:hover {
+#create-button:hover {
     background-color: #1ca7ec;
 }
 
-#no-account {
+#have-account {
     text-align: center;
     margin: 20px 0 10px;
     font-weight: bold;
@@ -260,8 +260,6 @@ header {
     background-color: #1ca7ec;
     color: #ffffff;
 }
-
-
 /*--------------------------------------------------------*/
 /* Footer Styles*/
 
