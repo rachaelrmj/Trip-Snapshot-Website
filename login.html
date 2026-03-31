@@ -21,7 +21,7 @@
         <meta name="twitter:title" content="Trip Snapshot | Visual Travel Planner">
         <meta name="twitter:description" content="Generate personalized travel itineraries and visual trip plans instantly with Trip Snapshot.">
         <meta name="twitter:image" content="https://tripsnapshot.com/login/trip-snapshot.jpg">
-        <meta name="twitter:url" content="https://tripsnapshot.com/login">
+        <meta name="twitter:url" content="https://tripsnapshot.com">
         <meta name="twitter:creator" content="Rachael Martinez-Jones">
 
         <title>Trip Snapshot | Travel Planner & Itinerary Generator</title>
@@ -35,20 +35,21 @@
 
         <script src="js/storage.js" defer></script>
         <script src="js/login.js" defer></script>
+
     </head>
 
     <body>
         <header>
             <h1> Trip Snapshot </h1>
-
+            
             <!-- Mobile Menu Toggle -->
             <a href="index.html" class="logo-link"><img src="images/Trip-Snapshot-Logo.png" class="logo" alt="Trip Snapshot Logo"></a>
             <div class="hamburger-menu">
-                <input type="checkbox" id="menu-toggle">
+                <input type="checkbox" id="menu-toggle" aria-controls="mobile-nav" aria-expanded="false">
                 <label for="menu-toggle" class="menu-icon">
                     <img src="images/hamburger-menu.svg" alt="Hamburger Menu Icon">
                 </label>
-                <nav class="mobile-nav" aria-label="Main navigation">
+                <nav id="mobile-nav" class="mobile-nav" aria-label="Main navigation">
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="planner.html">Plan</a></li>
@@ -57,53 +58,95 @@
                     </ul>
                 </nav>
             </div>
-            <a href="login.html" class="profile-link"><img src="images/profile-logo.svg" class="profile" alt="User Profile Icon"></a>
+            <a href="profile.html" class="profile-link"><img src="images/profile-logo.svg" class="profile" alt="User Profile Icon"></a>
         </header>
 
         <main>
+            <!-- Hero Section -->
             <section id="login-hero">
-                <img src="images/login-page/login-image.png" id="login-image" alt="Image of earth and travel related items">
-
-                <h2>Access saved itineraries and trip plans!
-                </h2>
+                <img src="images/login-page/login-image.png" id="login-image" alt="Image of earth and travel related items" loading="lazy">
             </section>
 
-
+            <!-- Login Form -->
             <section id="login">
                 <h2>Login Account</h2>
-            
-                <form>
+                <form id="login-form">
                     <div class="input-group">
-                        <input type="email" placeholder="Email Address" required>
+                        <label for="email" class="sr-only">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            placeholder="Email Address" 
+                            required 
+                            autocomplete="email"
+                            list="registered-emails"
+                        >
+                        <datalist id="registered-emails"></datalist>
                     </div>
 
                     <div class="input-group">
-                        <input type="password" placeholder="Password" required>
+                        <label for="password" class="sr-only">Password</label>
+                        <input type="password" id="password" placeholder="Password" required>
                     </div>
 
-                    <div id="password-options">
-                        <label>
-                            <input type="checkbox" checked>
-                            Save Password
-                        </label>
-                        <a href="#">Forget Password</a>
+                    <div id="forgot-password-container">
+                        <a href="#" id="forgot-password">Forget Password</a>  
                     </div>
-
-                    <a href="profile.html"><button type="submit" id="login-button">Login</button></a>
+                    
+                    <button type="submit" id="login-button">Login</button>
                 </form>
 
-                <div id="no-account">Don’t Have an Account?</div>
+            <!-- Popups -->
+            <div id="login-confirmation" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="login-confirmation-title">
+                <div class="popup-content">
+                    <h3 id="login-confirmation-title">Login Successful!</h3>
+                    <p>You have been logged in successfully.</p>
+                    <button class="acknowledge-popup">OK</button>
+                </div>
+            </div>
 
-                <a href="signup.html"><button id="signup-button">Create Account</button></a>
-            </section>   
-        </main> 
+            <div id="login-error" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="login-error-title">
+                    <div class="popup-content">
+                        <h3 id="login-error-title">Login Failed!</h3>
+                        <p>Incorrect email or password. Please try again.</p>
+                        <button class="close-popup">Close</button>
+                     </div>
+                 </div>
+
+            <!-- Forgot Password Popup -->
+            <div id="forgot-popup" class="popup-window">
+                <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="forgot-title">
+                    <h3 id="forgot-title">Reset Password</h3>
+                    <p id="forgot-popup-message">Enter your email address to reset your password:</p>
+                    <input type="email" id="forgot-email" placeholder="Email Address" required>
+                    <div>
+                        <button id="forgot-submit">Submit</button>
+                        <button id="forgot-close">Cancel</button>
+                    </div>
+                </div>
+
+                <!-- No Account Prompt -->
+                <div id="no-account-content">
+                    <p>Don't Have an Account?</p>
+                    <a href="signup.html" id="signup-link">Create Account</a>
+                </div>
+
+                <!-- No Account Popup -->
+                <div id="no-account" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="no-account-title">
+                    <div class="popup-content">
+                        <h3 id="no-account-title">No Account Found!</h3>
+                        <p>No account found with this email address. Please sign up for an account.</p>
+                        <button class="close-popup">Go to Signup</button>
+                    </div>
+                </div>
+            </div>
+        </main>
 
         <footer>
             <section id="stay-connected">
                 <h3>Stay Connected</h3>
                 <p>Get destination ideas, planning tips, and travel inspiration sent to your inbox.</p>
                 <form id="subscribe-form" action="#" method="POST">
-                    <label for="subscriber-email" class="sr-only">Email address</label>
                     <input type="email" id="subscriber-email" name="email" placeholder="Email Address" required>
                     <button type="submit" id="subscribe-button">Subscribe</button>
                 </form>
@@ -111,18 +154,17 @@
 
             <section id="useful-links">
                 <h3>Useful Links</h3>
-                <ul>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="explore.html">Destinations</a></li>
-                    <li><a href="faqs.html">FAQs</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="terms-conditions.html">Terms and Conditions</a></li>
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                </ul>
+                <nav id="footer-nav">
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="explore.html">Destinations</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    </ul>
+                </nav>
             </section>
-            <div id="copyright-container">
-                <p>Copyright 2026 Trip Snapshot. All Rights Reserved.</p>
-            </div>
         </footer>
     </body>
 </html>

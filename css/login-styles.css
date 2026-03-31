@@ -76,9 +76,8 @@ h1, h2, h3, h4 {
 p, button {
     font-family: 'SN Pro', sans-serif;
 }
-
+/*--------------------------------------------------------*/
 /* Header Styles */
-
 header {
     display: flex;      
     align-items: center;
@@ -172,75 +171,142 @@ header {
     display: none;
 }
 /*--------------------------------------------------------*/
-
+/* Hero Section */
 #login-hero {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    align-items: center;
-    justify-items: center;
-    text-align: center;
-    background-color: #facc15;  
+	display: grid;
+	grid-template-columns: 50% 50%;
+	align-items: center;
+	justify-items: center;
+	text-align: center;
+	background-color: #facc15;
+	padding: 40px 20px;
 }
-
 #login-hero h2 {
-    background-color: #facc15;
-    padding: 15px;
-    border-radius: 10px;
+	background-color: #facc15;
+	padding: 15px;
+	border-radius: 10px;
+    font-size: 24px;
 }
-
 #login-image {
-    width: 60%;
-    height: auto;
-    padding-bottom: 30px;
+	width: 60%;
+	height: auto;
+	padding-bottom: 30px;
 }
-
+/*--------------------------------------------------------*/
+/* Login Form */
 #login {
-    margin: 20px 40px;
+	margin: 20px 40px;
 }
 
 .input-group {
-    margin-bottom: 15px;
+	margin-bottom: 15px;
 }
-
 .input-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #aaa;
-    border-radius: 4px;
+	width: 100%;
+	padding: 12px;
+	border: 1px solid #aaa;
+	border-radius: 8px;
+	font-size: 16px
 }
-
-#password-options {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    margin-bottom: 15px;
-    padding: 0 15px;
-}
-
-#password-options a {
+#forgot-password-container {
+	text-align: right;
+	font-size: 14px;
+	margin-bottom: 15px;
     text-decoration: none;
-    color: #000;
 }
 
+#forgot-password a:hover {
+	color: #1ca7ec;
+}
 #login-button {
+	width: 100%;
+	padding: 12px;
+	margin-top: 10px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 16px;
+	background-color: #000;
+	color: #fff;
+    transition: background-color 0.3s;
+}
+#login-button:hover {
+	background-color: #1ca7ec;
+}
+/*--------------------------------------------------------*/
+/* Popup Windows */
+.popup-window {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 12px;
-    margin-top: 10px;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.popup-window .popup-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 80%;
+}
+
+.popup-content p {
+	margin-bottom: 20px;
+	font-size: 16px;
+	color: #000000;
+}
+
+.popup-window .popup-content button {
+    padding: 10px 20px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
     font-size: 16px;
-    background-color: #000000;
-    color: #ffffff;
-
-}
-
-#login-button:hover {
+    margin: 5px;
     background-color: #1ca7ec;
+    color: #ffffff;
+    transition: background-color 0.3s;
+}
+.popup-window .popup-content button:hover {
+    background-color: #000000;
 }
 
-#no-account {
+/* Forgot Password Popup */
+#forgot-popup {
+	margin: 15% auto;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* Close Button */
+.close-popup {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: #1ca7ec;
+    color: #ffffff;
+    transition: background-color 0.3s;
+}
+
+.close-popup:hover, .close-popup:focus {
+    background-color: #000000;
+}
+
+/* No Account / Signup Button */
+#no-account-content {
     text-align: center;
     margin: 20px 0 10px;
     font-weight: bold;
@@ -259,78 +325,66 @@ header {
     background-color: #1ca7ec;
     color: #ffffff;
 }
-
-
 /*--------------------------------------------------------*/
-/* Footer Styles*/
-
+/* Footer */
 footer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    background-color: #facc15;
-    padding: 20px 0 0 0;
-    text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	background-color: #facc15;
+	padding: 20px 0 0 0;
+	text-align: center;
 }
-
-footer input {
-    justify-self: center;
-}
-
 #stay-connected, #useful-links {
-    flex: 1 1 48%;
-    padding: 10px;
+	flex: 1 1 47%;
+	padding: 10px;
 }
-
-footer .sr-only {
-    visibility: hidden;
-}
-
-#subscriber-email {
-    text-align: center;
-}
-
 #useful-links li {
-    line-height: 1.5;
+	line-height: 1.5;
 }
-
 #useful-links a {
-    text-decoration: none;
-    color: #000000;
+	text-decoration: none;
+	color: #000;
 }
-
 #useful-links a:hover {
-    color:#1ca7ec;
+	color: #1ca7ec;
 }
-
 #stay-connected input[type="email"] {
-    padding: 10px;
-    border-radius: 8px;
-    border: 2px solid #1ca7ec;
-    width: 70%;
-    margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 8px;
+	border: 2px solid #1ca7ec;
+	margin-bottom: 10px;
+	width: 80%;
 }
-
 #subscribe-button {
-    background-color: #000000;
-    color: #ffffff;
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer; 
+	background-color: #000;
+	color: #fff;
+	padding: 10px 15px;
+	border-radius: 8px;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
 }
-
 #subscribe-button:hover {
-    background-color: #1ca7ec;
+	background-color: #1ca7ec;
+}
+#copyright-container {
+	width: 100%;
+	padding: 20px;
+	background-color: #000;
+	color: #fff;
 }
 
-#copyright-container {
-    width: 100%;
-    padding: 20px;
-    background-color: #000000;
-    color:#ffffff;
-}
 /*--------------------------------------------------------*/
-/* Responsive Styles */
+/* Responsive */
+@media (max-width: 768px) {
+	#login-hero {
+		grid-template-columns: 1fr;
+	}
+	#login-image {
+		width: 80%;
+	}
+	#login {
+		margin: 20px;
+	}
+}

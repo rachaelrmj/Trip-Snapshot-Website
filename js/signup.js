@@ -7,16 +7,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const confirmationPopup = document.getElementById("signup-confirmation");
     const errorPopup = document.getElementById("signup-error");
     const existingAccountPopup = document.getElementById("existing-account");
+
     const closeButtons = document.querySelectorAll(".close-popup");
-
     const datalist = document.getElementById("registered-emails");
-
     let lastFocusedElement;
 
     /** Utility: show popup */
-    function showPopup(modal) {
+    function showPopup(modal, redirectUrl = null, message = null) {
         lastFocusedElement = document.activeElement;
-        modal.style.display = "block";
+        if (message) modal.querySelector("p").textContent = message;
+        modal.dataset.redirect = redirectUrl || "";
+        modal.style.display = "flex"; // match login popup display
         modal.setAttribute("aria-hidden", "false");
         trapFocus(modal);
     }
@@ -42,21 +43,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         modal.addEventListener('keydown', function (e) {
             if (e.key === 'Tab') {
-                if (e.shiftKey) {
-                    if (document.activeElement === firstEl) {
-                        e.preventDefault();
-                        lastEl.focus();
-                    }
-                } else {
-                    if (document.activeElement === lastEl) {
-                        e.preventDefault();
-                        firstEl.focus();
-                    }
+                if (e.shiftKey && document.activeElement === firstEl) {
+                    e.preventDefault();
+                    lastEl.focus();
+                } else if (!e.shiftKey && document.activeElement === lastEl) {
+                    e.preventDefault();
+                    firstEl.focus();
                 }
             }
-            if (e.key === 'Escape') {
-                hidePopup(modal);
-            }
+            if (e.key === 'Escape') hidePopup(modal);
         });
     }
 
@@ -65,6 +60,11 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener("click", function () {
             const modal = this.closest(".popup-window");
             hidePopup(modal);
+
+            // Handle redirects like login popup
+            if (modal.dataset.redirect) {
+                window.location.href = modal.dataset.redirect;
+            }
         });
     });
 
@@ -89,7 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Initial datalist population
     populateDatalist();
 
     /** Form submission */
@@ -101,51 +100,31 @@ document.addEventListener("DOMContentLoaded", function () {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailPattern.test(email)) {
-            alert("Please enter a valid email address.");
+            showPopup(errorPopup, null, "Please enter a valid email address.");
             emailInput.focus();
             return;
         }
 
         if (!password) {
-            showPopup(errorPopup);
+            showPopup(errorPopup, null, "Password cannot be empty.");
+            passwordInput.focus();
             return;
         }
 
-        try {
-            let accounts = loadAccounts();
+        let accounts = loadAccounts();
 
-            // Check if account already exists
-            const existingAccount = accounts.find(acc => acc.email === email);
-            if (existingAccount) {
-                showPopup(existingAccountPopup);
-                return;
-            }
-
-            // Add new account
-            accounts.push({ email, password });
-            saveAccounts(accounts);
-
-            // Refresh datalist with new account
-            populateDatalist();
-
-            // Show success popup
-            showPopup(confirmationPopup);
-
-        } catch (err) {
-            console.error(err);
-            showPopup(errorPopup);
+        const existingAccount = accounts.find(acc => acc.email.toLowerCase() === email.toLowerCase());
+        if (existingAccount) {
+            showPopup(existingAccountPopup, "login.html", "Account already exists. Please log in.");
+            return;
         }
+
+        // Add new account
+        accounts.push({ email, password });
+        saveAccounts(accounts);
+        populateDatalist();
+
+        showPopup(confirmationPopup, "profile.html", "Account created successfully!");
     });
-
-    /** Redirect after popup close */
-    document.querySelector("#signup-confirmation .close-popup")
-        .addEventListener("click", function () {
-            window.location.href = "profile.html";
-        });
-
-    document.querySelector("#existing-account .close-popup")
-        .addEventListener("click", function () {
-            window.location.href = "login.html";
-        });
 
 });
