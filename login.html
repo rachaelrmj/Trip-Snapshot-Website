@@ -64,7 +64,8 @@
         <main>
             <!-- Hero Section -->
             <section id="login-hero">
-                <img src="images/login-page/login-image.png" id="login-image" alt="Image of earth and travel related items" loading="lazy">
+                <h2>Welcome Back!</h2>
+                <img src="images/login-page/AdobeStock_435737532.jpeg" id="login-image" alt="Travel Image" loading="lazy">
             </section>
 
             <!-- Login Form -->
@@ -90,45 +91,45 @@
                     </div>
 
                     <div id="forgot-password-container">
-                        <a href="#" id="forgot-password">Forget Password</a>  
+                        <a href="#" id="forgot-password-link">Forget Password</a>  
                     </div>
                     
                     <button type="submit" id="login-button">Login</button>
                 </form>
 
-            <!-- Popups -->
-            <div id="login-confirmation" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="login-confirmation-title">
-                <div class="popup-content">
-                    <h3 id="login-confirmation-title">Login Successful!</h3>
-                    <p>You have been logged in successfully.</p>
-                    <button class="acknowledge-popup">OK</button>
+                <div id="no-account-container">
+                    <h3>Don't Have an Account?</h3>
+                    <a href="signup.html" id="signup-link">Create Account</a>
                 </div>
-            </div>
 
-            <div id="login-error" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="login-error-title">
+                <!-- Popups -->
+                <div id="login-confirmation" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="login-confirmation-title">
+                    <div class="popup-content">
+                        <h3 id="login-confirmation-title">Login Successful!</h3>
+                        <p>You have been logged in successfully.</p>
+                        <button class="acknowledge-popup">OK</button>
+                    </div>
+                </div>
+
+                <div id="login-error" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="login-error-title">
                     <div class="popup-content">
                         <h3 id="login-error-title">Login Failed!</h3>
                         <p>Incorrect email or password. Please try again.</p>
                         <button class="close-popup">Close</button>
-                     </div>
+                    </div>
                  </div>
 
-            <!-- Forgot Password Popup -->
-            <div id="forgot-popup" class="popup-window">
-                <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="forgot-title">
-                    <h3 id="forgot-title">Reset Password</h3>
-                    <p id="forgot-popup-message">Enter your email address to reset your password:</p>
-                    <input type="email" id="forgot-email" placeholder="Email Address" required>
-                    <div>
-                        <button id="forgot-submit">Submit</button>
-                        <button id="forgot-close">Cancel</button>
+                <!-- Forgot Password Popup -->
+                <div id="forgot-popup" class="popup-window">
+                    <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="forgot-title">
+                        <h3 id="forgot-title">Reset Password</h3>
+                        <p id="forgot-popup-message">Enter your email address to reset your password:</p>
+                        <input type="email" id="forgot-email" placeholder="Email Address" required>
+                        <div>
+                            <button id="forgot-submit">Submit</button>
+                            <button id="forgot-close">Cancel</button>
+                        </div>
                     </div>
-                </div>
-
-                <!-- No Account Prompt -->
-                <div id="no-account-content">
-                    <p>Don't Have an Account?</p>
-                    <a href="signup.html" id="signup-link">Create Account</a>
                 </div>
 
                 <!-- No Account Popup -->
@@ -139,7 +140,7 @@
                         <button class="close-popup">Go to Signup</button>
                     </div>
                 </div>
-            </div>
+            </section>
         </main>
 
         <footer>
@@ -164,6 +165,16 @@
                         <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     </ul>
                 </nav>
+            </section>
+
+            <section id="copyright">
+                <h2>Trip Snapshot</h2>
+                <p>&copy; 2026 Trip Snapshot. All rights reserved.</p>
+                <div id="social-media">
+                    <a href="https://www.facebook.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/facebook-icon.svg" alt="Facebook Icon"></a>
+                    <a href="https://www.twitter.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/twitter-icon.svg" alt="Twitter Icon"></a>
+                    <a href="https://www.instagram.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/instagram-icon.svg" alt="Instagram Icon"></a>
+                </div>
             </section>
         </footer>
     </body>
