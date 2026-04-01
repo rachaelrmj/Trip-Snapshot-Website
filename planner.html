@@ -35,7 +35,6 @@
     <script src="js/places.js" defer></script> 
     <script src="js/storage.js" defer></script>
     <script src="js/itinerary.js" defer></script>
-    <script src="js/snapshot.js" defer></script>
     <script src="js/destination.js" defer></script>
 </head>
 
@@ -90,78 +89,117 @@
 
             <div class="planner-form-wrapper">
 
-            <form class="trip-search-form" id="trip-form">
+                <form class="trip-search-form" id="trip-form">
 
-                <h2 class="form-title">Plan Your Trip</h2>
+                    <h2 class="form-title">Plan Your Trip</h2>
 
-                <!-- Destination -->
-                <div class="form-group">
-                    <label for="destination">Destination</label>
-                    <input type="text" id="destination" name="destination" placeholder="Enter a city or country">
-                </div>
-
-                <!-- Dates -->
-                <div class="plan-dates">
-                <div class="form-group">
-                    <label for="start-date">Start Date</label>
-                    <input type="date" id="start-date" name="start-date" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="end-date">End Date</label>
-                    <input type="date" id="end-date" name="end-date" required>
-                </div>
-                </div>
-
-                <div class="preferences-section">
-                    <h3>Activities</h3>
-                    <div class="checkbox-grid">
-                        <label><input type="checkbox" value="adventure"> Adventure</label>
-                        <label><input type="checkbox" value="relaxation"> Relaxation</label>
-                        <label><input type="checkbox" value="food"> Food</label>
-                        <label><input type="checkbox" value="nightlife"> Nightlife</label>
-                        <label><input type="checkbox" value="family"> Family</label>
+                    <!-- Destination -->
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <input type="text" id="destination" name="destination" placeholder="Enter a city or country">
                     </div>
 
-                    <h3>Travel Needs</h3>
-                    <div class="checkbox-grid">
-                        <label><input type="checkbox" value="flights"> Flights</label>
-                        <label><input type="checkbox" value="hotels"> Hotels</label>
-                        <label><input type="checkbox" value="cars"> Rental Cars</label>
-                    </div>
-                </div>
+                    <!-- Dates -->
+                    <div class="plan-dates">
+                        <div class="form-group">
+                            <label for="start-date">Start Date</label>
+                            <input type="date" id="start-date" name="start-date" required>
+                        </div>
 
-                <button type="submit" class="btn-primary">Generate Trip</button>
-            </form>
+                        <div class="form-group">
+                            <label for="end-date">End Date</label>
+                            <input type="date" id="end-date" name="end-date" required>
+                        </div>
+                    </div>
+
+                    <div class="preferences-section">
+                        <div id="activites">
+                            <h3>Activities</h3>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="adventure">
+                                <label for="adventure">Adventure</label>
+                            </div>
+
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="relaxation">
+                                <label for="relaxation">Relaxation</label>
+                            </div>
+
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="food">
+                                <label for="food">Food</label>
+                            </div>
+
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="nightlife">
+                                <label for="nightlife">Nightlife</label>
+                            </div>
+
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="family">
+                                <label for="family">Family</label>
+                            </div>
+                        </div>
+
+                        <div id="travel-needs">
+                            <h3>Travel Needs</h3>
+
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="flights">
+                                <label for="flights">Flights</label>
+                            </div>
+
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="hotels">
+                                <label for="hotels">Hotels</label>
+                            </div>
+
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="rental-cars">
+                                <label for="rental-cars">Rental Cars</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Generate Trip</button>
+                </form>
+            </div>
         </section>
     </main> 
 
     <footer>
-        <section id="stay-connected">
-            <h3>Stay Connected</h3>
-            <p>Get destination ideas, planning tips, and travel inspiration sent to your inbox.</p>
-            <form id="subscribe-form" action="#" method="POST">
-                <label for="subscriber-email" class="sr-only">Email address</label>
-                <input type="email" id="subscriber-email" name="email" placeholder="Email Address" required>
-                <button type="submit" id="subscribe-button">Subscribe</button>
-            </form>
-        </section>
+            <section id="stay-connected">
+                <h3>Stay Connected</h3>
+                <p>Get destination ideas, planning tips, and travel inspiration sent to your inbox.</p>
+                <form id="subscribe-form" action="#" method="POST">
+                    <input type="email" id="subscriber-email" name="email" placeholder="Email Address" required>
+                    <button type="submit" id="subscribe-button">Subscribe</button>
+                </form>
+            </section>
 
-        <section id="useful-links">
-            <h3>Useful Links</h3>
-            <ul>
-                <li><a href="about.html">About</a></li>
-                <li><a href="explore.html">Destinations</a></li>
-                <li><a href="faqs.html">FAQs</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="terms-conditions.html">Terms and Conditions</a></li>
-                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            </ul>
-        </section>
+            <section id="useful-links">
+                <h3>Useful Links</h3>
+                <nav id="footer-nav">
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="explore.html">Destinations</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    </ul>
+                </nav>
+            </section>
 
-        <div id="copyright-container">
-            <p>Copyright 2026 Trip Snapshot. All Rights Reserved.</p>
-        </div>
-    </footer>
+            <section id="copyright">
+                <h2>Trip Snapshot</h2>
+                <p>&copy; 2026 Trip Snapshot. All rights reserved.</p>
+                <div id="social-media">
+                    <a href="https://www.facebook.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/facebook-icon.svg" alt="Facebook Icon"></a>
+                    <a href="https://www.twitter.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/twitter-icon.svg" alt="Twitter Icon"></a>
+                    <a href="https://www.instagram.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/instagram-icon.svg" alt="Instagram Icon"></a>
+                </div>
+            </section>
+        </footer>
 </body>
 </html>

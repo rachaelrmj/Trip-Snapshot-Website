@@ -49,7 +49,6 @@ table {
 	border-spacing: 0;
 }
 /*--------------------------------------------------------*/
-
 /* Trip Snapshot Website- Home Page Global Styles */
 * {
     box-sizing: border-box;
@@ -78,22 +77,11 @@ p {
     font-family: 'SN Pro', sans-serif;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-section {
-    margin-bottom: 40px;
-}
-
 button, input {
     font-family: inherit;
 }
 /*--------------------------------------------------------*/
-
 /* Header Styles */
-
 header {
     display: flex;      
     align-items: center;
@@ -187,24 +175,27 @@ header {
     display: none;
 }
 /*--------------------------------------------------------*/
-
 /* Hero Section Styles */
+#hero-image {
+    width: 100%;
+    height: auto;
+}
+
 #hero {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('../images/Homepage/hero-image.png');
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: #facc15;
     height: auto;
     padding: 20px;
     text-align: center;
     color: #ffffff;
+    margin-bottom: 30px;
 }
 
 #hero-content {
-    margin: 40px;
+    margin: 10px;
     background-color: #ffffffcc;
     padding: 20px;
     border-radius: 8px;   
@@ -278,7 +269,6 @@ header {
     color: #ffffff;
 }
 /*--------------------------------------------------------*/
-
 /* Why Trip Snapshot Section Styles */
 #why-trip-snapshot {
     width: 80%;
@@ -292,8 +282,7 @@ header {
     text-align: center;
 }
 /*--------------------------------------------------------*/
-
-/* Features Section */
+/* Features Section Styles */
 #features {
     background-color: #facc15;
     padding: 20px 15px;
@@ -334,7 +323,6 @@ header {
     transform: scale(1.2);
 }
 /*--------------------------------------------------------*/
-
 /* Traveler Frustrations Section Styles */
 #frustrations {
     width: 90%;
@@ -387,7 +375,6 @@ header {
     text-decoration: underline;
 }  
 /*--------------------------------------------------------*/
-
 /* How It Works Section Styles */
 
 #how-it-works {
@@ -429,7 +416,6 @@ header {
     text-align: left;
 }
 /*--------------------------------------------------------*/
-
 /* Ready to Plan Section Styles*/
 #ready-to-plan {
     width: 70%;
@@ -457,241 +443,76 @@ header {
     color: #ffffff;
 }
 /*--------------------------------------------------------*/
-/* Footer Styles*/
-
+/* Footer Styles */
 footer {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;  
-    gap: 20px;
+	display: grid;
+	grid-template-columns: 1fr;
+	text-align: center;
     background-color: #facc15;
-    padding: 40px 20px;
-    text-align: center;
 }
 
-footer input {
-    justify-self: center;
-}
-
-#stay-connected, #useful-links {
-    flex: 1;
-    min-width: 250px;
+#stay-connected {
+    padding: 20px;
+    width: 100%;
 }
 
 #stay-connected input[type="email"] {
-    width: 100%;
-    max-width: 400px;
-    padding: 10px;
-    border-radius: 8px;
-    border: 2px solid #1ca7ec;
-    margin-bottom: 10px;
-}
-
-footer .sr-only {
-    visibility: hidden;
-}
-
-#subscriber-email {
+	padding: 10px;
+	border-radius: 8px;
+	border: 2px solid #1ca7ec;
+	margin: 10px;
+	width: 80%;
     text-align: center;
+}
+#subscribe-button {
+	background-color: #000;
+	color: #fff;
+	padding: 10px 50px;
+	border-radius: 8px;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
+}
+#subscribe-button:hover {
+	background-color: #1ca7ec;
+}
+
+#useful-links {
+    padding: 20px;
 }
 
 #useful-links li {
-    line-height: 1.5;
+	line-height: 1.5;
 }
 
 #useful-links a {
-    text-decoration: none;
-    color: #000000;
+	text-decoration: none;
+     color: #000000;
 }
 
 #useful-links a:hover {
-    color:#1ca7ec;
+	color: #1ca7ec;
 }
 
-#subscribe-button {
-    background-color: #000000;
-    color: #ffffff;
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer; 
+#copyright {
+    background-color: #ffffff;
+	width: 100%;
+	padding: 20px;
 }
 
-#subscribe-button:hover {
-    background-color: #1ca7ec;
+#copyright h2 {
+    display: none;
+}
+
+#social-media {
+    margin-top: 10px;
+}
+
+#social-media img {
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+    transition: transform 0.3s;
 }
 /*--------------------------------------------------------*/
 /* Responsive Styles */
-
-@media (min-width: 768px){
-    header {
-        justify-content: space-between;
-    }
-
-    .logo-link {
-        order: 0;
-    }
-
-    .logo {
-        margin: 0;
-    }
-
-    .menu-icon {
-        display: none;
-    }
-
-    #menu-toggle {
-        display: none;
-    }
-
-    .mobile-nav {
-        display: flex;          /* switch from block to flex */
-        position: static;       /* not absolute */
-        max-height: none;       /* remove height restriction */
-        background: none;       /* no background */
-        box-shadow: none;       /* no shadow */
-        width: auto;            /* shrink to content */
-        justify-content: flex-end; /* align menu to right if needed */
-        gap: 35px;
-    }
-    
-    .mobile-nav ul{
-        display: flex;
-        flex-direction: row;
-        gap: 35px;
-        padding: 0;
-        margin: 0;
-    }
-
-    .mobile-nav li {
-        padding: 0;             /* remove mobile padding */
-    }
-
-    .mobile-nav a {
-        color: #000000;
-        font-size: 16px;
-        text-decoration: none;
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    .mobile-nav a:hover {
-        color: #1ca7ec;
-        background: none;
-    }
-
-    .profile-link {
-        order: 2;
-    }
-
-    #hero {
-        justify-content: center;
-        padding: 80px;
-        min-height: 70vh;
-    }
-
-    #hero-content {
-        max-width: 600px;
-        margin-right: 60px;
-    }
-
-    #hero h2 {
-        font-size: 32px;
-    }
-
-    #how-it-works {
-        width: 80%;
-    }
-
-    #how-it-works-content {
-        gap: 30px;
-    }
-
-    #how-it-works-content img {
-        width: 150px;
-    }
-
-    #features {
-        padding: 40px 30px;
-    }
-
-    #features-content { 
-        grid-template-columns: 1fr 1fr; 
-    }
-
-    .frustration-scroll {
-        width: 100%;
-        animation: none; /* stop sliding */
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .frustration-card {
-        flex: 0 0 45%;
-        margin: 10px;
-    }
-        
-    #how-it-works-content { 
-        flex-direction: row; 
-        justify-content: space-around; 
-        text-align: left; 
-    }
-
-    footer {
-        padding: 40px;
-        text-align: left;
-    }
-
-    #stay-connected, 
-    #useful-links {
-        flex: 1;
-    }
-}
-
-@media (min-width: 1024px){
-    #hero {
-        justify-content: flex-end;
-    }
-
-    #features {
-        width: 85%;
-    }
-
-    .feature-card {
-        padding: 25px;
-    }
-
-    #features-content { 
-        grid-template-columns: repeat(4, 1fr); 
-    }
-
-    .destination-cards { 
-        grid-template-columns: repeat(3, 1fr); 
-    }
-
-    .frustration-card {
-        width: 50%;
-        justify-self: center;
-    }
-
-    #how-it-works {
-        width: 28%;
-        margin: 0 auto;
-    }
-
-    #how-it-works-content {
-        justify-content: space-between;
-    }
-
-    #how-it-works-content img {
-        width: 200px;
-    }
-
-    footer {
-        text-align: center;
-        
-        gap: 40px;
-        padding: 50px 80px;
-    }
-}

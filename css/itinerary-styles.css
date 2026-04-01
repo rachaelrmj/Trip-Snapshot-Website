@@ -1,0 +1,312 @@
+/* Trip Snapshot Website CSS Reset */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*--------------------------------------------------------*/
+/* Trip Snapshot Website- Itinerary Page Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    min-height: 100vh; /* full viewport height */
+    font-family: 'SN Pro', sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+h1 {
+    display: none;  
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Archivo Black', sans-serif;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+p {
+    font-family: 'SN Pro', sans-serif;
+}
+
+button, input {
+    font-family: inherit;
+}
+/*--------------------------------------------------------*/
+/* Header Styles */
+header {
+    display: flex;      
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+}
+.logo {
+    width: 120px;
+}
+
+.logo-link {
+    order: 1;
+}
+
+.profile {
+    width: 32px;
+    height: 32px;
+} 
+
+.profile-link {
+    order: 2;
+}
+
+.hamburger-menu {
+    display: flex;
+    align-items: center;
+    order: 0;
+}
+
+.menu-icon {
+    cursor: pointer;
+    display: block;
+    z-index: 1000;
+}
+
+.menu-icon img {
+    width: 44px;
+}
+
+#menu-toggle {
+    display: none;        
+}
+
+.mobile-nav {
+    display: none; 
+    position: absolute;
+    top: 100%;        
+    left: 0;          
+    width: 100%;   
+    background: #facc15;         
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
+    transition: max-height 0.3s ease;
+    max-height: 0;
+    overflow: hidden;             
+}
+
+.mobile-nav ul {      
+    list-style: none;         
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav li {
+    padding: 15px 0;
+}
+
+.mobile-nav a {
+    display: block;
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mobile-nav li:hover, .mobile-nav a:hover {
+    background-color: #1ca7ec;     
+    color: #ffffff;     
+}
+
+#menu-toggle:checked ~ .mobile-nav {
+    display: block;
+    max-height: 500px;
+}
+
+#search-bar {
+    display: none;
+}
+/*--------------------------------------------------------*/
+/* Itinerary Section Styles */
+#itinerary {
+    margin: 0 20px;
+}
+
+#itinerary p {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#itinerary-container {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #facc15;
+}
+
+.trip-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.itinerary-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.day-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.day-card h3 {
+    margin-bottom: 1rem;
+}
+
+.day-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.day-card li {
+    margin-bottom: 1rem;
+}
+
+.no-trip {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+#itinerary-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+/*--------------------------------------------------------*/
+/* Footer Styles */
+footer {
+	display: grid;
+	grid-template-columns: 1fr;
+	text-align: center;
+    background-color: #facc15;
+}
+
+#stay-connected {
+    padding: 20px;
+    width: 100%;
+}
+
+#stay-connected input[type="email"] {
+	padding: 10px;
+	border-radius: 8px;
+	border: 2px solid #1ca7ec;
+	margin: 10px;
+	width: 80%;
+    text-align: center;
+}
+#subscribe-button {
+	background-color: #000;
+	color: #fff;
+	padding: 10px 50px;
+	border-radius: 8px;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
+}
+#subscribe-button:hover {
+	background-color: #1ca7ec;
+}
+
+#useful-links {
+    padding: 20px;
+}
+
+#useful-links li {
+	line-height: 1.5;
+}
+
+#useful-links a {
+	text-decoration: none;
+     color: #000000;
+}
+
+#useful-links a:hover {
+	color: #1ca7ec;
+}
+
+#copyright {
+    background-color: #ffffff;
+	width: 100%;
+	padding: 20px;
+}
+
+#copyright h2 {
+    display: none;
+}
+
+#social-media {
+    margin-top: 10px;
+}
+
+#social-media img {
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+    transition: transform 0.3s;
+}
+/*--------------------------------------------------------*/
+/* Responsive Styles */

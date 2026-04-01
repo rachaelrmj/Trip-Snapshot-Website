@@ -69,12 +69,6 @@ body {
   color: #000000;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
 h1, h2, h3, h4 {
   font-family: 'Archivo Black', sans-serif;
 }
@@ -87,8 +81,7 @@ h1 {
   display: none;
 }
 /*--------------------------------------------------------*/
-
-/* HEADER */
+/* Header Styles */
 header {
     display: flex;      
     align-items: center;
@@ -188,7 +181,7 @@ header {
     display: none;
 }
 /*--------------------------------------------------------*/
-/***** TRIP SUMMARY BAR *****/
+/* Trip Summary Bar */
 #trip-summary-bar {
     position: sticky;
     top: 110px;
@@ -206,7 +199,7 @@ header {
     font-size: 16px;
 }
 /*--------------------------------------------------------*/
-/***** PLANNING SECTION *****/
+/* Planning Section Styles */
 
 #plan-trip {
   padding: 0 20px 40px;
@@ -250,8 +243,7 @@ header {
     color: #000000;
 }
 /*--------------------------------------------------------*/
-
-/* TRIP SEARCH FORM */
+/* Trip Search Form Styles */
 
 .trip-search-form {
     display: flex;
@@ -306,34 +298,24 @@ header {
     gap: 18px;
 }
 
-.preferences-section {
-    margin-top: 10px;
-}
-
+/* Preferences  & Travel Needs Section Styles */
 .preferences-section h3 {
     margin: 15px 0 10px;
     font-size: 16px;
 }
 
-.checkbox-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 10px;
-}
-
-.checkbox-grid label {
+.checkbox-container {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.2s ease;
-    border: 1px solid transparent;
 }
 
-.checkbox-grid label:hover {
-    background: #facc15;
+.checkbox-container input {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #d1d5db;
+    border-radius: 4px;
+    transition: all 0.2s ease;
 }
 
 .trip-search-form button {
@@ -358,141 +340,76 @@ header {
     transform: scale(0.98);
 }
 /*--------------------------------------------------------*/
-
+/* Footer */
 footer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+	display: grid;
+	grid-template-columns: 1fr;
+	text-align: center;
     background-color: #facc15;
-    padding: 20px 0 0 0;
-    text-align: center;
 }
 
-footer input {
-    justify-self: center;
-}
-
-#stay-connected, #useful-links {
-    flex: 1 1 48%;
-    padding: 10px;
-}
-
-footer .sr-only {
-    visibility: hidden;
-}
-
-#subscriber-email {
-    text-align: center;
-}
-
-#useful-links li {
-    line-height: 1.5;
-}
-
-#useful-links a {
-    text-decoration: none;
-    color: #000000;
-}
-
-#useful-links a:hover {
-    color:#1ca7ec;
+#stay-connected {
+    padding: 20px;
+    width: 100%;
 }
 
 #stay-connected input[type="email"] {
-    padding: 10px;
-    border-radius: 8px;
-    border: 2px solid #1ca7ec;
-    width: 70%;
-    margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 8px;
+	border: 2px solid #1ca7ec;
+	margin: 10px;
+	width: 80%;
+    text-align: center;
 }
-
 #subscribe-button {
-    background-color: #000000;
-    color: #ffffff;
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer; 
+	background-color: #000;
+	color: #fff;
+	padding: 10px 50px;
+	border-radius: 8px;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
 }
-
 #subscribe-button:hover {
-    background-color: #1ca7ec;
+	background-color: #1ca7ec;
 }
 
-#copyright-container {
-    width: 100%;
+#useful-links {
     padding: 20px;
-    background-color: #000000;
-    color:#ffffff;
+}
+
+#useful-links li {
+	line-height: 1.5;
+}
+
+#useful-links a {
+	text-decoration: none;
+     color: #000000;
+}
+
+#useful-links a:hover {
+	color: #1ca7ec;
+}
+
+#copyright {
+    background-color: #ffffff;
+	width: 100%;
+	padding: 20px;
+}
+
+#copyright h2 {
+    display: none;
+}
+
+#social-media {
+    margin-top: 10px;
+}
+
+#social-media img {
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+    transition: transform 0.3s;
 }
 /*--------------------------------------------------------*/
 /* Responsive Styles */
-
-@media screen and (min-width: 768px) {
-    #plan-trip {
-        padding: 20px 40px 60px;
-    }
-
-    .trip-search-form {
-        max-width: 700px;
-        padding: 28px;
-    }
-
-    .plan-dates {
-        flex-direction: row;
-    }
-
-    #plan-start,
-    #plan-end {
-        flex: 1;
-    }
-
-    #hero-text {
-        right: 10%;
-        width: 34%;
-    }
-
-    #hero-text h2 {
-        font-size: 28px;
-    }
-
-    #hero-text p {
-        font-size: 16px;
-    }
-}
-/*--------------------------------------------------------*/
-
-/* DESKTOP STYLES */
-
-@media screen and (min-width: 1024px) {
-    header {
-        padding: 16px 40px;
-    }
-
-    .logo {
-        width: 140px;
-    }
-
-    #plan-trip {
-        padding: 30px 60px 80px;
-    }
-
-    .trip-search-form {
-        max-width: 760px;
-    }
-
-    #hero-text {
-        width: 30%;
-        right: 12%;
-    }
-
-    #hero-text h2 {
-        font-size: 32px;
-    }
-
-    #hero-text p {
-        font-size: 17px;
-    }
-}
