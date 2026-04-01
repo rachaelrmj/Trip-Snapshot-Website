@@ -31,7 +31,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,100..900;1,100..900&family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
         <link rel="canonical" href="https://tripsnapshot.com">
-        <link rel="stylesheet" href="css/styles.css"> 
+        <link rel="stylesheet" href="css/profile-styles.css"> 
 
         <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk&libraries=places&callback=setupAutocomplete" async defer></script> -->
         <script src="js/storage.js" defer></script>
@@ -62,12 +62,46 @@
                     </ul>
                 </nav>
             </div>
-            <a href="profile.html" class="profile-link"><img src="images/profile-logo.svg" class="profile" alt="User Profile Icon"></a>
+            <a href="login.html" class="profile-link"><img src="images/profile-logo.svg" class="profile" alt="User Profile Icon"></a>
         </header>
 
         <main>
-            
+            <img src="images/profile-page/travel.jpeg"  id="travel-image" alt="Travel Image">
 
+            <aside id="profile-menu">
+                <img  src="images/profile-page/profile-image.svg" id="profile-image" alt="Profile Image">
+                <ul>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Password & Security</a></li>
+                    <li><a href="#">Account Settings</a></li>
+                </ul>
+            </aside>
+
+            <section id="profile-overview">
+                <h2>Welcome, Traveler!</h2>
+                <p>Here you can view and manage your saved itineraries, destinations, and recent searches. Start planning your next adventure with Trip Snapshot!</p>
+            </section>
+
+            <section id="saved-itineraries">
+                <h2>Saved Itineraries</h2>
+                <div id="saved-itineraries-container">
+                    <!-- Saved itinerary cards will be dynamically generated here -->
+                </div>
+            </section>
+
+            <section id="saved-destinations">
+                <h2>Saved Destinations</h2>
+                <div id="saved-destinations-container">
+                    <!-- Saved destination cards will be dynamically generated here -->
+                </div>
+            </section>
+
+            <section id="recent-searches">
+                <h2>Recent Searches</h2>
+                <div id="recent-searches-container">
+                    <!-- Recent search cards will be dynamically generated here -->
+                </div>
+            </section>
         </main>
 
         <footer>
