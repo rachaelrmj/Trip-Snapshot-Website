@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     /** Forgot password flow */
-    const forgotLink = document.getElementById("forgot-password"); // fixed ID
+    const forgotLink = document.getElementById("forgot-password"); 
     const forgotClose = document.getElementById("forgot-close");
     const forgotSubmit = document.getElementById("forgot-submit");
     const forgotEmailInput = document.getElementById("forgot-email");

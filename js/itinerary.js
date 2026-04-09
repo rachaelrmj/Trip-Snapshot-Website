@@ -73,13 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-
 // RapidAPI Integration
 const API_KEY = "96eb20ff43mshe9b4602fb7fc643p18c53ejsn327773d3b3d0";
 const API_HOST = "travel-advisor.p.rapidapi.com";
 
-// Fetch trip data based on user input and build itinerary
+/*----------------- Form Handling & Local Storage ---------------- */
 async function fetchTripData(tripData) {
     const headers = {
         "X-RapidAPI-Key": API_KEY,
@@ -150,7 +148,7 @@ async function fetchTripData(tripData) {
     return buildItinerary(tripData, attractions, restaurants);
 }
 
-// Itinerary Builder
+/*----------------- Itinerary Building Logic ---------------- */
 function buildItinerary(tripData, attractions, restaurants) {
     // Calculate the number of days for the trip based on start and end dates
     const days = getTripLength(tripData.startDate, tripData.endDate);
@@ -180,7 +178,7 @@ function buildItinerary(tripData, attractions, restaurants) {
             });
         });
 
-        // === Add Restaurant if Food Selected ===
+        // If the user selected "food" as an activity and there are cleaned restaurants available, add 1 restaurant per day to the plan
         if (tripData.activities.includes("food") && cleanRestaurants[i]) {
             const foodPlace = cleanRestaurants[i];
 
@@ -205,9 +203,7 @@ function buildItinerary(tripData, attractions, restaurants) {
     };
 }
 
-// Utilities
-
-
+/*----------------- Helper Functions ---------------- */
 function getCheckedOptions(ids) {
     return ids.filter(id => {
         const el = document.getElementById(id);
@@ -221,19 +217,13 @@ function getTripLength(start, end) {
 }
 
 
-// ==============================
-// Storage
-// ==============================
-
+/*----------------- Local Storage Handling ---------------- */
 function saveTrip(trip) {
     localStorage.setItem("tripData", JSON.stringify(trip));
 }
 
 
-// ==============================
-// UI Helpers
-// ==============================
-
+/*----------------- Loading Indicator ---------------- */
 function showLoading() {
     let loader = document.getElementById("loading");
 
@@ -265,10 +255,7 @@ function hideLoading() {
     if (loader) loader.style.display = "none";
 }
 
-// ==============================
-// Trip Snapshot - Display Itinerary
-// ==============================
-
+/*----------------- Itinerary Page Logic ---------------- */
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("itinerary-container");
 
@@ -290,11 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTrip(container, trip);
 });
 
-
-// ==============================
-// Storage
-// ==============================
-
+/* ---------------- Get Trip from Local Storage ---------------- */
 function getTrip() {
     try {
         return JSON.parse(localStorage.getItem("tripData"));
@@ -303,10 +286,7 @@ function getTrip() {
     }
 }
 
-// ==============================
-// Render Full Trip
-// ==============================
-
+/* ---------------- Render Itinerary ---------------- */
 function renderTrip(container, trip) {
     container.innerHTML = "";
 
@@ -334,10 +314,7 @@ function renderTrip(container, trip) {
 }
 
 
-// ==============================
-// Create Day Card
-// ==============================
-
+/*----------------- Create Day Card ---------------- */
 function createDayCard(day) {
     const card = document.createElement("div");
     card.classList.add("day-card");
@@ -371,3 +348,26 @@ function createDayCard(day) {
 
     return card;
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const saveBtn = document.getElementById("save-itinerary-button");
+    if (!saveBtn) return;
+
+    saveBtn.addEventListener("click", () => {
+        const currentTrip = JSON.parse(localStorage.getItem("tripData"));
+        if (!currentTrip) return;
+
+        let savedList = JSON.parse(localStorage.getItem("savedItineraries")) || [];
+        
+        // Check for duplicates
+        if (savedList.some(t => t.destination === currentTrip.destination && t.dates === currentTrip.dates)) {
+            alert("This itinerary is already saved!");
+            return;
+        }
+
+        savedList.push(currentTrip);
+        localStorage.setItem("savedItineraries", JSON.stringify(savedList));
+        alert("Trip saved to your profile!");
+    });
+});

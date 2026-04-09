@@ -1,4 +1,41 @@
-// storage.js
+/* ---------------- Recent Searches Storage ---------------- */
+function saveRecentSearch(destination, start, end) {
+    // Retrieve existing searches or start a new array
+    let searches = JSON.parse(localStorage.getItem("recentSearches")) || [];
+
+    // Create a search object
+    const newSearch = {
+        destination,
+        dates: (start && end) ? `${start} to ${end}` : "Dates not set",
+        timestamp: new Date().getTime()
+    };
+
+    // Prevent duplicates and keep only the 5 most recent
+    searches = searches.filter(s => s.destination !== destination);
+    searches.unshift(newSearch);
+    if (searches.length > 5) searches.pop();
+
+    localStorage.setItem("recentSearches", JSON.stringify(searches));
+}
+
+// Update existing saveHomepageTrip() in storage.js to call this:
+function saveHomepageTrip() {
+    const heroForm = document.getElementById("hero-planner-form");
+    if (!heroForm) return;
+
+    heroForm.addEventListener("submit", (e) => {
+        const dest = document.getElementById("hero-destination").value;
+        const start = document.getElementById("start-date").value;
+        const end = document.getElementById("end-date").value;
+
+        if (!dest) return;
+
+        // NEW: Log this as a recent search
+        saveRecentSearch(dest, start, end);
+        
+        sessionStorage.setItem("tripData", JSON.stringify({ destination: dest, startDate: start, endDate: end }));
+    });
+}
 
 /* ---------------- Homepage & Planner Autocomplete ---------------- */
 function setupAutocomplete() {

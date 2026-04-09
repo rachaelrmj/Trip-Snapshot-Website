@@ -227,6 +227,25 @@ header {
     margin-top: 3rem;
 }
 
+#save-itinerary-button, #clear-itinerary-button, #edit-preferences-button, #return-homepage {
+    display: block;
+    width: 300px;
+    margin: 0 auto;
+    padding: 12px 30px;
+    background-color: #1ca7ec;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+#save-itinerary-button:hover, #clear-itinerary-button:hover, #edit-preferences-button:hover, #return-homepage:hover {
+    background-color: #000000;
+}
+
 #itinerary-actions {
     display: flex;
     flex-direction: column;
@@ -309,4 +328,122 @@ footer {
     transition: transform 0.3s;
 }
 /*--------------------------------------------------------*/
-/* Responsive Styles */
+/* Tablet Styles */
+@media screen and (min-width: 768px) {
+    .menu-icon { 
+        display: none;
+    }
+
+    .mobile-nav {
+        display: block !important;
+        position: static;
+        max-height: none;
+        background: transparent;
+        box-shadow: none;
+        overflow: visible;
+    }
+    .mobile-nav ul { 
+        display: flex; 
+        gap: 20px; 
+    }
+
+    .mobile-nav a { 
+        font-weight: 600; 
+        padding: 5px 10px; 
+    }
+
+    .mobile-nav li:hover, .mobile-nav a:hover {
+        background-color: transparent; 
+        color: #1ca7ec; 
+    }
+    
+    header { 
+        justify-content: space-between;
+    }
+
+    .hamburger-menu { 
+        order: 1; 
+    }
+
+    .logo-link { 
+        order: 0; 
+    }
+
+    .profile-link { 
+        order: 2; 
+    }
+
+    #itinerary-actions {
+    flex-direction: row;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        text-align: center;
+    }
+    
+    #copyright {
+        grid-column: span 2;
+    }
+}
+
+/* Desktop Styles */
+@media screen and (min-width: 1024px) {
+    header { 
+        padding: 20px 5%; 
+    }
+
+    .logo { 
+        width: 150px; 
+    }
+
+    .mobile-nav ul { 
+        gap: 45px;
+    }
+
+    .mobile-nav a {
+        font-size: 18px;
+        padding: 10px 15px;
+    }
+
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        text-align: center;
+    }
+
+    #useful-links ul {
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px; 
+        text-align: center;
+    }
+
+    #stay-connected input[type="email"] {
+        width: 100%; 
+        max-width: 300px;
+    }
+
+    #copyright {
+        background-color: #ffffff;
+    }
+}
+
+/* Large Desktop Styles */
+@media screen and (min-width: 1440px) {
+    header, main, footer {
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .mobile-nav ul { 
+        gap: 80px;
+    }
+}

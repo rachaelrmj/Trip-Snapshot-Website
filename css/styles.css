@@ -645,12 +645,6 @@ footer {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    footer {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        text-align: center;
-    }
-
     #useful-links ul {
         display: grid; 
         grid-template-columns: repeat(2, 1fr); 

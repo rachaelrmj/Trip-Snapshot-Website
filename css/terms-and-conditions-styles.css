@@ -179,6 +179,12 @@ header {
     line-height: 1.5;
 }
 
+#terms-and-conditions > p:nth-of-type(1) {
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
 #tc-content {
     padding: 15px 0;
     background-color: #ffffff;
