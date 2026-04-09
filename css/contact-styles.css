@@ -49,7 +49,7 @@ table {
 	border-spacing: 0;
 }
 /*--------------------------------------------------------*/
-/* Trip Snapshot Website- About Page Global Styles */
+/* Trip Snapshot Website - Contact Page Global Styles */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -171,38 +171,102 @@ header {
     display: none;
 }
 /*--------------------------------------------------------*/
-/* About Section Styles */
-#about {
-    margin: 40px;
-    line-height: 1.5;
-}
-
-#about-description {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-#about-content {
-    padding: 15px 0;
-    background-color: #ffffff;
-    border-radius: 8px;
-}
-
-#about-content h3 {
+/* Hero Section Styles */
+#hero {
     background-color: #facc15;
-}
-
-#about-content p {
-    margin-bottom: 20px;
-}
-
-#service ul, #function ul {
-    list-style: disc;
-    padding: 26px;
-}
-
-#note :nth-child(3), #note :nth-child(4) {
+    max-width: 900px;
+    margin: 10px auto 0 auto;
+    padding: 20px;
     text-align: center;
+}
+
+/* Contact Section Styles */
+#contact {
+    padding: 40px 20px;
+    background-color: #ffffff;
+}
+
+#contact-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #1ca7ec;
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 5px rgba(28, 167, 236, 0.5);
+}
+
+#submit-contact {
+    background-color: #1ca7ec;
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#submit-contact:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+#contact-info {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+#contact-info h3 {
+    text-align: center;
+    color: #1ca7ec;
+}
+
+#contact-info p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.social-media {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.social-media img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s;   
 }
 /*--------------------------------------------------------*/
 /* Footer Styles */
@@ -301,8 +365,9 @@ footer {
         padding: 5px 10px; 
     }
 
-    .mobile-nav li:hover, .mobile-nav a:hover {          background-color: transparent; 
-    color: #1ca7ec; 
+    .mobile-nav li:hover, .mobile-nav a:hover {          
+        background-color: transparent; 
+        color: #1ca7ec; 
     }
     
     header { 
@@ -321,9 +386,30 @@ footer {
         order: 2; 
     }
 
-    #about {
-        width: 85%;
-        margin: 40px auto;
+    #hero {
+        border-radius: 8px;
+    }
+
+    #contact-container {
+        grid-template-columns: 2fr 1fr;
+        align-items: start;
+    }
+    
+    #submit-contact {
+        width: auto;
+    }
+
+    #contact-info h3 {
+        text-align: center;
+    }
+
+    #contact-info p {
+        text-align: left;
+    }
+
+    .social-media {
+
+    justify-content: left;
     }
 
     footer {

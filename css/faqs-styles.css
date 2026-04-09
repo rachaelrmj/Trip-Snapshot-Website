@@ -194,74 +194,208 @@ header {
 }
 /*--------------------------------------------------------*/
 /* Footer Styles */
-
 footer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+	display: grid;
+	grid-template-columns: 1fr;
+	text-align: center;
     background-color: #facc15;
-    padding: 20px 0 0 0;
-    text-align: center;
 }
 
-footer input {
-    justify-self: center;
-}
-
-#stay-connected, #useful-links {
-    flex: 1 1 48%;
-    padding: 10px;
-}
-
-footer .sr-only {
-    visibility: hidden;
-}
-
-#subscriber-email {
-    text-align: center;
-}
-
-#useful-links li {
-    line-height: 1.5;
-}
-
-#useful-links a {
-    text-decoration: none;
-    color: #000000;
-}
-
-#useful-links a:hover {
-    color:#1ca7ec;
+#stay-connected {
+    padding: 20px;
+    width: 100%;
 }
 
 #stay-connected input[type="email"] {
-    padding: 10px;
-    border-radius: 8px;
-    border: 2px solid #1ca7ec;
-    width: 70%;
-    margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 8px;
+	border: 2px solid #1ca7ec;
+	margin: 10px;
+	width: 80%;
+    text-align: center;
 }
-
 #subscribe-button {
-    background-color: #000000;
-    color: #ffffff;
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer; 
+	background-color: #000;
+	color: #fff;
+	padding: 10px 50px;
+	border-radius: 8px;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
 }
-
 #subscribe-button:hover {
-    background-color: #1ca7ec;
+	background-color: #1ca7ec;
 }
 
-#copyright-container {
-    width: 100%;
+#useful-links {
     padding: 20px;
-    background-color: #000000;
-    color:#ffffff;
+}
+
+#useful-links li {
+	line-height: 1.5;
+}
+
+#useful-links a {
+	text-decoration: none;
+     color: #000000;
+}
+
+#useful-links a:hover {
+	color: #1ca7ec;
+}
+
+#copyright {
+    background-color: #ffffff;
+	width: 100%;
+	padding: 20px;
+}
+
+#copyright h2 {
+    display: none;
+}
+
+#social-media {
+    margin-top: 10px;
+}
+
+#social-media img {
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+    transition: transform 0.3s;
 }
 /*--------------------------------------------------------*/
-/* Responsive Styles */
+/* Tablet Styles */
+@media screen and (min-width: 768px) {
+    .menu-icon { 
+        display: none;
+    }
+
+    .mobile-nav {
+        display: block !important;
+        position: static;
+        max-height: none;
+        background: transparent;
+        box-shadow: none;
+        overflow: visible;
+    }
+    .mobile-nav ul { 
+        display: flex; 
+        gap: 20px; 
+    }
+
+    .mobile-nav a { 
+        font-weight: 600; 
+        padding: 5px 10px; 
+    }
+
+    .mobile-nav li:hover, .mobile-nav a:hover {
+        background-color: transparent; 
+        color: #1ca7ec; 
+    }
+    
+    header { 
+        justify-content: space-between;
+    }
+
+    .hamburger-menu { 
+        order: 1; 
+    }
+
+    .logo-link { 
+        order: 0; 
+    }
+
+    .profile-link { 
+        order: 2; 
+    }
+
+    #faq {
+        width: 85%;
+        margin: 40px auto;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two columns for tablet */
+        text-align: center;
+    }
+    
+    #copyright {
+        grid-column: span 2;
+    }
+}
+
+/* Desktop Styles */
+@media screen and (min-width: 1024px) {
+    header { 
+        padding: 20px 5%; 
+    }
+
+    .logo { 
+        width: 150px; 
+    }
+
+    .mobile-nav ul { 
+        gap: 45px;
+    }
+
+    .mobile-nav a {
+        font-size: 18px;
+        padding: 10px 15px;
+    }
+
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    #faq {
+        max-width: 800px;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        margin: 0 auto 40px auto;
+    }
+
+    #faq h2 {
+        font-size: 18px;
+        line-height: 1.8;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        text-align: center;
+    }
+
+    #useful-links ul {
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px; 
+        text-align: center;
+    }
+
+    #stay-connected input[type="email"] {
+        width: 100%; 
+        max-width: 300px;
+    }
+
+    #copyright {
+        background-color: #ffffff;
+    }
+}
+
+/* Large Desktop Styles */
+@media screen and (min-width: 1440px) {
+    header, main, footer {
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .mobile-nav ul { 
+        gap: 80px;
+    }
+}

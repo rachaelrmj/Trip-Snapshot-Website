@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">    
+    <head>
+        <meta charset="UTF-8">  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <meta name="description" content="Contact Trip Snapshot for support, feedback, or partnership inquiries. We are here to help you plan your perfect trip.">
+        <title>Contact Us | Trip Snapshot</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@400;600&family=SN+Pro:wght@200;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/contact-styles.css"> 
+    </head>
+
+    <body>
+        <header>
+            <h1> Trip Snapshot </h1>
+            <a href="index.html" class="logo-link"><img src="images/Trip-Snapshot-Logo.png" class="logo" alt="Trip Snapshot Logo"></a>
+            <div class="hamburger-menu">
+                <input type="checkbox" id="menu-toggle">
+                <label for="menu-toggle" class="menu-icon">
+                    <img src="images/hamburger-menu.svg" alt="Hamburger Menu Icon">
+                </label>
+                <nav class="mobile-nav" aria-label="Main navigation">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="planner.html">Plan</a></li>
+                        <li><a href="explore.html">Explore</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <a href="profile.html" class="profile-link"><img src="images/profile-logo.svg" class="profile" alt="User Profile Icon"></a>
+        </header>
+
+        <main>
+            <section id="hero">
+                <div id="hero-content">
+                    <h2>Get in Touch</h2>
+                    <p>Have questions about your itinerary or feedback for our team? We’d love to hear from you.</p>
+                </div>
+            </section>
+
+            <section id="contact">
+                <div id="contact-container">
+                    <form id="contact-form" action="#" method="POST">
+                        <div class="form-group">
+                            <label for="full-name">Full Name</label>
+                            <input type="text" id="full-name" name="name" placeholder="Your Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-email">Email Address</label>
+                            <input type="email" id="contact-email" name="email" placeholder="Your Email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject">
+                                <option value="support">Technical Support</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="partnership">Specific Questions</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="How can we help?" required></textarea>
+                        </div>
+
+                        <button type="submit" id="submit-contact" class="plan-button">Send Message</button>
+                    </form>
+
+                    <div id="contact-info">
+                        <h3>Connect with Us</h3>
+                        <p><strong>Email:</strong> support@tripsnapshot.com</p>
+                        <p><strong>Response Time:</strong> 24-48 hours</p>
+                        <div class="social-media">
+                            <p>Follow Us:</p>
+                            <a href="#"><img src="images/facebook-icon.svg" alt="Facebook"></a>
+                            <a href="#"><img src="images/twitter-icon.svg" alt="Twitter"></a>
+                            <a href="#"><img src="images/instagram-icon.svg" alt="Instagram"></a>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <section id="stay-connected">
+                <h3>Stay Connected</h3>
+                <p>Get destination ideas and planning tips sent to your inbox.</p>
+                <form id="subscribe-form" action="#" method="POST">
+                    <input type="email" id="subscriber-email" name="email" placeholder="Email Address" required>
+                    <button type="submit" id="subscribe-button">Subscribe</button>
+                </form>
+            </section>
+
+            <section id="useful-links">
+                <h3>Useful Links</h3>
+                <nav id="footer-nav">
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="explore.html">Destinations</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    </ul>
+                </nav>
+            </section>
+
+            <section id="copyright">
+                <p>&copy; 2026 Trip Snapshot. All rights reserved.</p>
+            </section>
+        </footer>
+    </body>
+</html>
