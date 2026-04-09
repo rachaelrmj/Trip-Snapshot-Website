@@ -1,4 +1,3 @@
-// Trip Snapshot - Login Page Script
 document.addEventListener("DOMContentLoaded", function () {
 
     const loginForm = document.getElementById("login-form");
@@ -15,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let lastFocusedElement;
 
-    // Show popup
+    /** Utility: Show popup */
     function showPopup(modal) {
         lastFocusedElement = document.activeElement;
         modal.style.display = "flex";
@@ -23,14 +22,14 @@ document.addEventListener("DOMContentLoaded", function () {
         trapFocus(modal);
     }
 
-    // Hide popup
+    /** Utility: Hide popup */
     function hidePopup(modal) {
         modal.style.display = "none";
         modal.setAttribute("aria-hidden", "true");
         if (lastFocusedElement) lastFocusedElement.focus();
     }
 
-    // Trap focus within the popup
+    /** Focus trap for accessibility */
     function trapFocus(modal) {
         const focusableElements = modal.querySelectorAll(
             'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
@@ -70,35 +69,35 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Close popup buttons
+    /** Close popup buttons */
     closeButtons.forEach(button => {
         button.addEventListener("click", function () {
             const modal = this.closest(".popup-window");
             hidePopup(modal);
 
-            // Redirect based on which popup was closed
+            // Redirect if needed
             if (modal === loginPopup) window.location.href = "profile.html";
             if (modal === noAccountPopup) window.location.href = "signup.html";
         });
     });
 
-    // Load accounts from localStorage
+    /** Load accounts from localStorage */
     function loadAccounts() {
         return JSON.parse(localStorage.getItem("accounts")) || [];
     }
 
-   // Login form submission
+    /** Form submission */
     loginForm.addEventListener("submit", function (event) {
         event.preventDefault();
-        // Validate inputs
+
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
-        
+
         if (!email || !password) {
             showPopup(loginErrorPopup);
             return;
         }
-        // Check credentials
+
         const accounts = loadAccounts();
         const account = accounts.find(acc => acc.email === email);
 
@@ -114,44 +113,42 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Forgot password functionality
+    /** Forgot password flow */
     const forgotLink = document.getElementById("forgot-password"); // fixed ID
     const forgotClose = document.getElementById("forgot-close");
     const forgotSubmit = document.getElementById("forgot-submit");
     const forgotEmailInput = document.getElementById("forgot-email");
     const forgotMessage = document.getElementById("forgot-popup-message");
 
-    // Show forgot password popup
     forgotLink.addEventListener("click", function (e) {
         e.preventDefault();
         showPopup(forgotPopup);
         forgotEmailInput.focus();
     });
-    
-    // Close forgot password popup
+
     forgotClose.addEventListener("click", function () {
         hidePopup(forgotPopup);
         forgotMessage.textContent = "Enter your email address to reset your password:";
         forgotEmailInput.value = "";
     });
 
-    // Handle forgot password submission
     forgotSubmit.addEventListener("click", function () {
     const email = forgotEmailInput.value.trim();
-    // Validate email input
+
     if (!email) {
         forgotMessage.textContent = "Please enter your email address.";
         forgotEmailInput.focus();
         return;
     }
-    // Check if account exists
+
     const accounts = loadAccounts();
     const account = accounts.find(acc => acc.email === email);
-    // Password reset logic
+
     if (account) {
-        forgotMessage.textContent = "Your password has been reset.";
+        forgotMessage.textContent = `Your password is: ${account.password}`;
     } else {
         forgotMessage.textContent = "No account found with this email.";
     }
     });
+
 });
