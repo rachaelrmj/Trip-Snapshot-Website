@@ -1,10 +1,4 @@
-/* Trip Snapshot Website CSS Reset */
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
+/*--- CSS Reset - Eric Meyer’s Reset v2.0 (http://meyerweb.com/eric/tools/css/reset/) ---*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -25,35 +19,37 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
-	line-height: 1;
+	line-height: 1.6;
 }
+
 ol, ul {
 	list-style: none;
 }
+
 blockquote, q {
 	quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-/*--------------------------------------------------------*/
-/* Trip Snapshot Website- About Page Global Styles */
-* {
+/* ----------Global---------- */
+*, *::before, *::after {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body, html {
@@ -64,7 +60,8 @@ body, html {
 }
 
 h1 {
-    display: none;  
+    position: absolute;
+    left: -9999px;
 }
 
 h1, h2, h3, h4 {
@@ -76,8 +73,7 @@ h1, h2, h3, h4 {
 p, button {
     font-family: 'SN Pro', sans-serif;
 }
-/*--------------------------------------------------------*/
-/* Header Styles */
+/* ----------Header---------- */
 header {
     display: flex;      
     align-items: center;
@@ -88,6 +84,7 @@ header {
     z-index: 1000;
     top: 0;
 }
+
 .logo {
     width: 120px;
 }
@@ -126,7 +123,6 @@ header {
 }
 
 .mobile-nav {
-    display: none; 
     position: absolute;
     top: 100%;        
     left: 0;          
@@ -139,10 +135,7 @@ header {
 }
 
 .mobile-nav ul {      
-    list-style: none;         
     text-align: center;
-    padding: 0;
-    margin: 0;
 }
 
 .mobile-nav li {
@@ -151,27 +144,27 @@ header {
 
 .mobile-nav a {
     display: block;
-    text-decoration: none;
     font-size: 16px;
     color: black;
     font-family: 'Montserrat', sans-serif;
 }
 
-.mobile-nav li:hover, .mobile-nav a:hover {
+.mobile-nav li:hover {
     background-color: #1ca7ec;     
-    color: #ffffff;     
+}
+
+.mobile-nav li:hover a {
+    color: #ffffff;
 }
 
 #menu-toggle:checked ~ .mobile-nav {
-    display: block;
     max-height: 500px;
 }
 
 #search-bar {
     display: none;
 }
-/*--------------------------------------------------------*/
-/* About Section Styles */
+/* ----------About---------- */
 #about {
     margin: 40px;
     line-height: 1.5;
@@ -201,11 +194,26 @@ header {
     padding: 26px;
 }
 
-#note :nth-child(3), #note :nth-child(4) {
+#note > p:nth-child(3), #note > p:nth-child(4) {
     text-align: center;
 }
-/*--------------------------------------------------------*/
-/* Footer Styles */
+
+#start-planning-button {
+    display: block;
+    padding: 12px 30px;
+    background-color: #facc15;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-align: center; 
+}
+
+#start-planning-button:hover {
+    background-color: #1ca7ec;
+}
+/* ----------Footer---------- */
 footer {
 	display: grid;
 	grid-template-columns: 1fr;
@@ -226,15 +234,21 @@ footer {
 	width: 80%;
     text-align: center;
 }
+
+#subscribe-form label {
+    display: none;
+}
+
 #subscribe-button {
-	background-color: #000;
-	color: #fff;
+	background-color: #000000;
+	color: #ffffff;
 	padding: 10px 50px;
 	border-radius: 8px;
 	border: none;
 	font-weight: bold;
 	cursor: pointer;
 }
+
 #subscribe-button:hover {
 	background-color: #1ca7ec;
 }
@@ -248,8 +262,8 @@ footer {
 }
 
 #useful-links a {
-	text-decoration: none;
      color: #000000;
+     text-decoration: none;
 }
 
 #useful-links a:hover {
@@ -262,7 +276,7 @@ footer {
 	padding: 20px;
 }
 
-#copyright h2 {
+#copyright h3 {
     display: none;
 }
 
@@ -276,21 +290,20 @@ footer {
     margin: 0 10px;
     transition: transform 0.3s;
 }
-/*--------------------------------------------------------*/
-/* Tablet Styles */
+/* ----------Tablet---------- */
 @media screen and (min-width: 768px) {
     .menu-icon { 
         display: none;
     }
 
     .mobile-nav {
-        display: block !important;
         position: static;
         max-height: none;
         background: transparent;
         box-shadow: none;
         overflow: visible;
     }
+
     .mobile-nav ul { 
         display: flex; 
         gap: 20px; 
@@ -301,8 +314,8 @@ footer {
         padding: 5px 10px; 
     }
 
-    .mobile-nav li:hover, .mobile-nav a:hover {          background-color: transparent; 
-    color: #1ca7ec; 
+    .mobile-nav a:hover {  
+        color: #1ca7ec; 
     }
     
     header { 
@@ -327,17 +340,14 @@ footer {
     }
 
     footer {
-        display: grid;
         grid-template-columns: 1fr 1fr; 
-        text-align: center;
     }
     
     #copyright {
         grid-column: span 2;
     }
 }
-
-/* Desktop Styles */
+/* ----------Desktop---------- */
 @media screen and (min-width: 1024px) {
     header { 
         padding: 20px 5%; 
@@ -370,35 +380,22 @@ footer {
         margin: 0 auto 40px auto;
     }
 
-    #about-description h2 {
-        font-size: 18px;
-        line-height: 1.8;
-    }
-
     footer {
-        display: grid;
         grid-template-columns: 1fr 1fr;
-        text-align: center;
     }
 
     #useful-links ul {
         display: grid; 
         grid-template-columns: repeat(2, 1fr); 
         gap: 10px; 
-        text-align: center;
     }
 
     #stay-connected input[type="email"] {
         width: 100%; 
         max-width: 300px;
     }
-
-    #copyright {
-        background-color: #ffffff;
-    }
 }
-
-/* Large Desktop Styles */
+/* ----------Large Desktop---------- */
 @media screen and (min-width: 1440px) {
     header, main, footer {
         max-width: 1440px;

@@ -254,6 +254,7 @@ header {
 }
 
 #start-planning-button {
+    display: block;
     padding: 12px;
     background-color: #000000;
     font-weight: bold;
@@ -262,6 +263,7 @@ header {
     border: none;
     cursor: pointer;
     transition: 0.3s ease;
+    text-decoration: none;
 }
 
 #start-planning-button:hover {
