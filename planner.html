@@ -39,6 +39,7 @@
 </head>
 
 <body>
+    <a href="#plan-trip" class="sr-only-focusable">Skip to content</a>
     <header>
         <h1>Trip Snapshot</h1>
 
@@ -82,14 +83,13 @@
                 <img src="images/planner-page/plan-trip.png" id="img-plan_trip" alt="Banner image with a clock and calendar representing trip planning">
                 <div id="hero-text">
                     <h2>Plan Your Trip</h2>
-                    <p>Leave the planning to us. Just pack and go!</p>
+                    <p>Leave the planning to us.</p> 
+                    <p>Just pack and go!</p>
                 </div>
             </div>
 
             <div class="planner-form-wrapper">
-
                 <form class="trip-search-form" id="trip-form">
-
                     <h2 class="form-title">Plan Your Trip</h2>
 
                     <!-- Destination -->
@@ -112,50 +112,53 @@
                     </div>
 
                     <div class="preferences-section">
-                        <div id="activites">
+                        <div id="activities">
                             <h3>Activities</h3>
-                            <div class="checkbox-container">
-                                <input type="checkbox" id="adventure">
-                                <label for="adventure">Adventure</label>
-                            </div>
+                            <div class="preference-container">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="relaxation">
+                                    <label for="relaxation">Relaxation</label>
+                                </div>
 
-                            <div class="checkbox-container">
-                                <input type="checkbox" id="relaxation">
-                                <label for="relaxation">Relaxation</label>
-                            </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="food">
+                                    <label for="food">Food</label>
+                                </div>
 
-                            <div class="checkbox-container">
-                                <input type="checkbox" id="food">
-                                <label for="food">Food</label>
-                            </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="nightlife">
+                                    <label for="nightlife">Nightlife</label>
+                                </div>
 
-                            <div class="checkbox-container">
-                                <input type="checkbox" id="nightlife">
-                                <label for="nightlife">Nightlife</label>
-                            </div>
-
-                            <div class="checkbox-container">
-                                <input type="checkbox" id="family">
-                                <label for="family">Family</label>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="family">
+                                    <label for="family">Family</label>
+                                </div>
                             </div>
                         </div>
 
                         <div id="travel-needs">
                             <h3>Travel Needs</h3>
+                            <div class="preference-container">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="flights">
+                                    <label for="flights">Flights</label>
+                                </div>
 
-                            <div class="checkbox-container">
-                                <input type="checkbox" id="flights">
-                                <label for="flights">Flights</label>
-                            </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="hotels">
+                                    <label for="hotels">Hotels</label>
+                                </div>
 
-                            <div class="checkbox-container">
-                                <input type="checkbox" id="hotels">
-                                <label for="hotels">Hotels</label>
-                            </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="rental-cars">
+                                    <label for="rental-cars">Rental Cars</label>
+                                </div>
 
-                            <div class="checkbox-container">
-                                <input type="checkbox" id="rental-cars">
-                                <label for="rental-cars">Rental Cars</label>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" id="cruises">
+                                    <label for="cruises">Cruises</label>
+                                </div>
                             </div>
                         </div>
                     </div>

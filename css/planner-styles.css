@@ -173,6 +173,17 @@ header {
     display: none;
 }
 /*--------------------------------------------------------*/
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
 /* Trip Summary Bar */
 #trip-summary-bar {
     position: sticky;
@@ -188,13 +199,14 @@ header {
 
 #trip-summary-text {
     margin: 0;
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: 600;
 }
 /*--------------------------------------------------------*/
 /* Planning Section Styles */
 
 #plan-trip {
-  padding: 0 20px 40px;
+  padding: 0 20px;
   background-color: #ffffff;
 }
 
@@ -222,7 +234,7 @@ header {
 
 #hero-text h2 {
     width: 100%;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.2;
     color: #1ca7ec;
 }
@@ -230,9 +242,10 @@ header {
 #hero-text p {
     margin-top: 12px;
     width: 100%;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.4;
     color: #000000;
+    font-weight: bold;
 }
 /*--------------------------------------------------------*/
 /* Trip Search Form Styles */
@@ -280,7 +293,7 @@ header {
     width: 100%;
 }
 
-#plan-start, #plan-end {
+#start-date, #end-date {
     width: 100%;
 }
 
@@ -290,15 +303,30 @@ header {
     gap: 18px;
 }
 
-/* Preferences  & Travel Needs Section Styles */
+/* Preferences & Travel Needs Section Styles */
+.preferences-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 20px;
+}
 .preferences-section h3 {
     margin: 15px 0 10px;
     font-size: 16px;
 }
 
+.preference-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    align-items: center;
+}
+
 .checkbox-container {
     display: flex;
     align-items: center;
+    gap: 2px;
+    margin: 10px 50px 0 50px;
 }
 
 .checkbox-container input {
@@ -308,6 +336,17 @@ header {
     border: 2px solid #d1d5db;
     border-radius: 4px;
     transition: all 0.2s ease;
+}
+
+.checkbox-container input:checked {
+    background-color: #1ca7ec;
+    border-color: #1ca7ec;
+}
+
+.checkbox-container label {
+    font-size: 14px;
+    color: #000000;
+    width: 100px
 }
 
 .trip-search-form button {
@@ -447,6 +486,11 @@ footer {
 
     .profile-link { 
         order: 2; 
+    }
+
+    .preference-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
     }
 
     footer {
