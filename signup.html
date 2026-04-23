@@ -71,26 +71,32 @@
             <section id="signup">
                 <h2>Create Account</h2>
                 <form id="signup-form">
-                    <div class="input-group">
-                        <label for="email" class="sr-only">Email Address</label>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            placeholder="Email Address" 
-                            required 
-                            autocomplete="email"
-                            list="registered-emails"
-                        >
-                        <datalist id="registered-emails"></datalist>
-                    </div>
+                    <fieldset>
+                        <legend class="sr-only">Signup Form</legend>
+                        <label for="fname" class="sr-only">First Name</label>
+                        <span class="error-message">Please enter your first name</span>
+                        <input type="text" id="fname" placeholder="First Name" required autocomplete="given-name">
 
-                    <div class="input-group">
+                        <label for="lname" class="sr-only">Last Name</label>
+                        <span class="error-message">Please enter your last name</span>
+                        <input type="text" id="lname" placeholder="Last Name" required autocomplete="family-name">
+
+                        <label for="email" class="sr-only">Email Address</label>
+                        <span class="error-message">Please enter a valid email address</span>
+                        <input type="email" id="email"  placeholder="Email Address" required  autocomplete="email">
+
                         <label for="password" class="sr-only">Password</label>
                         <input type="password" id="password" placeholder="Password" required>
-                    </div>
+                    </fieldset>
 
-                    <button type="submit" id="create-button">Sign-Up</button>
+                    <input type="submit" name="createAccount-button" id="createAccount-button" value="Create Account">
                 </form>
+            </section>
+
+            <section id="existing-account">
+                <h2>Already Have an Account?</h2>                    
+                <a href="login.html" id="login-button">Back to Login</a>
+            </section>
 
                 <!-- Popups -->
                 <div id="signup-confirmation" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="signup-confirmation-title">
@@ -109,20 +115,13 @@
                     </div>
                 </div>
 
-                <!-- Existing Account Popup -->
-                <div id="existing-account-container">
-                    <h3>Already Have an Account?</h3>
-                    <a href="login.html" id="login-button">Back to Login</a>
-                </div>
-
-                <div id="existing-account" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="existing-account-title">
+                <div id="existing-account-error" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="existing-account-title">
                     <div class="popup-content">
                         <h3 id="existing-account-title">Account Already Exists!</h3>
                         <p>An account with this email address already exists. Please log in instead.</p>
                         <button class="close-popup">Close</button>
                     </div>
                 </div>
-            </section>
         </main> 
 
         <footer>

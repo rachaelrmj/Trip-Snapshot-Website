@@ -31,11 +31,10 @@
     <link rel="canonical" href="https://tripsnapshot.com/planner">
     <link rel="stylesheet" href="css/planner-styles.css"> 
 
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk&libraries=places&callback=setupAutocomplete" async defer></script> -->
-    <script src="js/places.js" defer></script> 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk&libraries=places" defer></script>
+    <script src="js/planner.js" defer></script>
     <script src="js/storage.js" defer></script>
-    <script src="js/itinerary.js" defer></script>
-    <script src="js/destination.js" defer></script>
+
 </head>
 
 <body>
@@ -57,6 +56,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="planner.html">Plan</a></li>
+                    <li><a href="itinerary.html">Itinerary</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
             </nav>
@@ -116,23 +116,13 @@
                             <h3>Activities</h3>
                             <div class="preference-container">
                                 <div class="checkbox-container">
-                                    <input type="checkbox" id="relaxation">
-                                    <label for="relaxation">Relaxation</label>
+                                    <input type="checkbox" id="restaurant">
+                                    <label for="restaurant">Restaurant</label>
                                 </div>
 
                                 <div class="checkbox-container">
-                                    <input type="checkbox" id="food">
-                                    <label for="food">Food</label>
-                                </div>
-
-                                <div class="checkbox-container">
-                                    <input type="checkbox" id="nightlife">
-                                    <label for="nightlife">Nightlife</label>
-                                </div>
-
-                                <div class="checkbox-container">
-                                    <input type="checkbox" id="family">
-                                    <label for="family">Family</label>
+                                    <input type="checkbox" id="attraction">
+                                    <label for="attraction">Attraction</label>
                                 </div>
                             </div>
                         </div>
@@ -146,8 +136,8 @@
                                 </div>
 
                                 <div class="checkbox-container">
-                                    <input type="checkbox" id="hotels">
-                                    <label for="hotels">Hotels</label>
+                                    <input type="checkbox" id="hotel">
+                                    <label for="hotel">Hotel</label>
                                 </div>
 
                                 <div class="checkbox-container">

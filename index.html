@@ -33,13 +33,9 @@
         <link rel="canonical" href="https://tripsnapshot.com">
         <link rel="stylesheet" href="css/styles.css"> 
 
-        <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk&libraries=places&callback=setupAutocomplete" async defer></script> -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk&libraries=places" async></script>
         <script src="js/storage.js" defer></script>
-        <script src="js/places.js" defer></script> 
-        <script src="js/itinerary.js" defer></script>
-        <script src="js/snapshot.js" defer></script>
-        <script src="js/destination.js" defer></script>
-
+        <script src="js/index.js" defer></script> 
     </head>
 
     <body>
@@ -57,6 +53,7 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="planner.html">Plan</a></li>
+                        <li><a href="itinerary.html">Itinerary</a></li>
                         <li><a href="about.html">About</a></li>
                     </ul>
                 </nav>
@@ -70,7 +67,7 @@
                 <div id="hero-content">
                     <h2>Plan Your Perfect Trip in Minutes</h2>
                     <p>Build personalized itineraries, discover destinations, and organize your travel plans all in one place.</p>
-                    <form id="hero-planner-form" action="planner.html" method="POST" aria-label="Trip planner form">
+                    <form id="hero-planner-form" action="planner.html" aria-label="Trip planner form">
                         <div id="destination-container">
                             <label for="hero-destination" class="sr-only">Destination</label>
                             <input type="text" id="hero-destination" name="destination" placeholder="Where do you want to go?" required>

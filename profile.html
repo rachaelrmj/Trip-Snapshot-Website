@@ -35,7 +35,7 @@
 
         <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk&libraries=places&callback=setupAutocomplete" async defer></script> -->
         <script src="js/storage.js" defer></script>
-<script src="js/profile.js" defer></script>
+        <script src="js/profile.js" defer></script>
         <script src="js/places.js" defer></script> 
         <script src="js/itinerary.js" defer></script>
         <script src="js/snapshot.js" defer></script>
@@ -68,7 +68,14 @@
         <main>
             <section id="profile-overview">
                 <h2>Welcome, Traveler!</h2>
-                <p>Here you can view and manage your saved itineraries, destinations, and recent searches. Start planning your next adventure with Trip Snapshot!</p>
+    
+                <div class="profile-image-wrapper">
+                    <img src="images/profile-page/profile-image.svg" id="profile-image" alt="User Profile Image">
+                    <label for="image-upload" class="photo-edit-overlay">Change Photo</label>
+                    <input type="file" id="image-upload" accept="image/*">
+                </div>
+                
+                <p>Manage your saved itineraries and travel plans here.</p>
             </section>
 
             <aside id="profile-menu">
@@ -76,8 +83,20 @@
                 <ul>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Password & Security</a></li>
-                    <li><a href="#">Account Settings</a></li>
+                    <li><a href="#" id="delete-account-link" class="alert-link">Delete Account</a></li>
+                    <li><a href="#" id="logout-link">Logout</a></li>
                 </ul>
+ 
+                <div id="delete-confirmation" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="delete-confirmation-title">
+                    <div class="popup-content">
+                        <h3>Delete Account?</h3>
+                        <p>Are you sure you want to delete your account? This action cannot be undone and all saved itineraries will be lost.</p>
+                        <div class="popup-actions">
+                            <button id="confirm-delete-btn" class="danger-btn">Yes, Delete Account</button>
+                            <button id="cancel-delete-btn" class="secondary-btn">No, Keep Account</button>
+                        </div>
+                    </div>
+                </div>
             </aside>
 
             <section id="saved-itineraries">

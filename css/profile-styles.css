@@ -192,10 +192,47 @@ main {
     margin-bottom: 20px;
 }
 
+/* Container for the profile photo */
+.profile-image-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #6366f1;
+    cursor: pointer;
+}
+
 #profile-image {
-    width: 300px;
-    height: auto;
-    margin-bottom: 20px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Hidden file input using display: none */
+#image-upload {
+    display: none;
+}
+
+/* Hover overlay for changing the photo */
+.photo-edit-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.profile-image-wrapper:hover .photo-edit-overlay {
+    opacity: 1;
 }
 
 #profile-menu {
@@ -222,6 +259,64 @@ main {
 #profile-menu a:hover {
     color: #1ca7ec;
 }
+
+/* Hide the popup by default */
+#delete-confirmation {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ensure the content box is styled */
+.popup-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the delete link and buttons */
+.danger-link {
+    color: #ef4444 !important; /* Red to signal danger */
+    font-weight: 600;
+}
+
+.popup-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.danger-btn {
+    background-color: #ef4444;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.secondary-btn {
+    background-color: #25ba36;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.danger-btn:hover { background-color: #dc2626; }
+.secondary-btn:hover { background-color: #d1dbd3; }
 /*--------------------------------------------------------*/
 /* Footer Styles*/
 footer {

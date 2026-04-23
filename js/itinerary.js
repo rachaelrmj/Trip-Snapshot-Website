@@ -1,373 +1,186 @@
-// Trip Planner - Form Handling & API Integration
 document.addEventListener("DOMContentLoaded", () => {
-    // Get form element from the DOM
-    const form = document.getElementById("trip-form");
+    
+    // Retrieve trip data from sessionStorage and store in the variable tripData
+    const tripData = JSON.parse(sessionStorage.getItem("tripData"));
 
-    // Handle form submission
-    form.addEventListener("submit", async (e) => {
-        // Prevent form from submitting normally
-        e.preventDefault();
-
-        // Get form elements from the DOM
-        const destination = document.getElementById("destination").value.trim();
-        const startDate = document.getElementById("start-date").value;
-        const endDate = document.getElementById("end-date").value;
-
-        // Get selected activities
-        const activities = getCheckedOptions([
-            "adventure",
-            "relaxation",
-            "food",
-            "nightlife",
-            "family"
-        ]);
-
-        // Get selected travel needs
-        const travelNeeds = getCheckedOptions([
-            "flights",
-            "hotels",
-            "rental-cars"
-        ]);
+    // Safety check to prevent errors if tripData is not found
+    if (!tripData) {
+        // Log an error message to the console if trip data is not found in sessionStorage
+        console.error("Trip data not found");
         
-        // Input Validation
-        if (!destination || !startDate || !endDate) {
-            alert("Please fill in all required fields.");
-            return;
-        }
-        // Validate date logic
-        if (new Date(endDate) < new Date(startDate)) {
-            alert("End date cannot be before start date.");
-            return;
-        }
-        // Set variable to hold all form data
-        const tripData = {
-            destination,
-            startDate,
-            endDate,
-            activities,
-            travelNeeds
-        };
+        return;
+    }
+    // Call the function to render the itinerary with the retrieved trip data
+    renderItinerary(tripData);
 
-        // Show loading indicator while fetching data and generating itinerary
-        try {
-            // Display loading message
-            showLoading();
-
-            // Fetch trip data from RapidAPI and build itinerary
-            const trip = await fetchTripData(tripData);
-
-            // Save trip data to localStorage for retrieval on itinerary page
-            saveTrip(trip);
-
-            // Redirect to itinerary page to display generated trip
-            window.location.href = "itinerary.html";
-
-        } catch (error) {
-            // Log error to console and show message
-            console.error("Trip generation failed:", error);
-            alert("Unable to generate trip. Please try again.");
-        } finally {
-            // Hide loading indicator after process completes
-            hideLoading();
-        }
-    });
+    // Set up event listeners for itinerary action buttons (Homepage, Save, Clear, Edit Preferences)
+    setupActionButtons();
 });
 
+// Function to render the itinerary based on the provided trip data from sessionStorage
+async function renderItinerary(data) {
 
-
-// RapidAPI Integration
-const API_KEY = "96eb20ff43mshe9b4602fb7fc643p18c53ejsn327773d3b3d0";
-const API_HOST = "travel-advisor.p.rapidapi.com";
-
-// Fetch trip data based on user input and build itinerary
-async function fetchTripData(tripData) {
-    const headers = {
-        "X-RapidAPI-Key": API_KEY,
-        "X-RapidAPI-Host": API_HOST
-    };
-
-    // Get Location ID for the destination
-    const locationRes = await fetch(
-        `https://${API_HOST}/locations/search?query=${encodeURIComponent(tripData.destination)}&limit=1`,
-        { method: "GET", headers }
-    );
-
-    // Check if location search was successful
-    if (!locationRes.ok) {
-        throw new Error("Failed to fetch location data");
-    }
-
-    // Parse location response and extract location ID
-    const locationJson = await locationRes.json();
-
-    // Safely access location ID from the response
-    const locationId = locationJson?.data?.[0]?.result_object?.location_id;
-
-    // If location ID is not found, throw an error
-    if (!locationId) {
-        throw new Error("Destination not found");
-    }
-
-    // Fetch attractions for the location
-    const attractionsRes = await fetch(
-        `https://${API_HOST}/attractions/list?location_id=${locationId}&currency=USD&lang=en_US&lunit=km`,
-        { method: "GET", headers }
-    );
-
-    // Check if attractions fetch was successful
-    if (!attractionsRes.ok) {
-        throw new Error("Failed to fetch attractions data");
-    }
-
-    // Parse attractions response and extract attractions list
-    const attractionsJson = await attractionsRes.json();
-
-    // Safely access attractions data from the response
-    const attractions = attractionsJson?.data || [];
-
-    // If user selected "food" activity, fetch restaurants for the location
-    let restaurants = [];
-
-    if (tripData.activities.includes("food")) {
-        const foodRes = await fetch(
-            `https://${API_HOST}/restaurants/list?location_id=${locationId}&currency=USD&lang=en_US`,
-            { method: "GET", headers }
-        );
-
-        // Check if restaurants fetch was successful
-        if (!foodRes.ok) {
-            throw new Error("Failed to fetch restaurants data");
-        }
-
-        // Parse restaurants response and extract restaurants list
-        const foodJson = await foodRes.json();
-
-        // Safely access restaurants data from the response
-        restaurants = foodJson?.data || [];
-    }
-
-    // Build and return the itinerary using the fetched data
-    return buildItinerary(tripData, attractions, restaurants);
-}
-
-// Itinerary Builder
-function buildItinerary(tripData, attractions, restaurants) {
-    // Calculate the number of days for the trip based on start and end dates
-    const days = getTripLength(tripData.startDate, tripData.endDate);
-
-    // Filter out any attractions or restaurants that are missing essential information (name and address)
-    const cleanAttractions = attractions.filter(p => p.name && p.address);
-    const cleanRestaurants = restaurants.filter(p => p.name && p.address);
-
-    // Initialize an empty itinerary array to hold the daily plans
-    const itinerary = [];
-
-    // Loop through each day of the trip and assign attractions and restaurants to create a daily plan
-    for (let i = 0; i < days; i++) {
-        // Initialize an array to hold the activities for the current day
-        const dayPlan = [];
-
-        // Add 2 attractions per day from the cleaned attractions list
-        const dailyAttractions = cleanAttractions.slice(i * 2, i * 2 + 2);
-
-        // Loop through the daily attractions and add them to the day's plan with relevant details
-        dailyAttractions.forEach(place => {
-            dayPlan.push({
-                type: "attraction",
-                name: place.name,
-                address: place.address,
-                rating: place.rating || "N/A"
-            });
-        });
-
-        // === Add Restaurant if Food Selected ===
-        if (tripData.activities.includes("food") && cleanRestaurants[i]) {
-            const foodPlace = cleanRestaurants[i];
-
-            dayPlan.push({
-                type: "restaurant",
-                name: foodPlace.name,
-                address: foodPlace.address,
-                rating: foodPlace.rating || "N/A"
-            });
-        }
-
-        itinerary.push({
-            day: i + 1,
-            activities: dayPlan
-        });
-    }
-
-    return {
-        destination: tripData.destination,
-        dates: `${tripData.startDate} to ${tripData.endDate}`,
-        itinerary
-    };
-}
-
-// Utilities
-
-
-function getCheckedOptions(ids) {
-    return ids.filter(id => {
-        const el = document.getElementById(id);
-        return el && el.checked;
-    });
-}
-
-function getTripLength(start, end) {
-    const diff = new Date(end) - new Date(start);
-    return Math.ceil(diff / (1000 * 60 * 60 * 24)) + 1;
-}
-
-
-// ==============================
-// Storage
-// ==============================
-
-function saveTrip(trip) {
-    localStorage.setItem("tripData", JSON.stringify(trip));
-}
-
-
-// ==============================
-// UI Helpers
-// ==============================
-
-function showLoading() {
-    let loader = document.getElementById("loading");
-
-    if (!loader) {
-        loader = document.createElement("div");
-        loader.id = "loading";
-        loader.innerText = "Generating your trip...";
-        loader.style.position = "fixed";
-        loader.style.top = "0";
-        loader.style.left = "0";
-        loader.style.width = "100%";
-        loader.style.height = "100%";
-        loader.style.background = "rgba(0,0,0,0.6)";
-        loader.style.color = "#fff";
-        loader.style.display = "flex";
-        loader.style.alignItems = "center";
-        loader.style.justifyContent = "center";
-        loader.style.fontSize = "1.5rem";
-        loader.style.zIndex = "9999";
-
-        document.body.appendChild(loader);
-    }
-
-    loader.style.display = "flex";
-}
-
-function hideLoading() {
-    const loader = document.getElementById("loading");
-    if (loader) loader.style.display = "none";
-}
-
-// ==============================
-// Trip Snapshot - Display Itinerary
-// ==============================
-
-document.addEventListener("DOMContentLoaded", () => {
+    // Get the container element where the itinerary will be rendered and store it in the variable container
     const container = document.getElementById("itinerary-container");
+    
+    // Calculate the total number of days for the trip using the start and end dates from the trip data
+    const start = new Date(data.startDate + 'T00:00:00');
+    const end = new Date(data.endDate + 'T00:00:00');
+    
+    // Calculate the difference in time between the end and start dates
+    const diffTime = end - start;
 
-    if (!container) return;
+    // Convert the time difference from milliseconds to days and add 1 to include both start and end dates
+    const totalDays = Math.round(diffTime / (1000 * 60 * 60 * 24)) + 1;
 
-    const trip = getTrip();
+    // Clear container before rendering new itinerary to prevent duplication if the script is slow
+    container.innerHTML = "";
 
-    if (!trip) {
-        container.innerHTML = `
-            <div class="no-trip">
-                <h2>No Trip Found</h2>
-                <p>Please create a trip first.</p>
-                <a href="planner.html" class="btn-primary">Plan a Trip</a>
-            </div>
+    // Loop through each day of the trip
+    for (let i = 1; i <= totalDays; i++) {
+
+        // Create a new section element for each day and store it in the variable daySection
+        const daySection = document.createElement("section"); 
+
+        // Assign the class "itinerary-day" to the daySection element for styling purposes
+        daySection.className = "itinerary-day"; 
+
+        // Set the inner HTML of the daySection to include a heading with the day number and a div with a unique ID for displaying the results for that day. The ID is dynamically generated using the current day number (i) to ensure that each day's results are displayed in the correct section.
+        daySection.innerHTML = `
+            <h2>Day ${i}</h2>
+            <div class="itinerary-results" id="day-${i}-results"></div>
         `;
+
+        // Append the daySection to the main container element to display it on the page
+        container.appendChild(daySection);
+
+        // Call the function to populate the results for the current day, passing the day number and trip data as arguments. This function will handle fetching and displaying the relevant places based on the user's preferences.
+        await populateDayResults(i, data);
+    }
+}
+
+// Function to populate the results for a specific day based on the user's preferences and the trip data
+async function populateDayResults(dayNumber, data) {
+    // Get the grid container element for the current day using its dynamically generated ID and store it in the variable grid
+    const grid = document.getElementById(`day-${dayNumber}-results`);
+    
+    // Check if the Google Maps API is loaded before attempting to use it
+    if (typeof google === 'undefined') {
+        // Log an error message to the console if the Google Maps API is not loaded
+        console.error("Google Maps API not loaded");
+        // Exit the function early to prevent further errors since the API is required for fetching place data
         return;
     }
 
-    renderTrip(container, trip);
-});
+    
+    const service = new google.maps.places.PlacesService(document.createElement('div'));
 
+    // Mapping of user preferences to Google Places types. Translating the user's selected preferences into the appropriate query for the Google Places API.
+    const typeMapping = {
+        // Map the activity and need preferences to Google Places types
+        'restaurant': 'restaurant',
+        'attraction': 'tourist_attraction',
+        'hotel': 'lodging'
+    };
 
-// ==============================
-// Storage
-// ==============================
+    // Combine both activities and travelNeeds from planner.js object
+    const travelPreferences = { ...data.activities, ...data.travelNeeds };
 
-function getTrip() {
-    try {
-        return JSON.parse(localStorage.getItem("tripData"));
-    } catch {
-        return null;
+    for (const [pref, isSelected] of Object.entries(travelPreferences)) {
+        if (isSelected && typeMapping[pref]) {
+            const request = {
+                query: `${typeMapping[pref]} in ${data.destination}`,
+                fields: ['name', 'photos', 'rating']
+            };
+
+            service.textSearch(request, (results, status) => {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    // Take 3 results per preference as requested
+                    results.slice(0, 4).forEach(place => {
+                        const card = createResultCard(place);
+                        grid.appendChild(card);
+                    });
+                }
+            });
+        }
     }
 }
 
-// ==============================
-// Render Full Trip
-// ==============================
+// Function to create a result card element for a given place
+function createResultCard(place) {
 
-function renderTrip(container, trip) {
-    container.innerHTML = "";
+    // Get the photo URL for the place if available, otherwise use a default placeholder image. This ensures that even if a place does not have photos, the card will still display an image
+    const photoUrl = place.photos ? place.photos[0].getUrl({ maxWidth: 400, maxHeight: 300 }) : 'images/default-placeholder.jpg';
+    
+    // Create a new div element to represent the result card and store it in the variable resultContainer
+    const resultContainer = document.createElement("div");
 
-    // === Header Section ===
-    const header = document.createElement("div");
-    header.classList.add("trip-header");
+    // Assign the class "result-card" to the resultContainer element for styling purposes
+    resultContainer.className = "result-card";
 
-    header.innerHTML = `
-        <h2>${trip.destination}</h2>
-        <p>${trip.dates}</p>
+    resultContainer.innerHTML = `
+        <img src="${photoUrl}" alt="${place.name}">
+        <h3>${place.name}</h3>
+        <p>Rating: ${place.rating || 'N/A'} ⭐</p>
+        <p>Description: ${place.types ? place.types.join(', ') : 'No description available'}</p>
     `;
-
-    container.appendChild(header);
-
-    // === Itinerary Days ===
-    const itineraryWrapper = document.createElement("div");
-    itineraryWrapper.classList.add("itinerary-wrapper");
-
-    trip.itinerary.forEach(day => {
-        const dayCard = createDayCard(day);
-        itineraryWrapper.appendChild(dayCard);
-    });
-
-    container.appendChild(itineraryWrapper);
+    return resultContainer;
 }
 
-
-// ==============================
-// Create Day Card
-// ==============================
-
-function createDayCard(day) {
-    const card = document.createElement("div");
-    card.classList.add("day-card");
-
-    const title = document.createElement("h3");
-    title.textContent = `Day ${day.day}`;
-    card.appendChild(title);
-
-    if (!day.activities || day.activities.length === 0) {
-        const empty = document.createElement("p");
-        empty.textContent = "No activities planned.";
-        card.appendChild(empty);
-        return card;
+function setupActionButtons() {
+    // Get the homepage button element by its ID and store it in the variable homeBtn
+    const homeBtn = document.getElementById("homepage-button");
+    // Check if the homepage button exists before adding an event listener to prevent errors if the button is not present on the page
+    if (homeBtn) {
+        // Add a click event listener to the homepage button
+        homeBtn.addEventListener("click", () => {
+            // Redirect to homepage when the button is clicked
+            window.location.href = "index.html";
+        });
     }
 
-    const list = document.createElement("ul");
+    // Get the save itinerary button element by its ID and store it in the variable saveBtn
+    const saveBtn = document.getElementById("save-itinerary-button");
+    // Check if the save button exists before adding an event listener to prevent errors if the button is not present on the page
+    if (saveBtn) {
+        // Add a click event listener to the save button
+        saveBtn.addEventListener("click", () => {
+            // Retrieve the trip data from sessionStorage and store it in the variable tripData
+            const tripData = sessionStorage.getItem("tripData");
 
-    day.activities.forEach(activity => {
-        const item = document.createElement("li");
+            // Save the trip data to localStorage under the key "savedTrip"
+            localStorage.setItem("savedTrip", tripData);
 
-        item.innerHTML = `
-            <strong>${activity.name}</strong><br>
-            <span>${activity.address || ""}</span><br>
-            <span>⭐ ${activity.rating || "N/A"}</span>
-        `;
+            // Show an alert to the user confirming that the trip has been saved to their profile
+            alert("Trip saved to your profile!");
+        });
+    }
 
-        list.appendChild(item);
-    });
+    // Get the clear itinerary button element by its ID and store it in the variable clearBtn
+    const clearBtn = document.getElementById("clear-itinerary-button");
+    // Check if the clear button exists before adding an event listener to prevent errors if the button is not present on the page
+    if (clearBtn) {
+        // Add a click event listener to the clear button
+        clearBtn.addEventListener("click", () => {
+            // Show a confirmation dialog to the user to confirm that they want to clear the trip data
+            if (confirm("Are you sure you want to clear this trip?")) {
+                // Remove the trip data from sessionStorage to clear the current trip information
+                sessionStorage.removeItem("tripData");
+                // Redirect to planner page after clearing the trip data
+                window.location.href = "planner.html";
+            }
+        });
+    }
 
-    card.appendChild(list);
+    // Get the edit preferences button element by its ID and store it in the variable editBtn
+    const editBtn = document.getElementById("edit-preferences-button");
+    // Check if the edit preferences button exists before adding an event listener to prevent errors if the button is not present on the page
+    if (editBtn) {
+        // Add a click event listener to the edit preferences button
+        editBtn.addEventListener("click", () => {
+            // Redirect back to planner page with existing data
+            window.location.href = "planner.html";
+        });
+    }
 
-    return card;
 }

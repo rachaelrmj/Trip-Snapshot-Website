@@ -177,95 +177,111 @@ header {
 /*--------------------------------------------------------*/
 /* Itinerary Section Styles */
 #itinerary {
-    margin: 0 20px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#itinerary h2 {
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 10px;
 }
 
 #itinerary p {
-    margin-bottom: 20px;
+    color: #555;
+    margin-bottom: 40px;
     text-align: center;
 }
 
+/* The main container for all days */
 #itinerary-container {
-    margin-bottom: 30px;
-    padding: 30px;
-    background-color: #facc15;
-    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* Space between Day 1, Day 2, etc. */
+    margin-bottom: 50px;
 }
 
-.trip-header {
+/* Each day's section, which includes a heading and a grid of place cards. The border-top creates a visual separation between days, and the padding-top adds space above the content of each day. */
+.itinerary-day {
+    border-top: 5px solid #facc15;
+    padding-top: 20px;
+}
+/* Heading for each day, e.g., "Day 1", "Day 2", etc. */
+.itinerary-day h2 {
+    font-size: 25px;
+    padding-bottom: 20px;
     text-align: center;
-    margin-bottom: 2rem;
 }
 
-.itinerary-wrapper {
+/* The grid container for the place cards within each day. It will automatically adjust the number of columns based on screen size, with a minimum card width of 200px and a gap of 25px between cards. */
+.itinerary-results {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
 }
 
-.day-card {
-    transition: transform 0.2s ease-in-out;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #ffffff;
-    text-align: center;
+.result-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.day-card:hover {
+.result-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
-.day-card h3 {
-    margin-bottom: 10px;
-    margin-top: 10px;
-    background-color: #1ca7ec;
-    color: #ffffff;
-    padding: 5px;
-}
-
-.day-card ul {
-    list-style: none;
-    padding: 0;
-}
-
-.day-card li {
-    margin-bottom: 1rem;
-}
-
-.no-trip {
-    text-align: center;
-    margin-top: 3rem;
-}
-
-#save-itinerary-button, #clear-itinerary-button, #edit-preferences-button, #return-homepage {
+.result-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
     display: block;
-    width: 300px;
-    margin: 0 auto;
-    padding: 12px 30px;
-    background-color: #1ca7ec;
-    color: #ffffff;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
 }
 
-#save-itinerary-button:hover, #clear-itinerary-button:hover, #edit-preferences-button:hover, #return-homepage:hover {
-    background-color: #000000;
+.result-card h3 {
+    text-align: center;
+    padding: 15px 15px 5px 15px;
+    font-size: 18px;
+    margin: 0; 
+}
+
+.result-card p {
+    text-align: center;
+    padding: 0 15px 15px 15px;
+    font-weight: 600;
 }
 
 #itinerary-actions {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    flex-wrap: wrap;
     justify-content: center;
-    align-content: center;
-    text-align: center;
-    margin-bottom: 20px;
+    gap: 15px;
+    padding: 40px 0 0;
+    border-top: 2px solid #000000;
 }
+
+#homepage-button, #save-itinerary-button, #clear-itinerary-button, #edit-preferences-button {
+    flex: 1;
+    min-width: 200px;
+    max-width: 280px;
+    margin: 0; 
+    padding: 15px;
+    border-radius: 50px; 
+    text-align: center;
+    background-color: #1ca7ec;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+#homepage-button:hover, #save-itinerary-button:hover, #clear-itinerary-button:hover, #edit-preferences-button:hover {
+    background-color: #000000;
+}
+
 /*--------------------------------------------------------*/
 /* Footer Styles */
 footer {
@@ -423,6 +439,10 @@ footer {
         margin: 0 auto;
     }
 
+    .activity-list {
+        grid-template-columns: repeat(2, 1fr); /* 2 items side-by-side */
+    }
+
     footer {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -458,3 +478,4 @@ footer {
         gap: 80px;
     }
 }
+

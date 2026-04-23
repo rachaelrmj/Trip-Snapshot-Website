@@ -32,6 +32,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,100..900;1,100..900&family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
         <link rel="canonical" href="https://tripsnapshot.com">
         <link rel="stylesheet" href="css/itinerary-styles.css"> 
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk&libraries=places" defer></script>
         <script src="js/storage.js" defer></script> 
         <script src="js/itinerary.js" defer></script>
 
@@ -52,6 +53,7 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="planner.html">Plan</a></li>
+                        <li><a href="itinerary.html">Itinerary</a></li>
                         <li><a href="about.html">About</a></li>
                     </ul>
                 </nav>
@@ -62,15 +64,16 @@
         <main>
             <section id="itinerary">
                 <h2>Your Itinerary</h2>
-                <p>Here is your personalized itinerary based on your preferences and trip details. You can save it for later or edit your preferences to generate a new one.</p>
-
+                <p>Here is your personalized itinerary based on your preferences and trip details.</p>
+                <div id="trip-summary"></div>
+                <div id="loading">Loading your itinerary...</div>
                 <div id="itinerary-container"></div>
-                    <div id="itinerary-actions">
-                        <a href="index.html" id="return-homepage">Homepage</a>
-                        <a href ="#" id="save-itinerary-button">Save Itinerary</button>
-                        <a href="#" id="clear-itinerary-button">Clear Itinerary</button>
-                        <a href="planner.html" id="edit-preferences-button">Edit Preferences</a>
-                    </div>
+                
+                <div id="itinerary-actions">
+                    <button id="homepage-button">Homepage</button>
+                    <button id="save-itinerary-button">Save Itinerary</button>
+                    <button id="clear-itinerary-button">Clear Itinerary</button>
+                    <button id="edit-preferences-button">Edit Preferences</button>
                 </div>
             </section>
         </main> 

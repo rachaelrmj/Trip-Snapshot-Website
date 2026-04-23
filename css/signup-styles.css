@@ -76,6 +76,15 @@ h1, h2, h3, h4 {
 p, button {
     font-family: 'SN Pro', sans-serif;
 }
+
+.sr-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
 /*--------------------------------------------------------*/
 /* Header Styles */
 header {
@@ -192,7 +201,9 @@ header {
 /*--------------------------------------------------------*/
 /* Signup Form */
 #signup {
-    margin: 20px 40px;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 500px;
 }
 
 #signup h2 {
@@ -216,25 +227,36 @@ header {
     padding-left: 5px;
 }
 
-.input-group {
-    margin-bottom: 15px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #808080;
-    border-radius: 8px;
+#fname, #lname, #email, #password {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 5px;
     font-size: 16px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #808080;
 }
 
-#create-button {
+#fname:focus, #lname:focus, #email:focus, #password:focus {
+    border-color: #facc15;
+    outline: none;
+}
+
+.error-message {
+    display: none;
+    color: #1ca7ec;
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#createAccount-button {
+    margin-top: 10px;
     width: 100%;
     padding: 12px;
-    margin-top: 10px;
     border: none;
-    border-radius: 8px;
     cursor: pointer;
+    border-radius: 8px;
     font-weight: bold;
     font-size: 16px;
     background-color: #000000;
@@ -242,19 +264,18 @@ header {
     transition: background-color 0.3s;
 }
 
-#create-button:hover {
+#createAccount-button:hover {
     background-color: #facc15;
     color: #000000;
 }
 
-#existing-account-container {
+#existing-account {
     text-align: center;
-    margin: 20px 0 10px;
-    font-weight: bold;
+    margin: 40px 0;
 }
 
-#existing-account-container h3 {
-    font-size: 18px;
+#existing-account h2 {
+    font-size: 20px;
     margin-bottom: 30px;
 }
 
@@ -265,15 +286,15 @@ header {
     cursor: pointer;
     font-weight: bold;
     font-size: 16px;
-    background-color: #1ca7ec;
+    background-color: #000000;
     color: #ffffff;
     text-decoration: none;
     transition: background-color 0.3s;
 }
 
 #login-button:hover {
-        background-color: #000000;
-        color: #ffffff;
+        background-color: #facc15;
+        color: #000000;
     }
 /*--------------------------------------------------------*/
 /* Popup Windows */
@@ -288,6 +309,10 @@ header {
     align-items: center;
     justify-content: center;
     z-index: 10000;
+}
+
+.popup-window.show {
+    display: block;
 }
 
 .popup-window .popup-content {
@@ -323,7 +348,7 @@ header {
 }
 
 /* Specific Signup Popups */
-#signup-confirmation, #signup-error, #existing-account {
+#signup-confirmation, #signup-error, #existing-account-error {
     margin: 15% auto;
     text-align: center;
     line-height: 1.5;
