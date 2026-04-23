@@ -19,29 +19,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Function to render the itinerary based on the provided trip data from sessionStorage
 async function renderItinerary(data) {
-
     // Get the container element where the itinerary will be rendered and store it in the variable container
     const container = document.getElementById("itinerary-container");
-    
     // Calculate the total number of days for the trip using the start and end dates from the trip data
     const start = new Date(data.startDate + 'T00:00:00');
     const end = new Date(data.endDate + 'T00:00:00');
-    
     // Calculate the difference in time between the end and start dates
     const diffTime = end - start;
-
     // Convert the time difference from milliseconds to days and add 1 to include both start and end dates
     const totalDays = Math.round(diffTime / (1000 * 60 * 60 * 24)) + 1;
-
     // Clear container before rendering new itinerary to prevent duplication if the script is slow
     container.innerHTML = "";
-
     // Loop through each day of the trip
     for (let i = 1; i <= totalDays; i++) {
-
         // Create a new section element for each day and store it in the variable daySection
         const daySection = document.createElement("section"); 
-
         // Assign the class "itinerary-day" to the daySection element for styling purposes
         daySection.className = "itinerary-day"; 
 
@@ -76,20 +68,25 @@ async function populateDayResults(dayNumber, data) {
     const service = new google.maps.places.PlacesService(document.createElement('div'));
 
     // Mapping of user preferences to Google Places types. Translating the user's selected preferences into the appropriate query for the Google Places API.
-    const typeMapping = {
+    const preferenceMapping = {
         // Map the activity and need preferences to Google Places types
-        'restaurant': 'restaurant',
+        'restaurant': 'restaurant OR bar OR bakery OR brewery OR cafe OR deli',
+        'nightLife': 'hookah_bar OR ',
         'attraction': 'tourist_attraction',
-        'hotel': 'lodging'
+        'shopping': 'shopping_mall OR store',
+        'hotel': 'lodging',
+        'flight': 'airport',
+        'rentalCar': 'car_rental',
+        'transportation': 'bus_station OR bus_stop OR light_rail_station OR subway_station OR taxi_service OR train_station OR transit_station OR transportation_service'
     };
 
     // Combine both activities and travelNeeds from planner.js object
     const travelPreferences = { ...data.activities, ...data.travelNeeds };
 
-    for (const [pref, isSelected] of Object.entries(travelPreferences)) {
-        if (isSelected && typeMapping[pref]) {
+    for (const [preference, isSelected] of Object.entries(travelPreferences)) {
+        if (isSelected && preferenceMapping[preference]) {
             const request = {
-                query: `${typeMapping[pref]} in ${data.destination}`,
+                query: `${preferenceMapping[preference]} in ${data.destination}`,
                 fields: ['name', 'photos', 'rating']
             };
 

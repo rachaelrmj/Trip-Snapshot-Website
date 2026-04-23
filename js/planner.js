@@ -69,15 +69,17 @@ function attachPlannerFormHandler() {
         // Store user preferences (Activities) in the variable activities
         const activities = {
             restaurant: document.getElementById("restaurant").checked,
-            attraction: document.getElementById("attraction").checked
+            attraction: document.getElementById("attraction").checked,
+            shopping: document.getElementById("shopping").checked,
+            nightLife: document.getElementById("night-life").checked
         };
 
         // Store user preferences (Travel Needs) in the variable travelNeeds
         const travelNeeds = {
-            flights: document.getElementById("flights").checked,
+            flight: document.getElementById("flight").checked,
             hotel: document.getElementById("hotel").checked,
-            rentalCars: document.getElementById("rental-cars").checked,
-            cruises: document.getElementById("cruises").checked
+            rentalCar: document.getElementById("rental-car").checked,
+            transportation: document.getElementById("transportation").checked
         };
 
         // If destination, start date or end date fields are empty...
