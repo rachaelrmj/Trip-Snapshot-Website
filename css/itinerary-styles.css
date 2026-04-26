@@ -214,14 +214,33 @@ header {
     text-align: center;
 }
 
-/* The grid container for the place cards within each day. It will automatically adjust the number of columns based on screen size, with a minimum card width of 200px and a gap of 25px between cards. */
-.itinerary-results {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 25px;
+/* Container for each grouped preference */
+.category-group {
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+/* Category header appearing above the row of cards */
+.category-title {
+    font-size: 22px;
+    color: #1ca7ec; 
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* The grid container for the place cards within each day. On mobile, this is set to flex to allow for horizontal scrolling of the 5 cards. */
+.category-group .itinerary-results {
+    display: flex;                  
+    overflow-x: auto;               
+    scroll-snap-type: x mandatory;   
+    gap: 20px;                      
+    padding-bottom: 15px;           
+    -webkit-overflow-scrolling: touch; 
 }
 
 .result-card {
+    flex: 0 0 280px;                
+    scroll-snap-align: start;       
     background: #ffffff;
     border-radius: 12px;
     overflow: hidden;
@@ -263,7 +282,7 @@ header {
     border-top: 2px solid #000000;
 }
 
-#homepage-button, #save-itinerary-button, #clear-itinerary-button, #edit-preferences-button {
+#homepage-button, #save-itinerary-button, #clear-itinerary-button, #edit-trip-button {
     flex: 1;
     min-width: 200px;
     max-width: 280px;
@@ -278,7 +297,7 @@ header {
     cursor: pointer;
 }
 
-#homepage-button:hover, #save-itinerary-button:hover, #clear-itinerary-button:hover, #edit-preferences-button:hover {
+#homepage-button:hover, #save-itinerary-button:hover, #clear-itinerary-button:hover, #edit-trip-button:hover {
     background-color: #000000;
 }
 
@@ -440,7 +459,19 @@ footer {
     }
 
     .activity-list {
-        grid-template-columns: repeat(2, 1fr); /* 2 items side-by-side */
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category-group .itinerary-results {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); 
+        overflow-x: visible;        
+        gap: 25px;
+    }
+
+    .result-card {
+        flex: none;                 
+        width: auto;                
     }
 
     footer {

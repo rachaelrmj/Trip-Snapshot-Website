@@ -7,33 +7,69 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!tripData) {
         // Log an error message to the console if trip data is not found in sessionStorage
         console.error("Trip data not found");
-        
         return;
     }
-    // Call the function to render the itinerary with the retrieved trip data
-    renderItinerary(tripData);
+
+    // Call the function to display the itinerary with the retrieved trip data
+    displayOverview(tripData);
+
+    // Call the function to display the trip data and preferences    
+    displayItinerary(tripData);
 
     // Set up event listeners for itinerary action buttons (Homepage, Save, Clear, Edit Preferences)
     setupActionButtons();
 });
 
-// Function to render the itinerary based on the provided trip data from sessionStorage
-async function renderItinerary(data) {
+// Function to show destination, dates, and selected preferences from sessionStorage
+function displayOverview(data) {
+    const overviewContainer = document.getElementById("itinerary-overview");
+    if (!overviewContainer) return;
+
+    // Format the preferences into a readable list
+    const allPreferences = { ...data.activities, ...data.travelNeeds };
+    const selectedPreferences = Object.keys(allPreferences)
+        .filter(key => allPreferences[key] === true)
+        .map(key => {
+        // Convert camelCase to spaces (e.g., "rentalCar" -> "rental car")
+        let formatted = key.replace(/([A-Z])/g, ' $1').trim().toLowerCase();
+        // Capitalize the first letter (e.g., "rental car" -> "Rental car")
+        return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+    })
+    .join(", ");
+
+    overviewContainer.innerHTML = `
+        <div class="trip-summary-card">
+            <p><strong>Destination:</strong> ${data.destination}</p>
+            <p><strong>Dates:</strong> ${data.startDate} to ${data.endDate}</p>
+            <p><strong>Preferences:</strong> ${selectedPreferences || 'None selected'}</p>
+        </div>
+        <hr>
+    `;
+}
+
+// Function to show the itinerary based on the provided trip data from sessionStorage
+async function displayItinerary(data) {
     // Get the container element where the itinerary will be rendered and store it in the variable container
     const container = document.getElementById("itinerary-container");
+    
     // Calculate the total number of days for the trip using the start and end dates from the trip data
     const start = new Date(data.startDate + 'T00:00:00');
     const end = new Date(data.endDate + 'T00:00:00');
+    
     // Calculate the difference in time between the end and start dates
     const diffTime = end - start;
+
     // Convert the time difference from milliseconds to days and add 1 to include both start and end dates
     const totalDays = Math.round(diffTime / (1000 * 60 * 60 * 24)) + 1;
+    
     // Clear container before rendering new itinerary to prevent duplication if the script is slow
     container.innerHTML = "";
+
     // Loop through each day of the trip
     for (let i = 1; i <= totalDays; i++) {
         // Create a new section element for each day and store it in the variable daySection
-        const daySection = document.createElement("section"); 
+        const daySection = document.createElement("section");
+
         // Assign the class "itinerary-day" to the daySection element for styling purposes
         daySection.className = "itinerary-day"; 
 
@@ -55,59 +91,107 @@ async function renderItinerary(data) {
 async function populateDayResults(dayNumber, data) {
     // Get the grid container element for the current day using its dynamically generated ID and store it in the variable grid
     const grid = document.getElementById(`day-${dayNumber}-results`);
-    
-    // Check if the Google Maps API is loaded before attempting to use it
-    if (typeof google === 'undefined') {
-        // Log an error message to the console if the Google Maps API is not loaded
-        console.error("Google Maps API not loaded");
-        // Exit the function early to prevent further errors since the API is required for fetching place data
-        return;
-    }
 
-    
-    const service = new google.maps.places.PlacesService(document.createElement('div'));
+    const { Place, SearchByTextRankPreference } = await google.maps.importLibrary("places");
 
     // Mapping of user preferences to Google Places types. Translating the user's selected preferences into the appropriate query for the Google Places API.
     const preferenceMapping = {
-        // Map the activity and need preferences to Google Places types
-        'restaurant': 'restaurant OR bar OR bakery OR brewery OR cafe OR deli',
-        'nightLife': 'hookah_bar OR ',
-        'attraction': 'tourist_attraction',
-        'shopping': 'shopping_mall OR store',
-        'hotel': 'lodging',
-        'flight': 'airport',
-        'rentalCar': 'car_rental',
-        'transportation': 'bus_station OR bus_stop OR light_rail_station OR subway_station OR taxi_service OR train_station OR transit_station OR transportation_service'
-    };
+    'restaurant': { 
+        label: 'Restaurants & Dining',
+        query: 'Highly Rated Restaurants'
+    },
+    'shopping': { 
+        label: 'Shopping & Malls',
+        query: 'Popular Shopping Spots'
+    },
+    'attraction': { 
+        label: 'Top Attractions', 
+        query: 'Best Tourist Attractions' 
+    },
+    'nightlife': { 
+        label: 'Nightlife', 
+        query: 'Highly Rated Bars and Clubs' 
+    },
+    'hotel': { 
+        label: 'Lodging & Accommodations', 
+        query: 'Top Rated Hotels' 
+    },
+    'flight': { 
+        label: 'Airport Information', 
+        query: 'Nearest Airports' 
+    },
+    'rental-car': { 
+        label: 'Rental Cars', 
+        query: 'Nearest Rental Car Companies' 
+    },
+    'transportation': { 
+        label: 'Transportation', 
+        query: 'transportation' 
+    }
+};
 
     // Combine both activities and travelNeeds from planner.js object
     const travelPreferences = { ...data.activities, ...data.travelNeeds };
 
     for (const [preference, isSelected] of Object.entries(travelPreferences)) {
         if (isSelected && preferenceMapping[preference]) {
+
+            // Create a container for each preference category selected by user within each day to hold both the header and the results
+            const categorySection = document.createElement("div");
+            categorySection.className = "category-group";
+            
+            // Add a sub-header for the category (e.g., "Restaurants & Dining")
+            const categoryHeader = document.createElement("h4");
+            categoryHeader.className = "category-title";
+            categoryHeader.innerText = preferenceMapping[preference].label;
+            categorySection.appendChild(categoryHeader);
+
+            // Create a smaller grid specifically for the cards of this category
+            const categoryGrid = document.createElement("div");
+            categoryGrid.className = "itinerary-results"; 
+            categorySection.appendChild(categoryGrid);
+
             const request = {
-                query: `${preferenceMapping[preference]} in ${data.destination}`,
-                fields: ['name', 'photos', 'rating']
+                textQuery: `${preferenceMapping[preference].query} in ${data.destination}`,
+                fields: ['displayName', 'formattedAddress', 'rating', 'photos', 'id'],
+                maxResultCount: 20,
+                rankPreference: SearchByTextRankPreference.RELEVANCE,
             };
 
-            service.textSearch(request, (results, status) => {
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    // Take 3 results per preference as requested
-                    results.slice(0, 4).forEach(place => {
+            try {
+                const { places } = await Place.searchByText(request);
+
+                if (places && places.length > 0) {
+                    // Sort places by rating (highest first)
+                    const sortedPlaces = places.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+
+                    // Display 5 per row
+                    const cardsPerSection = 5;
+                    const startIndex = (dayNumber - 1) % Math.floor(sortedPlaces.length / cardsPerSection);
+                    const daySelection = sortedPlaces.slice(startIndex * cardsPerSection, (startIndex * cardsPerSection) + cardsPerSection);
+
+                    daySelection.forEach(place => {
                         const card = createResultCard(place);
-                        grid.appendChild(card);
+                        // Append the card to the category-specific grid instead of the global day grid
+                        categoryGrid.appendChild(card);
                     });
+
+                    // Append the entire category group (Header + Grid) to the day's result container
+                    grid.appendChild(categorySection);
                 }
-            });
+            } catch (e) {
+                console.error(`Search failed for ${preference}:`, e);
+            }
         }
     }
 }
 
 // Function to create a result card element for a given place
 function createResultCard(place) {
-
     // Get the photo URL for the place if available, otherwise use a default placeholder image. This ensures that even if a place does not have photos, the card will still display an image
-    const photoUrl = place.photos ? place.photos[0].getUrl({ maxWidth: 400, maxHeight: 300 }) : 'images/default-placeholder.jpg';
+    const photoUrl = (place.photos && place.photos.length > 0) 
+        ? place.photos[0].getURI({ maxWidth: 400, maxHeight: 300 }) 
+        : 'images/default-placeholder.jpg';
     
     // Create a new div element to represent the result card and store it in the variable resultContainer
     const resultContainer = document.createElement("div");
@@ -116,10 +200,13 @@ function createResultCard(place) {
     resultContainer.className = "result-card";
 
     resultContainer.innerHTML = `
-        <img src="${photoUrl}" alt="${place.name}">
-        <h3>${place.name}</h3>
-        <p>Rating: ${place.rating || 'N/A'} ⭐</p>
-        <p>Description: ${place.types ? place.types.join(', ') : 'No description available'}</p>
+        <img src="${photoUrl}" alt="${place.displayName}">
+        <div class="card-content">
+            <h3>${place.displayName}</h3>
+            <p class="address">${place.formattedAddress}</p>
+            <p class="rating">Rating: ${place.rating ? place.rating + ' ⭐' : 'No rating'}</p>
+            <p class="id">${place.id}</p>
+        </div>
     `;
     return resultContainer;
 }
@@ -142,14 +229,35 @@ function setupActionButtons() {
     if (saveBtn) {
         // Add a click event listener to the save button
         saveBtn.addEventListener("click", () => {
+            // Check for an active user session
+            const sessionUser = sessionStorage.getItem("currentUser");
+
+            if (!sessionUser) {
+                // Alert the user they must be logged in
+                alert("You must be signed in to save itineraries.");
+
+                // Redirect them to login
+                window.location.href = "login.html";
+                return;
+            }
+
             // Retrieve the trip data from sessionStorage and store it in the variable tripData
             const tripData = sessionStorage.getItem("tripData");
 
-            // Save the trip data to localStorage under the key "savedTrip"
-            localStorage.setItem("savedTrip", tripData);
+            if (!tripData) {
+                alert("No itinerary data found to save.");
+                return;
+            }
+
+            // Update itineraries list in Local Storage
+            const savedTrips = JSON.parse(localStorage.getItem("itineraries")) || [];
+
+            // Add the current trip to the list
+            savedTrips.push(JSON.parse(tripData));
+            localStorage.setItem("itineraries", JSON.stringify(savedTrips));
 
             // Show an alert to the user confirming that the trip has been saved to their profile
-            alert("Trip saved to your profile!");
+            alert("Trip has been saved to your profile!");
         });
     }
 
@@ -170,7 +278,7 @@ function setupActionButtons() {
     }
 
     // Get the edit preferences button element by its ID and store it in the variable editBtn
-    const editBtn = document.getElementById("edit-preferences-button");
+    const editBtn = document.getElementById("edit-trip-button");
     // Check if the edit preferences button exists before adding an event listener to prevent errors if the button is not present on the page
     if (editBtn) {
         // Add a click event listener to the edit preferences button

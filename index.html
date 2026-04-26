@@ -33,9 +33,14 @@
         <link rel="canonical" href="https://tripsnapshot.com">
         <link rel="stylesheet" href="css/styles.css"> 
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk&libraries=places" async></script>
-        <script src="js/storage.js" defer></script>
+        <script>
+            (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.googleapis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Re-imports managed elsewhere."):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+                key: "AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk",
+                v: "weekly",
+            });
+        </script>
         <script src="js/index.js" defer></script> 
+        <script src="js/storage.js" defer></script> 
     </head>
 
     <body>
@@ -69,8 +74,8 @@
                     <p>Build personalized itineraries, discover destinations, and organize your travel plans all in one place.</p>
                     <form id="hero-planner-form" action="planner.html" aria-label="Trip planner form">
                         <div id="destination-container">
-                            <label for="hero-destination" class="sr-only">Destination</label>
-                            <input type="text" id="hero-destination" name="destination" placeholder="Where do you want to go?" required>
+                            <label for="destination" class="sr-only">Destination</label>
+                            <input type="text" id="destination" name="destination" placeholder="Where do you want to go?" required>
                         </div>
 
                         <div class="date-group">

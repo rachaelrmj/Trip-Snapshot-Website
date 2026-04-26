@@ -183,25 +183,6 @@ header {
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
-
-/* Trip Summary Bar */
-#trip-summary-bar {
-    position: sticky;
-    top: 110px;
-    background-color: #1ca7ec;
-    color: #ffffff;
-    padding: 12px 20px;
-    font-weight: 600;
-    text-align: center;
-    z-index: 900;
-    transition: top 0.2s ease;
-}
-
-#trip-summary-text {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 600;
-}
 /*--------------------------------------------------------*/
 /* Planning Section Styles */
 
@@ -349,12 +330,12 @@ header {
     width: 100px
 }
 
-.trip-search-form button {
+#generate-trip-btn {
     margin-top: 10px;
     padding: 16px;
     border: none;
     border-radius: 12px;
-    background: linear-gradient(135deg, #facc15, #fbbf24);
+    background: #facc15;
     color: #000000;
     font-family: 'Archivo Black', sans-serif;
     font-size: 15px;
@@ -362,12 +343,34 @@ header {
     transition: all 0.25s ease;
 }
 
-.trip-search-form button:hover {
+#generate-trip-btn:hover {
     background: #1ca7ec;
     color: #ffffff;
 }
 
-.trip-search-form button:active {
+#generate-trip-btn:active {
+    transform: scale(0.98);
+}
+
+#reset-btn {
+    margin-top: 10px;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    background: #000000;;
+    color: #ffffff;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+#reset-btn:hover {
+    background: #1ca7ec;
+    color: #ffffff;
+}
+
+#reset-btn:active {
     transform: scale(0.98);
 }
 /*--------------------------------------------------------*/

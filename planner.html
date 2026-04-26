@@ -1,175 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <meta name="description" content="Trip Snapshot is a smart travel planner that instantly generates personalized itineraries, trip highlights, and visual snapshots of your travel plans.">
-    <meta name="keywords" content="travel planner, itinerary generator, trip planner, travel itinerary, vacation planner, travel planning tool, trip snapshot">
-    <meta name="author" content="Rachael Martinez-Jones">
-    
-    <meta property="og:title" content="Trip Snapshot | Visual Travel Planner & Itinerary Generator">
-    <meta property="og:description" content="Plan smarter trips with Trip Snapshot. Generate personalized travel itineraries, organize destinations, and create visual trip snapshots in seconds.">
-    <meta property="og:image" content="https://tripsnapshot.com/planner/trip-snapshot.jpg">
-    <meta property="og:url" content="https://tripsnapshot.com/planner">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Trip Snapshot">
-    <meta property="og:locale" content="en_US">
+    <head>
+        <meta charset="UTF-8">  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <meta name="description" content="Trip Snapshot is a smart travel planner that instantly generates personalized itineraries, trip highlights, and visual snapshots of your travel plans.">
+        <meta name="keywords" content="travel planner, itinerary generator, trip planner, travel itinerary, vacation planner, travel planning tool, trip snapshot">
+        <meta name="author" content="Rachael Martinez-Jones">
+        
+        <meta property="og:title" content="Trip Snapshot | Visual Travel Planner & Itinerary Generator">
+        <meta property="og:description" content="Plan smarter trips with Trip Snapshot. Generate personalized travel itineraries, organize destinations, and create visual trip snapshots in seconds.">
+        <meta property="og:image" content="https://tripsnapshot.com/planner/trip-snapshot.jpg">
+        <meta property="og:url" content="https://tripsnapshot.com/planner">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Trip Snapshot">
+        <meta property="og:locale" content="en_US">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Trip Snapshot | Visual Travel Planner">
-    <meta name="twitter:description" content="Generate personalized travel itineraries and visual trip plans instantly with Trip Snapshot.">
-    <meta name="twitter:image" content="https://tripsnapshot.com/planner/trip-snapshot.jpg">
-    <meta name="twitter:url" content="https://tripsnapshot.com/planner">
-    <meta name="twitter:creator" content="Rachael Martinez-Jones">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Trip Snapshot | Visual Travel Planner">
+        <meta name="twitter:description" content="Generate personalized travel itineraries and visual trip plans instantly with Trip Snapshot.">
+        <meta name="twitter:image" content="https://tripsnapshot.com/planner/trip-snapshot.jpg">
+        <meta name="twitter:url" content="https://tripsnapshot.com/planner">
+        <meta name="twitter:creator" content="Rachael Martinez-Jones">
 
-    <title>Trip Snapshot | Travel Planner & Itinerary Generator</title>
+        <title>Trip Snapshot | Travel Planner & Itinerary Generator</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <link rel="canonical" href="https://tripsnapshot.com/planner">
-    <link rel="stylesheet" href="css/planner-styles.css"> 
+        <link rel="canonical" href="https://tripsnapshot.com/planner">
+        <link rel="stylesheet" href="css/planner-styles.css"> 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk&libraries=places" defer></script>
-    <script src="js/planner.js" defer></script>
-    <script src="js/storage.js" defer></script>
+        <script>
+            (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.googleapis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Re-imports managed elsewhere."):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+                key: "AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk",
+                v: "weekly"
+            });
+        </script>
+        <script src="js/planner.js" defer></script>
+        <script src="js/storage.js" defer></script>
 
-</head>
+    </head>
 
-<body>
-    <a href="#plan-trip" class="sr-only-focusable">Skip to content</a>
-    <header>
-        <h1>Trip Snapshot</h1>
+    <body>
+        <a href="#main-content">Skip to main content</a>
 
-        <a href="index.html" class="logo-link">
-            <img src="images/Trip-Snapshot-Logo.png" class="logo" alt="Trip Snapshot Logo">
-        </a>
+        <header>
+            <h1>Trip Snapshot</h1>
 
-        <div class="hamburger-menu">
-            <input type="checkbox" id="menu-toggle">
-            <label for="menu-toggle" class="menu-icon">
-                <img src="images/hamburger-menu.svg" alt="Open navigation menu">
-            </label>
+            <a href="index.html" class="logo-link">
+                <img src="images/Trip-Snapshot-Logo.png" class="logo" alt="Trip Snapshot Logo">
+            </a>
 
-            <nav class="mobile-nav" aria-label="Mobile navigation">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="planner.html">Plan</a></li>
-                    <li><a href="itinerary.html">Itinerary</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
-            </nav>
-        </div>
+            <div class="hamburger-menu">
+                <input type="checkbox" id="menu-toggle">
+                <label for="menu-toggle" class="menu-icon">
+                    <img src="images/hamburger-menu.svg" alt="Open navigation menu">
+                </label>
 
-        <form id="search-bar" action="explore.html" method="GET">
-            <label for="destination-search" class="sr-only">Search for a destination</label>
-            <input type="text" id="destination-search" name="destination-search" placeholder="Search for a destination">
-            <button type="submit" id="search-button">Search</button>
-        </form>
+                <nav class="mobile-nav" aria-label="Mobile navigation">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="planner.html">Plan</a></li>
+                        <li><a href="itinerary.html">Itinerary</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </nav>
+            </div>
 
-        <a href="profile.html" class="profile-link">
-            <img src="images/profile-logo.svg" class="profile" alt="User Profile Icon">
-        </a>
-    </header>
+            <a href="profile.html" class="profile-link">
+                <img src="images/profile-logo.svg" class="profile" alt="User Profile Icon">
+            </a>
+        </header>
 
-    <main> 
-        <div id="trip-summary-bar">
-            <p id="trip-summary-text"></p>
-        </div>
-
-        <section id="plan-trip">
-            <div id="hero-plan_container">
-                <img src="images/planner-page/plan-trip.png" id="img-plan_trip" alt="Banner image with a clock and calendar representing trip planning">
-                <div id="hero-text">
-                    <h2>Plan Your Trip</h2>
-                    <p>Leave the planning to us.</p> 
-                    <p>Just pack and go!</p>
+        <main id="main-content"> 
+            <section id="plan-trip">
+                <div id="hero-plan_container">
+                    <img src="images/planner-page/plan-trip.png" id="img-plan_trip" alt="Banner image with a clock and calendar representing trip planning">
+                    <div id="hero-text">
+                        <h2>Plan Your Trip</h2>
+                        <p>Leave the planning to us.</p> 
+                        <p>Just pack and go!</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="planner-form-wrapper">
-                <form class="trip-search-form" id="trip-form">
-                    <h2 class="form-title">Plan Your Trip</h2>
+                <div class="planner-form-wrapper">
+                    <form class="trip-search-form" id="trip-form">
+                        <h2 class="form-title">Plan Your Trip</h2>
 
-                    <!-- Destination -->
-                    <div class="form-group">
-                        <label for="destination">Destination</label>
-                        <input type="text" id="destination" name="destination" placeholder="Enter a city or country">
-                    </div>
-
-                    <!-- Dates -->
-                    <div class="plan-dates">
+                        <!-- Destination -->
                         <div class="form-group">
-                            <label for="start-date">Start Date</label>
-                            <input type="date" id="start-date" name="start-date" required>
+                            <label for="destination">Destination</label>
+                            <input type="text" id="destination" name="destination" placeholder="Enter a city or country">
                         </div>
 
-                        <div class="form-group">
-                            <label for="end-date">End Date</label>
-                            <input type="date" id="end-date" name="end-date" required>
+                        <!-- Dates -->
+                        <div class="plan-dates">
+                            <div class="form-group">
+                                <label for="start-date">Start Date</label>
+                                <input type="date" id="start-date" name="start-date" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="end-date">End Date</label>
+                                <input type="date" id="end-date" name="end-date" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="preferences-section">
-                        <div id="activities">
-                            <h3>Activities</h3>
-                            <div class="preference-container">
-                                <div class="checkbox-container">
-                                    <input type="checkbox" id="restaurant">
-                                    <label for="restaurant">Food & Drink</label>
+                        <div class="preferences-section">
+                            <div id="activities">
+                                <h3>Activities</h3>
+                                <div class="preference-container">
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="restaurant">
+                                        <label for="restaurant">Food & Drink</label>
+                                    </div>
+
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="attraction">
+                                        <label for="attraction">Things To Do</label>
+                                    </div>
+
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="shopping">
+                                        <label for="shopping">Shopping</label>
+                                    </div>
+
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="nightlife">
+                                        <label for="nightlife">Night Life</label>
+                                    </div>
                                 </div>
+                            </div>
 
-                                <div class="checkbox-container">
-                                    <input type="checkbox" id="attraction">
-                                    <label for="attraction">Things To Do</label>
-                                </div>
+                            <div id="travel-needs">
+                                <h3>Travel Needs</h3>
+                                <div class="preference-container">
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="flight">
+                                        <label for="flight">Flight</label>
+                                    </div>
 
-                                <div class="checkbox-container">
-                                    <input type="checkbox" id="shopping">
-                                    <label for="shopping">Shopping</label>
-                                </div>
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="hotel">
+                                        <label for="hotel">Hotel</label>
+                                    </div>
 
-                                <div class="checkbox-container">
-                                    <input type="checkbox" id="night-life">
-                                    <label for="night-life">Night Life</label>
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="rental">
+                                        <label for="rental">Rental Car</label>
+                                    </div>
+
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="transportation">
+                                        <label for="transportation">Other Transportation</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="travel-needs">
-                            <h3>Travel Needs</h3>
-                            <div class="preference-container">
-                                <div class="checkbox-container">
-                                    <input type="checkbox" id="flight">
-                                    <label for="flight">Flight</label>
-                                </div>
+                        <button type="submit" id="generate-trip-btn">Generate Trip</button>
+                        <button type="reset" id="reset-btn">Clear Data</button>
+                    </form>
+                </div>
+            </section>
+        </main> 
 
-                                <div class="checkbox-container">
-                                    <input type="checkbox" id="hotel">
-                                    <label for="hotel">Hotel</label>
-                                </div>
-
-                                <div class="checkbox-container">
-                                    <input type="checkbox" id="rental-car">
-                                    <label for="rental-ca">Rental Car</label>
-                                </div>
-
-                                <div class="checkbox-container">
-                                    <input type="checkbox" id="transportation">
-                                    <label for="transportation">Other Transportation</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-primary">Generate Trip</button>
-                </form>
-            </div>
-        </section>
-    </main> 
-
-    <footer>
+        <footer>
             <section id="stay-connected">
                 <h3>Stay Connected</h3>
                 <p>Get destination ideas, planning tips, and travel inspiration sent to your inbox.</p>
@@ -202,5 +199,5 @@
                 </div>
             </section>
         </footer>
-</body>
+    </body>
 </html>

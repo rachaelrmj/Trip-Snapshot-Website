@@ -32,10 +32,15 @@
         <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,100..900;1,100..900&family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
         <link rel="canonical" href="https://tripsnapshot.com">
         <link rel="stylesheet" href="css/itinerary-styles.css"> 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk&libraries=places" defer></script>
+
+        <script>
+            (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.googleapis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Re-imports managed elsewhere."):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+                key: "AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk",
+                v: "weekly"
+            });
+        </script>
         <script src="js/storage.js" defer></script> 
         <script src="js/itinerary.js" defer></script>
-
     </head>
 
     <body>
@@ -65,15 +70,14 @@
             <section id="itinerary">
                 <h2>Your Itinerary</h2>
                 <p>Here is your personalized itinerary based on your preferences and trip details.</p>
-                <div id="trip-summary"></div>
-                <div id="loading">Loading your itinerary...</div>
+                <div id="itinerary-overview" class="overview-section"></div>
                 <div id="itinerary-container"></div>
                 
                 <div id="itinerary-actions">
                     <button id="homepage-button">Homepage</button>
                     <button id="save-itinerary-button">Save Itinerary</button>
                     <button id="clear-itinerary-button">Clear Itinerary</button>
-                    <button id="edit-preferences-button">Edit Preferences</button>
+                    <button id="edit-trip-button">Edit Trip</button>
                 </div>
             </section>
         </main> 

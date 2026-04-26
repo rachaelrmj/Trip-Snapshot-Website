@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Session Authorization
-    // Check if a user is currently logged into this tab/session.
+    // Check if a user is currently logged into this tab/session
     const sessionData = sessionStorage.getItem("currentUser");
     
     if (!sessionData) {
-        // No session found; redirect to signup as the primary gatekeeper.
+        // No session found; redirect to signup as the primary gatekeeper
         window.location.href = "signup.html";
         return;
     }
@@ -14,24 +13,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const imageInput = document.getElementById("image-upload");
     const welcomeHeader = document.querySelector("#profile-overview h2");
 
-    // 2. Load Permanent Database Records
-    // Access the permanent account list to retrieve stored photos and handle deletion.
+    // Access the permanent account list to retrieve stored photos and handle deletion
     const allAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
     const activeAccount = allAccounts.find(acc => acc.email === currentUser.email);
 
-    // 3. UI Personalization
-    // Display the first name captured during signup, falling back to email prefix if necessary.
+    // Display the first name captured during signup, falling back to email prefix if necessary
     if (welcomeHeader) {
         const name = currentUser.fname || currentUser.email.split('@')[0];
         welcomeHeader.textContent = `Welcome, ${name}!`;
     }
 
-    // Apply the saved profile picture from the account database if it exists.
+    // Apply the saved profile picture from the account database if it exists
     if (activeAccount && activeAccount.profilePic) {
         profileImg.src = activeAccount.profilePic;
     }
 
-    // 4. Profile Image Upload Logic
+    // Profile Image Upload Logic
     if (imageInput) {
         imageInput.addEventListener("change", function(event) {
             const selectedFile = event.target.files[0];
@@ -41,10 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 fileReader.onload = function(e) {
                     const base64Data = e.target.result;
                     
-                    // Update current view immediately.
+                    // Update current view immediately
                     profileImg.src = base64Data;
 
-                    // Update the permanent localStorage account list.
+                    // Update the permanent localStorage account list
                     const updatedList = allAccounts.map(acc => {
                         if (acc.email === currentUser.email) {
                             return { ...acc, profilePic: base64Data };
@@ -60,13 +57,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 5. Account Deletion Logic
+    // Account Deletion Logic
     const deleteLink = document.getElementById("delete-account-link");
     const deletePopup = document.getElementById("delete-confirmation");
     const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
     const cancelDeleteBtn = document.getElementById("cancel-delete-btn");
 
-    // Open the confirmation popup.
+    // Open the confirmation popup
     if (deleteLink) {
         deleteLink.addEventListener("click", (e) => {
             e.preventDefault();
@@ -74,14 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Close popup if user cancels.
+    // Close popup if user cancels
     if (cancelDeleteBtn) {
         cancelDeleteBtn.addEventListener("click", () => {
             deletePopup.style.display = "none";
         });
     }
 
-    // Execute permanent removal of the account.
+    // Execute permanent removal of the account
     if (confirmDeleteBtn) {
         confirmDeleteBtn.addEventListener("click", () => {
             // Remove the user from the permanent localStorage database.
@@ -96,8 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 6. Logout Logic
-    // Manually ends the session without deleting permanent account data.
+    // Manually ends the session without deleting permanent account data
     const logoutBtn = document.getElementById("logout-link");
     if (logoutBtn) {
         logoutBtn.addEventListener("click", (e) => {
@@ -107,15 +103,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 7. Data Rendering Placeholders
-    // These functions can be expanded to display itineraries or searches.
-    renderSavedItineraries();
+    showSavedItineraries();
+    showRecentSearches();
 });
 
-/**
- * Helper to display saved itineraries.
- */
-function renderSavedItineraries() {
+// Helper to display saved itineraries
+function showSavedItineraries() {
     const container = document.getElementById("saved-itineraries-container");
     if (!container) return;
 
@@ -132,4 +125,24 @@ function renderSavedItineraries() {
             </div>
         `).join('');
     }
+}
+
+function showRecentSearches() {
+    const container = document.getElementById("recent-searches-container");
+    if (!container) return;
+
+    const searches = JSON.parse(localStorage.getItem("recentSearches")) || [];
+    
+    if (searches.length === 0) {
+        container.innerHTML = `<p>No recent searches found.</p>`;
+        return;
+    }
+
+    container.innerHTML = searches.map(search => `
+        <div class="search-card">
+            <h4>${search.destination}</h4>
+            <p>${search.startDate} - ${search.endDate}</p>
+            <small>Searched on: ${search.timestamp}</small>
+        </div>
+    `).join('');
 }
