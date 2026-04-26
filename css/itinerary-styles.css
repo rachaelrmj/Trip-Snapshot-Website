@@ -177,29 +177,44 @@ header {
 /*--------------------------------------------------------*/
 /* Itinerary Section Styles */
 #itinerary {
-    padding: 40px 20px;
-    max-width: 1200px;
+    padding: 40px;
+    width: 100%;
     margin: 0 auto;
 }
 
+#itinerary-overview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #itinerary h2 {
-    font-size: 2rem;
-    color: #000;
+    font-size: 50px;
+    color: #000000;
     margin-bottom: 10px;
 }
 
 #itinerary p {
-    color: #555;
-    margin-bottom: 40px;
+    font-size: 26px;
+    color: #000000; 
     text-align: center;
+}
+
+.trip-summary-card {
+    background-color: #facc15;
+    margin: 20px;
+    padding: 20px;
+    width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 }
 
 /* The main container for all days */
 #itinerary-container {
     display: flex;
     flex-direction: column;
-    gap: 50px; /* Space between Day 1, Day 2, etc. */
-    margin-bottom: 50px;
+    gap: 50px; 
+    align-content: center;
 }
 
 /* Each day's section, which includes a heading and a grid of place cards. The border-top creates a visual separation between days, and the padding-top adds space above the content of each day. */
@@ -222,7 +237,7 @@ header {
 
 /* Category header appearing above the row of cards */
 .category-title {
-    font-size: 22px;
+    font-size: 26px;
     color: #1ca7ec; 
     text-align: center;
     margin-bottom: 15px;
@@ -238,9 +253,18 @@ header {
     -webkit-overflow-scrolling: touch; 
 }
 
+.card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+}
+
 .result-card {
-    flex: 0 0 280px;                
-    scroll-snap-align: start;       
+display: flex;
+    flex-direction: column;
+    /* Occupy full width minus some margin so the next card is slightly visible */
+    flex: 0 0 calc(100% - 40px); 
+    scroll-snap-align: center;       
     background: #ffffff;
     border-radius: 12px;
     overflow: hidden;
@@ -262,15 +286,67 @@ header {
 
 .result-card h3 {
     text-align: center;
-    padding: 15px 15px 5px 15px;
-    font-size: 18px;
-    margin: 0; 
+    font-size: 28px;
+    margin-bottom: 10px;
+    min-height: 86px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #facc15;
+    padding: 15px;
 }
 
 .result-card p {
     text-align: center;
     padding: 0 15px 15px 15px;
     font-weight: 600;
+}
+
+.result-card p.address, .result-card p.phone, .result-card p.rating {
+    font-size: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-card p.address {
+    height: 75px;
+}
+
+.website-link {
+    font-size: 20px;
+}
+
+.result-card p.summary {
+    font-size: 20px;
+    height: 95px; 
+    position: relative;
+}
+.photo-spread {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    margin-top: 15px;
+    padding-bottom: 5px;
+    scrollbar-width: auto;
+    scrollbar-color: #facc15 transparent;
+}
+
+.photo-spread::-webkit-scrollbar {
+    height: 6px;
+}
+
+.photo-spread::-webkit-scrollbar-thumb {
+    background-color: #facc15;
+    border-radius: 10px;
+}
+
+
+.photoGallery {
+    flex: 0 0 120px;
+    height: 80px;
+    object-fit: cover;
 }
 
 #itinerary-actions {
@@ -419,8 +495,15 @@ footer {
         order: 2; 
     }
 
-    #itinerary-actions {
-    flex-direction: row;
+    #itinerary-container {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .result-card {
+        flex: 0 0 calc(50% - 10px); 
+        scroll-snap-align: start;
+        min-width: 500px; 
     }
 
     footer {
@@ -454,24 +537,15 @@ footer {
     }
 
     main {
-        max-width: 1200px;
         margin: 0 auto;
     }
 
-    .activity-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .trip-summary-card {
+    width: 40%;
+}
 
-    .category-group .itinerary-results {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr); 
-        overflow-x: visible;        
-        gap: 25px;
-    }
-
-    .result-card {
-        flex: none;                 
-        width: auto;                
+    .result-card { 
+        flex: 0 0 calc(25% - 15px);            
     }
 
     footer {
@@ -500,13 +574,16 @@ footer {
 /* Large Desktop Styles */
 @media screen and (min-width: 1440px) {
     header, main, footer {
-        max-width: 1440px;
         margin-left: auto;
         margin-right: auto;
     }
 
     .mobile-nav ul { 
         gap: 80px;
+    }
+
+    .result-card {
+        flex: 0 0 calc(20% - 16px);
     }
 }
 

@@ -153,7 +153,7 @@ async function populateDayResults(dayNumber, data) {
 
             const request = {
                 textQuery: `${preferenceMapping[preference].query} in ${data.destination}`,
-                fields: ['displayName', 'formattedAddress', 'rating', 'photos', 'id'],
+                fields: ['displayName', 'formattedAddress', 'rating', 'photos', 'editorialSummary', 'nationalPhoneNumber', 'userRatingCount', 'websiteURI'],
                 maxResultCount: 20,
                 rankPreference: SearchByTextRankPreference.RELEVANCE,
             };
@@ -193,19 +193,39 @@ function createResultCard(place) {
         ? place.photos[0].getURI({ maxWidth: 400, maxHeight: 300 }) 
         : 'images/default-placeholder.jpg';
     
+    let photoSpread = '';
+        if (place.photos && place.photos.length > 1) {
+            // Map through all photos, skipping the first one if you don't want to repeat the main photo
+            photoSpread = place.photos.slice(1).map(photo => {
+                const url = photo.getURI({ maxWidth: 300, maxHeight: 200 });
+                return `<img src="${url}" alt="${place.displayName} gallery photo" class="photoGallery">`;
+            }).join('');
+    }
+
     // Create a new div element to represent the result card and store it in the variable resultContainer
     const resultContainer = document.createElement("div");
 
     // Assign the class "result-card" to the resultContainer element for styling purposes
     resultContainer.className = "result-card";
 
+    // Check if website exists, then create a clickable link or a 'Not Available' span
+    const website = place.websiteURI 
+    ? `<a href="${place.websiteURI}" target="_blank" rel="noopener" class="website-link">Visit Website</a>` 
+    : `<span class="no-website">Website: Not Available</span>`;
+
     resultContainer.innerHTML = `
-        <img src="${photoUrl}" alt="${place.displayName}">
+        <img src="${photoUrl}" alt="${place.displayName}" class="main-card-photo">
         <div class="card-content">
             <h3>${place.displayName}</h3>
             <p class="address">${place.formattedAddress}</p>
-            <p class="rating">Rating: ${place.rating ? place.rating + ' ⭐' : 'No rating'}</p>
-            <p class="id">${place.id}</p>
+            <p class="phone">Contact: ${place.nationalPhoneNumber ? place.nationalPhoneNumber : 'Not Available'}</p>
+            <p class="rating">Rating: ${place.rating ? place.rating + ' ⭐' + '(' + place.userRatingCount + ')' : 'No rating'}</p>
+            <p class="website-container">${website}</p>
+            <p class="summary">Description: ${place.editorialSummary ? place.editorialSummary : 'Not Available'}</p>
+            <div class="photo-spread">
+                ${photoSpread}
+            </div>
+            <   
         </div>
     `;
     return resultContainer;
@@ -264,9 +284,38 @@ function setupActionButtons() {
     // Get the clear itinerary button element by its ID and store it in the variable clearBtn
     const clearBtn = document.getElementById("clear-itinerary-button");
     // Check if the clear button exists before adding an event listener to prevent errors if the button is not present on the page
+
     if (clearBtn) {
         // Add a click event listener to the clear button
         clearBtn.addEventListener("click", () => {
+            const tripData = JSON.parse(sessionStorage.getItem("tripData"));
+        const sessionUser = sessionStorage.getItem("currentUser");
+        const savedTrips = JSON.parse(localStorage.getItem("itineraries")) || [];
+
+        // Check if this specific trip is currently saved in the user's profile
+        const isSaved = tripData && savedTrips.some(trip => 
+            trip.destination === tripData.destination && 
+            trip.startDate === tripData.startDate
+        );
+
+        if (isSaved && sessionUser) {
+            // Case 1: Trip is saved to profile
+            if (confirm("This trip is saved to your profile. Would you also like to delete it from your saved itineraries?")) {
+                // Delete from profile (localStorage)
+                const updatedTrips = savedTrips.filter(trip => 
+                    !(trip.destination === tripData.destination && trip.startDate === tripData.startDate)
+                );
+                localStorage.setItem("itineraries", JSON.stringify(updatedTrips));
+                
+                // Clear from current session and redirect
+                sessionStorage.removeItem("tripData");
+                window.location.href = "planner.html";
+            } else {
+                // User said "No" to deleting from profile, but still clear the current view
+                sessionStorage.removeItem("tripData");
+                window.location.href = "planner.html";
+            } 
+        } else {
             // Show a confirmation dialog to the user to confirm that they want to clear the trip data
             if (confirm("Are you sure you want to clear this trip?")) {
                 // Remove the trip data from sessionStorage to clear the current trip information
@@ -274,8 +323,9 @@ function setupActionButtons() {
                 // Redirect to planner page after clearing the trip data
                 window.location.href = "planner.html";
             }
-        });
-    }
+        }
+    });
+}
 
     // Get the edit preferences button element by its ID and store it in the variable editBtn
     const editBtn = document.getElementById("edit-trip-button");

@@ -236,28 +236,49 @@ main {
 }
 
 #profile-menu {
-    margin: 0 auto 20px auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 6px 15px rgba(0,0,0,0.08) ;
+    width: 100%;
+    margin-bottom: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04); /* Subtle shadow for depth */
+    border: 1px solid #f0f0f0;
 }
 
-#profile-menu ul {
+.side-nav ul {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
+    flex-direction: row; /* Horizontal on mobile */
+    overflow-x: auto;    /* Swipeable on mobile */
+    gap: 8px;
+    padding: 4px;
+    scrollbar-width: none; /* Hide scrollbar for clean look */
+    -ms-overflow-style: none;
 }
 
-#profile-menu a {
+.nav-item {
+    flex: 0 0 auto;
+}
+
+.nav-item a {
+    display: block;
+    padding: 12px 24px;
+    border-radius: 8px;
     text-decoration: none;
-    color: #000000;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4b5563; /* Mid-gray for readability */
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap;
 }
 
-#profile-menu a:hover {
-    color: #1ca7ec;
+.nav-item:hover a {
+    background-color: #f3f4f6;
+    color: #1ca7ec; /* Brand Blue */
+}
+
+.nav-item.active a {
+    background-color: #1ca7ec;
+    color: #ffffff;
 }
 
 /* Hide the popup by default */
@@ -285,9 +306,12 @@ main {
 }
 
 /* Styling for the delete link and buttons */
-.danger-link {
-    color: #ef4444 !important; /* Red to signal danger */
-    font-weight: 600;
+.nav-item.delete a {
+    color: #ef4444; /* Alert Red */
+}
+
+.nav-item.delete a:hover {
+    background-color: #fef2f2;
 }
 
 .popup-actions {
@@ -315,8 +339,88 @@ main {
     cursor: pointer;
 }
 
-.danger-btn:hover { background-color: #dc2626; }
-.secondary-btn:hover { background-color: #d1dbd3; }
+.danger-btn:hover { 
+    background-color: #dc2626; 
+}
+.secondary-btn:hover { 
+    background-color: #d1dbd3; 
+}
+
+/* --- Profile Layout --- */
+#saved-itineraries, #recent-searches {
+    width: 100%;
+    padding: 40px 0;
+    border-top: 1px solid #eee;
+}
+
+#saved-itineraries-container, #recent-searches-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    width: 100%;
+    padding: 20px 0;
+}
+
+/* --- Clickable Card Design --- */
+.itinerary-card, .search-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    position: relative;
+}
+
+.itinerary-card:hover, .search-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    border-color: #1ca7ec;
+}
+
+.card-badge {
+    background: #facc15;
+    color: #000000;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.itinerary-card h3, .search-card h4 {
+    font-size: 20px;
+    color: #000000;
+    margin-bottom: 8px;
+    text-align: center; 
+}
+
+.card-dates {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.view-link {
+    font-size: 13px;
+    font-weight: bold;
+    color: #1ca7ec;
+    display: block;
+}
+
+/* Empty State Styling */
+.empty-state {
+    grid-column: 1 / -1;
+    color: #888;
+    padding: 40px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    border: 2px dashed #ddd;
+}
 /*--------------------------------------------------------*/
 /* Footer Styles*/
 footer {
