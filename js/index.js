@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     populateTripData(); 
     destinationAutocomplete();
     attachHeroFormHandler();
-   
 });
 
 // Load session data to auto-populate related trip data entered by user on homepage
@@ -27,25 +26,38 @@ function populateTripData() {
     }
 }
 
-// Autocomplete destination as user types using the Places API (New) dynamic loader by providing a dropdown list of option the user can choose from
+let selectedPhotoUrl = ""; // Global variable to store the image URL
+
+// Autocomplete destination as user types using the Places API (New) dynamic loader
 async function destinationAutocomplete() {
     const input = document.getElementById("destination");
     if (!input) return;
 
     try {
-        // Migration: Dynamically import the 'places' library
+        // Dynamically import the 'places' library
         const { Autocomplete } = await google.maps.importLibrary("places");
 
-        // Migration: Use Field Masking to match New API standards and control costs
         const autocomplete = new Autocomplete(input, {
             types: ["(cities)"],
-            fields: ["formattedAddress", "geometry", "displayName"]
+            // Ensure photos is included in fields to satisfy API (New) requirements
+            fields: ["formattedAddress", "geometry", "displayName", "photos"]
         });
 
         autocomplete.addListener("place_changed", () => {
             const place = autocomplete.getPlace();
             if (!place || !place.geometry) return;
-            console.log("Selected place:", place.formatted_address);
+
+            // Get the URI for the first photo available for the city
+            if (place.photos && place.photos.length > 0) {
+                // Use getURI to get a valid string URL based on Google Places API (New)
+                // We request a larger width to ensure the API serves a high-quality crop
+                selectedPhotoUrl = place.photos[0].getURI({ maxWidth: 800, maxHeight: 600 });
+                
+                // STASH: Immediately save to session so it is not lost on page redirect
+                const currentData = JSON.parse(sessionStorage.getItem("tripData")) || {};
+                currentData.photoUrl = selectedPhotoUrl;
+                sessionStorage.setItem("tripData", JSON.stringify(currentData));
+            }            
         });
     } catch (error) {
         console.error("Error loading Google Maps Places library:", error);
@@ -59,55 +71,46 @@ function attachHeroFormHandler() {
     form.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        // Get the hero-destination element by ID and store its value in the variable destination
+        // Get values from the hero form
         const destination = document.getElementById("destination").value.trim();
-
-        // Get the start-date element by ID and store its value in the variable startDate
         const startDate = document.getElementById("start-date").value;
-
-        // Get the end-date element by ID and store its value in the variable endDate
         const endDate = document.getElementById("end-date").value;
 
-        // If destination, start date or end date fields are empty...
+        // Validation for empty fields
         if (!destination || !startDate || !endDate) {
-            // Display alert directing user to fill out fields
             alert("Please fill out all fields.");
             return;
         }
 
-        // If end date earlier before start date...
+        // Validation for date logic
         if (new Date(endDate) < new Date(startDate)) {
-            // Display alert directing user to put a valid end date
             alert("End date must be after start date.");
             return;
         }
 
         // Store trip data in the variable tripData
         const tripData = { 
-            destination, 
-            startDate, 
-            endDate,
+            destination: destination, 
+            startDate: startDate, 
+            endDate: endDate,
+            // Capture URL from global or fall back to session stash
+            photoUrl: selectedPhotoUrl || JSON.parse(sessionStorage.getItem("tripData"))?.photoUrl || "", 
             timestamp: new Date().toLocaleString()
         };
 
-        // Save the contents of the tripData variable to Session Storage as strings
+        // Save to Session Storage
         sessionStorage.setItem("tripData", JSON.stringify(tripData));
 
         const sessionUser = sessionStorage.getItem("currentUser");
         if (sessionUser) {
-            // Get existing searches or initialize an empty array
+            // Log this search into Local Storage for the profile page
             const recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
-            
-            // Add the new search to the beginning of the list
             recentSearches.unshift(tripData);
-
-            // Keep only the last 5 searches to save space
             const limitedSearches = recentSearches.slice(0, 5);
-            
             localStorage.setItem("recentSearches", JSON.stringify(limitedSearches));
         }
 
-        // When user clicks start planning button, direct user to the planning page
+        // Redirect to the planning page
         window.location.href = "planner.html";
     });
 }

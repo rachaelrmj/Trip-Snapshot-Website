@@ -343,6 +343,14 @@ header {
     line-height: 1.5;
 }
 
+#recovery-email {
+    width: 90%;
+    height: 30px;
+    border-radius: 8px;
+    padding: 5px;
+    text-align: center;
+}
+
 /* Close Button */
 .close-popup {
     margin-top: 20px;

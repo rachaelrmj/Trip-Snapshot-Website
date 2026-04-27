@@ -94,8 +94,22 @@
                         <a href="#" id="forgot-password-link">Forget Password</a>  
                     </div>
                     
-                    <button type="submit" id="login-button">Login</button>
+                    <button type="submit" value="Login" id="login-button">Login</button>
                 </form>
+
+                <div id="recovery-popup" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="recovery-title">
+                    <div class="popup-content">
+                        <h3 id="recovery-title">Reset Password</h3>
+                        <p>Enter the email address associated with your account.</p>
+                        <form id="recovery-form">
+                            <input type="email" id="recovery-email" placeholder="Email Address" required>
+                            <div class="popup-actions">
+                                <button type="submit" class="secondary-btn">Send Instructions</button>
+                                <button type="button" id="close-recovery" class="close-popup">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
                 <div id="no-account-container">
                     <h3>Don't Have an Account?</h3>

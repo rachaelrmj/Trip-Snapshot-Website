@@ -34,6 +34,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let accounts = JSON.parse(localStorage.getItem("accounts")) || [];
 
+    // Check if the email already exists in the master account list
+    const emailExists = accounts.some(acc => acc.email === emailValue);
+
+    if (emailExists) {
+        // Use the existing account popup instead of alert if it exists in your HTML
+        if (existingAccountPopup) {
+            showPopup(existingAccountPopup);
+        } else {
+            alert("An account with this email already exists. Please log in.");
+        }
+        return;
+    }
+
     // Create the user object with the 'fname' key
     const newAccount = { 
         fname: firstNameValue, // This must match the key used in profile.js

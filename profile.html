@@ -59,44 +59,31 @@
                 </nav>
             </div>
             <a href="login.html" class="profile-link"><img src="images/profile-logo.svg" class="profile" alt="User Profile Icon"></a>
+            <div class="header-actions">
+                <button id="theme-toggle" aria-label="Toggle dark mode">
+                    <img src="images/dark-mode.svg" alt="Theme Toggle">
+                </button>
+            </div>
         </header>
 
         <main>
             <section id="profile-overview">
                 <h2>Welcome, Traveler!</h2>
-    
-                <div class="profile-image-wrapper">
-                    <img src="images/profile-page/profile-image.svg" id="profile-image" alt="User Profile Image">
-                    <label for="image-upload" class="photo-edit-overlay">Change Photo</label>
-                    <input type="file" id="image-upload" accept="image/*">
+                <div class="profile-visual-container">
+                    <img src="images/profile-page/travel.jpeg" id="profile-visual" alt="Travel Dashboard Hero">
                 </div>
-                
                 <p>Manage your saved itineraries and travel plans here.</p>
             </section>
-
-            <aside id="profile-menu">
-                <ul>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Password & Security</a></li>
-                    <li><a href="#" id="delete-account-link" class="alert-link">Delete Account</a></li>
-                    <li><a href="#" id="logout-link">Logout</a></li>
-                </ul>
- 
-                <div id="delete-confirmation" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="delete-confirmation-title">
-                    <div class="popup-content">
-                        <h3>Delete Account?</h3>
-                        <p>Are you sure you want to delete your account? This action cannot be undone and all saved itineraries will be lost.</p>
-                        <div class="popup-actions">
-                            <button id="confirm-delete-btn" class="danger-btn">Yes, Delete Account</button>
-                            <button id="cancel-delete-btn" class="secondary-btn">No, Keep Account</button>
-                        </div>
-                    </div>
-                </div>
-            </aside>
 
             <section id="saved-itineraries">
                 <h2>Saved Itineraries</h2>
                 <div id="saved-itineraries-container">
+                </div>
+            </section>
+
+            <section id="saved-places">
+                <h2>Saved Places</h2>
+                <div id="saved-places-container" class="places-grid">
                 </div>
             </section>
 
@@ -105,6 +92,71 @@
                 <div id="recent-searches-container">
                 </div>
             </section>
+
+            <div class="section-divider"></div>
+
+            <section id="profile">
+                <h2>Account Management</h2>
+                <nav id="profile-menu">
+                    <ul>
+                        <li><a href="#" id="edit-profile-link">Profile</a></li>
+                        <li><a href="#" id="updatePassword-link">Update Password </a></li>
+                        <li><a href="#" id="delete-account-link" class="alert-link">Delete Account</a></li>
+                        <li><a href="#" id="logout-link">Logout</a></li>
+                    </ul>
+                </nav>
+
+                <section id="profile-settings" class="hidden-section">
+                    <h3>Edit Profile</h3>
+                    <form id="profile-update-form">
+                        <div class="input-field-group">
+                            <label for="edit-fname">First Name</label>
+                            <input type="text" id="edit-fname" required>
+                        </div>
+                        <div class="input-field-group">
+                            <label for="edit-lname">Last Name</label>
+                            <input type="text" id="edit-lname" required>
+                        </div>
+                        <div class="input-field-group">
+                            <label for="edit-email">Email Address</label>
+                            <input type="email" id="edit-email" required>
+                        </div>
+                        <div class="security-actions">
+                            <button type="submit" class="secondary-btn">Update Profile</button>
+                            <button type="button" id="close-profile-btn" class="danger-btn">Cancel</button>
+                        </div>
+                    </form>
+                </section>
+               
+                <section id="password-update" class="hidden-section">
+                    <h3>Update Password</h3>
+                    <form id="password-update-form">
+                        <div class="input-field-group">
+                            <label for="current-password">Current Password</label>
+                            <input type="password" id="current-password" required>
+                        </div>
+                        <div class="input-field-group">
+                            <label for="new-password">New Password</label>
+                            <input type="password" id="new-password" required>
+                        </div>
+                        <div class="update-actions">
+                            <button type="submit" class="secondary-btn">Save Changes</button>
+                            <button type="button" id="close-security-btn" class="danger-btn">Cancel</button>
+                        </div>
+                    </form>
+                </section>
+
+                <div id="delete-confirmation" class="popup-window" role="dialog" aria-modal="true" aria-labelledby="delete-title">
+                    <div class="popup-content">
+                        <h3 id="delete-title">Delete Account?</h3>
+                        <p>This action is permanent. All saved itineraries, places, and searches will be lost forever.</p>
+                        <div class="popup-actions">
+                            <button id="confirm-delete-btn" class="danger-btn">Yes, Delete Everything</button>
+                            <button id="cancel-delete-btn" class="secondary-btn">No, Keep My Account</button>
+                        </div>
+                    </div>
+                </div>            
+            </nav>
         </main>
 
         <footer>
@@ -131,12 +183,14 @@
             </section>
 
             <section id="copyright">
-                <h2>Trip Snapshot</h2>
-                <p>&copy; 2026 Trip Snapshot. All rights reserved.</p>
-                <div id="social-media">
-                    <a href="https://www.facebook.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/facebook-icon.svg" alt="Facebook Icon"></a>
-                    <a href="https://www.twitter.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/twitter-icon.svg" alt="Twitter Icon"></a>
-                    <a href="https://www.instagram.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/instagram-icon.svg" alt="Instagram Icon"></a>
+                <div id="copyright-content">
+                    <h2>Trip Snapshot</h2>
+                    <p>&copy; 2026 Trip Snapshot. All rights reserved.</p>
+                    <div id="social-media">
+                        <a href="https://www.facebook.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/facebook-icon.svg" alt="Facebook Icon"></a>
+                        <a href="https://www.twitter.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/twitter-icon.svg" alt="Twitter Icon"></a>
+                        <a href="https://www.instagram.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/instagram-icon.svg" alt="Instagram Icon"></a>
+                    </div>
                 </div>
             </section>
         </footer>
