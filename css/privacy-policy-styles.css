@@ -88,6 +88,11 @@ header {
     z-index: 1000;
     top: 0;
 }
+
+body.dark-mode header {
+    background-color: #1ca7ec;
+}
+
 .logo {
     width: 120px;
 }
@@ -157,9 +162,18 @@ header {
     font-family: 'Montserrat', sans-serif;
 }
 
+body.dark-mode .mobile-nav a {
+    color: #000000;
+}
+
 .mobile-nav li:hover, .mobile-nav a:hover {
     background-color: #1ca7ec;     
     color: #ffffff;     
+}
+
+body.dark-mode .mobile-nav li:hover,
+body.dark-mode .mobile-nav a:hover {
+    color: #ffffff;
 }
 
 #menu-toggle:checked ~ .mobile-nav {
@@ -167,8 +181,33 @@ header {
     max-height: 500px;
 }
 
-#search-bar {
-    display: none;
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    order: 2;
+}
+
+#theme-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#theme-toggle img {
+    width: 32px;
+    height: 32px;
+    filter: grayscale(1); 
+}
+
+body.dark-mode #theme-toggle img {
+    filter: invert(1); 
 }
 /*--------------------------------------------------------*/
 /* Privacy Policy Section Styles */
@@ -200,6 +239,10 @@ header {
     background-color: #facc15;
 }
 
+body.dark-mode .privacy-section h3 {
+    background-color: #1ca7ec;
+}
+
 #privacy-content {
     padding: 20px 0;
 }
@@ -219,12 +262,17 @@ header {
     display: list-item;
 }
 /*--------------------------------------------------------*/
-/* Footer Styles */
+/* Footer Styles*/
 footer {
 	display: grid;
 	grid-template-columns: 1fr;
 	text-align: center;
     background-color: #facc15;
+}
+
+body.dark-mode footer {
+    background-color: #000000;
+    color:#ffffff;
 }
 
 #stay-connected {
@@ -240,8 +288,15 @@ footer {
 	width: 80%;
     text-align: center;
 }
+
+body.dark-mode input[type="email"] {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #1ca7ec;
+}
+
 #subscribe-button {
-	background-color: #000;
+	background-color: #000000;
 	color: #fff;
 	padding: 10px 50px;
 	border-radius: 8px;
@@ -249,8 +304,18 @@ footer {
 	font-weight: bold;
 	cursor: pointer;
 }
+
+body.dark-mode #subscribe-button {
+    background-color: #1ca7ec;
+}
+
 #subscribe-button:hover {
 	background-color: #1ca7ec;
+}
+
+body.dark-mode #subscribe-button:hover {
+    background-color: #ffffff;
+    color: #1ca7ec
 }
 
 #useful-links {
@@ -266,14 +331,28 @@ footer {
      color: #000000;
 }
 
+body.dark-mode #useful-links a {
+    color: #ffffff;
+}
+
 #useful-links a:hover {
 	color: #1ca7ec;
+}
+
+body.dark-mode #useful-links a:hover {
+    color: #1ca7ec;
 }
 
 #copyright {
     background-color: #ffffff;
 	width: 100%;
 	padding: 20px;
+    justify-content: center;
+}
+
+body.dark-mode #copyright {
+    background-color: #1ca7ec;
+    color: #000000;
 }
 
 #copyright h2 {

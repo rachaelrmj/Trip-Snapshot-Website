@@ -1,14 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
     // Retrieve trip data from sessionStorage and store in the variable tripData
     const tripData = JSON.parse(sessionStorage.getItem("tripData"));
     // Query the main element and save as mainContent
     const mainContent = document.querySelector("main"); 
 
-    // Safety check to prevent errors if tripData is not found
     if (!tripData) {
         if (mainContent) {
-            // FIXED: Added missing backtick and corrected syntax while keeping your logic
             mainContent.innerHTML = `
                 <section id="empty-itinerary-message" style="padding: 100px 20px; text-align: center;">
                     <h2 style="font-size: 32px; margin-bottom: 20px;">No Itinerary Found</h2>
@@ -31,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Stop further execution so Google Maps doesn't try to load
         return;
     }
+    
     // Call the function to display the itinerary with the retrieved trip data
     displayOverview(tripData);
 
@@ -110,7 +108,7 @@ async function populateDayResults(dayNumber, data) {
         nightlife: { label: 'Nightlife', query: 'Highly Rated Bars and Clubs' },
         hotel: { label: 'Lodging & Accommodations', query: 'Top Rated Hotels' },
         flight: { label: 'Airport Information', query: 'Nearest Airports' },
-        'rental-car': { label: 'Rental Cars', query: 'Nearest Rental Car Companies' },
+        rental: { label: 'Rental Cars', query: 'Nearest Rental Car Companies' },
         transportation: { label: 'Transportation', query: 'transportation' }
     };
 
@@ -245,7 +243,11 @@ function createResultCard(place) {
 // Function to toggle saving a specific place to Local Storage
 function toggleSavePlace(name, address, photo, website, summary, destination) {
     const sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
-    if (!sessionUser) return;
+    
+    if (!sessionUser) {
+        alert("Sign up for an account to save your favorite places!");
+        return false; 
+    }
 
     const storageKey = `savedPlaces_${sessionUser.email}`;
     let savedPlaces = JSON.parse(localStorage.getItem(storageKey)) || [];
@@ -346,21 +348,6 @@ function setupActionButtons() {
     if (editBtn) {
         editBtn.addEventListener("click", () => {
             window.location.href = "planner.html";
-        });
-    }
-
-    const btn = document.getElementById("theme-toggle");
-
-    if (btn) {
-        if (localStorage.getItem("theme") === "dark") {
-            document.body.classList.add("dark-mode");
-        }
-
-        btn.addEventListener("click", () => {
-            document.body.classList.toggle("dark-mode");
-
-            const isDark = document.body.classList.contains("dark-mode");
-            localStorage.setItem("theme", isDark ? "dark" : "light");
         });
     }
 }

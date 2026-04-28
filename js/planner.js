@@ -2,15 +2,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Check if a user is currently logged into this tab/session
     const sessionData = sessionStorage.getItem("currentUser");
-    
-    if (!sessionData) {
-        // No session found; redirect to signup as the primary gatekeeper
-        window.location.href = "signup.html";
-        return;
-    }
 
     populateTripData();
-    attachPlannerFormHandler();
+    tripFormHandler();
     destinationAutocomplete();
     showExistingPreferences();
 });
@@ -24,11 +18,11 @@ function populateTripData() {
         const trip = JSON.parse(storedTrip);
         const destInput = document.getElementById("destination");
         const startInput = document.getElementById("start-date");
-        const endInput = document.getElementById("end-date");
+        const end_input = document.getElementById("end-date");
 
         if (destInput && trip.destination) destInput.value = trip.destination;
         if (startInput && trip.startDate) startInput.value = trip.startDate;
-        if (endInput && trip.endDate) endInput.value = trip.endDate;
+        if (end_input && trip.endDate) end_input.value = trip.endDate;
     } catch (err) {
         console.warn("Failed to parse tripData:", err);
     }
@@ -81,7 +75,7 @@ async function destinationAutocomplete() {
     }
 }
 
-function attachPlannerFormHandler() {
+function tripFormHandler() {
     const form = document.getElementById("trip-form");
     if (!form) return;
 

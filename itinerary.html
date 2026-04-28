@@ -7,7 +7,6 @@
         <meta name="keywords" content="travel planner, itinerary generator, trip planner, travel itinerary, vacation planner, travel planning tool, trip snapshot">
         <meta name="author" content="Rachael Martinez-Jones">
         
-        <!-- Open Graph / Social Sharing -->
         <meta property="og:title" content="Trip Snapshot | Visual Travel Planner & Itinerary Generator">
         <meta property="og:description" content="Plan smarter trips with Trip Snapshot. Generate personalized travel itineraries, organize destinations, and create visual trip snapshots in seconds.">
         <meta property="og:image" content="https://tripsnapshot.com/trip-snapshot.jpg">
@@ -16,7 +15,6 @@
         <meta property="og:site_name" content="Trip Snapshot">
         <meta property="og:locale" content="en_US">
 
-        <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Trip Snapshot | Visual Travel Planner">
         <meta name="twitter:description" content="Generate personalized travel itineraries and visual trip plans instantly with Trip Snapshot.">
@@ -24,13 +22,12 @@
         <meta name="twitter:url" content="https://tripsnapshot.com">
         <meta name="twitter:creator" content="Rachael Martinez-Jones">
 
-        <title>Trip Snapshot | Travel Planner & Itinerary Generator</title>
+        <title>Your Itinerary | Trip Snapshot</title>
 
-        <!-- Link Fonts, Canonical, Stylesheet and Scripts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,100..900;1,100..900&family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-        <link rel="canonical" href="https://tripsnapshot.com">
+        <link rel="canonical" href="https://tripsnapshot.com/itinerary">
         <link rel="stylesheet" href="css/itinerary-styles.css"> 
 
         <script>
@@ -41,13 +38,15 @@
         </script>
         <script src="js/storage.js" defer></script> 
         <script src="js/itinerary.js" defer></script>
+        <script src="js/theme.js" defer></script>
     </head>
 
     <body>
+        <a href="#main-content" class="sr-only">Skip to main content</a>
+
         <header>
             <h1> Trip Snapshot </h1>
 
-            <!-- Mobile Menu Toggle -->
             <a href="index.html" class="logo-link"><img src="images/Trip-Snapshot-Logo.png" class="logo" alt="Trip Snapshot Logo"></a>
             <div class="hamburger-menu">
                 <input type="checkbox" id="menu-toggle">
@@ -64,24 +63,35 @@
                 </nav>
             </div>
             <a href="profile.html" class="profile-link"><img src="images/profile-logo.svg" class="profile" alt="User Profile Icon"></a>
+            <div class="header-actions">
+                <button id="theme-toggle" aria-label="Toggle dark mode">
+                    <img src="images/dark-mode.svg" alt="Theme Toggle">
+                </button>
+            </div>
         </header>
 
-        <main>
+        <main id="main-content">
             <section id="itinerary">
-                <div id="itinerary-overview" class="overview-section"></div>
-                <div id="itinerary-container"></div>
+                <div id="itinerary-overview" class="overview-section">
+                    </div>
+
+                <div id="itinerary-container">
+                    </div>
                 
                 <div id="itinerary-actions">
-                    <button id="homepage-button">Homepage</button>
-                    <button id="save-itinerary-button">Save Itinerary</button>
-                    <button id="clear-itinerary-button">Clear Itinerary</button>
-                    <button id="edit-trip-button">Edit Trip</button>
+                    <div class="action-group">
+                        <button id="save-itinerary-button" class="btn-primary">Save Itinerary</button>
+                        <button id="edit-trip-button" class="btn-secondary">Edit Trip</button>
+                    </div>
+                    <div class="action-group secondary">
+                        <button id="clear-itinerary-button" class="btn-text">Clear</button>
+                        <button id="homepage-button" class="btn-text">Back to Home</button>
+                    </div>
                 </div>
             </section>
         </main> 
-    </body>
 
-    <footer>
+        <footer>
             <section id="stay-connected">
                 <h3>Stay Connected</h3>
                 <p>Get destination ideas, planning tips, and travel inspiration sent to your inbox.</p>
@@ -114,4 +124,5 @@
                 </div>
             </section>
         </footer>
+    </body>
 </html>

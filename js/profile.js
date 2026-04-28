@@ -1,14 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Check if a user is currently logged into this tab/session
     const sessionData = sessionStorage.getItem("currentUser");
-    
+
+    const accounts = JSON.parse(localStorage.getItem("accounts")) || [];
+
+    // 1. Check if session exists
     if (!sessionData) {
-        // No session found; redirect to signup as the primary gatekeeper
-        window.location.href = "signup.html";
+        window.location.href = "login.html";
         return;
     }
 
-    let currentUser = JSON.parse(sessionData);
+    const currentUser = JSON.parse(sessionData);
+
+    // 2. Verify that this user exists in the permanent account list
+    const accountExists = accounts.some(acc => acc.email.toLowerCase() === currentUser.email.toLowerCase());
+
+    if (!accountExists) {
+        // If the account was deleted or doesn't exist, clear session and redirect
+        sessionStorage.removeItem("currentUser");
+        window.location.href = "signup.html";
+        return;
+    }
 
     const welcomeHeader = document.querySelector("#profile-overview h2");
 
@@ -235,21 +247,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Redirect to ensure the session state is refreshed
             window.location.href = "index.html";
-        });
-    }
-
-    const btn = document.getElementById("theme-toggle");
-    if (btn) {
-        // Load saved mode
-        if (localStorage.getItem("theme") === "dark") {
-            document.body.classList.add("dark-mode");
-        }
-
-        // Toggle
-        btn.addEventListener("click", () => {
-            document.body.classList.toggle("dark-mode");
-            const isDark = document.body.classList.contains("dark-mode");
-            localStorage.setItem("theme", isDark ? "dark" : "light");
         });
     }
 

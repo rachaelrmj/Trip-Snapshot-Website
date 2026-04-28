@@ -50,6 +50,21 @@ table {
 }
 /*--------------------------------------------------------*/
 /* Trip Snapshot Website- Profile Page Global Styles */
+:root {
+  --primary: #1ca7ec;
+  --accent: #facc15;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  /* Dark Mode specific palette for WCAG compliance */
+  --dark-bg: #0f172a;
+  --dark-surface: #1e293b;
+  --dark-border: #334155;
+  --dark-text: #f8fafc;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -59,8 +74,14 @@ table {
 body, html {
     min-height: 100vh; 
     font-family: 'SN Pro', sans-serif;
-    background-color: #ffffff;
-    color: #000000;
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
 }
 
 h1 {
@@ -91,10 +112,11 @@ header {
     position: sticky;
     z-index: 1000;
     top: 0;
+    transition: background-color 0.3s ease;
 }
 
 body.dark-mode header {
-    background-color: #1ca7ec;
+    background-color: var(--primary);
 }
 
 .logo {
@@ -140,7 +162,7 @@ body.dark-mode header {
     top: 100%;        
     left: 0;          
     width: 100%;   
-    background: #facc15;         
+    background: var(--accent);         
     box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
     transition: max-height 0.3s ease;
     max-height: 0;
@@ -171,7 +193,7 @@ body.dark-mode .mobile-nav a {
 }
 
 .mobile-nav li:hover, .mobile-nav a:hover {
-    background-color: #1ca7ec;     
+    background-color: var(--primary);     
     color: #ffffff;     
 }
 
@@ -215,10 +237,6 @@ body.dark-mode #theme-toggle img {
 }
 /*--------------------------------------------------------*/
 /* Profile Styles */
-body.dark-mode {
-    background-color: #ffffff;
-    color: #000000;
-}
 
 main {
     display: flex;
@@ -247,7 +265,7 @@ main {
 }
 
 body.dark-mode .section-divider {
-    border-top: 2px solid #000000;
+    border-top: 2px solid var(--dark-border);
 }
 
 .profile-visual-container {
@@ -268,9 +286,15 @@ body.dark-mode .section-divider {
 #profile-menu {
     width: 100%;
     margin: 40px 0 0 0; 
-    background: #ffffff;
+    background: var(--surface);
     padding: 30px 10px;
     border-top: 2px solid #f0f0f0; 
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode #profile-menu {
+    background: var(--dark-surface);
+    border-top-color: var(--dark-border);
 }
 
 #profile-menu ul {
@@ -296,17 +320,18 @@ body.dark-mode .section-divider {
 }
 
 body.dark-mode #profile-menu a {
-    background-color: #1ca7ec; 
+    background-color: var(--primary); 
     color: #ffffff;
 }
 
 #profile-menu a:hover {
-    background-color: #1ca7ec;
+    background-color: var(--primary);
     transform: translateY(-2px);
 }
 
 body.dark-mode #profile-menu a:hover {
-    background-color: #000000;
+    background-color: var(--accent);
+    color: #000000;
 }
 
 .password-wrapper {
@@ -325,14 +350,14 @@ body.dark-mode #profile-menu a:hover {
     right: 10px;
     background: transparent;
     border: none;
-    color: #1ca7ec;
+    color: var(--primary);
     font-size: 12px;
     font-weight: bold;
     cursor: pointer;
 }
 
 body.dark-mode .toggle-password {
-    color: #facc15;
+    color: var(--accent);
 }
 
 .hidden-section {
@@ -343,13 +368,13 @@ body.dark-mode .toggle-password {
     padding: 25px;
     background: #f9f9f9;
     border-radius: 16px;
-    border: 2px solid #1ca7ec;
+    border: 2px solid var(--primary);
 }
 
 body.dark-mode .hidden-section {
-    background: #000000;
-    border-color: #facc15;
-    color: #ffffff;
+    background: var(--dark-surface);
+    border-color: var(--accent);
+    color: var(--dark-text);
 }
 
 .input-field-group {
@@ -370,6 +395,12 @@ body.dark-mode .hidden-section {
     border-radius: 8px;
     border: 1px solid #ccc;
     font-family: inherit;
+}
+
+body.dark-mode .input-field-group input {
+    background-color: var(--dark-bg);
+    border-color: var(--dark-border);
+    color: white;
 }
 
 .update-actions {
@@ -436,6 +467,12 @@ body.dark-mode .popup-content {
     margin-top: 20px;
 }
 
+body.dark-mode #saved-itineraries, 
+body.dark-mode #recent-searches, 
+body.dark-mode #saved-places {
+    border-top-color: var(--dark-border);
+}
+
 #saved-itineraries-container, #recent-searches-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -445,7 +482,8 @@ body.dark-mode .popup-content {
 }
 
 .itinerary-card, .search-card, .place-card {
-    background-color: #ffffff;
+    background-color: var(--surface);
+    color: var(--text);
     border-radius: 16px;
     padding: 24px;
     text-align: center;
@@ -456,49 +494,18 @@ body.dark-mode .popup-content {
     position: relative;
 }
 
-body.dark-mode .itinerary-card {
-    background-color: #000000;
-    color: #ffffff;
-}
-
-body.dark-mode .itinerary-card h3 {
-    color: #ffffff;
-}
-
-body.dark-mode .itinerary-card p {
-    color: #ffffff;
-}
-
-body.dark-mode .search-card {
-    background-color: #000000;
-    color: #ffffff; 
-} 
-
-body.dark-mode .search-card h4 {
-    color: #ffffff;
-}
-
-body.dark-mode .search-card p {
-    color: #ffffff;
-}
-
+body.dark-mode .itinerary-card, 
+body.dark-mode .search-card, 
 body.dark-mode .place-card {
-    background-color: #000000;
-    color: #ffffff; 
-}
-
-body.dark-mode .place-card h4 {
-    color: #ffffff;
-}
-
-body.dark-mode .place-card p {
-    color: #ffffff;
+    background-color: var(--dark-surface);
+    color: var(--dark-text);
+    border-color: var(--dark-border);
 }
 
 .itinerary-card:hover, .search-card:hover, .place-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-    border-color: #1ca7ec;
+    border-color: var(--primary);
 }
 
 .card-content-container, .search-card-info {
@@ -530,7 +537,7 @@ body.dark-mode .remove-btn-top {
 }
 
 .remove-btn-top:hover {
-    background: #1ca7ec;
+    background: var(--primary);
     color: #ffffff;
 }
 
@@ -548,7 +555,7 @@ body.dark-mode .remove-btn-top:hover {
 }
 
 .card-badge {
-    background: #facc15;
+    background: var(--accent);
     color: #000000;
     font-size: 10px;
     font-weight: 800;
@@ -560,13 +567,13 @@ body.dark-mode .remove-btn-top:hover {
 }
 
 body.dark-mode .card-badge {
-    background: #1ca7ec; 
+    background: var(--primary); 
     color: #ffffff;
 }
 
 .itinerary-card h3, .search-card h4 {
     font-size: 20px;
-    color: #000000;
+    color: inherit;
     margin-bottom: 8px;
     text-align: center; 
 }
@@ -599,21 +606,21 @@ body.dark-mode .card-badge {
 .place-card-info p {
     font-size: 14px;
     line-height: 1.4;
-    color: #000000; 
+    color: inherit; 
     height: auto; 
     margin-bottom: 12px;
 }
 
 .card-dates {
     font-size: 14px;
-    color: #000000;
+    color: inherit;
     margin-bottom: 16px;
 }
 
 .view-link, .saved-view-link, .website-link {
     font-size: 13px;
     font-weight: bold;
-    color: #1ca7ec;
+    color: var(--primary);
     display: block;
 }
 
@@ -641,7 +648,7 @@ body.dark-mode .card-badge {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #facc15;
+    border-bottom: 2px solid var(--accent);
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
@@ -694,8 +701,12 @@ body.dark-mode .card-badge {
     border-radius: 10px;
 }
 
+body.dark-mode .places-horizontal-row::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+}
+
 .places-horizontal-row::-webkit-scrollbar-thumb {
-    background: #1ca7ec;
+    background: var(--primary);
     border-radius: 10px;
 }
 
@@ -707,11 +718,16 @@ body.dark-mode .card-badge {
 
 .empty-state {
     grid-column: 1 / -1;
-    color: #000000;
+    color: inherit;
     padding: 40px;
     background: #f9f9f9;
     border-radius: 12px;
     border: 2px dashed #808080;
+}
+
+body.dark-mode .empty-state {
+    background: var(--dark-surface);
+    border-color: var(--muted);
 }
 /*--------------------------------------------------------*/
 /* Footer Styles*/
@@ -719,7 +735,8 @@ footer {
 	display: grid;
 	grid-template-columns: 1fr;
 	text-align: center;
-    background-color: #facc15;
+    background-color: var(--accent);
+    color: #000000;
 }
 
 body.dark-mode footer {
@@ -735,7 +752,7 @@ body.dark-mode footer {
 #stay-connected input[type="email"] {
 	padding: 10px;
 	border-radius: 8px;
-	border: 2px solid #1ca7ec;
+	border: 2px solid var(--primary);
 	margin: 10px;
 	width: 80%;
     text-align: center;
@@ -744,7 +761,7 @@ body.dark-mode footer {
 body.dark-mode input[type="email"] {
     background-color: #ffffff;
     color: #000000;
-    border: 2px solid #1ca7ec;
+    border: 2px solid var(--primary);
 }
 
 #subscribe-button {
@@ -758,16 +775,16 @@ body.dark-mode input[type="email"] {
 }
 
 body.dark-mode #subscribe-button {
-    background-color: #1ca7ec;
+    background-color: var(--primary);
 }
 
 #subscribe-button:hover {
-	background-color: #1ca7ec;
+	background-color: var(--primary);
 }
 
 body.dark-mode #subscribe-button:hover {
     background-color: #ffffff;
-    color: #1ca7ec
+    color: var(--primary)
 }
 
 #useful-links {
@@ -788,15 +805,14 @@ body.dark-mode #useful-links a {
 }
 
 #useful-links a:hover {
-	color: #1ca7ec;
+	color: var(--primary);
 }
 
 body.dark-mode #useful-links a:hover {
-    color: #1ca7ec;
+    color: var(--primary);
 }
 
 #copyright {
-    display: flex;
     background-color: #ffffff;
 	width: 100%;
 	padding: 20px;
@@ -804,7 +820,7 @@ body.dark-mode #useful-links a:hover {
 }
 
 body.dark-mode #copyright {
-    background-color: #1ca7ec;
+    background-color: var(--primary);
     color: #000000;
 }
 
@@ -821,6 +837,10 @@ body.dark-mode #copyright {
     height: 24px;
     margin: 0 10px;
     transition: transform 0.3s;
+}
+
+body.dark-mode #social-media img {
+    filter: brightness(0) invert(1);
 }
 /*--------------------------------------------------------*/
 /* Tablet Styles */
@@ -849,7 +869,7 @@ body.dark-mode #copyright {
 
     .mobile-nav li:hover, .mobile-nav a:hover {
         background-color: transparent; 
-        color: #1ca7ec; 
+        color: var(--primary); 
     }
     
     header { 
