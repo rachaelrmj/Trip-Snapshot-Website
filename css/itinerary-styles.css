@@ -316,6 +316,54 @@ body.dark-mode #empty-itinerary-message p {
     align-content: center;
 }
 
+/* Main section headers */
+.section-main-title {
+    font-size: 32px;
+    margin: 40px 0 20px;
+    color: var(--primary); /* Blue for Travel & Main Headers */
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 10px;
+}
+
+/* Specific styling for the Travel section */
+#travel-needs-section {
+    border-top: 5px solid var(--primary); /* Blue top border */
+    background-color: rgba(28, 167, 236, 0.05); /* Soft blue background hint */
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* Styling for the Activities wrapper */
+#activities-wrapper .itinerary-day {
+    border-top: 5px solid var(--accent); /* Yellow top border for days */
+    margin-top: 30px;
+}
+
+#activities-wrapper h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 24px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Container for the cards */
+.itinerary-results {
+    display: flex;                  
+    overflow-x: auto;               
+    scroll-snap-type: x mandatory;   
+    gap: 20px;                      
+    padding: 10px 10px 25px 10px; /* Space for shadows and scrollbar */
+    -webkit-overflow-scrolling: touch; 
+}
+
+/* Card sizing to ensure horizontal flow */
+.itinerary-results .result-card {
+    flex: 0 0 85%; /* Shows a peek of next card on mobile */
+    scroll-snap-align: center;
+    min-width: unset; /* Override tablet styles if necessary */
+}
+
 /* Each day's section, which includes a heading and a grid of place cards. The border-top creates a visual separation between days, and the padding-top adds space above the content of each day. */
 .itinerary-day {
     border-top: 5px solid var(--accent);
@@ -461,7 +509,7 @@ body.dark-mode .result-card {
     object-fit: cover;
 }
 
-.save-btn {
+.save-button {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -479,7 +527,7 @@ body.dark-mode .result-card {
     transition: transform 0.2s ease;
 }
 
-.save-btn:hover {
+.save-button:hover {
     transform: scale(1.1);
 }
 
@@ -504,7 +552,7 @@ body.dark-mode #itinerary-actions {
     border-top: 2px solid var(--dark-border);
 }
 
-#homepage-button, #save-itinerary-button, #clear-itinerary-button, #edit-trip-button {
+#homepage-button, #save-itinerary-button, #clear-itinerary-button, #edit-trip-button, #results-itinerary-button {
     flex: 1;
     min-width: 200px;
     max-width: 280px;
@@ -520,15 +568,14 @@ body.dark-mode #itinerary-actions {
     transition: background-color 0.2s ease;
 }
 
-#homepage-button:hover, #save-itinerary-button:hover, #clear-itinerary-button:hover, #edit-trip-button:hover {
+#homepage-button:hover, #save-itinerary-button:hover, #clear-itinerary-button:hover, #edit-trip-button:hover, #results-itinerary-button:hover {
     background-color: #000000;
 }
 
-body.dark-mode #homepage-button:hover, body.dark-mode #save-itinerary-button:hover, body.dark-mode #clear-itinerary-button:hover, body.dark-mode #edit-trip-button:hover {
+body.dark-mode #homepage-button:hover, body.dark-mode #save-itinerary-button:hover, body.dark-mode #clear-itinerary-button:hover, body.dark-mode #edit-trip-button:hover, body.dark-mode #results-itinerary-button {
     background-color: var(--accent);
     color: #000000;
 }
-
 /*--------------------------------------------------------*/
 /* Footer Styles*/
 footer {
@@ -760,3 +807,4 @@ body.dark-mode #social-media img {
         flex: 0 0 calc(20% - 16px);
     }
 }
+

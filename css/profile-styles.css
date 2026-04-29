@@ -460,7 +460,7 @@ body.dark-mode .popup-content {
 }
 
 /* --- Profile Layout --- */
-#saved-itineraries, #recent-searches, #saved-places {
+#saved-itineraries, #recent-searches, #saved-places, #saved-results {
     width: 100%;
     padding-top: 50px;
     border-top: 2px solid #808080;
@@ -469,11 +469,11 @@ body.dark-mode .popup-content {
 
 body.dark-mode #saved-itineraries, 
 body.dark-mode #recent-searches, 
-body.dark-mode #saved-places {
+body.dark-mode #saved-places, #saved-results {
     border-top-color: var(--dark-border);
 }
 
-#saved-itineraries-container, #recent-searches-container {
+#saved-itineraries-container, #recent-searches-container, #saved-results-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
@@ -481,7 +481,7 @@ body.dark-mode #saved-places {
     padding: 20px 0;
 }
 
-.itinerary-card, .search-card, .place-card {
+.itinerary-card, .search-card, .place-card, .result-card {
     background-color: var(--surface);
     color: var(--text);
     border-radius: 16px;

@@ -145,7 +145,7 @@ function tripFormHandler() {
             localStorage.setItem("recentSearches", JSON.stringify(limitedSearches));
         }
 
-        // Redirect to itinerary page
-        window.location.href = "itinerary.html";
+        // Redirect to results page
+        window.location.href = "results.html";
     });
 }

@@ -1,22 +1,23 @@
 /* Trip Snapshot Website CSS Reset */
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
+html, body, div, span,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
+a, abbr, address, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
+small, strike, strong, sub, sup, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
+article, aside, details, embed, 
 figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+menu, nav, output, section, summary,
+time, mark {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -24,29 +25,36 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1;
 }
+
 ol, ul {
 	list-style: none;
 }
+
 blockquote, q {
 	quotes: none;
 }
-blockquote:before, blockquote:after, q:before, q:after {
+
+blockquote:before, blockquote:after,
+q:before, q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 /*--------------------------------------------------------*/
-/* Trip Snapshot Website- Planner Page Global Styles */
+/* Global Styles */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -54,17 +62,14 @@ table {
 }
 
 body, html {
-    min-height: 100vh;
-    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh; 
+    font-family: 'SN Pro', sans-serif;
     background-color: #ffffff;
     color: #000000;
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
-
-body.dark-mode {
-    background-color: #000000;
-    color: #ffffff;
-}
+/*--------------------------------------------------------*/
+/* Typography Styles*/
 
 h1 {
     display: none;  
@@ -80,42 +85,30 @@ p, button {
     font-family: 'Montserrat', sans-serif;
 }
 
-:focus-visible {
-    outline: 3px solid #1ca7ec;
-    outline-offset: 3px;
-}
+/*--------------------------------------------------------*/
+/* Skip Link Styles*/
 
-.checkbox-container input:focus + label {
-    outline: 3px solid #1ca7ec;
-    outline-offset: 2px;
-}
-/*----------------------------*/
-/* --- Skip Link Styles --- */
 #skip-link {
     position: absolute;
     top: -100px; 
     left: 0;
-    background: #000000;
-    color: #ffffff;
+    background-color: #1ca7ec; 
+    color: #fff;
     padding: 15px 25px;
     z-index: 2000;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    text-decoration: none;
     border-radius: 0 0 10px 0;
-    transition: top 0.3s ease;
 }
 
 #skip-link:focus {
     top: 0;
-    outline: 3px solid #000000;
 }
-/*----------------------------*/
+
+/*--------------------------------------------------------*/
 /* Header Styles */
 header {
     display: flex;      
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     padding: 10px 20px;
     background-color: #ffffff;
     position: sticky;
@@ -171,7 +164,7 @@ body.dark-mode header {
     top: 100%;        
     left: 0;          
     width: 100%;   
-    background: #facc15;        
+    background-color: #facc15;        
     box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
     transition: max-height 0.3s ease;
     max-height: 0;
@@ -179,7 +172,7 @@ body.dark-mode header {
 }
 
 body.dark-mode .mobile-nav {
-    background: #ffffff;;
+    background-color: #ffffff;;
 }
 
 .mobile-nav ul {      
@@ -191,6 +184,8 @@ body.dark-mode .mobile-nav {
 
 .mobile-nav li {
     padding: 15px 0;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .mobile-nav a {
@@ -223,7 +218,7 @@ body.dark-mode .mobile-nav a {
 }
 
 #theme-toggle {
-    background: transparent;
+    background-color: transparent;
     border: none;
     cursor: pointer;
     width: 30px;
@@ -254,275 +249,344 @@ body.dark-mode #theme-toggle img {
     border: 0;
 }
 /*--------------------------------------------------------*/
-/* Planning Section Styles */
-
-#plan-trip {
-    padding: 0 20px;
-    background-color: #ffffff;
-    transition: background-color 0.3s ease;
+/* Results Section Styles */
+#empty-results-message {
+    padding: 100px 20px; 
+    text-align: center;
 }
 
-body.dark-mode #plan-trip {
+#empty-results-message h2 {
+    font-size: 32px; 
+    margin-bottom: 20px;
+}
+
+#empty-results-message p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+#empty-results-message a {
+    text-decoration:none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    background-color:#1ca7ec;
+    color:#ffffff;
+    font-weight:bold;
+}
+
+#results-overview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+}
+
+#results-overview h2 {
+    font-size: 30px;
+}
+
+/* --- Trip Summary Card Styles --- */
+.trip-summary-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    background-color: #facc15; 
+    color: #000000;
+    border: 1px solid #dcdcdc; 
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 1000px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.trip-summary-card #dates {
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-color: #ffffff;
+}
+
+body.dark-mode .trip-summary-card #dates {
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-color: #000000;
+}
+
+.trip-summary-card p {
+    text-align: center;
+}
+
+.trip-summary-card span {
+    font-weight: bold;
+}
+
+body.dark-mode .trip-summary-card {
     background-color: #000000;
+    color:#ffffff;
+    border: 1px solid #1ca7ec;
 }
 
-/* HERO SECTION */
-#hero-plan_container {
-    position: relative;
-    height: 35vh; 
+#results-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px;
+}
+
+.category-group {
+    width: 100%;
+}
+
+.category-title {
+    font-size: 26px;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.category-group .trip-results {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 5px 25px 5px; 
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+}
+
+.result-card {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.result-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.result-card h3 {
+    background-color: #facc15;
+    color: #000000;
+    padding: 15px;
+    text-align: center;
+}
+
+body.dark-mode .result-card h3 {
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: lighter;
+}
+
+.result-card p {
+    text-align: center;
+    padding: 0 15px 15px 15px;
+    font-weight: 600;;
+    font-size: 20px;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    margin-bottom: 20px;
-    border-radius: 0 0 20px 20px;
 }
 
-#video-plan_trip {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.55);
+.result-card p.address {
+    height: 75px;
 }
 
-body.dark-mode #video-plan_trip {
-    filter: brightness(0.4); 
+.website-link {
+    font-size: 20px;
+    color: #1ca7ec;
 }
 
-#hero-text {
+.result-card p.summary {
+    font-size: 20px;
+    height: 95px; 
     position: relative;
-    z-index: 2;
-    color: #000000;
-    max-width: 600px;
-    background: #facc15;
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    text-align: center;
 }
 
-body.dark-mode #hero-text {
-    background: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-#hero-text h2 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    margin-bottom: 10px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-
-#hero-text p {
-    font-size: 1.1rem;
-    font-weight: 400;
-}
-/*--------------------------------------------------------*/
-/* Trip Search Form Styles */
-
-.trip-search-form {
-    gap: 24px;
-    padding: 32px;
-    border-radius: 20px;
-    border: none;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-    margin-bottom: 20px;
-    transition: background-color 0.3s ease;
-}
-
-body.dark-mode .trip-search-form {
-    background-color: #1e293b;
-    border-color: #ffffff;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-}
-
-.trip-search-form h2, .trip-search-form h3 {
-    text-align: center;
-}
-
-.trip-search-form label {
-    display: block;
-    margin-bottom: 8px;
-    margin-top: 18px;
-    font-size: 15px;
-    font-weight: 600;
-    color: #000000;
-}
-
-body.dark-mode .trip-search-form label {
-    color: #ffffff;
-}
-
-.trip-search-form input,
-.trip-search-form select {
-    width: 100%;
-    padding: 14px 12px;
-    border: 2px solid #000000; 
-    background-color: #ffffff; 
-    border-radius: 10px;
-    font-size: 14px;
-    transition: all 0.2s ease;
-    color: #000000; 
-}
-
-body.dark-mode .trip-search-form input,
-body.dark-mode .trip-search-form select {
-    background-color: #000000;
-    border: 2px solid #808080; 
-    color: #ffffff;
-}
-
-body.dark-mode .trip-search-form input {
-    background-color: #000000;
-    border-color: #808080; 
-    color: #ffffff;
-}
-
-.trip-search-form input:hover {
-    border-color: #1ca7ec;
-}
-
-.trip-search-form input:focus {
-    border-color: #1ca7ec;
-    box-shadow: 0 0 0 4px rgba(28, 167, 236, 0.15);
-    outline: none;
-}
-
-.plan-dates {
+/* --- Photo Gallery Styles --- */
+.photo-spread {
     display: flex;
-    flex-direction: column;
+    overflow-x: auto;
+    gap: 8px;
+    margin: 15px 15px; 
+    padding-bottom: 10px; 
+    scrollbar-width: thin;
+    scrollbar-color: #facc15 #ffffff;
 }
 
-.plan-dates input[type="date"] {
-    cursor: pointer;
-    position: relative;
+body.dark-mode .photo-spread {
+    scrollbar-color: #000000 #ffffff;
 }
 
-/* This forces the browser to show the picker when the input is clicked */
-.plan-dates input[type="date"]::-webkit-calendar-picker-indicator {
-    position: absolute;
+.photoGallery {
+    flex: 0 0 120px;
+    height: 90px; 
+    object-fit: cover;
+    border-radius: 6px; 
+}
+
+/* Activities Day Selection Popup Styles */
+#day-modal {
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0; /* Hides the icon but keeps it clickable over the whole box */
-    cursor: pointer;
+    width: 100vw;
+    height: 100vh;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
 }
 
-/* Preferences & Travel Needs Section Styles - Modernized Chips */
-.preferences-section {
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #ffffff;
+    width: 90%;
+    max-width: 400px;
+    margin: 0; 
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .modal-content {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.day-list {
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    gap: 20px;
-}
-.preferences-section h3 {
-    margin: 15px 0 10px;
-    font-size: 16px;
-}
-
-.preference-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     gap: 10px;
+    margin: 15px 0;
 }
 
-.checkbox-container input {
-    position: absolute;
-    opacity: 0;
-}
-
-.checkbox-container input:focus + label {
-    outline: 3px solid #000000;
-}
-
-.checkbox-container label {
-    font-size: 14px;
-    color: #ffffff;
-    background-color: #000000;
-    padding: 10px 18px;
+.day-option {
+    padding: 12px;
     border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    width: auto;
-    margin-bottom: 0;
-    transition: all 0.3s ease;
-}
-
-body.dark-mode .checkbox-container label {
-    background-color: #ffffff;
-    color: #000000;
-    border-color: #475569;
-}
-
-.checkbox-container input:checked + label {
     background-color: #facc15;
     color: #000000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
 }
 
-#trip-form-actions {
+#close-modal {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/* Result Action Button Styles */
+
+#results-actions {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 30px;
-    width: 100%;
-    align-items: center; 
+    align-items: center;
+    gap: 15px;
+    padding: 40px 0;
 }
 
-#generate-trip-button, #reset-button {
-    width: 100%;
-    max-width: 320px; 
-    padding: 16px 32px;
-    font-weight: 700;
-    text-transform: uppercase;
+.result-card .add-button {
+    margin-top: auto; 
+    margin-bottom: 15px;
+    align-self: center;
+    width: 90%;
 }
 
-#generate-trip-button {
+.add-button {
+    background-color: #facc15;
+    font-size: 16px;
+    font-weight: bold;
     border: none;
-    border-radius: 12px;
-    background: #facc15;
-    color: #000000;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.25s ease;
+    border-radius: 8px;
+    padding: 5px;
 }
 
-body.dark-mode #generate-trip-button {
+.add-button.is-added {
+    background-color: #dcdcdc;
+    color: #000000;
+}
+
+body.dark-mode .add-button.is-added {
     background-color: #1ca7ec;
     color: #000000;
 }
 
-#generate-trip-button:hover {
-    background: #1ca7ec;
+.add-button:hover {
+    background-color: #000000;
     color: #ffffff;
 }
 
-body.dark-mode #generate-trip-button:hover {
-    background-color: #facc15;
-    color: #ffffff;
+body.dark-mode .add-button:hover {
+    background-color: #dcdcdc;
+    color: #000000;
 }
 
-#reset-button {
+body.dark-mode .add-button {
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#homepage-button,
+#save-results-button,
+#clear-results-button,
+#edit-trip-button, #view-itinerary-button {
+    margin: 0 15px;
+    padding: 15px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #000000;
+    color: #ffffff;
     border: none;
-    border-radius: 12px;
-    background: #000000;
-    color: #ffffff;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 15px;
     cursor: pointer;
-    transition: all 0.25s ease;
 }
 
-body.dark-mode #reset-button {
-    background: #475569;
+body.dark-mode #view-itinerary-button, body.dark-mode #homepage-button, body.dark-mode #save-results-button, body.dark-mode #clear-results-button, body.dark-mode #edit-trip-button {
+    background-color: #1ca7ec;
+    color: #000000;
 }
 
-#reset-button:hover {
-    background: #1ca7ec;
+#homepage-button:hover,
+#save-results-button:hover,
+#clear-results-button:hover,
+#edit-trip-button:hover, #view-itinerary-button:hover {
+    background-color: #facc15;
+    color: #000000;
+}
+
+body.dark-mode #homepage-button:hover,
+body.dark-mode #save-results-button:hover,
+body.dark-mode #clear-results-button:hover,
+body.dark-mode #edit-trip-button:hover, body.dark-mode #view-itinerary-button:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+#homepage-button:active,
+#save-results-button:active,
+#clear-results-button:active,
+#edit-trip-button:active, #view-itinerary-button:active {
+    background-color: #facc15;
+    transform: scale(0.98);
+    transition: 0.1s;
 }
 /*--------------------------------------------------------*/
 /* Footer Styles*/
@@ -560,10 +624,6 @@ body.dark-mode input[type="email"] {
     background-color: #ffffff;
     color: #000000;
     border: 2px solid #1ca7ec;
-}
-
-#subscribe-form label {
-    display: none;
 }
 
 #subscribe-button {
@@ -612,10 +672,6 @@ body.dark-mode #copyright {
     color: #000000;
 }
 
-#copyright h2 {
-    display: none;
-}
-
 #social-media {
     margin-top: 20px;
     display: flex;
@@ -643,13 +699,13 @@ body.dark-mode #social-media img {
         display: block;
         position: static;
         max-height: none;
-        background: transparent;
+        background-color: transparent;
         box-shadow: none;
         overflow: visible;
     }
 
     body.dark-mode .mobile-nav {
-    background: #1ca7ec; 
+    background-color: #1ca7ec; 
     }
 
     .mobile-nav ul { 
@@ -674,13 +730,13 @@ body.dark-mode #social-media img {
         order: 0; 
     }
 
-    #hero-plan_container {
-        height: 50vh;
+    .trip-summary-card {
+        grid-template-columns: repeat(3, 1fr);
+        text-align: left;
     }
 
-    #trip-form-actions {
-        flex-direction: row; 
-        justify-content: center; 
+    .result-card {
+        flex: 0 0 calc(45%);
     }
 
     footer {
@@ -705,6 +761,10 @@ body.dark-mode #social-media img {
     main {
         max-width: 1200px;
         margin: 0 auto;
+    }
+
+    .result-card {
+        flex: 0 0 calc(30%);
     }
 
     #useful-links ul {

@@ -5,19 +5,19 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
+html, body, div, span,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
+a, abbr, address, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
+small, strike, strong, sub, sup, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
+article, aside, details, embed, 
 figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+menu, nav, output, section, summary,
+time, mark {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -148,7 +148,6 @@ body.dark-mode header {
 }
 
 .mobile-nav ul {      
-    list-style: none;         
     text-align: center;
     padding: 0;
     margin: 0;
@@ -162,22 +161,13 @@ body.dark-mode header {
     display: block;
     text-decoration: none;
     font-size: 16px;
-    color: black;
-    font-family: 'Montserrat', sans-serif;
-}
-
-body.dark-mode .mobile-nav a {
     color: #000000;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .mobile-nav li:hover, .mobile-nav a:hover {
     background-color: #1ca7ec;     
     color: #ffffff;     
-}
-
-body.dark-mode .mobile-nav li:hover,
-body.dark-mode .mobile-nav a:hover {
-    color: #ffffff;
 }
 
 #menu-toggle:checked ~ .mobile-nav {
@@ -221,17 +211,19 @@ body.dark-mode #theme-toggle img {
     justify-content: center;
     align-items: center;
     background-color: #facc15;
-    height: auto;
     padding: 20px;
     text-align: center;
-    color: #ffffff;
     margin: 0 auto 30px auto;
     border-radius: 8px;
 }
 
+body.dark-mode #hero {
+    background-color: #000000;
+}
+
 #hero-content {
     margin: 10px;
-    background-color: #ffffffcc;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;   
 }
@@ -274,15 +266,11 @@ body.dark-mode #theme-toggle img {
     margin-bottom: 5px;
 }
 
-#hero-planner-form .date-group div {
-    flex: 1 1 auto;
-}
-
 #hero input[type="text"], #hero input[type="date"] {
     width: 100%;
     padding: 10px 12px;
     border-radius: 8px;
-    border: 2px solid #1ca7ec;
+    border: 2px solid #000000;
     font-size: 14px;
     text-align: center;
     margin: 5px;
@@ -298,6 +286,12 @@ body.dark-mode #theme-toggle img {
     cursor: pointer;
     transition: 0.3s ease;
     text-decoration: none;
+    display: inline-block;
+}
+
+body.dark-mode #start-planning-button {
+    background-color: #1ca7ec;
+    color: #000000;
 }
 
 #start-planning-button:hover {
@@ -309,7 +303,6 @@ body.dark-mode #theme-toggle img {
 #why-trip-snapshot {
     width: 80%;
     margin: 0 auto 30px auto;
-    justify-self: center;
 }
 
 #why-trip-snapshot p {
@@ -324,6 +317,10 @@ body.dark-mode #theme-toggle img {
     padding: 20px 15px;
     width: 90%;
     margin: 0 auto 30px auto;
+}
+
+body.dark-mode #features {
+    background-color: #1ca7ec;
 }
 
 #features h3 {
@@ -389,7 +386,7 @@ body.dark-mode #theme-toggle img {
 }
 
 .frustration-card h4 {
-    color: #1ca7ec;
+    color: #000000;
     margin-bottom: 10px;
     font-size: 16px;
 }
@@ -402,9 +399,9 @@ body.dark-mode #theme-toggle img {
 
 .frustration-card a {
     font-size: 13px;
-    color: #1ca7ec;
-    text-decoration: none;
+    color: #000000;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .frustration-card a:hover {
@@ -423,6 +420,11 @@ body.dark-mode #theme-toggle img {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+body.dark-mode #how-it-works {
+    background-color: #000000;
+    color: #ffffff;
+}
+
 #how-it-works h3 {
     margin-bottom: 20px;
 }
@@ -435,6 +437,10 @@ body.dark-mode #theme-toggle img {
     background-color: #ffffff;
     border-radius: 8px;
     padding: 20px;
+}
+
+body.dark-mode #how-it-works-content {
+    color: #000000;
 }
 
 #how-it-works-content img {
@@ -462,7 +468,7 @@ body.dark-mode #theme-toggle img {
 }
 
 .plan-button {
-    background-color: #1ca7ec;
+    background-color: #000000;
     color: #ffffff;
     padding: 12px 20px;
     border-radius: 8px;
@@ -474,8 +480,7 @@ body.dark-mode #theme-toggle img {
 }
 
 .plan-button:hover {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #1ca7ec;
 }
 /*--------------------------------------------------------*/
 /* Footer Styles*/
@@ -493,27 +498,30 @@ body.dark-mode footer {
 
 #stay-connected {
     padding: 20px;
-    width: 100%;
 }
 
 #stay-connected input[type="email"] {
-	padding: 10px;
-	border-radius: 8px;
-	border: 2px solid #1ca7ec;
-	margin: 10px;
-	width: 80%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #000000; 
+    margin: 10px;
+    width: 80%;
     text-align: center;
+    color: #000000;
+}
+
+#stay-connected input[type="email"]::placeholder {
+    color: #808080;
 }
 
 body.dark-mode input[type="email"] {
     background-color: #ffffff;
-    color: #000000;
     border: 2px solid #1ca7ec;
 }
 
 #subscribe-button {
 	background-color: #000000;
-	color: #fff;
+	color: #ffffff;
 	padding: 10px 50px;
 	border-radius: 8px;
 	border: none;
@@ -523,23 +531,11 @@ body.dark-mode input[type="email"] {
 
 body.dark-mode #subscribe-button {
     background-color: #1ca7ec;
-}
-
-#subscribe-button:hover {
-	background-color: #1ca7ec;
-}
-
-body.dark-mode #subscribe-button:hover {
-    background-color: #ffffff;
-    color: #1ca7ec
+    color: #000000;
 }
 
 #useful-links {
     padding: 20px;
-}
-
-#useful-links li {
-	line-height: 1.5;
 }
 
 #useful-links a {
@@ -551,19 +547,16 @@ body.dark-mode #useful-links a {
     color: #ffffff;
 }
 
-#useful-links a:hover {
-	color: #1ca7ec;
-}
-
-body.dark-mode #useful-links a:hover {
+#useful-links a:hover,
+#useful-links a:focus {
     color: #1ca7ec;
+    text-decoration: underline;
 }
 
 #copyright {
     background-color: #ffffff;
 	width: 100%;
 	padding: 20px;
-    justify-content: center;
 }
 
 body.dark-mode #copyright {
@@ -571,19 +564,21 @@ body.dark-mode #copyright {
     color: #000000;
 }
 
-#copyright h2 {
-    display: none;
-}
-
 #social-media {
-    margin-top: 10px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
 #social-media img {
     width: 24px;
     height: 24px;
     margin: 0 10px;
-    transition: transform 0.3s;
+}
+
+body.dark-mode #social-media img {
+    filter: brightness(0) invert(1);
 }
 /*--------------------------------------------------------*/
 /* Tablet Styles */
@@ -642,7 +637,6 @@ body.dark-mode #copyright {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
-        align-items: stretch;
     }
 
     .frustration-card {
@@ -655,7 +649,6 @@ body.dark-mode #copyright {
     #how-it-works {
         width: 100%;
         max-width: 600px; 
-        margin: 0 auto 40px auto;
         padding: 30px;
     }
  
@@ -664,9 +657,7 @@ body.dark-mode #copyright {
     }
 
     footer {
-        display: grid;
         grid-template-columns: 1fr 1fr; 
-        text-align: center;
     }
     
     #copyright {
@@ -713,24 +704,15 @@ body.dark-mode #copyright {
         grid-template-columns: repeat(4, 1fr);
     }
 
-    .frustration-scroll {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
     #useful-links ul {
         display: grid; 
         grid-template-columns: repeat(2, 1fr); 
         gap: 10px; 
-        text-align: center;
     }
 
     #stay-connected input[type="email"] {
         width: 100%; 
         max-width: 300px;
-    }
-
-    #copyright {
-        background-color: #ffffff;
     }
 }
 

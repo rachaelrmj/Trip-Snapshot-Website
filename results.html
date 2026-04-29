@@ -22,46 +22,57 @@
         <meta name="twitter:url" content="https://tripsnapshot.com">
         <meta name="twitter:creator" content="Rachael Martinez-Jones">
 
-        <title>Your Itinerary | Trip Snapshot</title>
+        <title>Your Results | Trip Snapshot</title>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,100..900;1,100..900&family=SN+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-        <link rel="canonical" href="https://tripsnapshot.com/itinerary">
-        <link rel="stylesheet" href="css/itinerary-styles.css"> 
+        
+        <link rel="canonical" href="https://tripsnapshot.com/results">
+        <link rel="stylesheet" href="css/results-styles.css"> 
 
+        <!-- Google Maps API (UNCHANGED) -->
         <script>
-            (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.googleapis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Re-imports managed elsewhere."):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+            (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.googleapis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Re-imports managed elsewhere."):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})(({
                 key: "AIzaSyA2Yoc9eskPV4foktoxkrc67WWRSvml-gk",
                 v: "weekly"
-            });
+            }));
         </script>
+
         <script src="js/storage.js" defer></script> 
-        <script src="js/itinerary.js" defer></script>
+        <script src="js/results.js" defer></script>
         <script src="js/theme.js" defer></script>
     </head>
 
     <body>
-        <a href="#main-content" class="sr-only">Skip to main content</a>
+        <a href="#main-content" id="skip-link" class="sr-only">Skip to main content</a>
 
         <header>
             <h1> Trip Snapshot </h1>
 
-            <a href="index.html" class="logo-link"><img src="images/Trip-Snapshot-Logo.png" class="logo" alt="Trip Snapshot Logo"></a>
+            <a href="index.html" class="logo-link">
+                <img src="images/Trip-Snapshot-Logo.png" class="logo" alt="Trip Snapshot Logo">
+            </a>
+
             <div class="hamburger-menu">
                 <input type="checkbox" id="menu-toggle">
                 <label for="menu-toggle" class="menu-icon">
                     <img src="images/hamburger-menu.svg" alt="Hamburger Menu Icon">
                 </label>
+
                 <nav class="mobile-nav" aria-label="Main navigation">
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="planner.html">Plan</a></li>
-                        <li><a href="results.html">Results</a></li>
+                        <li><a href="itinerary.html">Itinerary</a></li>
                     </ul>
                 </nav>
             </div>
-            <a href="profile.html" class="profile-link"><img src="images/profile-logo.svg" class="profile" alt="User Profile Icon"></a>
+
+            <a href="profile.html" class="profile-link">
+                <img src="images/profile-logo.svg" class="profile" alt="User Profile Icon">
+            </a>
+
             <div class="header-actions">
                 <button id="theme-toggle" aria-label="Toggle dark mode">
                     <img src="images/dark-mode.svg" alt="Theme Toggle">
@@ -70,27 +81,27 @@
         </header>
 
         <main id="main-content">
-            <section id="itinerary">
-                <div id="itinerary-overview" class="overview-section">
-                    </div>
+            <section id="results">
+                <h2>Trip Snapshot</h2>
+                <div id="results-overview" class="overview-section"></div>
 
-                <div id="itinerary-container">
-                </div>
-                
-                <div id="itinerary-actions">
+                <div id="results-container"></div>
+
+                <div id="results-actions">
                     <div class="action-group">
-                        <button id="results-itinerary-button" class="action-buttons">Go to Results</button>
+                        <button id="view-itinerary-button" class="action-buttons">View Itinerary</button>
 
-                        <button id="save-itinerary-button" class="action-buttons">Save Itinerary</button>
+                        <button id="save-results-button" class="action-buttons">Save Results / Progress</button>
 
-                        <button id="edit-trip-button" class="action-buttons">Edit Trip</button>
+                        <button id="edit-trip-button" class="action-buttons">Edit Search</button>
 
-                        <button id="clear-itinerary-button"class="action-buttons">Clear Itinerary</button>
+                        <button id="clear-results-button" class="action-buttons">Clear All</button>
 
                         <button id="homepage-button" class="action-buttons">Back to Home</button>
                     </div>
                 </div>
             </section>
+
         </main> 
 
         <footer>
@@ -98,7 +109,8 @@
                 <h3>Stay Connected</h3>
                 <p>Get destination ideas, planning tips, and travel inspiration sent to your inbox.</p>
                 <form id="subscribe-form" action="#" method="POST">
-                    <input type="email" id="subscriber-email" name="email" placeholder="Email Address" required>
+                    <label for="subscriber-email">Email</label>
+                    <input type="email" id="subscriber-email" name="email" placeholder="Email Address" autocomplete="email" required>
                     <button type="submit" id="subscribe-button">Subscribe</button>
                 </form>
             </section>
@@ -119,13 +131,19 @@
             <section id="copyright">
                 <h2>Trip Snapshot</h2>
                 <p>&copy; 2026 Trip Snapshot. All rights reserved.</p>
+
                 <div id="social-media">
-                    <a href="https://www.facebook.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/facebook-icon.svg" alt="Facebook Icon"></a>
-                    <a href="https://www.twitter.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/twitter-icon.svg" alt="Twitter Icon"></a>
-                    <a href="https://www.instagram.com/TripSnapshot" target="_blank" rel="noopener"><img src="images/instagram-icon.svg" alt="Instagram Icon"></a>
+                    <a href="https://www.facebook.com/TripSnapshot" target="_blank" rel="noopener">
+                        <img src="images/facebook-icon.svg" alt="Facebook Icon">
+                    </a>
+                    <a href="https://www.twitter.com/TripSnapshot" target="_blank" rel="noopener">
+                        <img src="images/twitter-icon.svg" alt="Twitter Icon">
+                    </a>
+                    <a href="https://www.instagram.com/TripSnapshot" target="_blank" rel="noopener">
+                        <img src="images/instagram-icon.svg" alt="Instagram Icon">
+                    </a>
                 </div>
             </section>
         </footer>
     </body>
 </html>
-
