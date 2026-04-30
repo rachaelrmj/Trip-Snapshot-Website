@@ -77,6 +77,41 @@ h1, h2, h3, h4 {
 p, button {
     font-family: 'SN Pro', sans-serif;
 }
+/* Skip-link Styles */
+#skip-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-120%);
+    background-color: #000000;
+    color: #ffffff;
+    padding: 15px 25px;
+    z-index: 3000;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0 0 10px 0;
+    border: 2px solid #1ca7ec;
+    transition: transform 0.3s ease;
+}
+
+#skip-link:focus {
+    transform: translateY(0);
+    outline: 3px solid #facc15;
+    outline-offset: 2px;
+}
+/*--------------------------------------------------------*/
+/* Screen Reader Styles */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
 /*---------------------------------*/
 /* Header Styles */
 header {
@@ -250,27 +285,34 @@ body.dark-mode footer {
 
 #stay-connected {
     padding: 20px;
-    width: 100%;
 }
 
 #stay-connected input[type="email"] {
-	padding: 10px;
-	border-radius: 8px;
-	border: 2px solid #1ca7ec;
-	margin: 10px;
-	width: 80%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #000000; 
+    margin: 10px;
+    width: 80%;
     text-align: center;
+    color: #000000;
+}
+
+#subscribe-form label {
+    display: none;
+}
+
+#stay-connected input[type="email"]::placeholder {
+    color: #808080;
 }
 
 body.dark-mode input[type="email"] {
     background-color: #ffffff;
-    color: #000000;
     border: 2px solid #1ca7ec;
 }
 
 #subscribe-button {
 	background-color: #000000;
-	color: #fff;
+	color: #ffffff;
 	padding: 10px 50px;
 	border-radius: 8px;
 	border: none;
@@ -280,23 +322,11 @@ body.dark-mode input[type="email"] {
 
 body.dark-mode #subscribe-button {
     background-color: #1ca7ec;
-}
-
-#subscribe-button:hover {
-	background-color: #1ca7ec;
-}
-
-body.dark-mode #subscribe-button:hover {
-    background-color: #ffffff;
-    color: #1ca7ec
+    color: #000000;
 }
 
 #useful-links {
     padding: 20px;
-}
-
-#useful-links li {
-	line-height: 1.5;
 }
 
 #useful-links a {
@@ -308,19 +338,16 @@ body.dark-mode #useful-links a {
     color: #ffffff;
 }
 
-#useful-links a:hover {
-	color: #1ca7ec;
-}
-
-body.dark-mode #useful-links a:hover {
+#useful-links a:hover,
+#useful-links a:focus {
     color: #1ca7ec;
+    text-decoration: underline;
 }
 
 #copyright {
     background-color: #ffffff;
 	width: 100%;
 	padding: 20px;
-    justify-content: center;
 }
 
 body.dark-mode #copyright {
@@ -328,19 +355,21 @@ body.dark-mode #copyright {
     color: #000000;
 }
 
-#copyright h2 {
-    display: none;
-}
-
 #social-media {
-    margin-top: 10px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
 #social-media img {
     width: 24px;
     height: 24px;
     margin: 0 10px;
-    transition: transform 0.3s;
+}
+
+body.dark-mode #social-media img {
+    filter: brightness(0) invert(1);
 }
 /*--------------------------------------------------------*/
 /* Tablet Styles */

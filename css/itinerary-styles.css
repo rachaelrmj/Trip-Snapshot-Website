@@ -80,24 +80,40 @@ h1, h2, h3, h4 {
 p, button {
     font-family: 'Montserrat', sans-serif;
 }
-/*--------------------------------------------------------*/
-/* --- Skip Link Styles --- */
+/* Skip-link Styles */
 #skip-link {
     position: absolute;
-    top: -100px; 
+    top: 0;
     left: 0;
-    background: #1ca7ec;
-    color: white;
+    transform: translateY(-120%);
+    background-color: #000000;
+    color: #ffffff;
     padding: 15px 25px;
-    z-index: 2000;
+    z-index: 3000;
+    font-weight: 700;
     text-decoration: none;
     border-radius: 0 0 10px 0;
-    transition: top 0.3s ease;
+    border: 2px solid #1ca7ec;
+    transition: transform 0.3s ease;
 }
 
 #skip-link:focus {
-    top: 0;
+    transform: translateY(0);
     outline: 3px solid #facc15;
+    outline-offset: 2px;
+}
+/*--------------------------------------------------------*/
+/* Screen Reader Styles */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 /*----------------------------*/
 /* Header Styles */
@@ -642,10 +658,6 @@ body.dark-mode footer {
     padding: 20px;
 }
 
-#subscribe-form label {
-    display: none;
-}
-
 #stay-connected input[type="email"] {
     padding: 10px;
     border-radius: 8px;
@@ -656,13 +668,16 @@ body.dark-mode footer {
     color: #000000;
 }
 
+#subscribe-form label {
+    display: none;
+}
+
 #stay-connected input[type="email"]::placeholder {
     color: #808080;
 }
 
 body.dark-mode input[type="email"] {
     background-color: #ffffff;
-    color: #000000;
     border: 2px solid #1ca7ec;
 }
 
@@ -704,7 +719,6 @@ body.dark-mode #useful-links a {
     background-color: #ffffff;
 	width: 100%;
 	padding: 20px;
-    justify-content: center;
 }
 
 body.dark-mode #copyright {

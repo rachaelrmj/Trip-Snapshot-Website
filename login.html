@@ -40,6 +40,7 @@
     </head>
 
     <body>
+        <a href="#main-content" id="skip-link" class="sr-only">Skip to main content</a>
         <header>
             <h1> Trip Snapshot </h1>
             
@@ -67,7 +68,7 @@
             </div>
         </header>
 
-        <main>
+        <main id="main-content">
             <!-- Hero Section -->
             <section id="login-hero">
                 <h2>Welcome Back!</h2>
@@ -80,20 +81,13 @@
                 <form id="login-form">
                     <div class="input-group">
                         <label for="email" class="sr-only">Email Address</label>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            placeholder="Email Address" 
-                            required 
-                            autocomplete="email"
-                            list="registered-emails"
-                        >
+                        <input type="email" id="email" placeholder="Email Address" autocomplete="email" list="registered-emails" required>
                         <datalist id="registered-emails"></datalist>
                     </div>
 
                     <div class="input-group">
                         <label for="password" class="sr-only">Password</label>
-                        <input type="password" id="password" placeholder="Password" required>
+                        <input type="password" id="password" placeholder="Password" autocomplete="current-password" required>
                     </div>
 
                     <div id="forgot-password-container">
@@ -168,7 +162,8 @@
                 <h3>Stay Connected</h3>
                 <p>Get destination ideas, planning tips, and travel inspiration sent to your inbox.</p>
                 <form id="subscribe-form" action="#" method="POST">
-                    <input type="email" id="subscriber-email" name="email" placeholder="Email Address" required>
+                    <label for="subscriber-email">Email</label>
+                    <input type="email" id="subscriber-email" name="email" placeholder="Email Address" autocomplete="email" required>
                     <button type="submit" id="subscribe-button">Subscribe</button>
                 </form>
             </section>

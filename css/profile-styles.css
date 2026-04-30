@@ -78,22 +78,28 @@ h1, h2, h3, h4 {
 p, button {
     font-family: 'SN Pro', sans-serif;
 }
-/* --- Skip Link Styles --- */
+/* Skip-link Styles */
 #skip-link {
     position: absolute;
-    top: -100px; 
+    top: 0;
     left: 0;
+    transform: translateY(-120%);
     background-color: #000000;
     color: #ffffff;
     padding: 15px 25px;
-    z-index: 2000;
+    z-index: 3000;
     font-weight: 700;
     text-decoration: none;
     border-radius: 0 0 10px 0;
-    transition: top 0.3s ease;
+    border: 2px solid #1ca7ec;
+    transition: transform 0.3s ease;
 }
 
-#skip-link:focus { top: 0; }
+#skip-link:focus {
+    transform: translateY(0);
+    outline: 3px solid #facc15;
+    outline-offset: 2px;
+}
 /*--------------------------------------------------------*/
 /* Screen Reader Styles */
 .sr-only {
