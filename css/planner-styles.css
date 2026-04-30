@@ -4,19 +4,12 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, var, b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, details, embed, figure, figcaption, footer, header, hgroup, 
+menu, nav, output, section, summary, time, mark {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -34,17 +27,7 @@ body {
 ol, ul {
 	list-style: none;
 }
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after, q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
+
 /*--------------------------------------------------------*/
 /* Trip Snapshot Website- Planner Page Global Styles */
 * {
@@ -59,16 +42,10 @@ body, html {
     background-color: #ffffff;
     color: #000000;
     transition: background-color 0.3s ease; 
+    scroll-behavior: smooth;
 }
 
-body.dark-mode {
-    background-color: #000000;
-    color: #ffffff;
-}
-
-h1 {
-    display: none;  
-}
+h1 { display: none; }
 
 h1, h2, h3, h4 {
     font-family: 'Archivo Black', sans-serif;
@@ -76,40 +53,31 @@ h1, h2, h3, h4 {
     margin-bottom: 10px;
 }
 
-p, button {
-    font-family: 'Montserrat', sans-serif;
-}
+p, button { font-family: 'Montserrat', sans-serif; }
 
 :focus-visible {
     outline: 3px solid #1ca7ec;
     outline-offset: 3px;
 }
 
-.checkbox-container input:focus + label {
-    outline: 3px solid #1ca7ec;
-    outline-offset: 2px;
-}
 /*----------------------------*/
 /* --- Skip Link Styles --- */
 #skip-link {
     position: absolute;
     top: -100px; 
     left: 0;
-    background: #000000;
+    background-color: #000000;
     color: #ffffff;
     padding: 15px 25px;
     z-index: 2000;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     text-decoration: none;
     border-radius: 0 0 10px 0;
     transition: top 0.3s ease;
 }
 
-#skip-link:focus {
-    top: 0;
-    outline: 3px solid #000000;
-}
+#skip-link:focus { top: 0; }
+
 /*----------------------------*/
 /* Header Styles */
 header {
@@ -121,7 +89,6 @@ header {
     position: sticky;
     z-index: 1000;
     top: 0;
-    transition: background-color 0.3s ease;
 }
 
 body.dark-mode header {
@@ -137,8 +104,8 @@ body.dark-mode header {
 }
 
 .profile {
-    width: 44px;
-    height: 44px;
+    width: 32px;
+    height: 32px;
 } 
 
 .profile-link {
@@ -171,7 +138,7 @@ body.dark-mode header {
     top: 100%;        
     left: 0;          
     width: 100%;   
-    background: #facc15;        
+    background-color: #facc15;         
     box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
     transition: max-height 0.3s ease;
     max-height: 0;
@@ -179,11 +146,10 @@ body.dark-mode header {
 }
 
 body.dark-mode .mobile-nav {
-    background: #ffffff;;
+    background-color: #ffffff;
 }
 
 .mobile-nav ul {      
-    list-style: none;         
     text-align: center;
     padding: 0;
     margin: 0;
@@ -199,10 +165,6 @@ body.dark-mode .mobile-nav {
     font-size: 16px;
     color: #000000;
     font-family: 'Montserrat', sans-serif;
-}
-
-body.dark-mode .mobile-nav a {
-    color: #000000;
 }
 
 .mobile-nav li:hover, .mobile-nav a:hover {
@@ -223,7 +185,7 @@ body.dark-mode .mobile-nav a {
 }
 
 #theme-toggle {
-    background: transparent;
+    background-color: transparent;
     border: none;
     cursor: pointer;
     width: 30px;
@@ -235,8 +197,8 @@ body.dark-mode .mobile-nav a {
 }
 
 #theme-toggle img {
-    width: 44px;
-    height: 44px;
+    width: 32px;
+    height: 32px;
     filter: grayscale(1); 
 }
 
@@ -244,6 +206,7 @@ body.dark-mode #theme-toggle img {
     filter: invert(1); 
 }
 /*--------------------------------------------------------*/
+/* Screen Reader Styles */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -251,102 +214,81 @@ body.dark-mode #theme-toggle img {
     padding: 0;
     margin: -1px;
     overflow: hidden;
+    clip: rect(0, 0, 0, 0);
     border: 0;
 }
 /*--------------------------------------------------------*/
-/* Planning Section Styles */
-
-#plan-trip {
-    padding: 0 20px;
-    background-color: #ffffff;
-    transition: background-color 0.3s ease;
-}
-
-body.dark-mode #plan-trip {
-    background-color: #000000;
-}
-
-/* HERO SECTION */
+/* Hero Section Styles */
 #hero-plan_container {
     position: relative;
     height: 35vh; 
-    display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    margin-bottom: 20px;
-    border-radius: 0 0 20px 20px;
+    display: flex;
 }
 
 #video-plan_trip {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 95%;
     object-fit: cover;
-    filter: brightness(0.55);
-}
-
-body.dark-mode #video-plan_trip {
-    filter: brightness(0.4); 
-}
-
-#hero-text {
-    position: relative;
-    z-index: 2;
-    color: #000000;
-    max-width: 600px;
-    background: #facc15;
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    text-align: center;
-}
-
-body.dark-mode #hero-text {
-    background: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #hero-text h2 {
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     margin-bottom: 10px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 #hero-text p {
-    font-size: 1.1rem;
-    font-weight: 400;
+    position: relative;
+    color: #000000;
+    justify-self: center;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 26px;
+    line-height: 1.4;
+    font-weight: bold;
 }
 /*--------------------------------------------------------*/
 /* Trip Search Form Styles */
+#plan-trip {
+    padding-bottom: 50px;
+}
+
+.planner-form-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
 
 .trip-search-form {
-    gap: 24px;
-    padding: 32px;
-    border-radius: 20px;
-    border: none;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-    margin-bottom: 20px;
-    transition: background-color 0.3s ease;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
 }
 
 body.dark-mode .trip-search-form {
-    background-color: #1e293b;
-    border-color: #ffffff;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    background-color: #000000;
+    color: #ffffff;
 }
 
-.trip-search-form h2, .trip-search-form h3 {
-    text-align: center;
+.form-title {
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+.form-group { 
+    margin-bottom: 25px; 
 }
 
 .trip-search-form label {
     display: block;
-    margin-bottom: 8px;
-    margin-top: 18px;
-    font-size: 15px;
-    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     color: #000000;
 }
 
@@ -354,79 +296,58 @@ body.dark-mode .trip-search-form label {
     color: #ffffff;
 }
 
-.trip-search-form input,
-.trip-search-form select {
+.trip-search-form input[type="text"],
+.trip-search-form input[type="date"] {
     width: 100%;
-    padding: 14px 12px;
-    border: 2px solid #000000; 
-    background-color: #ffffff; 
-    border-radius: 10px;
-    font-size: 14px;
+    padding: 16px;
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
     transition: all 0.2s ease;
-    color: #000000; 
-}
-
-body.dark-mode .trip-search-form input,
-body.dark-mode .trip-search-form select {
-    background-color: #000000;
-    border: 2px solid #808080; 
-    color: #ffffff;
-}
-
-body.dark-mode .trip-search-form input {
-    background-color: #000000;
-    border-color: #808080; 
-    color: #ffffff;
-}
-
-.trip-search-form input:hover {
-    border-color: #1ca7ec;
 }
 
 .trip-search-form input:focus {
-    border-color: #1ca7ec;
-    box-shadow: 0 0 0 4px rgba(28, 167, 236, 0.15);
+    border-color: #facc15;
+    background-color: #ffffff;
     outline: none;
 }
 
+body.dark-mode .trip-search-form input:focus {
+    border-color: #1ca7ec;
+}
+
 .plan-dates {
-    display: flex;
-    flex-direction: column;
-}
-
-.plan-dates input[type="date"] {
-    cursor: pointer;
-    position: relative;
-}
-
-/* This forces the browser to show the picker when the input is clicked */
-.plan-dates input[type="date"]::-webkit-calendar-picker-indicator {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0; /* Hides the icon but keeps it clickable over the whole box */
-    cursor: pointer;
-}
-
-/* Preferences & Travel Needs Section Styles - Modernized Chips */
-.preferences-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 20px;
 }
+
 .preferences-section h3 {
-    margin: 15px 0 10px;
-    font-size: 16px;
+    text-align: center;
+    font-size: 18px;
 }
 
 .preference-container {
     display: flex;
     flex-wrap: wrap;
+    align-content: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+#travel-needs {
+    margin-top: 20px;
+}
+
+#activities {
+    border-bottom: solid 2px #ffffff;
+}
+
+#travel-needs h3, #activities h3 {
+    margin-bottom: 27px;
 }
 
 .checkbox-container input {
@@ -434,61 +355,70 @@ body.dark-mode .trip-search-form input {
     opacity: 0;
 }
 
-.checkbox-container input:focus + label {
-    outline: 3px solid #000000;
-}
-
 .checkbox-container label {
+    display: inline-block;
     font-size: 14px;
-    color: #ffffff;
-    background-color: #000000;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 50px;
+    font-weight: 600;
+    color: #374151;
+    background-color: #f3f4f6;
+    padding: 12px 24px;
+    border-radius: 100px;
     cursor: pointer;
-    width: auto;
-    margin-bottom: 0;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
 }
 
 body.dark-mode .checkbox-container label {
-    background-color: #ffffff;
-    color: #000000;
-    border-color: #475569;
+    background-color: #374151;
+    color: #f3f4f6;
 }
 
 .checkbox-container input:checked + label {
     background-color: #facc15;
     color: #000000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+body.dark-mode .checkbox-container input:checked + label {
+    background-color: #1ca7ec;
+    color: #000000;   
 }
 
 #trip-form-actions {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 30px;
-    width: 100%;
-    align-items: center; 
+    gap: 15px;
 }
 
 #generate-trip-button, #reset-button {
     width: 100%;
-    max-width: 320px; 
-    padding: 16px 32px;
-    font-weight: 700;
-    text-transform: uppercase;
+    padding: 18px;
+    border-radius: 15px;
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
 }
 
 #generate-trip-button {
-    border: none;
-    border-radius: 12px;
-    background: #facc15;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+#reset-button {
+    background-color: #dcdcdc;
     color: #000000;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.25s ease;
+}
+
+#generate-trip-button:hover {
+    background-color: #facc15;
+    color: #000000;
+}
+
+#reset-button:hover {
+    background-color: #000000;
+    color: #ffffff;
 }
 
 body.dark-mode #generate-trip-button {
@@ -496,33 +426,19 @@ body.dark-mode #generate-trip-button {
     color: #000000;
 }
 
-#generate-trip-button:hover {
-    background: #1ca7ec;
-    color: #ffffff;
-}
-
 body.dark-mode #generate-trip-button:hover {
-    background-color: #facc15;
-    color: #ffffff;
-}
-
-#reset-button {
-    border: none;
-    border-radius: 12px;
-    background: #000000;
-    color: #ffffff;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.25s ease;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 body.dark-mode #reset-button {
-    background: #475569;
+    background-color: #ffffff;
+    color: #000000;
 }
 
-#reset-button:hover {
-    background: #1ca7ec;
+body.dark-mode #reset-button:hover {
+    background-color: #dcdcdc;
+    color: #000000;
 }
 /*--------------------------------------------------------*/
 /* Footer Styles*/
@@ -558,12 +474,7 @@ body.dark-mode footer {
 
 body.dark-mode input[type="email"] {
     background-color: #ffffff;
-    color: #000000;
     border: 2px solid #1ca7ec;
-}
-
-#subscribe-form label {
-    display: none;
 }
 
 #subscribe-button {
@@ -587,7 +498,7 @@ body.dark-mode #subscribe-button {
 
 #useful-links a {
 	text-decoration: none;
-     color: #000000;
+    color: #000000;
 }
 
 body.dark-mode #useful-links a {
@@ -604,16 +515,11 @@ body.dark-mode #useful-links a {
     background-color: #ffffff;
 	width: 100%;
 	padding: 20px;
-    justify-content: center;
 }
 
 body.dark-mode #copyright {
     background-color: #1ca7ec;
     color: #000000;
-}
-
-#copyright h2 {
-    display: none;
 }
 
 #social-media {
@@ -635,7 +541,7 @@ body.dark-mode #social-media img {
 /*--------------------------------------------------------*/
 /* Tablet Styles */
 @media screen and (min-width: 768px) {
-    .menu-icon { 
+    .menu-icon {
         display: none;
     }
 
@@ -643,44 +549,77 @@ body.dark-mode #social-media img {
         display: block;
         position: static;
         max-height: none;
-        background: transparent;
+        width: auto;
+        background-color: transparent;
         box-shadow: none;
         overflow: visible;
     }
 
     body.dark-mode .mobile-nav {
-    background: #1ca7ec; 
+    background-color: #1ca7ec;
     }
 
-    .mobile-nav ul { 
-        display: flex; 
-        gap: 20px; 
+    .mobile-nav ul {
+        display: flex;
+        gap: 20px;
+    }
+
+    .mobile-nav a {
+        font-weight: 600;
+        padding: 5px 10px;
     }
 
     .mobile-nav li:hover, .mobile-nav a:hover {
         background-color: transparent; 
-        color: #1ca7ec; 
+        color: #1ca7ec;
     }
-    
-    header { 
+
+    header {
         justify-content: space-between;
     }
 
-    .hamburger-menu { 
+    .hamburger-menu {
         order: 1; 
     }
 
-    .logo-link { 
+    .logo-link {
         order: 0; 
     }
 
-    #hero-plan_container {
-        height: 50vh;
+    .profile-link {
+        order: 2; 
+    } 
+
+    #hero-plan_container { 
+        height: 45vh; 
     }
 
+    #video-plan_trip {
+        position: absolute;
+        width: 100%;
+        height: 75%;
+        object-fit: cover;
+    }
+
+    #hero-text p {
+    font-size: 50px;
+    }
+
+    .plan-dates { 
+        grid-template-columns: 1fr 1fr; 
+    }
+    
     #trip-form-actions {
-        flex-direction: row; 
-        justify-content: center; 
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    #generate-trip-button { 
+        width: auto; 
+        min-width: 250px; 
+    }
+    #reset-button { 
+        width: auto; 
     }
 
     footer {
@@ -694,12 +633,21 @@ body.dark-mode #social-media img {
 
 /* Desktop Styles */
 @media screen and (min-width: 1024px) {
-    header { 
-        padding: 20px 5%; 
+    header {
+        padding: 20px 5%;
     }
 
-    .mobile-nav ul { 
-        gap: 45px;
+    .logo {
+        width: 150px;
+    }
+
+    .mobile-nav ul {
+        gap: 45px; 
+    }
+
+    .mobile-nav a {
+        font-size: 18px;
+        padding: 10px 15px;
     }
 
     main {
@@ -707,10 +655,9 @@ body.dark-mode #social-media img {
         margin: 0 auto;
     }
 
-    #useful-links ul {
-        display: grid; 
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 10px; 
+
+    .planner-form-wrapper { 
+        max-width: 900px; 
     }
 }
 
@@ -720,5 +667,9 @@ body.dark-mode #social-media img {
         max-width: 1440px;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .mobile-nav ul {
+        gap: 80px; 
     }
 }
