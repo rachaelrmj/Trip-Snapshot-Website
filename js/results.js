@@ -170,8 +170,10 @@ function createResultCard(place, preference) {
     card.className = `result-card ${isSaved ? 'saved' : ''}`;
 
     const website = place.websiteURI 
-        ? `<a href="${place.websiteURI}" target="_blank" rel="noopener" class="website-link">Visit Website</a>` 
-        : `<span class="no-website">Website: Not Available</span>`;    
+        ? `<a href="${place.websiteURI}" target="_blank" rel="noopener" class="website-link">
+            Visit Website <span class="sr-only">for ${place.displayName}</span>
+        </a>` 
+        : `<span class="no-website">Website: Not Available</span>`;   
 
     // Logic for Travel Needs vs Activities
     const travelNeedKeys = ['flight', 'hotel', 'rental', 'transportation'];

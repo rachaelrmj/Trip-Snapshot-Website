@@ -81,6 +81,34 @@ button, input {
     font-family: inherit;
 }
 /*--------------------------------------------------------*/
+/* --- Skip Link Styles --- */
+#skip-link {
+    position: absolute;
+    top: -100px; 
+    left: 0;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 15px 25px;
+    z-index: 2000;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0 0 10px 0;
+    transition: top 0.3s ease;
+}
+
+#skip-link:focus { top: 0; }
+/*--------------------------------------------------------*/
+/* Screen Reader Styles */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    border: 0;
+}
+/*--------------------------------------------------------*/
 /* Header Styles */
 header {
     display: flex;      
@@ -526,6 +554,10 @@ body.dark-mode footer {
     width: 80%;
     text-align: center;
     color: #000000;
+}
+
+#subscribe-form label {
+    display: none;
 }
 
 #stay-connected input[type="email"]::placeholder {

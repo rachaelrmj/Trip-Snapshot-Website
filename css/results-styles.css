@@ -92,11 +92,14 @@ p, button {
     position: absolute;
     top: -100px; 
     left: 0;
-    background-color: #1ca7ec; 
-    color: #fff;
+    background-color: #000000;
+    color: #ffffff;
     padding: 15px 25px;
     z-index: 2000;
+    font-weight: 700;
+    text-decoration: none;
     border-radius: 0 0 10px 0;
+    transition: top 0.3s ease;
 }
 
 #skip-link:focus {
@@ -239,6 +242,7 @@ body.dark-mode #theme-toggle img {
     filter: invert(1); 
 }
 /*--------------------------------------------------------*/
+/* Screen Reader Styles */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -272,6 +276,10 @@ body.dark-mode #theme-toggle img {
     background-color:#1ca7ec;
     color:#ffffff;
     font-weight:bold;
+}
+
+#hide-header {
+    display: none;
 }
 
 #results-overview {
@@ -404,7 +412,7 @@ body.dark-mode .result-card h3 {
 
 .website-link {
     font-size: 20px;
-    color: #1ca7ec;
+    color: #000000;
 }
 
 .result-card p.summary {
@@ -493,7 +501,6 @@ body.dark-mode .modal-content {
 }
 
 /* Result Action Button Styles */
-
 #results-actions {
     display: flex;
     flex-direction: column;
@@ -604,6 +611,10 @@ body.dark-mode footer {
 
 #stay-connected {
     padding: 20px;
+}
+
+#subscribe-form label {
+    display: none;
 }
 
 #stay-connected input[type="email"] {

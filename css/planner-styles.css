@@ -59,8 +59,7 @@ p, button { font-family: 'Montserrat', sans-serif; }
     outline: 3px solid #1ca7ec;
     outline-offset: 3px;
 }
-
-/*----------------------------*/
+/*--------------------------------------------------------*/
 /* --- Skip Link Styles --- */
 #skip-link {
     position: absolute;
@@ -77,8 +76,18 @@ p, button { font-family: 'Montserrat', sans-serif; }
 }
 
 #skip-link:focus { top: 0; }
-
-/*----------------------------*/
+/*--------------------------------------------------------*/
+/* Screen Reader Styles */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    border: 0;
+}
+/*--------------------------------------------------------*/
 /* Header Styles */
 header {
     display: flex;      
@@ -466,6 +475,10 @@ body.dark-mode footer {
     width: 80%;
     text-align: center;
     color: #000000;
+}
+
+#subscribe-form label {
+    display: none;
 }
 
 #stay-connected input[type="email"]::placeholder {
