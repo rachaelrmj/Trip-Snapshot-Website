@@ -87,7 +87,6 @@ p, button {
 
 /*--------------------------------------------------------*/
 /* Skip Link Styles*/
-
 #skip-link {
     position: absolute;
     top: -100px; 
@@ -105,7 +104,6 @@ p, button {
 #skip-link:focus {
     top: 0;
 }
-
 /*--------------------------------------------------------*/
 /* Header Styles */
 header {
@@ -175,7 +173,7 @@ body.dark-mode header {
 }
 
 body.dark-mode .mobile-nav {
-    background-color: #ffffff;;
+    background-color: #ffffff;
 }
 
 .mobile-nav ul {      
@@ -255,8 +253,12 @@ body.dark-mode #theme-toggle img {
 /*--------------------------------------------------------*/
 /* Results Section Styles */
 #empty-results-message {
-    padding: 100px 20px; 
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    padding: 40px;
 }
 
 #empty-results-message h2 {
@@ -318,7 +320,7 @@ body.dark-mode #theme-toggle img {
 body.dark-mode .trip-summary-card #dates {
     border-left: 2px solid;
     border-right: 2px solid;
-    border-color: #000000;
+    border-color: #ffffff;
 }
 
 .trip-summary-card p {
@@ -407,7 +409,7 @@ body.dark-mode .result-card h3 {
 }
 
 .result-card p.address {
-    height: 75px;
+    height: 120px;
 }
 
 .website-link {
@@ -417,7 +419,7 @@ body.dark-mode .result-card h3 {
 
 .result-card p.summary {
     font-size: 20px;
-    height: 95px; 
+    height: 125px; 
     position: relative;
 }
 
@@ -510,19 +512,16 @@ body.dark-mode .modal-content {
 }
 
 .result-card .add-button {
-    margin-top: auto; 
-    margin-bottom: 15px;
-    align-self: center;
-    width: 90%;
-}
-
-.add-button {
     background-color: #facc15;
     font-size: 16px;
     font-weight: bold;
     border: none;
     border-radius: 8px;
     padding: 5px;
+    margin-top: auto; 
+    margin-bottom: 15px;
+    align-self: center;
+    width: 90%;
 }
 
 .add-button.is-added {
@@ -551,10 +550,7 @@ body.dark-mode .add-button {
     font-weight: bold;
 }
 
-#homepage-button,
-#save-results-button,
-#clear-results-button,
-#edit-trip-button, #view-itinerary-button {
+#homepage-button, #save-results-button, #clear-results-button, #edit-trip-button, #view-itinerary-button {
     margin: 0 15px;
     padding: 15px 20px;
     border-radius: 50px;
@@ -585,15 +581,6 @@ body.dark-mode #clear-results-button:hover,
 body.dark-mode #edit-trip-button:hover, body.dark-mode #view-itinerary-button:hover {
     background-color: #000000;
     color: #ffffff;
-}
-
-#homepage-button:active,
-#save-results-button:active,
-#clear-results-button:active,
-#edit-trip-button:active, #view-itinerary-button:active {
-    background-color: #facc15;
-    transform: scale(0.98);
-    transition: 0.1s;
 }
 /*--------------------------------------------------------*/
 /* Footer Styles*/

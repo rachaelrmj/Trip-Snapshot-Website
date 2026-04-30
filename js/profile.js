@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Check if a user is currently logged into this tab/session
     const sessionData = sessionStorage.getItem("currentUser");
-
     const accounts = JSON.parse(localStorage.getItem("accounts")) || [];
 
     // 1. Check if session exists
@@ -30,107 +29,41 @@ document.addEventListener("DOMContentLoaded", () => {
         welcomeHeader.textContent = `Welcome, ${name}!`;
     }
 
+    // --- Profile Settings Selectors ---
     const editProfileLink = document.getElementById("edit-profile-link");
     const profileSection = document.getElementById("profile-settings");
-    const closeProfileBtn = document.getElementById("close-profile-btn");
     const profileForm = document.getElementById("profile-update-form");
+    const closeProfileBtn = document.getElementById("close-profile-btn");
 
-    // Autofill and Toggle
+    // --- Password Settings Selectors ---
+    const updatePasswordLink = document.getElementById("updatePassword-link");
+    const passwordSection = document.getElementById("password-update");
+    const passwordForm = document.getElementById("password-update-form");
+    const closeSecurityBtn = document.getElementById("close-security-btn");
+
+    // --- Delete Account Selectors ---
+    const deleteAccountLink = document.getElementById("delete-account-link");
+    const deleteModal = document.getElementById("delete-confirmation");
+    const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
+    const cancelDeleteBtn = document.getElementById("cancel-delete-btn");
+
+    // --- Logout Selector ---
+    const logoutLink = document.getElementById("logout-link");
+
+    // Profile Modal Toggle
     if (editProfileLink && profileSection) {
         editProfileLink.addEventListener("click", (e) => {
             e.preventDefault();
+            // Close other sections
+            if (passwordSection) passwordSection.style.display = "none";
             
-            // Autofill current data
             document.getElementById("edit-fname").value = currentUser.fname || "";
             document.getElementById("edit-lname").value = currentUser.lname || "";
             document.getElementById("edit-email").value = currentUser.email || "";
-
             profileSection.style.display = "block";
             profileSection.scrollIntoView({ behavior: 'smooth' });
         });
     }
-
-    // Profile Update Logic
-    if (profileForm) {
-        profileForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            const newFname = document.getElementById("edit-fname").value;
-            const newLname = document.getElementById("edit-lname").value;
-            const newEmail = document.getElementById("edit-email").value;
-            const oldEmail = currentUser.email;
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            // Validation: Email Format
-            if (!emailRegex.test(newEmail)) {
-                alert("Error: Please enter a valid email format.");
-                return;
-            }
-
-            // Move saved places to the new email key if email was updated
-            if (newEmail !== oldEmail) {
-                const oldKey = `savedPlaces_${oldEmail}`;
-                const newKey = `savedPlaces_${newEmail}`;
-                const data = localStorage.getItem(oldKey);
-                if (data) {
-                    localStorage.setItem(newKey, data);
-                    localStorage.removeItem(oldKey);
-                }
-            }
-
-            // Access the permanent account list to handle update
-            const accounts = JSON.parse(localStorage.getItem("accounts")) || [];
-            const userIdx = accounts.findIndex(acc => acc.email === oldEmail);
-
-            if (userIdx !== -1) {
-                // Overwrite data in accounts array
-                accounts[userIdx].fname = newFname;
-                accounts[userIdx].lname = newLname;
-                accounts[userIdx].email = newEmail;
-
-                try {
-                    localStorage.setItem("accounts", JSON.stringify(accounts));
-                    
-                    // Update Session Storage to keep UI in sync
-                    currentUser.fname = newFname;
-                    currentUser.lname = newLname;
-                    currentUser.email = newEmail;
-                    sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
-
-                    alert("Profile updated successfully!");
-
-                    // Logic for Email Change Redirect
-                    if (newEmail !== oldEmail) {
-                        if (confirm("You updated your email. Would you also like to change your password for security?")) {
-                            profileSection.style.display = "none";
-                            securitySection.style.display = "block"; 
-                            return;
-                        }
-                    }
-                    profileSection.style.display = "none";
-                    location.reload(); // Refresh to show new name in welcome header
-                } catch (err) {
-                    alert("Error saving data. Local storage may be full.");
-                }
-            }
-        });
-    }
-
-    // Show/Hide Password Toggle Logic
-    document.querySelectorAll(".toggle-password").forEach(button => {
-        button.addEventListener("click", function() {
-            const targetId = this.getAttribute("data-target");
-            const input = document.getElementById(targetId);
-            
-            if (input.type === "password") {
-                input.type = "text";
-                this.textContent = "Hide";
-            } else {
-                input.type = "password";
-                this.textContent = "Show";
-            }
-        });
-    });
 
     if (closeProfileBtn) {
         closeProfileBtn.addEventListener("click", () => {
@@ -138,163 +71,177 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    const securityLink = document.getElementById("updatePassword-link");
-    const securitySection = document.getElementById("password-update");
-    const closeSecurityBtn = document.getElementById("close-security-btn");
-    const passwordForm = document.getElementById("password-update-form");
-
-    // Toggle visibility
-    if (securityLink && securitySection) {
-        securityLink.addEventListener("click", (e) => {
+    // Password Section Toggle
+    if (updatePasswordLink && passwordSection) {
+        updatePasswordLink.addEventListener("click", (e) => {
             e.preventDefault();
-            securitySection.style.display = "block";
-            securitySection.scrollIntoView({ behavior: 'smooth' });
+            // Close other sections
+            if (profileSection) profileSection.style.display = "none";
+            
+            passwordSection.style.display = "block";
+            passwordSection.scrollIntoView({ behavior: 'smooth' });
         });
     }
 
     if (closeSecurityBtn) {
         closeSecurityBtn.addEventListener("click", () => {
-            securitySection.style.display = "none";
+            passwordSection.style.display = "none";
         });
     }
 
-    // Handle Password Update
-    if (passwordForm) {
-        passwordForm.addEventListener("submit", (e) => {
+    // Delete Modal Toggle
+    if (deleteAccountLink && deleteModal) {
+        deleteAccountLink.addEventListener("click", (e) => {
             e.preventDefault();
-            
-            const currentPassInput = document.getElementById("current-password").value;
-            const newPassInput = document.getElementById("new-password").value;
+            deleteModal.style.display = "flex"; 
+        });
+    }
 
-            const accounts = JSON.parse(localStorage.getItem("accounts")) || [];
-            const userIdx = accounts.findIndex(acc => acc.email === currentUser.email);
+    if (cancelDeleteBtn) {
+        cancelDeleteBtn.addEventListener("click", () => {
+            deleteModal.style.display = "none";
+        });
+    }
 
-            if (userIdx !== -1) {
-                // Check if current password matches what's on file
-                if (accounts[userIdx].password === currentPassInput) {
-                    // Update password
-                    accounts[userIdx].password = newPassInput;
-                    localStorage.setItem("accounts", JSON.stringify(accounts));
-                    
-                    alert("Password updated! Please use your new password next time you log in.");
-                    securitySection.style.display = "none";
-                    passwordForm.reset();
-                } else {
-                    alert("Verification failed: Current password is incorrect.");
-                }
+    // Logout Logic
+    if (logoutLink) {
+        logoutLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (confirm("Are you sure you want to logout?")) {
+                sessionStorage.removeItem("currentUser");
+                window.location.href = "index.html";
             }
         });
     }
 
-    // Account Deletion Logic
-    const deleteLink = document.getElementById("delete-account-link");
-    const deletePopup = document.getElementById("delete-confirmation");
-    const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
-    const cancelDeleteBtn = document.getElementById("cancel-delete-btn");
-
-    // Open the confirmation popup
-    if (deleteLink && deletePopup) {
-        deleteLink.addEventListener("click", (e) => {
+    // Profile Update Logic
+    if (profileForm) {
+        profileForm.addEventListener("submit", (e) => {
             e.preventDefault();
-            deletePopup.style.display = "flex";
+            const newEmail = document.getElementById("edit-email").value;
+            const oldEmail = currentUser.email;
+
+            // Migrate user-specific data keys on email change
+            if (newEmail !== oldEmail) {
+                const keys = ['savedPlaces', 'savedResults', 'savedItineraries'];
+                keys.forEach(prefix => {
+                    const data = localStorage.getItem(`${prefix}_${oldEmail}`);
+                    if (data) {
+                        localStorage.setItem(`${prefix}_${newEmail}`, data);
+                        localStorage.removeItem(`${prefix}_${oldEmail}`);
+                    }
+                });
+            }
+
+            const accounts = JSON.parse(localStorage.getItem("accounts")) || [];
+            const userIdx = accounts.findIndex(acc => acc.email === oldEmail);
+
+            if (userIdx !== -1) {
+                accounts[userIdx].fname = document.getElementById("edit-fname").value;
+                accounts[userIdx].lname = document.getElementById("edit-lname").value;
+                accounts[userIdx].email = newEmail;
+                localStorage.setItem("accounts", JSON.stringify(accounts));
+                
+                currentUser.fname = accounts[userIdx].fname;
+                currentUser.email = newEmail;
+                sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+                alert("Profile updated successfully!");
+                location.reload();
+            }
         });
     }
 
-    // Close popup if user cancels
-    if (cancelDeleteBtn && deletePopup) {
-        cancelDeleteBtn.addEventListener("click", () => {
-            deletePopup.style.display = "none";
-        });
-    }
-
-    // If user clicks delete account button...
+    // Delete Account Final Logic
     if (confirmDeleteBtn) {
         confirmDeleteBtn.addEventListener("click", () => {
-            const userEmail = currentUser.email;
-
-            // Remove the user from the localStorage
-            const allAccounts = JSON.parse(localStorage.getItem("accounts")) || [];
-            const filteredAccounts = allAccounts.filter(acc => acc.email !== userEmail);
+            const accounts = JSON.parse(localStorage.getItem("accounts")) || [];
+            const filteredAccounts = accounts.filter(acc => acc.email !== currentUser.email);
+            
+            // Clear user-specific data
+            const userKeys = [
+                `savedPlaces_${currentUser.email}`, 
+                `savedResults_${currentUser.email}`, 
+                `savedItineraries_${currentUser.email}`
+            ];
+            userKeys.forEach(key => localStorage.removeItem(key));
+            
             localStorage.setItem("accounts", JSON.stringify(filteredAccounts));
-
-            // Remove savedPlaces data from local storage
-            localStorage.removeItem(`savedPlaces_${userEmail}`);
-
-            // Remove itineraries from local storage
-            localStorage.removeItem("itineraries");
-            // Remove recentSearches from local storage
-            localStorage.removeItem("recentSearches");
-
-            // Remove the current session storage
             sessionStorage.removeItem("currentUser");
-
-            // Redirect to home page after account is deleted
+            alert("Account deleted successfully.");
             window.location.href = "index.html";
         });
     }
 
-    // Manually ends the session, clearing data from sessionStorage while retaining data in localStorage
-    const logoutBtn = document.getElementById("logout-link");
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-
-            // Clear the current session from storage
-            sessionStorage.removeItem("currentUser");
-
-            // Clear all session storage if you want a total reset
-            sessionStorage.clear();
-
-            // Redirect to ensure the session state is refreshed
-            window.location.href = "index.html";
-        });
-    }
-
-    // Call functions
+    // Call display functions
     showSavedItineraries();
-    showRecentSearches();
+    showSavedResults();
     showSavedPlaces(); 
+    showRecentSearches();
 });
+
+// --- DISPLAY LOGIC ---
 
 // Helper to display saved itineraries with clickable functionality
 function showSavedItineraries() {
     const container = document.getElementById("saved-itineraries-container");
     if (!container) return;
 
-    const trips = JSON.parse(localStorage.getItem("itineraries")) || [];
+    const user = JSON.parse(sessionStorage.getItem("currentUser"));
+    const storageKey = `savedItineraries_${user.email}`;
+    const trips = JSON.parse(localStorage.getItem(storageKey)) || [];
     
     if (trips.length === 0) {
-        container.innerHTML = `<p class="empty-state">No itineraries saved yet. <a href="planner.html">Start planning now!</a></p>`;
+        container.innerHTML = `<p class="empty-state">No itineraries saved yet.</p>`;
         return;
     }
 
-    // Clear and render cards, only rendering images if photoUrl exists to prevent 404s
-    container.innerHTML = trips.map((trip, index) => {
-        const imgTag = trip.photoUrl ? `<img src="${trip.photoUrl}" class="card-hero-img" alt="${trip.destination}">` : '';
+    const header = `<div class="section-header-row"><button class="remove-all-btn" onclick="removeAll('itineraries')">Remove All Itineraries</button></div>`;
 
-        return `
-            <div class="itinerary-card">
-                <button class="remove-btn-top" onclick="removeItem('itineraries', ${index})">x</button>
-                <div class="card-click-area" onclick="viewItinerary(${index})">
-                    ${imgTag}
-                    <div class="card-content-wrapper">
-                        <div class="card-badge">Trip Snapshot</div>
-                        <h3>${trip.destination}</h3>
-                        <p class="card-dates">${trip.startDate} — ${trip.endDate}</p>
-                        <span class="view-link">View Details →</span>
-                    </div>
+    container.innerHTML = header + trips.map((trip, index) => `
+        <div class="itinerary-card">
+            <button class="remove-btn-top" onclick="removeItem('itineraries', ${index})">x</button>
+            <div class="card-click-area" onclick="viewSavedItinerary(${index})">
+                <div class="card-content-container">
+                    <div class="card-badge">Itinerary</div>
+                    <h3>${trip.destination}</h3>
+                    <p class="card-dates">${trip.startDate} — ${trip.endDate}</p>
+                    <span class="view-link">View Details →</span>
                 </div>
             </div>
-        `;
-    }).join('');
+        </div>
+    `).join('');
 }
 
-// Redirect logic to allow viewing itinerary details from the card
-window.viewItinerary = function(index) {
-    const trips = JSON.parse(localStorage.getItem("itineraries")) || [];
-    sessionStorage.setItem("tripData", JSON.stringify(trips[index]));
-    window.location.href = "itinerary.html";
-};
+// Function to handle saved results logic
+function showSavedResults() {
+    const container = document.getElementById("saved-results-container");
+    if (!container) return;
+
+    const user = JSON.parse(sessionStorage.getItem("currentUser"));
+    const storageKey = `savedResults_${user.email}`;
+    const results = JSON.parse(localStorage.getItem(storageKey)) || [];
+    
+    if (results.length === 0) {
+        container.innerHTML = `<p class="empty-state">No saved results found.</p>`;
+        return;
+    }
+
+    const header = `<div class="section-header-row"><button class="remove-all-btn" onclick="removeAll('results')">Remove All Results</button></div>`;
+
+    container.innerHTML = header + results.map((trip, index) => `
+        <div class="search-card">
+            <button class="remove-btn-top" onclick="removeItem('results', ${index})">x</button>
+            <div class="search-card-info" onclick="viewSavedResult(${index})">
+                <div class="card-content-container">
+                    <div class="card-badge">Trip Results</div>
+                    <h3>${trip.destination}</h3>
+                    <p class="card-dates">${trip.startDate} — ${trip.endDate}</p>
+                    <span class="view-link">View Results →</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
 
 // Helper to display individual curated places
 function showSavedPlaces() {
@@ -302,8 +249,6 @@ function showSavedPlaces() {
     if (!container) return;
 
     const user = JSON.parse(sessionStorage.getItem("currentUser"));
-    if (!user) return;
-
     const storageKey = `savedPlaces_${user.email}`;
     const savedPlaces = JSON.parse(localStorage.getItem(storageKey)) || [];
 
@@ -327,23 +272,16 @@ function showSavedPlaces() {
                     Remove All
                 </button>
             </div>
-
             <div class="places-horizontal-row">
                 ${groupedByDest[destinationName].map(place => {
-                    const idx = savedPlaces.findIndex(p => 
-                    p.savedAt === place.savedAt
-                    );
-
+                    const idx = savedPlaces.findIndex(p => p.savedAt === place.savedAt);
                     return `
                         <div class="place-card">
                             <button class="remove-btn-top" onclick="removeItem('places', ${idx})">x</button>
-
                             ${place.photoUrl ? `<img src="${place.photoUrl}" class="place-card-img">` : ''}
-
                             <div class="place-card-info">
                                 <h4>${place.displayName}</h4>
                                 <p>${place.formattedAddress}</p>
-                                ${place.websiteURI ? `<a href="${place.websiteURI}" target="_blank" class="website-link">Visit Website</a>` : ''}
                             </div>
                         </div>
                     `;
@@ -353,65 +291,90 @@ function showSavedPlaces() {
     `).join('');
 }
 
-// Logic to remove all places for a specific destination
-window.removeAllFromCity = function(cityName) {
-    if (confirm(`Are you sure you want to remove all saved places in ${cityName}?`)) {
-        const user = JSON.parse(sessionStorage.getItem("currentUser"));
-        const storageKey = `savedPlaces_${user.email}`;
-        let savedPlaces = JSON.parse(localStorage.getItem(storageKey)) || [];
-        
-        // Filter out all places matching this city
-        const filtered = savedPlaces.filter(p => p.destination !== cityName);
-        localStorage.setItem(storageKey, JSON.stringify(filtered));
-        
-        // Refresh the UI
-        showSavedPlaces();
-    }
-};
-
 // Display recent searches
 function showRecentSearches() {
     const container = document.getElementById("recent-searches-container");
     if (!container) return;
 
     const searches = JSON.parse(localStorage.getItem("recentSearches")) || [];
-    
+
     if (searches.length === 0) {
-        container.innerHTML = `<p class="empty-state">No recent searches found. <a href="index.html">Search a trip now!</a></p>`;
+        container.innerHTML = `<p class="empty-state">No searches performed yet.</p>`;
         return;
     }
 
-    container.innerHTML = searches.map((search, index) => {
-        // Display image tag only if valid URL exists to avoid 404 errors
-        const imgTag = search.photoUrl ? `<img src="${search.photoUrl}" class="search-card-img" alt="${search.destination}">` : '';
+    const header = `<div class="section-header-row"><button class="remove-all-btn" onclick="removeAll('recentSearches')">Clear History</button></div>`;
 
-        return `
-            <div class="search-card">
-                <button class="remove-btn-top" onclick="removeItem('recentSearches', ${index})">x</button>
-                ${imgTag}
-                <div class="search-card-info">
-                    <h4>${search.destination}</h4>
-                    <p>${search.startDate} - ${search.endDate}</p>
-                    <small>Searched on: ${search.timestamp}</small>
-                </div>
+    container.innerHTML = header + searches.map((search, index) => `
+        <div class="search-card">
+            <button class="remove-btn-top" onclick="removeItem('recentSearches', ${index})">x</button>
+            <div class="search-card-info">
+                <h4>${search.destination}</h4>
+                <p>${search.startDate} - ${search.endDate}</p>
             </div>
-        `;
-    }).join('');
+        </div>
+    `).join('');
 }
 
-// Unified removal logic with clean grammatical labels for confirmation
+// --- REDIRECTION & REMOVAL ---
+
+window.viewSavedItinerary = function(index) {
+    const user = JSON.parse(sessionStorage.getItem("currentUser"));
+    const trips = JSON.parse(localStorage.getItem(`savedItineraries_${user.email}`));
+    sessionStorage.setItem("tripData", JSON.stringify(trips[index]));
+    sessionStorage.setItem("itinerary", JSON.stringify(trips[index].details));
+    window.location.href = "itinerary.html";
+};
+
+window.viewSavedResult = function(index) {
+    const user = JSON.parse(sessionStorage.getItem("currentUser"));
+    const results = JSON.parse(localStorage.getItem(`savedResults_${user.email}`));
+    sessionStorage.setItem("tripData", JSON.stringify(results[index]));
+    window.location.href = "results.html";
+};
+
+// Unified removal logic for single items
 window.removeItem = function(type, index) {
     const user = JSON.parse(sessionStorage.getItem("currentUser"));
-    const key = type === 'places' ? `savedPlaces_${user.email}` : type;
-    
-    let displayLabel = 'place';
-    if (type === 'recentSearches') displayLabel = 'recent search';
-    if (type === 'itineraries') displayLabel = 'itinerary';
-    
-    let items = JSON.parse(localStorage.getItem(key)) || [];
-    if (confirm(`Are you sure you want to remove this ${displayLabel}?`)) {
+    const keyMap = {
+        'places': `savedPlaces_${user.email}`,
+        'itineraries': `savedItineraries_${user.email}`,
+        'results': `savedResults_${user.email}`,
+        'recentSearches': 'recentSearches'
+    };
+    const key = keyMap[type];
+    const items = JSON.parse(localStorage.getItem(key)) || [];
+    if (confirm(`Are you sure you want to remove this ${type}?`)) {
         items.splice(index, 1);
         localStorage.setItem(key, JSON.stringify(items));
         location.reload(); 
+    }
+};
+
+// Logic to remove all items from a specific category
+window.removeAll = function(type) {
+    const user = JSON.parse(sessionStorage.getItem("currentUser"));
+    const keyMap = {
+        'itineraries': `savedItineraries_${user.email}`,
+        'results': `savedResults_${user.email}`,
+        'recentSearches': 'recentSearches'
+    };
+    const key = keyMap[type];
+    if (confirm(`Are you sure you want to clear all ${type}?`)) {
+        localStorage.removeItem(key);
+        location.reload();
+    }
+};
+
+// Logic to remove all places for a specific destination
+window.removeAllFromCity = function(city) {
+    const user = JSON.parse(sessionStorage.getItem("currentUser"));
+    const key = `savedPlaces_${user.email}`;
+    let savedPlaces = JSON.parse(localStorage.getItem(key)) || [];
+    
+    if (confirm(`Remove all saved places in ${city}?`)) {
+        const filtered = savedPlaces.filter(place => place.destination !== city);
+        localStorage.setItem(key, JSON.stringify(filtered));
+        location.reload();
     }
 };

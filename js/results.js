@@ -154,8 +154,8 @@ function createResultCard(place, preference) {
 
     let isSaved = false;
     if (sessionUser) {
-        const savedResults = JSON.parse(localStorage.getItem(`savedResults_${sessionUser.email}`)) || [];
-        isSaved = savedResults.some(p => p.displayName === place.displayName);
+        const savedPlaces = JSON.parse(localStorage.getItem(`savedPlaces_${sessionUser.email}`)) || [];
+        isSaved = savedPlaces.some(p => p.displayName === place.displayName);
     }
 
     let photoSpread = '';
@@ -333,11 +333,12 @@ function setupActionButtons() {
 
     document.getElementById("edit-trip-button")?.addEventListener("click", () => window.location.href = "planner.html");
     
-    const saveButton = document.getElementById("save-results-button");
+    // RENAMED IDENTIFIER TO saveResultsBtn TO PREVENT SyntaxError
+    const saveResultsBtn = document.getElementById("save-results-button");
 
-    if (saveButton) {
-        saveButton.addEventListener("click", () => {
-           const sessionUser = JSON.parse(sessionStorage.getItem("currentUser")); 
+    if (saveResultsBtn) {
+        saveResultsBtn.addEventListener("click", () => {
+            const sessionUser = JSON.parse(sessionStorage.getItem("currentUser")); 
     
             if (!sessionUser) {
                 // Save current URL so we can return here after login
@@ -348,17 +349,39 @@ function setupActionButtons() {
                 return;
             }
 
-            const tripData = sessionStorage.getItem("tripData");
-                if (!tripData) {
-                    alert("No results data found to save.");
-                    return;
-                }
+            const tripDataStr = sessionStorage.getItem("tripData");
+            if (!tripDataStr) {
+                alert("No results data found to save.");
+                return;
+            }
 
-            const savedResults = JSON.parse(localStorage.getItem("results")) || [];
-            savedResults.push(JSON.parse(tripData));
-            localStorage.setItem("results", JSON.stringify(savedResults));
+            const newResult = JSON.parse(tripDataStr);
+            // CORRECTED STORAGE KEY FOR RESULTS
+            const storageKey = `savedResults_${sessionUser.email}`;
+            const savedResults = JSON.parse(localStorage.getItem(storageKey)) || [];
+            
+            // Fixed Duplicate Check: Compare destination, dates, AND full activities/travel preferences
+            const isDuplicate = savedResults.some(trip => {
+                const sameDest = trip.destination === newResult.destination;
+                const sameDates = trip.startDate === newResult.startDate && trip.endDate === newResult.endDate;
+                
+                // Deep compare selected preference strings
+                const sameActivities = JSON.stringify(trip.activities) === JSON.stringify(newResult.activities);
+                const sameTravel = JSON.stringify(trip.travelNeeds) === JSON.stringify(newResult.travelNeeds);
 
-            alert("Trip Result has been saved to your profile!");
+                return sameDest && sameDates && sameActivities && sameTravel;
+            });
+
+            if (!isDuplicate) {
+                savedResults.push({
+                    ...newResult,
+                    savedAt: new Date().toISOString()
+                });
+                localStorage.setItem(storageKey, JSON.stringify(savedResults));
+                alert("Trip Result has been saved to your profile!");
+            } else {
+                alert("This exact trip result is already saved in your profile.");
+            }
         });
     }
 
@@ -370,7 +393,9 @@ function setupActionButtons() {
 
             const sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
-            const savedResults = JSON.parse(localStorage.getItem("results")) || [];
+            // UPDATED CLEAR LOGIC TO USE THE CORRECT USER-SPECIFIC RESULTS KEY
+            const storageKey = sessionUser ? `savedResults_${sessionUser.email}` : null;
+            const savedResults = storageKey ? JSON.parse(localStorage.getItem(storageKey)) || [] : [];
 
             const isSaved = tripData && savedResults.some(trip => 
                 trip.destination === tripData.destination && 
@@ -383,7 +408,7 @@ function setupActionButtons() {
                         !(trip.destination === tripData.destination && trip.startDate === tripData.startDate)
                     );
 
-                    localStorage.setItem("results", JSON.stringify(updatedResults));
+                    localStorage.setItem(storageKey, JSON.stringify(updatedResults));
 
                     sessionStorage.removeItem("tripData");
 

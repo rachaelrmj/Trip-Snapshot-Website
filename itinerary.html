@@ -42,7 +42,7 @@
     </head>
 
     <body>
-        <a href="#main-content" class="sr-only">Skip to main content</a>
+        <a href="#main-content" id="skip-link" class="sr-only">Skip to main content</a>
 
         <header>
             <h1> Trip Snapshot </h1>
@@ -79,7 +79,7 @@
                 
                 <div id="itinerary-actions">
                     <div class="action-group">
-                        <button id="results-itinerary-button" class="action-buttons">Go to Results</button>
+                        <button id="view-results-button" class="action-buttons">Go to Results</button>
 
                         <button id="save-itinerary-button" class="action-buttons">Save Itinerary</button>
 
@@ -97,8 +97,8 @@
             <section id="stay-connected">
                 <h3>Stay Connected</h3>
                 <p>Get destination ideas, planning tips, and travel inspiration sent to your inbox.</p>
-                <form id="subscribe-form" action="#" method="POST">
-                    <input type="email" id="subscriber-email" name="email" placeholder="Email Address" required>
+                    <label for="subscriber-email">Email</label>
+                    <input type="email" id="subscriber-email" name="email" placeholder="Email Address" autocomplete="email" required>
                     <button type="submit" id="subscribe-button">Subscribe</button>
                 </form>
             </section>

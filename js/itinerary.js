@@ -69,7 +69,7 @@ function displayOverview(data) {
         <p>Here is your personalized itinerary based on your preferences and trip details.</p>
         <div class="trip-summary-card">
             <p><strong>Destination:</strong> ${data.destination}</p>
-            <p><strong>Dates:</strong> ${data.startDate} to ${data.endDate}</p>
+            <p id="dates"><strong>Dates:</strong> ${data.startDate} to ${data.endDate}</p>
             <p><strong>Preferences:</strong> ${selectedPreferences || 'None selected'}</p>
         </div>
         <hr>
@@ -116,7 +116,7 @@ async function displayItinerary(data) {
             const daySection = document.createElement("div");
             daySection.className = "itinerary-day";
             daySection.innerHTML = `
-                <h3>Day ${dayNum}</h3>
+                <h3 class="day-header">Day ${dayNum}</h3>
                 <div class="itinerary-results"></div>
             `;
             const grid = daySection.querySelector(".itinerary-results");
@@ -136,27 +136,74 @@ async function displayItinerary(data) {
 function createSavedResultCard(item, dayKey) {
     const card = document.createElement("div");
     card.className = "result-card";
+
+    // Check if the place is already in the user's global saved places
+    const sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    let isSaved = false;
+    if (sessionUser) {
+        const savedPlaces = JSON.parse(localStorage.getItem(`savedPlaces_${sessionUser.email}`)) || [];
+        isSaved = savedPlaces.some(p => p.displayName === item.name);
+    }
+
+    const websiteHTML = item.website && item.website !== 'Not Available'
+        ? `<p class="website-container">
+            <a href="${item.website}" target="_blank" rel="noopener" class="website-link">
+                Visit Website <span class="sr-only">for ${item.name}</span>
+            </a>
+           </p>`
+        : `<p class="website-container"><span class="no-website">Website: Not Available</span></p>`;
+
     card.innerHTML = `
         <div class="card-image-container">
             <img src="${item.photo}" alt="${item.name}">
-            <button class="remove-button" aria-label="Remove item">x</button>
+            <button class="remove-button" aria-label="Remove ${item.name} from itinerary">×</button>
         </div>
         <div class="card-content">
             <h3>${item.name}</h3>
-            <p class="address">${item.address}</p>
+            <p class="address">${item.address || ""}</p>
+            <p>${item.number || "Not Available"}</p>
+            <p>Rating: ${item.rating ? item.rating + ' ⭐' + '(' + item.userCount + ')' : 'No rating'}</p>
+            ${websiteHTML}
+            <p class="summary">Description: ${item.description || "Not Available"}</p>
+            <button class="save-place-button ${isSaved ? 'is-added' : ''}">
+                ${isSaved ? 'Saved to Profile' : 'Save Place'}
+            </button>
         </div>
     `;
 
+    // Remove from Itinerary Logic
     card.querySelector(".remove-button").addEventListener("click", () => {
-        const saved = JSON.parse(sessionStorage.getItem("itinerary"));
-        if (saved && saved[dayKey]) {
-            // Filter out this specific item from the correct day or category
-            saved[dayKey] = saved[dayKey].filter(i => i.name !== item.name);
-            sessionStorage.setItem("itinerary", JSON.stringify(saved));
-            window.location.reload(); 
+        if (confirm(`Are you sure you want to remove ${item.name}?`)) {
+            const saved = JSON.parse(sessionStorage.getItem("itinerary"));
+            if (saved && saved[dayKey]) {
+                saved[dayKey] = saved[dayKey].filter(i => i.name !== item.name);
+                sessionStorage.setItem("itinerary", JSON.stringify(saved));
+                window.location.reload(); 
+            }
         }
     });
 
+    // Toggle Save Place Logic
+    const saveButton = card.querySelector(".save-place-button");
+    saveButton.addEventListener("click", () => {
+        const tripData = JSON.parse(sessionStorage.getItem("tripData"));
+        const wasSaved = toggleSavePlace(
+            item.name, 
+            item.address, 
+            item.photo, 
+            item.website, 
+            item.description,
+            tripData.destination
+        );
+        
+        if (wasSaved) {
+            saveButton.textContent = 'Saved to Profile';
+            saveButton.classList.add('is-added'); 
+        } else {
+            saveButton.textContent = 'Save Place';
+            saveButton.classList.remove('is-added');
+        }
+    });
     return card;
 }
 
@@ -303,29 +350,46 @@ function setupActionButtons() {
                 return;
             }
 
-            // 3. Combine data for a full profile save
-            const fullItinerary = {
+            // Combine data for comparison and profile save
+            const currentSessionItinerary = {
                 ...tripData,
                 details: itinerary,
                 savedAt: new Date().toLocaleString()
             };
 
-            // 4. Save to the specific user's itinerary collection in localStorage
+            // Save to the specific user's itinerary collection in localStorage
             const storageKey = `savedItineraries_${sessionUser.email}`;
-            const userSavedTrips = JSON.parse(localStorage.getItem(storageKey)) || [];
+            let userSavedTrips = JSON.parse(localStorage.getItem(storageKey)) || [];
             
-            // Prevent duplicate saves for the same destination and start date
-            const isDuplicate = userSavedTrips.some(t => 
-                t.destination === fullItinerary.destination && 
-                t.startDate === fullItinerary.startDate
+            // Find if this specific trip already exists in localStorage
+            const existingTripIndex = userSavedTrips.findIndex(t => 
+                t.destination === currentSessionItinerary.destination && 
+                t.startDate === currentSessionItinerary.startDate
             );
 
-            if (!isDuplicate) {
-                userSavedTrips.push(fullItinerary);
-                localStorage.setItem(storageKey, JSON.stringify(userSavedTrips));
-                alert("This itinerary has been saved to your profile!");
+            if (existingTripIndex !== -1) {
+                const existingTrip = userSavedTrips[existingTripIndex];
+
+                // Perform a deep comparison of the 'details' object
+                const sessionDetailsString = JSON.stringify(currentSessionItinerary.details);
+                const storedDetailsString = JSON.stringify(existingTrip.details);
+
+                if (sessionDetailsString === storedDetailsString) {
+                    // Display message if data is identical
+                    alert("This itinerary is already saved and up to date!");
+                } else {
+                    // Update only if changes are detected
+                    if (confirm("Changes detected. Would you like to update your saved itinerary?")) {
+                        userSavedTrips[existingTripIndex] = currentSessionItinerary;
+                        localStorage.setItem(storageKey, JSON.stringify(userSavedTrips));
+                        alert("Itinerary updated successfully!");
+                    }
+                }
             } else {
-                alert("This trip is already saved in your profile.");
+                // Save as a completely new entry if it doesn't exist yet
+                userSavedTrips.push(currentSessionItinerary);
+                localStorage.setItem(storageKey, JSON.stringify(userSavedTrips));
+                alert("Itinerary saved to your profile!");
             }
         });
     }
@@ -338,7 +402,8 @@ function setupActionButtons() {
             const tripData = JSON.parse(sessionStorage.getItem("tripData"));
             const sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
-            const savedTrips = JSON.parse(localStorage.getItem("itineraries")) || [];
+            const storageKey = sessionUser ? `savedItineraries_${sessionUser.email}` : null;
+            const savedTrips = storageKey ? JSON.parse(localStorage.getItem(storageKey)) || [] : [];
 
             const isSaved = tripData && savedTrips.some(trip => 
                 trip.destination === tripData.destination && 
@@ -346,21 +411,28 @@ function setupActionButtons() {
             );
 
             if (isSaved && sessionUser) {
-                if (confirm("This trip is saved. Also delete from profile?")) {
+                if (confirm("This trip is saved in your profile. Would you like to clear the current session AND delete it from your profile?")) {
+                    // Remove from localStorage
                     const updatedTrips = savedTrips.filter(trip => 
                         !(trip.destination === tripData.destination && trip.startDate === tripData.startDate)
                     );
+                    localStorage.setItem(storageKey, JSON.stringify(updatedTrips));
 
-                    localStorage.setItem("itineraries", JSON.stringify(updatedTrips));
+                    // Clear session storage and redirect
                     sessionStorage.removeItem("tripData");
+                    sessionStorage.removeItem("itinerary");
                     window.location.href = "planner.html";
                 } else {
+                    // Only clear session storage
                     sessionStorage.removeItem("tripData");
+                    sessionStorage.removeItem("itinerary");
                     window.location.href = "planner.html";
                 }
             } else {
-                if (confirm("Are you sure you want to clear this trip?")) {
+                // Not saved or guest user
+                if (confirm("Are you sure you want to clear your current itinerary?")) {
                     sessionStorage.removeItem("tripData");
+                    sessionStorage.removeItem("itinerary");
                     window.location.href = "planner.html";
                 }
             }
@@ -373,4 +445,11 @@ function setupActionButtons() {
             window.location.href = "planner.html";
         });
     }
-} 
+
+    const resultsButton = document.getElementById("view-results-button");
+    if (resultsButton) {
+        resultsButton.addEventListener("click", () => {
+            window.location.href = "results.html";
+        });
+    }
+}
