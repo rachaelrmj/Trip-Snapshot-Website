@@ -295,9 +295,10 @@ body.dark-mode #theme-toggle img {
 }
 
 #results-overview h2 {
-    font-size: 30px;
+    font-size: 50px;
+    margin-bottom: 10px;
 }
-
+/*--------------------------------------------------------*/
 /* --- Trip Summary Card Styles --- */
 .trip-summary-card {
     display: grid;

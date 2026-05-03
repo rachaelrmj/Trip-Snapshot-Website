@@ -74,6 +74,7 @@ h1, h2, h3, h4 {
 
 p, button {
     font-family: 'Montserrat', sans-serif;
+    text-align: center;
 }
 /*--------------------------------------------------------*/
 /* Skip-link Styles */
@@ -254,7 +255,7 @@ body.dark-mode #theme-toggle img {
     align-items: center;
     justify-content: center;
     min-height: 60vh;
-    padding: 40px;
+    padding: 100px 20px;
 }
 
 #empty-itinerary-message h2 {
@@ -280,12 +281,6 @@ body.dark-mode #theme-toggle img {
     display: none;
 }
 
-#itinerary {
-    padding: 40px;
-    width: 100%;
-    margin: 0 auto;
-}
-
 #itinerary-overview {
     display: flex;
     flex-direction: column;
@@ -295,14 +290,7 @@ body.dark-mode #theme-toggle img {
 
 #itinerary h2 {
     font-size: 50px;
-    color: inherit;
     margin-bottom: 10px;
-}
-
-#itinerary p {
-    font-size: 26px;
-    color: inherit; 
-    text-align: center;
 }
 /*--------------------------------------------------------*/
 /* --- Trip Summary Card Styles --- */
@@ -356,8 +344,6 @@ body.dark-mode .trip-summary-card {
 
 .section-main-title {
     font-size: 32px;
-    margin: 40px 0 20px;
-    color: #000000;
     text-transform: uppercase;
     border-top: 2px solid #facc15;
     padding-top: 10px;

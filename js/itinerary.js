@@ -9,19 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // Display message to user informing them they must plan a trip in order to see an itinerary
         if (mainContent) {
             mainContent.innerHTML = `
-                <section id="empty-itinerary-message" style="padding: 100px 20px; text-align: center;">
-                    <h2 style="font-size: 32px; margin-bottom: 20px;">No Itinerary Found</h2>
-                    <p style="font-size: 18px; margin-bottom: 30px;">
-                        You must plan a trip in order to see an itinerary.
-                    </p>
-                    <a href="planner.html" style="
-                        background-color: #1ca7ec; 
-                        color: white; 
-                        padding: 15px 30px; 
-                        border-radius: 50px; 
-                        text-decoration: none; 
-                        font-weight: bold;
-                    ">Start Planning Now</a>
+                <section id="empty-itinerary-message">
+                    <h2>No Itinerary Found</h2>
+
+                    <p>You must plan a trip in order to see an itinerary.</p>
+
+                    <a href="planner.html" class="action-buttons">Start Planning Now</a>
                 </section>
             `;
         }
@@ -33,8 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Call the function to display the itinerary with the retrieved trip data
     displayOverview(tripData);
-
-   // Call the function to display the trip data and preferences    
+   
     displayItinerary(tripData);
 
     // Set up event listeners for itinerary action buttons
@@ -48,8 +40,11 @@ function displayOverview(data) {
     // If no such element exists, exit function
     if (!overviewContainer) return;
 
-    // Format the preferences into a readable list and store in the allPReferences variable
-    const allPreferences = { ...data.activities, ...data.travelNeeds };
+    // Format the preferences into a readable list and store in the allPreferences variable
+    const allPreferences = { 
+        ...data.activities, ...data.travelNeeds 
+    };
+
     // Gets all keys from allPreferences
     const selectedPreferences = Object.keys(allPreferences)
         // Filters the keys set to true

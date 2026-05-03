@@ -4,8 +4,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Query the main element and save as mainContent
     const mainContent = document.querySelector("main"); 
 
-    // Check is there is trip data, if not display message
+    // If there is no tripData in sessionStorage...
     if (!tripData) {
+        // Display message to user informing them they must plan a trip in order to see trip results
         if (mainContent) {
             mainContent.innerHTML = `
             <section id="empty-results-message">
@@ -17,6 +18,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             </section>
             `;
         }
+        // Log an error message to the console if trip data is not found in sessionStorage
+        console.error("Trip data not found");
+        // Stop further execution so Google Maps doesn't try to load
         return;
     }
 
@@ -32,25 +36,34 @@ document.addEventListener("DOMContentLoaded", async () => {
         results = { travelNeeds: [] };
     }
 
+    // Call the function to display the itinerary with the retrieved trip data
     displayOverview(tripData);
 
     try {
-        await google.maps.importLibrary("places"); 
+        await google.maps.importLibrary("places");
+        // Call the function to display the trip data and results
         displayResults(tripData);
     } catch (e) {
         console.error("Maps library failed to load on navigation", e);
     }
 
+    // Set up event listeners for itinerary action buttons
     setupActionButtons();
 });
 
+// Store the user's travel needs preferences/selections in an array into the itinerary variable
 let itinerary = { travelNeeds: [] }; 
+// Initialize an empty array stored in the tripDays variable
 let tripDays = [];
 
+// Function to show destination, dates, and selected preferences from sessionStorage
 function displayOverview(data) {
+    // Get the itinerary-overview HTML element and store in the overviewContainer variable
     const overviewContainer = document.getElementById("results-overview");
+    // If no such element exists, exit function
     if (!overviewContainer) return;
 
+    // Format the preferences into a readable list and store in the applicable variable
     const activities = data.activities || {};
     const travelNeeds = data.travelNeeds || {};
     const allPreferences = { ...activities, ...travelNeeds };
