@@ -29,13 +29,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (savedResults) {
         results = JSON.parse(savedResults);
     } else {
-        // Initialize if it's the first time visiting results
         results = { travelNeeds: [] };
     }
 
     displayOverview(tripData);
 
-    // Ensure Google Maps library is fully ready before execution to prevent ERR_INTERNET_DISCONNECT
     try {
         await google.maps.importLibrary("places"); 
         displayResults(tripData);
@@ -46,7 +44,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     setupActionButtons();
 });
 
-// State to hold both non-day specific needs and daily activities
 let itinerary = { travelNeeds: [] }; 
 let tripDays = [];
 
@@ -67,7 +64,7 @@ function displayOverview(data) {
         .join(", ");
 
     overviewContainer.innerHTML = `
-        <h2>Your Trip Results</h2>
+        <h2>Trip Results</h2>
         <p>Browse and add places to your itinerary.</p>
         <div class="trip-summary-card">
             <p><span>Destination</span><br> ${data.destination}</p>
@@ -77,12 +74,12 @@ function displayOverview(data) {
         <hr>`;
 }
 
+// Function to show trip results based on the provided trip data from sessionStorage
 async function displayResults(data) {
     const container = document.getElementById("results-container");
     if (!container) return;
     container.innerHTML = "";
 
-    // 1. Setup Dates & Days
     const start = new Date(data.startDate + "T00:00:00");
     const end = new Date(data.endDate + "T00:00:00");
     const diffTime = end - start;
@@ -90,7 +87,6 @@ async function displayResults(data) {
 
     tripDays = generateTripDays(data.startDate, totalDays);
     
-    // Create buckets for each day if they don't exist in our re-hydrated state
     tripDays.forEach(d => {
         if (!itinerary[d.key]) itinerary[d.key] = [];
     });
@@ -108,7 +104,7 @@ async function displayResults(data) {
 
     const travelPreferences = { ...(data.activities || {}), ...(data.travelNeeds || {}) };
 
-    // 2. Render each selected category
+    // Display each selected category
     for (const [preference, isSelected] of Object.entries(travelPreferences)) {
         if (!isSelected || !preferenceMapping[preference]) continue;
 
@@ -186,7 +182,6 @@ function createResultCard(place, preference) {
         isAlreadyAdded = itinerary.travelNeeds.some(item => item.name === place.displayName);
         if (isAlreadyAdded) buttonText = "Added to Itinerary";
     } else {
-        // Check across ALL days in the itinerary for this activity
         const addedDays = Object.keys(itinerary)
             .filter(key => key.startsWith('day') && Array.isArray(itinerary[key]) && itinerary[key].some(item => item.name === place.displayName))
             .map(key => key.replace('day', ''));
@@ -233,11 +228,9 @@ function createResultCard(place, preference) {
             });
             sessionStorage.setItem("itinerary", JSON.stringify(itinerary));
             
-            // Success visual feedback
             addButton.textContent = "Added to Itinerary"; 
             addButton.classList.add("is-added");
         } else {
-            // Open Day Selector for Activities - Pass the button for confirmation
             dayPopupWindow(place, photo, addButton);
         }
     });
@@ -302,7 +295,6 @@ function dayPopupWindow(place, photo, addButton) {
             // Save back to session
             sessionStorage.setItem("itinerary", JSON.stringify(itinerary));
 
-            // Logic for Travel Needs vs Activities
             const addedDays = Object.keys(itinerary)
                 .filter(key => key.startsWith('day') && Array.isArray(itinerary[key]) && itinerary[key].some(item => item.name === place.displayName))
                 .map(key => key.replace('day', ''));
@@ -333,7 +325,6 @@ function setupActionButtons() {
 
     document.getElementById("edit-trip-button")?.addEventListener("click", () => window.location.href = "planner.html");
     
-    // RENAMED IDENTIFIER TO saveResultsBtn TO PREVENT SyntaxError
     const saveResultsBtn = document.getElementById("save-results-button");
 
     if (saveResultsBtn) {
@@ -341,7 +332,6 @@ function setupActionButtons() {
             const sessionUser = JSON.parse(sessionStorage.getItem("currentUser")); 
     
             if (!sessionUser) {
-                // Save current URL so we can return here after login
                 sessionStorage.setItem("redirectAfterLogin", window.location.href);
 
                 alert("You must be signed in to save results.");
@@ -356,16 +346,13 @@ function setupActionButtons() {
             }
 
             const newResult = JSON.parse(tripDataStr);
-            // CORRECTED STORAGE KEY FOR RESULTS
             const storageKey = `savedResults_${sessionUser.email}`;
             const savedResults = JSON.parse(localStorage.getItem(storageKey)) || [];
             
-            // Fixed Duplicate Check: Compare destination, dates, AND full activities/travel preferences
             const isDuplicate = savedResults.some(trip => {
                 const sameDest = trip.destination === newResult.destination;
                 const sameDates = trip.startDate === newResult.startDate && trip.endDate === newResult.endDate;
                 
-                // Deep compare selected preference strings
                 const sameActivities = JSON.stringify(trip.activities) === JSON.stringify(newResult.activities);
                 const sameTravel = JSON.stringify(trip.travelNeeds) === JSON.stringify(newResult.travelNeeds);
 
@@ -393,7 +380,6 @@ function setupActionButtons() {
 
             const sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
-            // UPDATED CLEAR LOGIC TO USE THE CORRECT USER-SPECIFIC RESULTS KEY
             const storageKey = sessionUser ? `savedResults_${sessionUser.email}` : null;
             const savedResults = storageKey ? JSON.parse(localStorage.getItem(storageKey)) || [] : [];
 

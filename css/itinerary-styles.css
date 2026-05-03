@@ -25,7 +25,7 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -57,14 +57,9 @@ table {
 body, html {
     min-height: 100vh; 
     font-family: 'SN Pro', sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
+    background-color: #ffffff;
+    color: #000000;
     transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-body.dark-mode {
-    background-color: var(--dark-bg);
-    color: var(--dark-text);
 }
 
 h1 {
@@ -80,6 +75,7 @@ h1, h2, h3, h4 {
 p, button {
     font-family: 'Montserrat', sans-serif;
 }
+/*--------------------------------------------------------*/
 /* Skip-link Styles */
 #skip-link {
     position: absolute;
@@ -251,17 +247,6 @@ body.dark-mode #theme-toggle img {
     filter: invert(1); 
 }
 /*--------------------------------------------------------*/
-/* Screen Reader Styles */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    border: 0;
-}
-/*--------------------------------------------------------*/
 /* Itinerary Section Styles */
 #empty-itinerary-message {
     display: flex;
@@ -319,7 +304,7 @@ body.dark-mode #theme-toggle img {
     color: inherit; 
     text-align: center;
 }
-
+/*--------------------------------------------------------*/
 /* --- Trip Summary Card Styles --- */
 .trip-summary-card {
     display: grid;
@@ -483,7 +468,7 @@ body.dark-mode .result-card h3 {
 
 .category-title {
     font-size: 26px;
-    color: var(--primary); 
+    color: #facc15; 
     text-align: center;
     margin-bottom: 15px;
 }
@@ -502,7 +487,7 @@ body.dark-mode .result-card h3 {
     flex-direction: column;
     flex-grow: 1; 
 }
-
+/*--------------------------------------------------------*/
 /* --- Photo Gallery Styles --- */
 .photo-spread {
     display: flex;
@@ -534,9 +519,8 @@ body.dark-mode .photo-spread {
     padding: 40px 0;
 }
 
-/* Styling for the Remove (x) Button on Itinerary Cards */
 .card-image-container {
-    position: relative; /* Allows absolute positioning of the button within the container */
+    position: relative;
 }
 
 .remove-button {
@@ -803,7 +787,7 @@ body.dark-mode #social-media img {
         grid-column: span 2;
     }
 }
-
+/*--------------------------------------------------------*/
 /* Desktop Styles */
 @media screen and (min-width: 1024px) {
     header { 
@@ -829,7 +813,7 @@ body.dark-mode #social-media img {
         gap: 10px; 
     }
 }
-
+/*--------------------------------------------------------*/
 /* Large Desktop Styles */
 @media screen and (min-width: 1440px) {
    header, main, footer {

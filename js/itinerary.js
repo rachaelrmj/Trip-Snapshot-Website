@@ -65,15 +65,14 @@ function displayOverview(data) {
 
     // Display the following in the overviewContainer
     overviewContainer.innerHTML = `
-        <h2>Your Itinerary</h2>
+        <h2>Personalized Itinerary</h2>
         <p>Here is your personalized itinerary based on your preferences and trip details.</p>
         <div class="trip-summary-card">
-            <p><strong>Destination:</strong> ${data.destination}</p>
-            <p id="dates"><strong>Dates:</strong> ${data.startDate} to ${data.endDate}</p>
-            <p><strong>Preferences:</strong> ${selectedPreferences || 'None selected'}</p>
+            <p><span>Destination</span><br> ${data.destination}</p>
+            <p id="dates"><span>Trip Dates</span><br> ${data.startDate} to ${data.endDate}</p>
+            <p><span>Preferences</span><br> ${selectedPreferences || 'None selected'}</p>
         </div>
-        <hr>
-    `;
+        <hr>`;
 }
 
 // Function to show the itinerary based on the provided trip data from sessionStorage
@@ -127,7 +126,7 @@ async function displayItinerary(data) {
         }
     });
 
-    // 3. Append the activities block if it contains actual days
+    // Append the activities block if it contains actual days
     if (activitiesContainer.children.length > 1) { 
         container.appendChild(activitiesContainer);
     }

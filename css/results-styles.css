@@ -68,8 +68,6 @@ body, html {
     color: #000000;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-/*--------------------------------------------------------*/
-/* Typography Styles*/
 
 h1 {
     display: none;  
@@ -84,6 +82,7 @@ h1, h2, h3, h4 {
 p, button {
     font-family: 'Montserrat', sans-serif;
 }
+/*--------------------------------------------------------*/
 /* Skip-link Styles */
 #skip-link {
     position: absolute;
@@ -253,17 +252,6 @@ body.dark-mode .mobile-nav a {
 
 body.dark-mode #theme-toggle img {
     filter: invert(1); 
-}
-/*--------------------------------------------------------*/
-/* Screen Reader Styles */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    border: 0;
 }
 /*--------------------------------------------------------*/
 /* Results Section Styles */
@@ -437,7 +425,7 @@ body.dark-mode .result-card h3 {
     height: 125px; 
     position: relative;
 }
-
+/*--------------------------------------------------------*/
 /* --- Photo Gallery Styles --- */
 .photo-spread {
     display: flex;
@@ -459,7 +447,7 @@ body.dark-mode .photo-spread {
     object-fit: cover;
     border-radius: 6px; 
 }
-
+/*--------------------------------------------------------*/
 /* Activities Day Selection Popup Styles */
 #day-modal {
     position: fixed;
@@ -516,7 +504,7 @@ body.dark-mode .modal-content {
     padding: 10px;
     margin-top: 10px;
 }
-
+/*--------------------------------------------------------*/
 /* Result Action Button Styles */
 #results-actions {
     display: flex;
@@ -758,7 +746,7 @@ body.dark-mode #social-media img {
         grid-column: span 2;
     }
 }
-
+/*--------------------------------------------------------*/
 /* Desktop Styles */
 @media screen and (min-width: 1024px) {
     header { 
@@ -784,7 +772,7 @@ body.dark-mode #social-media img {
         gap: 10px; 
     }
 }
-
+/*--------------------------------------------------------*/
 /* Large Desktop Styles */
 @media screen and (min-width: 1440px) {
     header, main, footer {
