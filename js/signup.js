@@ -7,60 +7,82 @@ document.addEventListener("DOMContentLoaded", function () {
     const confirmationPopup = document.getElementById("signup-confirmation");
     const existingAccountPopup = document.getElementById("existing-account-error");
 
+    // Grab all buttons that can close popups
     const closeButtons = document.querySelectorAll(".close-popup");
 
-
+    // Display popup modal
     function showPopup(modal, redirectUrl = null) {
-        modal.style.display = "flex"; 
+        modal.style.display = "flex"; // Make popup visible (flex centers it in UI)
+
+        // If a redirect URL is provided, store it inside the modal element
         if (redirectUrl) modal.dataset.redirect = redirectUrl;
     }
 
+    // Attach click behavior to every popup close button
     closeButtons.forEach(button => {
         button.addEventListener("click", function () {
+
+            // Find the closest popup container this button belongs to
             const modal = this.closest(".popup-window");
+
+            // Hide the popup from view
             modal.style.display = "none";
-            if (modal.dataset.redirect) window.location.href = modal.dataset.redirect;
+
+            // If this popup had a redirect stored, send user to that page
+            if (modal.dataset.redirect) {
+                window.location.href = modal.dataset.redirect;
+            }
         });
     });
 
-
     signupForm.addEventListener("submit", function (event) {
-    event.preventDefault();
+        // Prevent efault form behavior
+        event.preventDefault();
 
-    const firstNameValue = document.getElementById("fname").value.trim(); 
-    const lastNameValue = document.getElementById("lname").value.trim();
-    const emailValue = emailInput.value.trim();
-    const passwordValue = passwordInput.value.trim();
+        // Get values the user typed into the form fields and remove white space
+        const firstNameValue = document.getElementById("fname").value.trim();
+        const lastNameValue = document.getElementById("lname").value.trim();
+        const emailValue = emailInput.value.trim();
+        const passwordValue = passwordInput.value.trim();
 
-    let accounts = JSON.parse(localStorage.getItem("accounts")) || [];
+        // Load existing user accounts from localStorage, if nothing exists yet, create an empty array
+        let accounts = JSON.parse(localStorage.getItem("accounts")) || [];
 
-    // Check if the email already exists in the master account list
-    const emailExists = accounts.some(acc => acc.email === emailValue);
+        // Check if an account with this email already exists
+        const emailExists = accounts.some(acc => acc.email === emailValue);
 
-    if (emailExists) {
-        // Use the existing account popup instead of alert if it exists in your HTML
-        if (existingAccountPopup) {
-            showPopup(existingAccountPopup);
-        } else {
-            alert("An account with this email already exists. Please log in.");
+        // If email is already registered, stop signup process
+        if (emailExists) {
+            // If there is a custom popup element in HTML, show it instead of alert
+            if (existingAccountPopup) {
+                showPopup(existingAccountPopup);
+            } else {
+                // fallback if HTML popup element doesn't exist
+                alert("An account with this email already exists. Please log in.");
+            }
+
+            return; // Stop further code execution
         }
-        return;
-    }
 
-    // Create the user object with the 'fname' key
-    const newAccount = { 
-        fname: firstNameValue, // This must match the key used in profile.js
-        lname: lastNameValue, // This must match the key used in profile.js
-        email: emailValue, 
-        password: passwordValue 
-    };
+        // Build a new user object using form input values
+        const newAccount = {
+            fname: firstNameValue,
+            lname: lastNameValue,
+            email: emailValue,
+            password: passwordValue
+        };
 
-    accounts.push(newAccount);
-    localStorage.setItem("accounts", JSON.stringify(accounts));
+        // Add new account into existing accounts list
+        accounts.push(newAccount);
 
-    // Authorize the current session immediately
-    sessionStorage.setItem("currentUser", JSON.stringify(newAccount));
-    
-    showPopup(confirmationPopup, "profile.html");
+        // Save updated accounts list back into localStorage
+        localStorage.setItem("accounts", JSON.stringify(accounts));
+
+        // Immediately log user in after signup
+        // sessionStorage is used so login only lasts for this tab/session
+        sessionStorage.setItem("currentUser", JSON.stringify(newAccount));
+
+        // Show success popup and redirect user to profile page after closing it
+        showPopup(confirmationPopup, "profile.html");
     });
 });

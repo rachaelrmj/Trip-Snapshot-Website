@@ -25,31 +25,35 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1;
 }
+
 ol, ul {
 	list-style: none;
 }
+
 blockquote, q {
 	quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
 /*--------------------------------------------------------*/
-
 /* Trip Snapshot Website- FAQs Page Global Styles */
 * {
     box-sizing: border-box;
@@ -58,7 +62,7 @@ table {
 }
 
 body, html {
-    min-height: 100vh; /* full viewport height */
+    min-height: 100vh; 
     font-family: 'SN Pro', sans-serif;
     background-color: #ffffff;
     color: #000000;
@@ -77,8 +81,7 @@ h1, h2, h3, h4 {
 p, button {
     font-family: 'SN Pro', sans-serif;
 }
-
-/*-------------------------------*/
+/*--------------------------------------------------------*/
 /* Header Styles */
 header {
     display: flex;      
@@ -138,7 +141,7 @@ body.dark-mode header {
     top: 100%;        
     left: 0;          
     width: 100%;   
-    background: #facc15;         
+    background-color: #facc15;         
     box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
     transition: max-height 0.3s ease;
     max-height: 0;
@@ -173,8 +176,7 @@ body.dark-mode .mobile-nav a {
     color: #ffffff;     
 }
 
-body.dark-mode .mobile-nav li:hover,
-body.dark-mode .mobile-nav a:hover {
+body.dark-mode .mobile-nav li:hover, body.dark-mode .mobile-nav a:hover {
     color: #ffffff;
 }
 
@@ -191,7 +193,7 @@ body.dark-mode .mobile-nav a:hover {
 }
 
 #theme-toggle {
-    background: transparent;
+    background-color: transparent;
     border: none;
     cursor: pointer;
     width: 30px;
@@ -310,8 +312,7 @@ body.dark-mode #useful-links a {
     color: #ffffff;
 }
 
-#useful-links a:hover,
-#useful-links a:focus {
+#useful-links a:hover, #useful-links a:focus {
     color: #1ca7ec;
     text-decoration: underline;
 }
@@ -351,10 +352,10 @@ body.dark-mode #social-media img {
     }
 
     .mobile-nav {
-        display: block !important;
+        display: block;
         position: static;
         max-height: none;
-        background: transparent;
+        background-color: transparent;
         box-shadow: none;
         overflow: visible;
     }
@@ -404,7 +405,7 @@ body.dark-mode #social-media img {
         grid-column: span 2;
     }
 }
-
+/*--------------------------------------------------------*/
 /* Desktop Styles */
 @media screen and (min-width: 1024px) {
     header { 
@@ -465,7 +466,7 @@ body.dark-mode #social-media img {
         background-color: #ffffff;
     }
 }
-
+/*--------------------------------------------------------*/
 /* Large Desktop Styles */
 @media screen and (min-width: 1440px) {
     header, main, footer {

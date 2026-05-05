@@ -25,25 +25,30 @@ time, mark {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1;
 }
+
 ol, ul {
 	list-style: none;
 }
+
 blockquote, q {
 	quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -534,8 +539,6 @@ body.dark-mode .plan-button:hover {
     background-color: #000000;
     color: #ffffff;
 }
-
-
 /*--------------------------------------------------------*/
 /* Footer Styles*/
 footer {
@@ -605,8 +608,7 @@ body.dark-mode #useful-links a {
     color: #ffffff;
 }
 
-#useful-links a:hover,
-#useful-links a:focus {
+#useful-links a:hover, #useful-links a:focus {
     color: #1ca7ec;
     text-decoration: underline;
 }
@@ -646,7 +648,7 @@ body.dark-mode #social-media img {
     }
 
     .mobile-nav {
-        display: block !important;
+        display: block;
         position: static;
         max-height: none;
         width: auto;
@@ -722,7 +724,7 @@ body.dark-mode #social-media img {
         grid-column: span 2;
     }
 }
-
+/*--------------------------------------------------------*/
 /* Desktop Styles */
 @media screen and (min-width: 1024px) {
     header {
@@ -773,7 +775,7 @@ body.dark-mode #social-media img {
         max-width: 300px;
     }
 }
-
+/*--------------------------------------------------------*/
 /* Large Desktop Styles */
 @media screen and (min-width: 1440px) {
     header, main, footer {

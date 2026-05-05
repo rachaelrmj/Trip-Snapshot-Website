@@ -1,100 +1,117 @@
-// On page load, call the functions
+// Wait until the DOM is fully loaded, then initialize page features
 document.addEventListener("DOMContentLoaded", () => {
     populateTripData(); 
     destinationAutocomplete();
     attachHeroFormHandler();
 });
 
-// Load session data to auto-populate related trip data entered by user on homepage
+// Load and display trip data saved in sessionStorage
 function populateTripData() {
+    // Retrieve trip data (stored as a JSON string)
     const storedTrip = sessionStorage.getItem("tripData");
+    // If no trip data is stored, stop further code execution
     if (!storedTrip) return;
 
+    // If there is trip data saved store to the storedTrip variable....
     try {
+        // Convert JSON string into the JavaScript object trip 
         const trip = JSON.parse(storedTrip);
 
+        // Get the destination HTML element from DOM and save as the destInput variable
         const destInput = document.getElementById("destination");
+        // Get the start date HTML element from DOM and save as the startInput variable
         const startInput = document.getElementById("start-date");
+        // Get the end date HTML element from DOM and save as the EndInput variable
         const endInput = document.getElementById("end-date");
 
+         // Populate inputs only if both the element and data exist
         if (destInput && trip.destination) destInput.value = trip.destination;
         if (startInput && trip.startDate) startInput.value = trip.startDate;
         if (endInput && trip.endDate) endInput.value = trip.endDate;
-
+    // Handle invalid JSON or parsing errors
     } catch (err) {
-        console.warn("Failed to parse tripData:", err);
+        console.warn("Failed to parse trip data:", err);
     }
 }
+// Holds the selected photo Url so it can be accessed and updated across multiple functions
+let selectedPhotoUrl = ""; 
 
-let selectedPhotoUrl = ""; // Global variable to store the image URL
-
-// Autocomplete destination as user types using the Places API (New) dynamic loader
+// Initialize destination autocomplete using Google Places API
 async function destinationAutocomplete() {
+    // Get the destination HTML element and store is value in the input variable
     const input = document.getElementById("destination");
+    // If no data is stored in input variable, stop further code execution
     if (!input) return;
 
     try {
-        // Dynamically import the 'places' library
+        // // Load the Places library dynamically
         const { Autocomplete } = await google.maps.importLibrary("places");
 
         const autocomplete = new Autocomplete(input, {
             types: ["(cities)"],
-            // Ensure photos is included in fields to satisfy API (New) requirements
+            // Request data from desired fields
             fields: ["formattedAddress", "geometry", "displayName", "photos"]
         });
 
+        // Triggers when the user selects a place from suggestions (auto-populated drop-down)
         autocomplete.addListener("place_changed", () => {
             const place = autocomplete.getPlace();
             if (!place || !place.geometry) return;
 
-            // Get the URI for the first photo available for the city
+            // If photos are available and there is more than 1
             if (place.photos && place.photos.length > 0) {
-                // Use getURI to get a valid string URL based on Google Places API (New)
-                // We request a larger width to ensure the API serves a high-quality crop
-                selectedPhotoUrl = place.photos[0].getURI({ maxWidth: 800, maxHeight: 600 });
+                // Get first photo and store in the selectedPhotoUrl variable
+                selectedPhotoUrl = place.photos[0].getURI({ 
+                    // Set dimensions of photos
+                    maxWidth: 800, 
+                    maxHeight: 600 
+                });
                 
-                // STASH: Immediately save to session so it is not lost on page redirect
+                // Immediately save photo to sessionStorage so it is not lost on when leaving page
                 const currentData = JSON.parse(sessionStorage.getItem("tripData")) || {};
                 currentData.photoUrl = selectedPhotoUrl;
                 sessionStorage.setItem("tripData", JSON.stringify(currentData));
             }            
         });
+        // Handle API loading errors
     } catch (error) {
         console.error("Error loading Google Maps Places library:", error);
     }
 }
+
 
 function attachHeroFormHandler() {
     const form = document.getElementById("hero-planner-form");
     if (!form) return;
 
     form.addEventListener("submit", (e) => {
+        // Prevent default form behavior
         e.preventDefault();
 
-        // Get values from the hero form
+        // Get user input values
         const destination = document.getElementById("destination").value.trim();
         const startDate = document.getElementById("start-date").value;
         const endDate = document.getElementById("end-date").value;
 
-        // Validation for empty fields
+        // Ensure all fields are filled
         if (!destination || !startDate || !endDate) {
             alert("Please fill out all fields.");
             return;
         }
 
-        // Validation for date logic
+        // Ensure end date is after start date
         if (new Date(endDate) < new Date(startDate)) {
             alert("End date must be after start date.");
             return;
         }
 
-        // Store trip data in the variable tripData
+        // Build trip data object to use across all pages
         const tripData = { 
-            destination: destination, 
-            startDate: startDate, 
-            endDate: endDate,
-            // Capture URL from global or fall back to session stash
-            photoUrl: selectedPhotoUrl || JSON.parse(sessionStorage.getItem("tripData"))?.photoUrl || "", 
+            destination,
+            startDate,
+            endDate,
+            // Prefer newly selected photo, otherwise reuse existing one
+            photoUrl: selectedPhotoUrl || existingData.photoUrl || "",
             timestamp: new Date().toLocaleString()
         };
 
@@ -103,7 +120,7 @@ function attachHeroFormHandler() {
 
         const sessionUser = sessionStorage.getItem("currentUser");
         if (sessionUser) {
-            // Log this search into Local Storage for the profile page
+             // Store recent searches (limit to 5)
             const recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
             recentSearches.unshift(tripData);
             const limitedSearches = recentSearches.slice(0, 5);

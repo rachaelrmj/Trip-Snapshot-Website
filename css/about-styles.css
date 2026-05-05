@@ -25,7 +25,7 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
+
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
@@ -169,7 +169,7 @@ body.dark-mode header {
     top: 100%;        
     left: 0;          
     width: 100%;   
-    background: #facc15;         
+    background-color: #facc15;         
     box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
     transition: max-height 0.3s ease;
     max-height: 0;
@@ -191,7 +191,7 @@ body.dark-mode header {
     display: block;
     text-decoration: none;
     font-size: 16px;
-    color: black;
+    color: #000000;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -390,7 +390,7 @@ body.dark-mode #social-media img {
     }
 
     .mobile-nav {
-        display: block !important;
+        display: block;
         position: static;
         max-height: none;
         background: transparent;
@@ -407,8 +407,9 @@ body.dark-mode #social-media img {
         padding: 5px 10px; 
     }
 
-    .mobile-nav li:hover, .mobile-nav a:hover {          background-color: transparent; 
-    color: #1ca7ec; 
+    .mobile-nav li:hover, .mobile-nav a:hover {          
+        background-color: transparent; 
+        color: #1ca7ec; 
     }
     
     header { 
@@ -442,7 +443,7 @@ body.dark-mode #social-media img {
         grid-column: span 2;
     }
 }
-
+/*--------------------------------------------------------*/
 /* Desktop Styles */
 @media screen and (min-width: 1024px) {
     header { 
@@ -503,7 +504,7 @@ body.dark-mode #social-media img {
         background-color: #ffffff;
     }
 }
-
+/*--------------------------------------------------------*/
 /* Large Desktop Styles */
 @media screen and (min-width: 1440px) {
     header, main, footer {

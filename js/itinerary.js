@@ -1,80 +1,87 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Retrieve trip data from sessionStorage and store in the variable tripData
+    // Load stored trip data from sessionStorage (active session only)
     const tripData = JSON.parse(sessionStorage.getItem("tripData"));
-    // Query the main element and save as mainContent
+
+    const savedItinerary = JSON.parse(sessionStorage.getItem("itinerary"));
+
+    if (savedItinerary && tripData) {
+        const mismatch = Object.values(savedItinerary).flat().some(item => 
+            item.destination && item.destination !== tripData.destination
+        );
+
+        if (mismatch) {
+            console.warn("Itinerary mismatch detected. Resetting.");
+            sessionStorage.removeItem("itinerary");
+        }
+    }
+
+    // Main page container for rendering content dynamically
     const mainContent = document.querySelector("main"); 
 
-    // If there is no tripData in sessionStorage...
+    // If no trip exists, show empty state container instead of itinerary
     if (!tripData) {
-        // Display message to user informing them they must plan a trip in order to see an itinerary
         if (mainContent) {
             mainContent.innerHTML = `
                 <section id="empty-itinerary-message">
                     <h2>No Itinerary Found</h2>
-
                     <p>You must plan a trip in order to see an itinerary.</p>
-
                     <a href="planner.html" class="action-buttons">Start Planning Now</a>
                 </section>
             `;
         }
-        // Log an error message to the console if trip data is not found in sessionStorage
-        console.error("Trip data not found");
-        // Stop further execution so Google Maps doesn't try to load
-        return;
-    }
-    
-    // Call the function to display the itinerary with the retrieved trip data
-    displayOverview(tripData);
-   
-    displayItinerary(tripData);
 
-    // Set up event listeners for itinerary action buttons
+        console.error("Trip data not found (sessionStorage is empty)");
+        return; // Prevent downstream functions from running without data
+    }
+
+    // Call display functions and actions button logic
+    displayOverview(tripData);
+    displayItinerary(tripData);
     setupActionButtons();
 });
 
-// Function to show destination, dates, and selected preferences from sessionStorage
+// Display trip overview
 function displayOverview(data) {
-    // Get the itinerary-overview HTML element and store in the overviewContainer variable
     const overviewContainer = document.getElementById("itinerary-overview");
-    // If no such element exists, exit function
     if (!overviewContainer) return;
 
-    // Format the preferences into a readable list and store in the allPreferences variable
+    // Merge selected preferences into a single object for formatting
     const allPreferences = { 
-        ...data.activities, ...data.travelNeeds 
+        ...data.activities, 
+        ...data.travelNeeds 
     };
 
-    // Gets all keys from allPreferences
+    // Convert selected preference keys into readable labels
     const selectedPreferences = Object.keys(allPreferences)
-        // Filters the keys set to true
         .filter(key => allPreferences[key] === true)
         .map(key => {
-        // Convert camelCase to spaces (e.g., "rentalCar" -> "rental car")
-        let formatted = key.replace(/([A-Z])/g, ' $1').trim().toLowerCase();
-        // Capitalize the first letter (e.g., "rental car" -> "Rental car")
-        return formatted.charAt(0).toUpperCase() + formatted.slice(1);
-    })
-    // Join keys into a comma-separated string
-    .join(", ");
+            let formatted = key.replace(/([A-Z])/g, ' $1').trim().toLowerCase();
+            return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+        })
+        .join(", ");
 
-    // Display the following in the overviewContainer
+    // Display trip summary
     overviewContainer.innerHTML = `
         <h2>Personalized Itinerary</h2>
         <p>Here is your personalized itinerary based on your preferences and trip details.</p>
+
         <div class="trip-summary-card">
             <p><span>Destination</span><br> ${data.destination}</p>
             <p id="dates"><span>Trip Dates</span><br> ${data.startDate} to ${data.endDate}</p>
             <p><span>Preferences</span><br> ${selectedPreferences || 'None selected'}</p>
         </div>
-        <hr>`;
+
+        <hr>
+    `;
 }
 
-// Function to show the itinerary based on the provided trip data from sessionStorage
+// Display itinerary
 async function displayItinerary(data) {
     const container = document.getElementById("itinerary-container");
+
+    // Load saved itinerary structure from sessionStorage
     const savedItinerary = JSON.parse(sessionStorage.getItem("itinerary"));
-    
+
     if (!savedItinerary) {
         container.innerHTML = "<p>No items added to your itinerary yet.</p>";
         return;
@@ -82,63 +89,79 @@ async function displayItinerary(data) {
 
     container.innerHTML = "";
 
-    // Display Travel Needs
-    if (savedItinerary.travelNeeds && savedItinerary.travelNeeds.length > 0) {
+    // Display travel needs section
+    if (savedItinerary.travelNeeds?.length > 0) {
         const travelSection = document.createElement("section");
         travelSection.id = "travel-needs-section";
         travelSection.className = "itinerary-day";
+
         travelSection.innerHTML = `
             <h2 class="section-main-title">Travel Needs</h2>
             <div class="itinerary-results"></div> 
         `;
+
         const grid = travelSection.querySelector(".itinerary-results");
+
+        // Create cards for each saved travel need item
         savedItinerary.travelNeeds.forEach(item => {
             grid.appendChild(createSavedResultCard(item, 'travelNeeds'));
         });
+
         container.appendChild(travelSection);
     }
 
-    // Container for all Daily Activities
+    // Display Daily activities section
     const activitiesContainer = document.createElement("section"); 
     activitiesContainer.id = "activities-container";
     activitiesContainer.innerHTML = `<h2 class="section-main-title">Daily Activities</h2>`;
 
-    // Display Daily Activities
+    // Loop through each day in itinerary
     Object.keys(savedItinerary).forEach(key => {
         if (key.startsWith("day") && savedItinerary[key].length > 0) {
             const dayNum = key.replace("day", "");
+
             const daySection = document.createElement("div");
             daySection.className = "itinerary-day";
+
             daySection.innerHTML = `
                 <h3 class="day-header">Day ${dayNum}</h3>
                 <div class="itinerary-results"></div>
             `;
+
             const grid = daySection.querySelector(".itinerary-results");
+
             savedItinerary[key].forEach(item => {
                 grid.appendChild(createSavedResultCard(item, key));
             });
+
             activitiesContainer.appendChild(daySection);
         }
     });
 
-    // Append the activities block if it contains actual days
-    if (activitiesContainer.children.length > 1) { 
+    // Only append if at least one day exists
+    if (activitiesContainer.children.length > 1) {
         container.appendChild(activitiesContainer);
     }
 }
 
+// Create trip results card
 function createSavedResultCard(item, dayKey) {
     const card = document.createElement("div");
     card.className = "result-card";
 
-    // Check if the place is already in the user's global saved places
+    // Check if place is already saved in user's profile
     const sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
     let isSaved = false;
+
     if (sessionUser) {
-        const savedPlaces = JSON.parse(localStorage.getItem(`savedPlaces_${sessionUser.email}`)) || [];
+        const savedPlaces = JSON.parse(
+            localStorage.getItem(`savedPlaces_${sessionUser.email}`)
+        ) || [];
+
         isSaved = savedPlaces.some(p => p.displayName === item.name);
     }
 
+    // Display website link or fallback message
     const websiteHTML = item.website && item.website !== 'Not Available'
         ? `<p class="website-container">
             <a href="${item.website}" target="_blank" rel="noopener" class="website-link">
@@ -147,52 +170,61 @@ function createSavedResultCard(item, dayKey) {
            </p>`
         : `<p class="website-container"><span class="no-website">Website: Not Available</span></p>`;
 
+    // Display result card
     card.innerHTML = `
         <div class="card-image-container">
-            <img src="${item.photo}" alt="${item.name}">
-            <button class="remove-button" aria-label="Remove ${item.name} from itinerary">×</button>
+            <img src="${item.photo || "images/results-page/no-photo.svg"}" alt="${item.name}">
+            <button class="remove-button" aria-label="Remove ${item.name} from itinerary">x</button>
         </div>
+
         <div class="card-content">
             <h3>${item.name}</h3>
             <p class="address">${item.address || ""}</p>
             <p>${item.number || "Not Available"}</p>
-            <p>Rating: ${item.rating ? item.rating + ' ⭐' + '(' + item.userCount + ')' : 'No rating'}</p>
+            <p>Rating: ${item.rating ? item.rating + ' ⭐(' + item.userCount + ')' : 'No rating'}</p>
             ${websiteHTML}
             <p class="summary">Description: ${item.description || "Not Available"}</p>
+
             <button class="save-place-button ${isSaved ? 'is-added' : ''}">
                 ${isSaved ? 'Saved to Profile' : 'Save Place'}
             </button>
         </div>
     `;
 
-    // Remove from Itinerary Logic
+    // Remove item from itinerary (sessionStorage update)
     card.querySelector(".remove-button").addEventListener("click", () => {
         if (confirm(`Are you sure you want to remove ${item.name}?`)) {
             const saved = JSON.parse(sessionStorage.getItem("itinerary"));
-            if (saved && saved[dayKey]) {
+
+            if (saved?.[dayKey]) {
                 saved[dayKey] = saved[dayKey].filter(i => i.name !== item.name);
+
                 sessionStorage.setItem("itinerary", JSON.stringify(saved));
-                window.location.reload(); 
+                window.location.reload();
             }
         }
     });
 
-    // Toggle Save Place Logic
+    // Save/unsave place toggle (profile persistence)
     const saveButton = card.querySelector(".save-place-button");
+
     saveButton.addEventListener("click", () => {
         const tripData = JSON.parse(sessionStorage.getItem("tripData"));
-        const wasSaved = toggleSavePlace(
-            item.name, 
-            item.address, 
-            item.photo, 
-            item.website, 
+
+        const isNowSaved = toggleSavePlace(
+            item.name,
+            item.address,
+            item.photo,
+            item.website,
             item.description,
+            item.rating,
+            item.userCount,
             tripData.destination
         );
-        
-        if (wasSaved) {
+
+        if (isNowSaved) {
             saveButton.textContent = 'Saved to Profile';
-            saveButton.classList.add('is-added'); 
+            saveButton.classList.add('is-added');
         } else {
             saveButton.textContent = 'Save Place';
             saveButton.classList.remove('is-added');
@@ -201,87 +233,13 @@ function createSavedResultCard(item, dayKey) {
     return card;
 }
 
-// Function to create a result card element for a given place
-function createResultCard(place) {
-    const photoUrl = (place.photos && place.photos.length > 0) 
-        ? place.photos[0].getURI({ maxWidth: 400, maxHeight: 300 }) 
-        : 'images/default-placeholder.jpg';
-    
+// Save Place Toggle
+function toggleSavePlace(name, address, photo, website, description, rating, userCount, destination) {
     const sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
-    const tripData = JSON.parse(sessionStorage.getItem("tripData"));
 
-    let isSaved = false;
-    if (sessionUser) {
-        const savedPlaces = JSON.parse(localStorage.getItem(`savedPlaces_${sessionUser.email}`)) || [];
-        isSaved = savedPlaces.some(p => p.displayName === place.displayName);
-    }
-
-    let photoSpread = '';
-    if (place.photos && place.photos.length > 1) {
-        photoSpread = place.photos.slice(1, 4).map(photo => { 
-            const url = photo.getURI({ maxWidth: 300, maxHeight: 200 });
-            return `<img src="${url}" alt="${place.displayName} gallery photo" class="photoGallery">`;
-        }).join('');
-    }
-
-    const resultContainer = document.createElement("div");
-    resultContainer.className = `result-card ${isSaved ? 'saved' : ''}`;
-
-    const website = place.websiteURI 
-        ? `<a href="${place.websiteURI}" target="_blank" rel="noopener" class="website-link">Visit Website</a>` 
-        : `<span class="no-website">Website: Not Available</span>`;
-
-    const saveButtonHTML = sessionUser ? `
-        <button class="save-button">
-            ${isSaved ? '❤️' : '🤍'}
-        </button>` : '';
-
-    resultContainer.innerHTML = `
-        <div class="card-image-container">
-            <img src="${photoUrl}" alt="${place.displayName}" class="main-card-photo">
-            ${saveButtonHTML}
-        </div>
-
-        <div class="card-content">
-            <h3>${place.displayName}</h3>
-            <p class="address">${place.formattedAddress}</p>
-            <p class="phone">${place.nationalPhoneNumber ? place.nationalPhoneNumber : 'Not Available'}</p>
-            <p class="rating">Rating: ${place.rating ? place.rating + ' ⭐' + '(' + place.userRatingCount + ')' : 'No rating'}</p>
-            <p class="website-container">${website}</p>
-            <p class="summary">Description: ${place.editorialSummary ? place.editorialSummary : 'Not Available'}</p>
-            <div class="photo-spread">
-                ${photoSpread}
-            </div>
-        </div>
-    `;
-
-    const button = resultContainer.querySelector(".save-button");
-    if (button) {
-        button.addEventListener("click", () => {
-            const currentTrip = JSON.parse(sessionStorage.getItem("tripData"));
-            const wasSaved = toggleSavePlace(
-                place.displayName, 
-                place.formattedAddress, 
-                photoUrl, 
-                place.websiteURI, 
-                place.editorialSummary,
-                currentTrip.destination
-            );
-            
-            button.innerHTML = wasSaved ? '❤️' : '🤍';
-            resultContainer.classList.toggle('saved', wasSaved);
-        });
-    }
-    return resultContainer;
-}
-
-// Function to toggle saving a specific place to Local Storage
-function toggleSavePlace(name, address, photo, website, summary, destination) {
-    const sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
-    
     if (!sessionUser) {
         alert("Sign up for an account to save your favorite places!");
-        return false; 
+        return false;
     }
 
     const storageKey = `savedPlaces_${sessionUser.email}`;
@@ -292,51 +250,48 @@ function toggleSavePlace(name, address, photo, website, summary, destination) {
     if (index > -1) {
         savedPlaces.splice(index, 1);
         localStorage.setItem(storageKey, JSON.stringify(savedPlaces));
-        return false; // Not saved
+        return false;
     } else {
         savedPlaces.push({
             displayName: name,
             formattedAddress: address,
             photoUrl: photo,
             websiteURI: website,
-            summary: summary,
-            destination: destination,
+            description,
+            rating,
+            userCount,
+            destination,
             savedAt: new Date().toISOString()
         });
+
         localStorage.setItem(storageKey, JSON.stringify(savedPlaces));
-        return true; 
+        return true;
     }
 }
 
+// Action buttons
 function setupActionButtons() {
 
-    const homeButton = document.getElementById("homepage-button");
-    if (homeButton) {
-        homeButton.addEventListener("click", () => {
+    // Navigate back to homepage
+    document.getElementById("homepage-button")
+        ?.addEventListener("click", () => {
             window.location.href = "index.html";
         });
-    }
 
-    // Store the save button HTML element into the saveButton variable
+    // Save full itinerary to user profile
     const saveButton = document.getElementById("save-itinerary-button");
-    // If the save button is clicked...
+
     if (saveButton) {
         saveButton.addEventListener("click", () => {
-            // Check if user is logged in via sessionStorage
             const sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
-            
-            // if no user is logged in...
+
             if (!sessionUser) {
-                // Display message informing user they need to be signed in to save itineraries
                 alert("You must be signed in to save itineraries.");
-                // Then redirect to login
-                window.location.href = "login.html"; 
+                window.location.href = "login.html";
                 return;
             }
 
-            // Get tripData from sessionStorage and store in the tripData variable
             const tripData = JSON.parse(sessionStorage.getItem("tripData"));
-            // Get the itinerary
             const itinerary = JSON.parse(sessionStorage.getItem("itinerary"));
 
             if (!tripData || !itinerary) {
@@ -344,43 +299,35 @@ function setupActionButtons() {
                 return;
             }
 
-            // Combine data for comparison and profile save
             const currentSessionItinerary = {
                 ...tripData,
                 details: itinerary,
                 savedAt: new Date().toLocaleString()
             };
 
-            // Save to the specific user's itinerary collection in localStorage
             const storageKey = `savedItineraries_${sessionUser.email}`;
             let userSavedTrips = JSON.parse(localStorage.getItem(storageKey)) || [];
-            
-            // Find if this specific trip already exists in localStorage
-            const existingTripIndex = userSavedTrips.findIndex(t => 
-                t.destination === currentSessionItinerary.destination && 
+
+            const existingIndex = userSavedTrips.findIndex(t =>
+                t.destination === currentSessionItinerary.destination &&
                 t.startDate === currentSessionItinerary.startDate
             );
 
-            if (existingTripIndex !== -1) {
-                const existingTrip = userSavedTrips[existingTripIndex];
+            if (existingIndex !== -1) {
 
-                // Perform a deep comparison of the 'details' object
-                const sessionDetailsString = JSON.stringify(currentSessionItinerary.details);
-                const storedDetailsString = JSON.stringify(existingTrip.details);
+                const existingTrip = userSavedTrips[existingIndex];
 
-                if (sessionDetailsString === storedDetailsString) {
-                    // Display message if data is identical
+                if (JSON.stringify(existingTrip.details) === JSON.stringify(currentSessionItinerary.details)) {
                     alert("This itinerary is already saved and up to date!");
                 } else {
-                    // Update only if changes are detected
-                    if (confirm("Changes detected. Would you like to update your saved itinerary?")) {
-                        userSavedTrips[existingTripIndex] = currentSessionItinerary;
+                    if (confirm("Changes detected. Update saved itinerary?")) {
+                        userSavedTrips[existingIndex] = currentSessionItinerary;
                         localStorage.setItem(storageKey, JSON.stringify(userSavedTrips));
                         alert("Itinerary updated successfully!");
                     }
                 }
+
             } else {
-                // Save as a completely new entry if it doesn't exist yet
                 userSavedTrips.push(currentSessionItinerary);
                 localStorage.setItem(storageKey, JSON.stringify(userSavedTrips));
                 alert("Itinerary saved to your profile!");
@@ -388,10 +335,9 @@ function setupActionButtons() {
         });
     }
 
-    const clearButton = document.getElementById("clear-itinerary-button");
-
-    if (clearButton) {
-        clearButton.addEventListener("click", () => {
+    // Clear current itinerary session
+    document.getElementById("clear-itinerary-button")
+        ?.addEventListener("click", () => {
 
             const tripData = JSON.parse(sessionStorage.getItem("tripData"));
             const sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
@@ -399,51 +345,47 @@ function setupActionButtons() {
             const storageKey = sessionUser ? `savedItineraries_${sessionUser.email}` : null;
             const savedTrips = storageKey ? JSON.parse(localStorage.getItem(storageKey)) || [] : [];
 
-            const isSaved = tripData && savedTrips.some(trip => 
-                trip.destination === tripData.destination && 
+            const isSaved = tripData && savedTrips.some(trip =>
+                trip.destination === tripData.destination &&
                 trip.startDate === tripData.startDate
             );
 
             if (isSaved && sessionUser) {
-                if (confirm("This trip is saved in your profile. Would you like to clear the current session AND delete it from your profile?")) {
-                    // Remove from localStorage
-                    const updatedTrips = savedTrips.filter(trip => 
-                        !(trip.destination === tripData.destination && trip.startDate === tripData.startDate)
+                if (confirm("Delete this trip from your profile AND current session?")) {
+                    const updatedTrips = savedTrips.filter(trip =>
+                        !(trip.destination === tripData.destination &&
+                          trip.startDate === tripData.startDate)
                     );
+
                     localStorage.setItem(storageKey, JSON.stringify(updatedTrips));
 
-                    // Clear session storage and redirect
-                    sessionStorage.removeItem("tripData");
                     sessionStorage.removeItem("itinerary");
-                    window.location.href = "planner.html";
-                } else {
-                    // Only clear session storage
-                    sessionStorage.removeItem("tripData");
+                  
+                    window.location.href = "results.html";
+                } else {;
                     sessionStorage.removeItem("itinerary");
-                    window.location.href = "planner.html";
+                    window.location.href = "results.html";
                 }
+
             } else {
-                // Not saved or guest user
-                if (confirm("Are you sure you want to clear your current itinerary?")) {
-                    sessionStorage.removeItem("tripData");
+                if (confirm("Clear current itinerary?")) {
                     sessionStorage.removeItem("itinerary");
-                    window.location.href = "planner.html";
+                    window.location.href = "results.html";
                 }
             }
         });
-    }
 
-    const editButton = document.getElementById("edit-trip-button");
-    if (editButton) {
-        editButton.addEventListener("click", () => {
+    // If edit trip button is clicked....
+    document.getElementById("edit-trip-button")
+        ?.addEventListener("click", () => {
+            // Redirect to planner page
             window.location.href = "planner.html";
         });
-    }
 
-    const resultsButton = document.getElementById("view-results-button");
-    if (resultsButton) {
-        resultsButton.addEventListener("click", () => {
+    // If view results button is clicked....
+    document.getElementById("view-results-button")
+        ?.addEventListener("click", () => {
+            // Redirect to results page
             window.location.href = "results.html";
         });
-    }
 }

@@ -52,7 +52,6 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
 /*--------------------------------------------------------*/
 /* Global Styles */
 * {
@@ -571,18 +570,12 @@ body.dark-mode #view-itinerary-button, body.dark-mode #homepage-button, body.dar
     color: #000000;
 }
 
-#homepage-button:hover,
-#save-results-button:hover,
-#clear-results-button:hover,
-#edit-trip-button:hover, #view-itinerary-button:hover {
+#homepage-button:hover, #save-results-button:hover, #clear-results-button:hover, #edit-trip-button:hover, #view-itinerary-button:hover {
     background-color: #facc15;
     color: #000000;
 }
 
-body.dark-mode #homepage-button:hover,
-body.dark-mode #save-results-button:hover,
-body.dark-mode #clear-results-button:hover,
-body.dark-mode #edit-trip-button:hover, body.dark-mode #view-itinerary-button:hover {
+body.dark-mode #homepage-button:hover, body.dark-mode #save-results-button:hover, body.dark-mode #clear-results-button:hover, body.dark-mode #edit-trip-button:hover, body.dark-mode #view-itinerary-button:hover {
     background-color: #000000;
     color: #ffffff;
 }
@@ -655,8 +648,7 @@ body.dark-mode #useful-links a {
     color: #ffffff;
 }
 
-#useful-links a:hover,
-#useful-links a:focus {
+#useful-links a:hover, #useful-links a:focus {
     color: #1ca7ec;
     text-decoration: underline;
 }

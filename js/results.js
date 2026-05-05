@@ -146,17 +146,34 @@ async function fetchPlaces(preference, destination, query) {
         };
 
         const { places } = await Place.searchByText(request);
-        if (places) {
-            places.forEach(place => grid.appendChild(createResultCard(place, preference)));
-        }
+
+if (places) {
+    if (!results[preference]) results[preference] = [];
+
+    results[preference] = places.map(p => ({
+        name: p.displayName,
+        address: p.formattedAddress,
+        rating: p.rating,
+        userCount: p.userRatingCount,
+        website: p.websiteURI,
+        description: p.editorialSummary,
+        photo: (p.photos && p.photos.length > 0)
+            ? p.photos[0].getURI({ maxWidth: 400, maxHeight: 300 })
+            : "images/results-page/no-photo.svg"
+    }));
+
+    sessionStorage.setItem("results", JSON.stringify(results));
+
+    places.forEach(place => grid.appendChild(createResultCard(place, preference)));
+}
     } catch (err) { 
         console.error("Fetch failed for " + preference, err); 
     }
 }
 
 function createResultCard(place, preference) {
-    const photo = (place.photos && place.photos.length > 0) 
-        ? place.photos[0].getURI({ maxWidth: 400, maxHeight: 300 }) : "https://placehold.co/600x400";
+    const photo = (place.photos && place.photos.length > 0) ? place.photos[0].getURI({ maxWidth: 400, maxHeight: 300 }) 
+    : "images/results-page/no-photo.svg";
 
     const sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
     const tripData = JSON.parse(sessionStorage.getItem("tripData"));
@@ -164,6 +181,7 @@ function createResultCard(place, preference) {
     let isSaved = false;
     if (sessionUser) {
         const savedPlaces = JSON.parse(localStorage.getItem(`savedPlaces_${sessionUser.email}`)) || [];
+        
         isSaved = savedPlaces.some(p => p.displayName === place.displayName);
     }
 
@@ -205,8 +223,12 @@ function createResultCard(place, preference) {
         }
     }
 
+    const imgTag = photo
+    ? `<img src="${photo}" alt="${place.displayName}">`
+    : `<div class="no-photo">No photo available</div>`;
+
     card.innerHTML = `
-        <img src="${photo}" alt="${place.displayName}">
+        ${imgTag}
         <h3>${place.displayName}</h3>
         <p class="address">${place.formattedAddress || ""}</p>
         <p>${place.nationalPhoneNumber ? place.nationalPhoneNumber : 'Not Available'}</p>
@@ -232,7 +254,7 @@ function createResultCard(place, preference) {
             itinerary.travelNeeds.push({ 
                 name: place.displayName || 'Not Available', 
                 address: place.formattedAddress || 'Not Available', 
-                photo: photo || 'Not Available', 
+                photo: place.photo || 'Not Available', 
                 number: place.nationalPhoneNumber || 'Not Available', 
                 rating: place.rating || 'Not Available', 
                 userCount: place.userRatingCount || 'Not Available', 
@@ -410,17 +432,17 @@ function setupActionButtons() {
                     localStorage.setItem(storageKey, JSON.stringify(updatedResults));
 
                     sessionStorage.removeItem("tripData");
-
+                    sessionStorage.removeItem("results");
                     window.location.href = "planner.html";
                 } else {
                     sessionStorage.removeItem("tripData");
-
+                    sessionStorage.removeItem("results");
                     window.location.href = "planner.html";
                 }
             } else {
                 if (confirm("Are you sure you want to clear your results? This will reset your search and selections.")) {
                     sessionStorage.removeItem("tripData");
-
+                    sessionStorage.removeItem("results");
                     window.location.href = "planner.html";
                 }
             }
