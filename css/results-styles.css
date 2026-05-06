@@ -509,16 +509,19 @@ body.dark-mode .modal-content {
 }
 /*--------------------------------------------------------*/
 /* Result Action Button Styles */
-#results-actions {
+.action-group {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
     align-items: center;
     gap: 15px;
-    padding: 0 0 20px 0;
+    padding: 20px 0;
 }
 
 .result-card .add-button {
     background-color: #facc15;
+    color: #000000;
     font-size: 16px;
     font-weight: bold;
     border: none;
@@ -556,14 +559,7 @@ body.dark-mode .add-button {
     font-weight: bold;
 }
 
-.action-group {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
 #homepage-button, #save-results-button, #clear-results-button, #edit-trip-button, #view-itinerary-button {
-    margin: 0 15px;
     padding: 15px 20px;
     border-radius: 50px;
     font-size: 16px;
@@ -742,6 +738,7 @@ body.dark-mode #social-media img {
 
     .action-group {
     flex-direction: row;
+    flex-wrap: nowrap;
     gap: 15px;
     }
 

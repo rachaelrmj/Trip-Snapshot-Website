@@ -507,8 +507,12 @@ body.dark-mode .photo-spread {
 /* Result Action Button Styles */
 .action-group {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
     gap: 15px;
+    padding: 20px 0;
 }
 
 #itinerary-actions {
@@ -599,7 +603,6 @@ body.dark-mode .save-place-button {
 }
 
 #homepage-button, #save-itinerary-button, #clear-itinerary-button, #edit-trip-button, #view-results-button {
-    margin: 0 15px;
     padding: 15px 20px;
     border-radius: 50px;
     font-size: 16px;
