@@ -185,6 +185,10 @@ body.dark-mode header {
     overflow: hidden;             
 }
 
+body.dark-mode .mobile-nav {
+    background-color: #ffffff;
+}
+
 .mobile-nav ul {      
     list-style: none;         
     text-align: center;

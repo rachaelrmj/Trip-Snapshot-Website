@@ -188,6 +188,10 @@ body.dark-mode header {
     overflow: hidden;             
 }
 
+body.dark-mode .mobile-nav {
+    background-color: #ffffff;
+}
+
 .mobile-nav ul {      
     text-align: center;
     padding: 0;
