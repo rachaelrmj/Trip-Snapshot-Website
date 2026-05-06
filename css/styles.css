@@ -200,6 +200,7 @@ body.dark-mode .mobile-nav {
 
 .mobile-nav li {
     padding: 15px 0;
+    transition: transform .5s ease;
 }
 
 .mobile-nav a {
@@ -211,8 +212,9 @@ body.dark-mode .mobile-nav {
 }
 
 .mobile-nav li:hover, .mobile-nav a:hover {
-    background-color: #1ca7ec;     
-    color: #ffffff;     
+    background-color: #000000;    
+    color: #ffffff;  
+    transform: scale(1.1);   
 }
 
 #menu-toggle:checked ~ .mobile-nav {
@@ -481,6 +483,7 @@ body.dark-mode #how-it-works {
 
 #how-it-works-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     gap: 5px;
@@ -505,6 +508,7 @@ body.dark-mode #how-it-works-content {
 #how-it-works ol {
     list-style: decimal inside;
     text-align: left;
+    min-width: 180px;
 }
 /*--------------------------------------------------------*/
 /* Ready to Plan Section Styles*/
@@ -661,6 +665,10 @@ body.dark-mode #social-media img {
         overflow: visible;
     }
 
+    body.dark-mode .mobile-nav {
+    background-color: #1ca7ec; 
+    }
+
     .mobile-nav ul {
         display: flex;
         gap: 20px;
@@ -717,6 +725,7 @@ body.dark-mode #social-media img {
     }
  
     #how-it-works-content {
+        flex-direction: row;
         gap: 20px;
     }
 

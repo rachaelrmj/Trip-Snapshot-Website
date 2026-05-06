@@ -198,8 +198,7 @@ body.dark-mode .mobile-nav {
 
 .mobile-nav li {
     padding: 15px 0;
-    font-weight: bold;
-    font-size: 15px;
+    transition: transform .5s ease;
 }
 
 .mobile-nav a {
@@ -210,13 +209,10 @@ body.dark-mode .mobile-nav {
     font-family: 'Montserrat', sans-serif;
 }
 
-body.dark-mode .mobile-nav a {
-    color: #000000;
-}
-
 .mobile-nav li:hover, .mobile-nav a:hover {
-    background-color: #1ca7ec;     
-    color: #ffffff;     
+    background-color: #000000;    
+    color: #ffffff;  
+    transform: scale(1.1);   
 }
 
 #menu-toggle:checked ~ .mobile-nav {
@@ -277,8 +273,17 @@ body.dark-mode #theme-toggle img {
     text-decoration:none;
     padding: 15px 30px;
     border-radius: 50px;
+    background-color:#facc15;
+    color:#000000;
+    font-weight:bold;
+}
+
+body.dark-mode #empty-results-message a {
+    text-decoration:none;
+    padding: 15px 30px;
+    border-radius: 50px;
     background-color:#1ca7ec;
-    color:#ffffff;
+    color:#000000;
     font-weight:bold;
 }
 

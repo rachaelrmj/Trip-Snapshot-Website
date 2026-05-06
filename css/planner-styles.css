@@ -172,6 +172,7 @@ body.dark-mode .mobile-nav {
 
 .mobile-nav li {
     padding: 15px 0;
+    transition: transform .5s ease;
 }
 
 .mobile-nav a {
@@ -183,8 +184,9 @@ body.dark-mode .mobile-nav {
 }
 
 .mobile-nav li:hover, .mobile-nav a:hover {
-    background-color: #1ca7ec;     
-    color: #ffffff;     
+    background-color: #000000;    
+    color: #ffffff;  
+    transform: scale(1.1);   
 }
 
 #menu-toggle:checked ~ .mobile-nav {
@@ -271,11 +273,6 @@ body.dark-mode #theme-toggle img {
     transition: all 0.3s ease;
 }
 
-body.dark-mode .trip-search-form {
-    background-color: #000000;
-    color: #ffffff;
-}
-
 .form-title {
     margin-bottom: 30px;
     font-size: 24px;
@@ -296,7 +293,7 @@ body.dark-mode .trip-search-form {
 }
 
 body.dark-mode .trip-search-form label {
-    color: #ffffff;
+    color: #000000;
 }
 
 .trip-search-form input[type="text"], .trip-search-form input[type="date"] {
@@ -308,6 +305,7 @@ body.dark-mode .trip-search-form label {
     font-size: 16px;
     font-family: 'Montserrat', sans-serif;
     transition: all 0.2s ease;
+    text-transform: uppercase;
 }
 
 .trip-search-form input:focus {
@@ -361,8 +359,8 @@ body.dark-mode .trip-search-form input:focus {
     display: inline-block;
     font-size: 14px;
     font-weight: 600;
-    color: #374151;
-    background-color: #f3f4f6;
+    color: #000000;
+    background-color: #dcdcdc;
     padding: 12px 24px;
     border-radius: 100px;
     cursor: pointer;
@@ -370,9 +368,9 @@ body.dark-mode .trip-search-form input:focus {
     border: 2px solid transparent;
 }
 
-body.dark-mode .checkbox-container label {
-    background-color: #ffffff;
-    color: #000000;
+.checkbox-container label:hover, body.dark-mode .checkbox-container label:hover {
+    background-color: #000000;
+    color: #ffffff;
 }
 
 .checkbox-container input:checked + label {
@@ -419,27 +417,22 @@ body.dark-mode .checkbox-container input:checked + label {
 }
 
 #reset-button:hover {
+    background-color: #facc15;
+    color: #000000;
+}
+
+body.dark-mode #generate-trip-button {
     background-color: #000000;
     color: #ffffff;
 }
 
-body.dark-mode #generate-trip-button {
+body.dark-mode #generate-trip-button:hover {
     background-color: #1ca7ec;
     color: #000000;
 }
 
-body.dark-mode #generate-trip-button:hover {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-body.dark-mode #reset-button {
-    background-color: #ffffff;
-    color: #000000;
-}
-
 body.dark-mode #reset-button:hover {
-    background-color: #dcdcdc;
+    background-color: #1ca7ec;
     color: #000000;
 }
 /*--------------------------------------------------------*/

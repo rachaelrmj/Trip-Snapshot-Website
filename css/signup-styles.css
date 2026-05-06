@@ -197,6 +197,7 @@ body.dark-mode .mobile-nav {
 
 .mobile-nav li {
     padding: 15px 0;
+    transition: transform .5s ease;
 }
 
 .mobile-nav a {
@@ -207,16 +208,14 @@ body.dark-mode .mobile-nav {
     font-family: 'Montserrat', sans-serif;
 }
 
-body.dark-mode .mobile-nav a {
-    color: #000000;
-}
-
 .mobile-nav li:hover, .mobile-nav a:hover {
-    background-color: #1ca7ec;     
-    color: #ffffff;     
+    background-color: #000000;    
+    color: #ffffff;  
+    transform: scale(1.1);   
 }
 
 body.dark-mode .mobile-nav li:hover, body.dark-mode .mobile-nav a:hover {
+    background-color: #000000;
     color: #ffffff;
 }
 
@@ -569,6 +568,11 @@ body.dark-mode #social-media img {
         box-shadow: none;
         overflow: visible;
     }
+
+    body.dark-mode .mobile-nav {
+    background-color: #1ca7ec; 
+    }
+
     .mobile-nav ul { 
         display: flex; 
         gap: 20px; 
