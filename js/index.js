@@ -50,7 +50,7 @@ async function destinationAutocomplete() {
         const autocomplete = new Autocomplete(input, {
             types: ["(cities)"],
             // Request data from desired fields
-            fields: ["formattedAddress", "geometry", "displayName", "photos"]
+            fields: ["geometry", "name", "photos"]
         });
 
         // Triggers when the user selects a place from suggestions (auto-populated drop-down)
@@ -61,11 +61,7 @@ async function destinationAutocomplete() {
             // If photos are available and there is more than 1
             if (place.photos && place.photos.length > 0) {
                 // Get first photo and store in the selectedPhotoUrl variable
-                selectedPhotoUrl = place.photos[0].getURI({ 
-                    // Set dimensions of photos
-                    maxWidth: 800, 
-                    maxHeight: 600 
-                });
+                selectedPhotoUrl = place.photos[0].getUrl({ maxWidth: 800, maxHeight: 600 });
                 
                 // Immediately save photo to sessionStorage so it is not lost on when leaving page
                 const currentData = JSON.parse(sessionStorage.getItem("tripData")) || {};

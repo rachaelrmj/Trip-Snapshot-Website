@@ -366,11 +366,9 @@ body.dark-mode .trip-summary-card {
 .category-group .trip-results {
     display: flex;
     overflow-x: auto;
-    gap: 20px;
-    padding: 10px 5px 25px 5px; 
+    gap: 20px; 
     scroll-snap-type: x mandatory;
     scrollbar-width: thin;
-    -webkit-overflow-scrolling: touch;
 }
 
 .result-card {
@@ -427,7 +425,7 @@ body.dark-mode .result-card h3 {
 
 .result-card p.summary {
     font-size: 20px;
-    height: 125px; 
+    height: 135px; 
     position: relative;
 }
 /*--------------------------------------------------------*/
@@ -516,7 +514,7 @@ body.dark-mode .modal-content {
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    padding: 40px 0;
+    padding: 0 0 20px 0;
 }
 
 .result-card .add-button {
@@ -556,6 +554,12 @@ body.dark-mode .add-button {
     background-color: #000000;
     color: #ffffff;
     font-weight: bold;
+}
+
+.action-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 #homepage-button, #save-results-button, #clear-results-button, #edit-trip-button, #view-itinerary-button {
@@ -734,6 +738,11 @@ body.dark-mode #social-media img {
 
     .result-card {
         flex: 0 0 calc(45%);
+    }
+
+    .action-group {
+    flex-direction: row;
+    gap: 15px;
     }
 
     footer {

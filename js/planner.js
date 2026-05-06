@@ -60,14 +60,14 @@ async function destinationAutocomplete() {
         const { Autocomplete } = await google.maps.importLibrary("places");
         const autocomplete = new Autocomplete(input, {
             types: ["(cities)"],
-            fields: ["formattedAddress", "geometry", "displayName", "photos"]
+            fields: ["geometry", "name", "photos"]
         });
 
         autocomplete.addListener("place_changed", () => {
             const place = autocomplete.getPlace();
             if (place.photos && place.photos.length > 0) {
-                // Update photo URL using getURI from the New API
-                plannerPhotoUrl = place.photos[0].getURI({ maxWidth: 800, maxHeight: 600 });
+                // Update photo URL using getUrl from the New API
+                plannerPhotoUrl = place.photos[0].getUrl({ maxWidth: 800, maxHeight: 600 });
             }
         });
     } catch (error) {

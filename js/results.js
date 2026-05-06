@@ -182,7 +182,7 @@ function createResultCard(place, preference) {
     if (sessionUser) {
         const savedPlaces = JSON.parse(localStorage.getItem(`savedPlaces_${sessionUser.email}`)) || [];
         
-        isSaved = savedPlaces.some(p => p.displayName === place.displayName);
+        isSaved = savedPlaces.some(p => p.name === place.name);
     }
 
     let photoSpread = '';
@@ -254,7 +254,7 @@ function createResultCard(place, preference) {
             itinerary.travelNeeds.push({ 
                 name: place.displayName || 'Not Available', 
                 address: place.formattedAddress || 'Not Available', 
-                photo: place.photo || 'Not Available', 
+                photo: photo || 'Not Available', 
                 number: place.nationalPhoneNumber || 'Not Available', 
                 rating: place.rating || 'Not Available', 
                 userCount: place.userRatingCount || 'Not Available', 
