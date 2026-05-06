@@ -91,7 +91,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Store active session user / Log user in
                 sessionStorage.setItem("currentUser", JSON.stringify(account));
                 // Show login successful confirmation popup and redirect to profile page
-                showPopup(loginPopup, "profile.html");
+                let redirectUrl = sessionStorage.getItem("redirectAfterLogin");
+
+                if (!redirectUrl || redirectUrl.includes("login.html")) {
+                    redirectUrl = "profile.html";
+                }
+
+                sessionStorage.removeItem("redirectAfterLogin");
+                showPopup(loginPopup, redirectUrl);
             } else {
                 // Show incorrect password popup
                 showPopup(loginErrorPopup);

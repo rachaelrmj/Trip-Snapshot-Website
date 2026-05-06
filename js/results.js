@@ -360,27 +360,28 @@ function setupActionButtons() {
 
     document.getElementById("edit-trip-button")?.addEventListener("click", () => window.location.href = "planner.html");
     
-    const saveResultsBtn = document.getElementById("save-results-button");
+    // Save trip results to user profile
+    const saveButton = document.getElementById("save-results-button");
 
-    if (saveResultsBtn) {
-        saveResultsBtn.addEventListener("click", () => {
+    if (saveButton) {
+        saveButton.addEventListener("click", () => {
             const sessionUser = JSON.parse(sessionStorage.getItem("currentUser")); 
     
             if (!sessionUser) {
-                sessionStorage.setItem("redirectAfterLogin", window.location.href);
-
                 alert("You must be signed in to save results.");
+                sessionStorage.setItem("redirectAfterLogin", window.location.href);
                 window.location.href = "login.html";
                 return;
             }
 
-            const tripDataStr = sessionStorage.getItem("tripData");
-            if (!tripDataStr) {
+            const tripData = sessionStorage.getItem("tripData");
+            const itinerary = JSON.parse(sessionStorage.getItem("results"));
+            if (!tripData || !results) {
                 alert("No results data found to save.");
                 return;
             }
 
-            const newResult = JSON.parse(tripDataStr);
+            const newResult = JSON.parse(tripData);
             const storageKey = `savedResults_${sessionUser.email}`;
             const savedResults = JSON.parse(localStorage.getItem(storageKey)) || [];
             

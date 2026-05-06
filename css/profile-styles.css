@@ -323,7 +323,6 @@ body.dark-mode .section-divider {
     color: #ffffff;
     border-radius: 50px; 
     transition: all 0.3s ease;
-    white-space: nowrap; 
 }
 
 body.dark-mode #profile-menu a {
@@ -331,14 +330,15 @@ body.dark-mode #profile-menu a {
     color: #000000;
 }
 
-#profile-menu a:hover {
-    background-color: #1ca7ec;
+#profile-menu a:hover, #profile-menu a:focus {
+    background-color: #facc15;
+    color: #000000;
     transform: translateY(-2px);
 }
 
-body.dark-mode #profile-menu a:hover {
-    background-color: #facc15;
-    color: #000000;
+body.dark-mode #profile-menu a:hover, body.dark-mode #profile-menu a:focus {
+    background-color: #000000;
+    color: #ffffff;
 }
 
 .password-container {
@@ -378,7 +378,7 @@ body.dark-mode .toggle-password {
 }
 
 body.dark-mode .hidden-section {
-    background-color: #1e293b;
+    background-color: #000000;
     color: #ffffff;
 }
 

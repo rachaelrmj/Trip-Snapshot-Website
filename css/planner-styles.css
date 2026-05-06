@@ -38,12 +38,10 @@ ol, ul {
 }
 
 body, html {
-    min-height: 100vh;
-    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh; 
+    font-family: 'SN Pro', sans-serif;
     background-color: #ffffff;
     color: #000000;
-    transition: background-color 0.3s ease; 
-    scroll-behavior: smooth;
 }
 
 h1 { display: none; }
@@ -504,10 +502,13 @@ body.dark-mode #useful-links a {
     color: #ffffff;
 }
 
-#useful-links a:hover,
-#useful-links a:focus {
+#useful-links a:hover, #useful-links a:focus {
     color: #1ca7ec;
     text-decoration: underline;
+}
+
+#logout-link {
+    display: none;
 }
 
 #copyright {
@@ -657,6 +658,17 @@ body.dark-mode #social-media img {
 
     .planner-form-wrapper { 
         max-width: 900px; 
+    }
+
+    #useful-links ul {
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px; 
+    }
+
+    #stay-connected input[type="email"] {
+        width: 100%; 
+        max-width: 300px;
     }
 }
 /*--------------------------------------------------------*/

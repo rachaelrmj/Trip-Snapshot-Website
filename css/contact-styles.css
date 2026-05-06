@@ -438,6 +438,10 @@ body.dark-mode #useful-links a {
     text-decoration: underline;
 }
 
+#logout-link {
+    display: none;
+}
+
 #copyright {
     background-color: #ffffff;
 	width: 100%;

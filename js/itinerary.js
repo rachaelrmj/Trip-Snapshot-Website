@@ -278,7 +278,7 @@ function setupActionButtons() {
             window.location.href = "index.html";
         });
 
-    // Save full itinerary to user profile
+    // Save itinerary to user profile
     const saveButton = document.getElementById("save-itinerary-button");
 
     if (saveButton) {
@@ -286,7 +286,8 @@ function setupActionButtons() {
             const sessionUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
             if (!sessionUser) {
-                alert("You must be signed in to save itineraries.");
+                alert("You must be signed in to save itinerary.");
+                sessionStorage.setItem("redirectAfterLogin", window.location.href);
                 window.location.href = "login.html";
                 return;
             }
