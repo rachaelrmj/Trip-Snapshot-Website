@@ -297,11 +297,11 @@ body.dark-mode #empty-itinerary-message a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px 20px;
+    padding: 0 20px;
 }
 
 #itinerary h2 {
-    font-size: 50px;
+    font-size: 35px;
     margin-bottom: 10px;
 }
 /*--------------------------------------------------------*/
@@ -351,12 +351,10 @@ body.dark-mode .trip-summary-card {
     display: flex;
     flex-direction: column;
     gap: 40px;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
 }
 
 .section-main-title {
-    font-size: 32px;
-    text-transform: uppercase;
     border-top: 2px solid #facc15;
     padding-top: 10px;
     border-bottom: 2px solid #facc15;
@@ -394,11 +392,9 @@ body.dark-mode .day-header {
 .itinerary-results {
     display: flex;
     overflow-x: auto;
-    gap: 20px;
-    padding: 10px 5px 25px 5px; 
+    gap: 20px; 
     scroll-snap-type: x mandatory;
     scrollbar-width: thin;
-    -webkit-overflow-scrolling: touch;
 }
 
 .result-card {
@@ -509,12 +505,18 @@ body.dark-mode .photo-spread {
 }
 /*--------------------------------------------------------*/
 /* Result Action Button Styles */
+.action-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 #itinerary-actions {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    padding: 40px 0;
+    padding: 0 0 20px 0;
 }
 
 .card-image-container {
@@ -776,6 +778,11 @@ body.dark-mode #social-media img {
         scroll-snap-align: start;
         min-width: 500px; 
     }
+
+    .action-group {
+    flex-direction: row;
+}
+
 
     footer {
         grid-template-columns: 1fr 1fr; 

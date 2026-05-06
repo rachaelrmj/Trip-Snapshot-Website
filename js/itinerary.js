@@ -62,7 +62,7 @@ function displayOverview(data) {
 
     // Display trip summary
     overviewContainer.innerHTML = `
-        <h2>Personalized Itinerary</h2>
+        <h2>Itinerary Snapshot</h2>
         <p>Here is your personalized itinerary based on your preferences and trip details.</p>
 
         <div class="trip-summary-card">
