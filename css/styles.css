@@ -304,14 +304,14 @@ body.dark-mode #hero {
     flex-direction: column;
     line-height: 1.5;
 }
-
+/*
 #hero-planner-form .date-group {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
     margin-bottom: 5px;
-}
+}*/
 
 #hero input[type="text"], #hero input[type="date"] {
     width: 100%;
