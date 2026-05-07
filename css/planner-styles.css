@@ -284,9 +284,9 @@ body.dark-mode #theme-toggle img {
     margin-bottom: 10px;
     font-size: 14px;
     font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 0.5px;
     color: #000000;
+    text-align: center;
 }
 
 body.dark-mode .trip-search-form label {
@@ -302,7 +302,7 @@ body.dark-mode .trip-search-form label {
     font-size: 16px;
     font-family: 'Montserrat', sans-serif;
     transition: all 0.2s ease;
-    text-transform: uppercase;
+    text-align: center;
 }
 
 .trip-search-form input:focus {
