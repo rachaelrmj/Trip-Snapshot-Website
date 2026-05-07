@@ -269,7 +269,6 @@ body.dark-mode #hero {
 }
 
 #hero-content {
-    margin: 10px;
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;   
@@ -298,16 +297,15 @@ body.dark-mode #hero {
 #start-date-container, #end-date-container, #destination-container {
     display: flex;
     flex-direction: column;
-    line-height: 1.5;
 }
-
+/*
 #hero-planner-form .date-group {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
     margin-bottom: 5px;
-}
+}*/
 
 #hero input[type="text"], #hero input[type="date"] {
     padding: 10px 12px;
@@ -315,7 +313,6 @@ body.dark-mode #hero {
     border: 2px solid #000000;
     font-size: 14px;
     text-align: center;
-    margin: 5px;
 }
 
 #start-planning-button {
