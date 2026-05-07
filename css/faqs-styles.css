@@ -84,25 +84,24 @@ p, button {
 /*--------------------------------------------------------*/
 /* Skip-link Styles */
 #skip-link {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 50%;
     left: 0;
-    transform: translateY(-120%);
-    background-color: #000000;
-    color: #ffffff;
-    padding: 15px 25px;
-    z-index: 3000;
+    transform: translate(-35%, -50%) rotate(-90deg);
+    transform-origin: top left;
+    background-color: #facc15;
+    color: #000000;
+    padding: 5px 25px;
+    z-index: 99999;
     font-weight: 700;
     text-decoration: none;
     border-radius: 0 0 10px 0;
-    border: 2px solid #1ca7ec;
+    border: 2px solid #000000;
     transition: transform 0.3s ease;
 }
 
 #skip-link:focus {
-    transform: translateY(0);
-    outline: 3px solid #facc15;
-    outline-offset: 2px;
+    transform: translate(0, -50%) rotate(-90deg);
 }
 /*--------------------------------------------------------*/
 /* Screen Reader Styles */
@@ -430,6 +429,17 @@ body.dark-mode #social-media img {
 
     .profile-link { 
         order: 2; 
+    }
+
+    #skip-link {
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -120%);
+        border-radius: 0 0 10px 10px;
+    }
+
+    #skip-link:focus {
+        transform: translate(-50%, 0);
     }
 
     #faq {
