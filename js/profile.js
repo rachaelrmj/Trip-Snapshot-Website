@@ -236,7 +236,8 @@ function showSavedItineraries() {
     const trips = JSON.parse(localStorage.getItem(storageKey)) || [];
     
     if (trips.length === 0) {
-        container.innerHTML = `<p class="empty-state">No itineraries saved yet.</p>`;
+        container.innerHTML = `<p class="empty-state">No itineraries saved yet.</p>
+        <a href="planner.html" class="action-buttons">Start Planning to Save Itineraries</a>`;
         return;
     }
 
@@ -267,7 +268,8 @@ function showSavedResults() {
     const results = JSON.parse(localStorage.getItem(storageKey)) || [];
     
     if (results.length === 0) {
-        container.innerHTML = `<p class="empty-state">No saved results found.</p>`;
+        container.innerHTML = `<p class="empty-state">No saved results found.</p>
+        <a href="planner.html" class="action-buttons">Start Planning to Save Results</a>`;
         return;
     }
 
@@ -302,7 +304,8 @@ function showSavedPlaces() {
     const savedPlaces = JSON.parse(localStorage.getItem(storageKey)) || [];
 
     if (savedPlaces.length === 0) {
-        container.innerHTML = `<p class="empty-state">No saved places yet.</p>`;
+        container.innerHTML = `<p class="empty-state">No saved places yet.</p>
+        <a href="planner.html" class="action-buttons">Start Planning to Save Places</a>`;
         return;
     }
 
@@ -360,7 +363,8 @@ function showRecentSearches() {
     const searches = JSON.parse(localStorage.getItem("recentSearches")) || [];
 
     if (searches.length === 0) {
-        container.innerHTML = `<p class="empty-state">No searches performed yet.</p>`;
+        container.innerHTML = `<p class="empty-state">No searches performed yet.</p>
+        <a href="planner.html" class="action-buttons">Search a destination now!</a>`;
         return;
     }
 

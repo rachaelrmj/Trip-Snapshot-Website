@@ -470,16 +470,18 @@ footer {
 	display: grid;
 	grid-template-columns: 1fr;
 	text-align: center;
-    background-color: #facc15;
+    
 }
 
-body.dark-mode footer {
+body.dark-mode #stay-connected {
     background-color: #000000;
     color:#ffffff;
 }
 
 #stay-connected {
+    margin-top: 20px;
     padding: 20px;
+    background-color: #facc15;
 }
 
 #stay-connected input[type="email"] {
@@ -500,9 +502,9 @@ body.dark-mode footer {
     color: #808080;
 }
 
-body.dark-mode input[type="email"] {
+body.dark-mode input[type="email"], #password {
     background-color: #ffffff;
-    border: 2px solid #1ca7ec;
+    border: 2px solid #000000;
 }
 
 #subscribe-button {
@@ -520,8 +522,15 @@ body.dark-mode #subscribe-button {
     color: #000000;
 }
 
+body.dark-mode #useful-links {
+    padding: 20px;
+    background-color: #000000;
+    color: #ffffff;
+}
+
 #useful-links {
     padding: 20px;
+    background-color: #facc15;
 }
 
 #useful-links a {
@@ -617,10 +626,15 @@ body.dark-mode #social-media img {
         order: 2; 
     }
 
+    #no-account-container {
+    margin: 20px 0 35px;
+}
+
     footer {
         display: grid;
         grid-template-columns: 1fr 1fr; 
         text-align: center;
+        background-color: #000000;
     }
     
     #copyright {

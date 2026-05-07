@@ -464,21 +464,20 @@ body.dark-mode .photo-spread {
     z-index: 10000;
 }
 
-.modal-backdrop {
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0,0,0,0.6);
-}
-
-.modal-content {
+#day-modal .modal-content {
     position: relative;
     background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 500px;
     width: 90%;
-    max-width: 400px;
-    margin: 0; 
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 10001;
+}
+
+#day-modal .modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
 }
 
 body.dark-mode .modal-content {
@@ -497,6 +496,15 @@ body.dark-mode .modal-content {
     padding: 12px;
     border: none;
     background-color: #facc15;
+    color: #000000;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+body.dark-mode .day-option {
+    padding: 12px;
+    border: none;
+    background-color: #1ca7ec;
     color: #000000;
     border-radius: 8px;
     cursor: pointer;

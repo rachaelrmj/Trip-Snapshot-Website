@@ -751,6 +751,20 @@ body.dark-mode .places-horizontal-row::-webkit-scrollbar-track {
 body.dark-mode .empty-state {
     border-color: #1ca7ec;
 }
+
+.action-buttons {
+    text-decoration:none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    background-color:#facc15;
+    color:#000000;
+    font-weight:bold;
+}
+
+body.dark-mode .action-buttons {
+    background-color:#1ca7ec;
+    color:#000000;
+}
 /*--------------------------------------------------------*/
 /* Footer Styles*/
 footer {

@@ -81,7 +81,7 @@
                 <form id="login-form">
                     <div class="input-group">
                         <label for="email" class="sr-only">Email Address</label>
-                        <input type="email" id="email" placeholder="Email Address" autocomplete="email" list="registered-emails" required>
+                        <input type="email" id="email" name="email" placeholder="Email Address" autocomplete="email" list="registered-emails" required>
                         <datalist id="registered-emails"></datalist>
                     </div>
 
@@ -102,7 +102,8 @@
                         <h3 id="recovery-title">Reset Password</h3>
                         <p>Enter the email address associated with your account.</p>
                         <form id="recovery-form">
-                            <input type="email" id="recovery-email" placeholder="Email Address" required>
+                            <label for="recovery-email" class="sr-only">Recovery Email</label>
+                            <input type="email" id="recovery-email" name="recovery-email" placeholder="Email Address" autocomplete="email" required>
                             <div class="popup-actions">
                                 <button type="submit" class="secondary-btn">Send Instructions</button>
                                 <button type="button" id="close-recovery" class="close-popup">Cancel</button>
@@ -138,7 +139,8 @@
                     <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="forgot-title">
                         <h3 id="forgot-title">Reset Password</h3>
                         <p id="forgot-popup-message">Enter your email address to reset your password:</p>
-                        <input type="email" id="forgot-email" placeholder="Email Address" required>
+                        <label for="forgot-email" class="sr-only">Forgot Email</label>
+                        <input type="email" id="forgot-email" name="forgot-email" placeholder="Email Address" autocomplete="email" required>
                         <div>
                             <button id="forgot-submit">Submit</button>
                             <button id="forgot-close">Cancel</button>

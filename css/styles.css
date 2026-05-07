@@ -289,10 +289,6 @@ body.dark-mode #hero {
     margin: 10px 15px;
 }
 
-#hero-planner-form #destination {
-    text-align: center;
-}
-
 #hero-planner-form label {
     color: #000000;
     font-size: 15px;
@@ -314,7 +310,6 @@ body.dark-mode #hero {
 }
 
 #hero input[type="text"], #hero input[type="date"] {
-    width: 100%;
     padding: 10px 12px;
     border-radius: 8px;
     border: 2px solid #000000;
