@@ -1,0 +1,473 @@
+/* Trip Snapshot Website CSS Reset */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1.5;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*--------------------------------------------------------*/
+/* Trip Snapshot Website- About Page Global Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh; 
+    font-family: 'SN Pro', sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+h1 {
+    display: none;  
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Archivo Black', sans-serif;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+p, button {
+    font-family: 'SN Pro', sans-serif;
+}
+/* Skip-link Styles */
+#skip-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-120%);
+    background-color: #000000;
+    color: #ffffff;
+    padding: 15px 25px;
+    z-index: 3000;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0 0 10px 0;
+    border: 2px solid #1ca7ec;
+    transition: transform 0.3s ease;
+}
+
+#skip-link:focus {
+    transform: translateY(0);
+    outline: 3px solid #facc15;
+    outline-offset: 2px;
+}
+/*--------------------------------------------------------*/
+/* Screen Reader Styles */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+/*--------------------------------------------------------*/
+/* Header Styles */
+header {
+    display: flex;      
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+}
+
+body.dark-mode header {
+    background-color: #1ca7ec;
+}
+
+.logo {
+    width: 120px;
+}
+
+.logo-link {
+    order: 1;
+}
+
+.profile {
+    width: 32px;
+    height: 32px;
+} 
+
+.profile-link {
+    order: 2;
+}
+
+.hamburger-menu {
+    display: flex;
+    align-items: center;
+    order: 0;
+}
+
+.menu-icon {
+    cursor: pointer;
+    display: block;
+    z-index: 1000;
+}
+
+.menu-icon img {
+    width: 44px;
+}
+
+#menu-toggle {
+    display: none;        
+}
+
+.mobile-nav {
+    display: none; 
+    position: absolute;
+    top: 100%;        
+    left: 0;          
+    width: 100%;   
+    background-color: #facc15;         
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
+    transition: max-height 0.3s ease;
+    max-height: 0;
+    overflow: hidden;             
+}
+
+body.dark-mode .mobile-nav {
+    background-color: #ffffff;
+}
+
+.mobile-nav ul {      
+    list-style: none;         
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav li {
+    padding: 15px 0;
+    transition: transform .5s ease;
+}
+
+.mobile-nav a {
+    display: block;
+    text-decoration: none;
+    font-size: 16px;
+    color: #000000;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mobile-nav li:hover, .mobile-nav a:hover {
+    background-color: #000000;    
+    color: #ffffff;  
+    transform: scale(1.1);   
+}
+
+body.dark-mode .mobile-nav li:hover,
+body.dark-mode .mobile-nav a:hover {
+    color: #ffffff;
+}
+
+#menu-toggle:checked ~ .mobile-nav {
+    display: block;
+    max-height: 500px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    order: 2;
+}
+
+#theme-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#theme-toggle img {
+    width: 32px;
+    height: 32px;
+    filter: grayscale(1); 
+}
+
+body.dark-mode #theme-toggle img {
+    filter: invert(1); 
+}
+/*--------------------------------------------------------*/
+/* Footer Styles*/
+footer {
+	display: grid;
+	grid-template-columns: 1fr;
+	text-align: center;
+    background-color: #facc15;
+}
+
+body.dark-mode footer {
+    background-color: #000000;
+    color:#ffffff;
+}
+
+#stay-connected {
+    padding: 20px;
+}
+
+#stay-connected input[type="email"] {
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #000000; 
+    margin: 10px;
+    width: 80%;
+    text-align: center;
+    color: #000000;
+}
+
+#subscribe-form label {
+    display: none;
+}
+
+#stay-connected input[type="email"]::placeholder {
+    color: #808080;
+}
+
+body.dark-mode input[type="email"] {
+    background-color: #ffffff;
+    border: 2px solid #1ca7ec;
+}
+
+#subscribe-button {
+	background-color: #000000;
+	color: #ffffff;
+	padding: 10px 50px;
+	border-radius: 8px;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+body.dark-mode #subscribe-button {
+    background-color: #1ca7ec;
+    color: #000000;
+}
+
+#useful-links {
+    padding: 20px;
+}
+
+#useful-links a {
+	text-decoration: none;
+     color: #000000;
+}
+
+body.dark-mode #useful-links a {
+    color: #ffffff;
+}
+
+#useful-links a:hover,
+#useful-links a:focus {
+    color: #1ca7ec;
+    text-decoration: underline;
+}
+
+#logout-link {
+    display: none;
+}
+
+#copyright {
+    background-color: #ffffff;
+	width: 100%;
+	padding: 20px;
+}
+
+body.dark-mode #copyright {
+    background-color: #1ca7ec;
+    color: #000000;
+}
+
+#social-media {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#social-media img {
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+}
+
+body.dark-mode #social-media img {
+    filter: brightness(0) invert(1);
+}
+/*--------------------------------------------------------*/
+/* Tablet Styles */
+@media screen and (min-width: 768px) {
+    .menu-icon { 
+        display: none;
+    }
+
+    .mobile-nav {
+        display: block;
+        position: static;
+        max-height: none;
+        background: transparent;
+        box-shadow: none;
+        overflow: visible;
+    }
+
+    body.dark-mode .mobile-nav {
+    background-color: #1ca7ec; 
+    }
+
+    .mobile-nav ul { 
+        display: flex; 
+        gap: 20px; 
+    }
+
+    .mobile-nav a { 
+        font-weight: 600; 
+        padding: 5px 10px; 
+    }
+
+    .mobile-nav li:hover, .mobile-nav a:hover {          
+        background-color: transparent; 
+        color: #1ca7ec; 
+    }
+    
+    header { 
+        justify-content: space-between;
+    }
+
+    .hamburger-menu { 
+        order: 1; 
+    }
+
+    .logo-link { 
+        order: 0; 
+    }
+
+    .profile-link { 
+        order: 2; 
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        text-align: center;
+    }
+    
+    #copyright {
+        grid-column: span 2;
+    }
+}
+/*--------------------------------------------------------*/
+/* Desktop Styles */
+@media screen and (min-width: 1024px) {
+    header { 
+        padding: 20px 5%; 
+    }
+
+    .logo { 
+        width: 150px; 
+    }
+
+    .mobile-nav ul { 
+        gap: 45px;
+    }
+
+    .mobile-nav a {
+        font-size: 18px;
+        padding: 10px 15px;
+    }
+
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        text-align: center;
+    }
+
+    #useful-links ul {
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px; 
+        text-align: center;
+    }
+
+    #stay-connected input[type="email"] {
+        width: 100%; 
+        max-width: 300px;
+    }
+
+    #copyright {
+        background-color: #ffffff;
+    }
+}
+/*--------------------------------------------------------*/
+/* Large Desktop Styles */
+@media screen and (min-width: 1440px) {
+    header, main, footer {
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .mobile-nav ul { 
+        gap: 80px;
+    }
+}

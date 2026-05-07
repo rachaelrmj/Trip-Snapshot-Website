@@ -298,14 +298,14 @@ body.dark-mode #hero {
     display: flex;
     flex-direction: column;
 }
-/*
+
 #hero-planner-form .date-group {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
     margin-bottom: 5px;
-}*/
+}
 
 #hero input[type="text"], #hero input[type="date"] {
     padding: 10px 12px;
@@ -313,6 +313,7 @@ body.dark-mode #hero {
     border: 2px solid #000000;
     font-size: 14px;
     text-align: center;
+    margin: 10px 0;
 }
 
 #start-planning-button {
