@@ -98,7 +98,7 @@ function tripFormHandler() {
         };
 
         const travelNeeds = {
-            flight: document.getElementById("flight").checked,
+            airport: document.getElementById("airport").checked,
             hotel: document.getElementById("hotel").checked,
             rental: document.getElementById("rental").checked,
             transportation: document.getElementById("transportation").checked

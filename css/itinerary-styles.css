@@ -297,11 +297,13 @@ body.dark-mode #empty-itinerary-message a {
     flex-direction: column;
     align-items: center;
     padding: 0 20px;
+    margin-top: 20px;
 }
 
 #itinerary h2 {
-    font-size: 35px;
+    font-size: 50px;
     margin-bottom: 10px;
+    padding: 10px;
 }
 /*--------------------------------------------------------*/
 /* --- Trip Summary Card Styles --- */
@@ -324,6 +326,7 @@ body.dark-mode #empty-itinerary-message a {
     border-left: 2px solid;
     border-right: 2px solid;
     border-color: #ffffff;
+    padding: 0 15px;
 }
 
 body.dark-mode .trip-summary-card #dates {
@@ -334,6 +337,7 @@ body.dark-mode .trip-summary-card #dates {
 
 .trip-summary-card p {
     text-align: center;
+    line-height: 1.25;
 }
 
 .trip-summary-card span {
@@ -349,20 +353,20 @@ body.dark-mode .trip-summary-card {
 #itinerary-container {
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    padding: 0 20px 20px 20px;
+    gap: 25px;
+    width: 100%;
+    padding: 20px;
 }
 
 .section-main-title {
-    border-top: 2px solid #facc15;
-    padding-top: 10px;
-    border-bottom: 2px solid #facc15;
-    padding-bottom: 10px;
+    padding: 10px 0;
+    background-color: #dcdcdc;
+    color: #000000;
 }
 
 body.dark-mode .section-main-title {
-    border-top: 2px solid #000000;
-    border-bottom: 2px solid #000000;
+    background-color: #1ca7ec;
+    color: #000000;
 }
 
 #activities-container .itinerary-day {
@@ -372,20 +376,12 @@ body.dark-mode .section-main-title {
 .day-header {
     background-color: #000000;
     color: #ffffff;
-    padding: 10px;
     border-radius: 8px;
 }
 
-body.dark-mode .day-header {
-    background-color: #1ca7ec;
-    color: #000000;
-}
-
 #activities-container h3 {
-    font-family: 'Archivo Black', sans-serif;
     font-size: 24px;
-    margin: 20px 0;
-    text-align: center;
+    align-content: center;
 }
 
 .itinerary-results {
@@ -418,13 +414,14 @@ body.dark-mode .day-header {
 .result-card h3 {
     background-color: #facc15;
     color: #000000;
-    padding: 15px;
-    text-align: center;
+    padding: 10px;
+    height: 71px;
+    font-size: 24px;
 }
 
 body.dark-mode .result-card h3 {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #1ca7ec;
+    color: #000000;
     font-weight: lighter;
 }
 
@@ -472,7 +469,6 @@ body.dark-mode .result-card h3 {
     scroll-snap-type: x mandatory;   
     gap: 20px;                      
     padding-bottom: 15px;           
-    -webkit-overflow-scrolling: touch; 
 }
 
 .card-content {
@@ -580,11 +576,6 @@ body.dark-mode .remove-button:hover {
     color: #000000;
 }
 
-body.dark-mode .save-place-button.is-added {
-    background-color: #1ca7ec;
-    color: #000000;
-}
-
 .save-place-button:hover {
     background-color: #000000;
     color: #ffffff;
@@ -596,8 +587,8 @@ body.dark-mode .save-place-button:hover {
 }
 
 body.dark-mode .save-place-button {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #1ca7ec;
+    color: #000000;
     font-weight: bold;
 }
 
@@ -612,19 +603,14 @@ body.dark-mode .save-place-button {
     cursor: pointer;
 }
 
-body.dark-mode #view-results-button, body.dark-mode #homepage-button, body.dark-mode #save-itinerary-button, body.dark-mode #clear-itinerary-button, body.dark-mode #edit-trip-button {
-    background-color: #1ca7ec;
-    color: #000000;
-}
-
 #homepage-button:hover, #save-itinerary-button:hover, #clear-itinerary-button:hover, #edit-trip-button:hover, #view-results-button:hover {
     background-color: #facc15;
     color: #000000;
 }
 
 body.dark-mode #homepage-button:hover, body.dark-mode #save-itinerary-button:hover, body.dark-mode #clear-itinerary-button:hover, body.dark-mode #edit-trip-button:hover, body.dark-mode #view-results-button:hover {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #1ca7ec;
+    color: #000000;
 }
 /*--------------------------------------------------------*/
 /* Footer Styles*/
@@ -795,7 +781,7 @@ body.dark-mode #social-media img {
     }
 
     .result-card {
-        flex: 0 0 calc(50% - 10px); 
+        flex: 0 0 280px;
         scroll-snap-align: start;
         min-width: 500px; 
     }

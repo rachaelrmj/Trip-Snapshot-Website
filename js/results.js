@@ -110,7 +110,7 @@ async function displayResults(data) {
         attraction: { label: 'Top Attractions', query: 'Best Tourist Attractions' },
         nightlife: { label: 'Nightlife', query: 'Highly Rated Bars and Clubs' },
         hotel: { label: 'Lodging & Accommodations', query: 'Top Rated Hotels' },
-        flight: { label: 'Airport Information', query: 'Nearest Airports' },
+        airport: { label: 'Airport Information', query: 'Nearest Airports' },
         rental: { label: 'Rental Cars', query: 'Nearest Rental Car Companies' },
         transportation: { label: 'Transportation Hubs', query: 'Transportation' }
     };
@@ -203,7 +203,7 @@ function createResultCard(place, preference) {
         : `<span class="no-website">Website: Not Available</span>`;   
 
     // Logic for Travel Needs vs Activities
-    const travelNeedKeys = ['flight', 'hotel', 'rental', 'transportation'];
+    const travelNeedKeys = ['airport', 'hotel', 'rental', 'transportation'];
     const isTravelNeed = travelNeedKeys.includes(preference);
 
     let isAlreadyAdded = false;

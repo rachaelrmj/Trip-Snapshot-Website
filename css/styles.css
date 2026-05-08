@@ -713,6 +713,12 @@ body.dark-mode #social-media img {
     #skip-link:focus {
         transform: translate(-50%, 0);
     }
+
+    #hero input[type="text"] {
+        margin: 10px auto;
+        padding: 10px 12px;
+        width: 50%;
+    }
    
     #features-content {
         grid-template-columns: repeat(2, 1fr);

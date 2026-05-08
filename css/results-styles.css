@@ -323,6 +323,7 @@ body.dark-mode #empty-results-message a {
     border-left: 2px solid;
     border-right: 2px solid;
     border-color: #ffffff;
+    padding: 0 15px;
 }
 
 body.dark-mode .trip-summary-card #dates {
@@ -395,11 +396,12 @@ body.dark-mode .trip-summary-card {
     color: #000000;
     padding: 15px;
     text-align: center;
+    min-height: 62px;
 }
 
 body.dark-mode .result-card h3 {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #1ca7ec;
+    color: #000000;
     font-weight: lighter;
 }
 
@@ -541,30 +543,24 @@ body.dark-mode .day-option {
     width: 90%;
 }
 
-.add-button.is-added {
-    background-color: #dcdcdc;
-    color: #000000;
-}
-
-body.dark-mode .add-button.is-added {
+body.dark-mode .result-card .add-button {
     background-color: #1ca7ec;
     color: #000000;
 }
 
-.add-button:hover {
-    background-color: #000000;
-    color: #ffffff;
-}
-
-body.dark-mode .add-button:hover {
+.result-card .add-button.is-added, body.dark-mode .result-card .add-button.is-added {
     background-color: #dcdcdc;
     color: #000000;
 }
 
-body.dark-mode .add-button {
+.result-card .add-button.is-added:hover {
+    background-color: #dcdcdc;
+    color: #000000;
+}
+
+.result-card .add-button:hover, body.dark-mode .result-card .add-button:hover {
     background-color: #000000;
     color: #ffffff;
-    font-weight: bold;
 }
 
 #homepage-button, #save-results-button, #clear-results-button, #edit-trip-button, #view-itinerary-button {
