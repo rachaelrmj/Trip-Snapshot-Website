@@ -306,13 +306,6 @@ body.dark-mode #hero {
     margin-bottom: 5px;
 }
 
-input[type="date"] {
-    color: #000000;
-    background-color: #ffffff;
-    -webkit-appearance: none;
-    appearance: none;
-}
-
 #hero input[type="text"], #hero input[type="date"] {
     padding: 10px 12px;
     border-radius: 8px;
