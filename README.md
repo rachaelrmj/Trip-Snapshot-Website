@@ -20,6 +20,11 @@ Planning a trip often requires visiting multiple websites to research destinatio
 The project was developed as a frontend-focused web application emphasizing user experience, accessibility, responsive design, and client-side state management.
 
 ---
+## Live Demo
+
+Website: https://rachaelrmj.github.io/Trip-Snapshot-Website/
+
+---
 
 ## Features
 
